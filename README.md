@@ -10,24 +10,24 @@ angularjs-nvd3-directives
 The complete example can be found in the examples folder.
 
 Include nvd3Directives.js in the HTML file.
-'''html
+```html
     <script src="path/to/nvd3Directives.js"></script>
-'''
+```
 
 Include other dependencies for nvd3 and d3.
-'''html
+```html
     <script src="../build/components/d3/d3.js"></script>
     <script src="../build/components/nvd3/nv.d3.js"></script>
     <link rel="stylesheet" href="path/to/nv.d3.css"/>
-'''
+```
 
 In the Angular App, include nvd3ChartDirectives as a dependency.
-'''javascript
+```javascript
     var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
-'''
+```
 
 Create an Angular.js Controller, and assign json data to a scope variable.
-'''javascript
+```javascript
         function ExampleCtrl($scope){
             $scope.exampleData = [
             {
@@ -36,16 +36,16 @@ Create an Angular.js Controller, and assign json data to a scope variable.
             }
         ];
 }
-'''
+```
 
 Include the chart directive in HTML.
 The data html attribute should point to the scope variable (exampleData).
 Other directive attributes should be the same as the public attributes associated with each chart.
-'''html
+```html
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart data="exampleData" id="exampleId" width="800" height="400" showXAxis="true" showYAxis="true"><svg></svg></nvd3-line-chart>
 </div>
-'''
+```
 
 
 
