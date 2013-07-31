@@ -189,4 +189,59 @@ angular.module('nvd3ChartDirectives', [])
             }
         }
     })
+    .directive('nvd3DiscreteBarChart', function(){
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=',
+                width: '@',
+                height: '@',
+                id: '@',
+                showlegend: '@',
+                tooltips: '@',
+                staggerlabels: '@',
+                forcex: '@',
+                forcey: '@',
+                margin: '&'
+            },
+            link: function(scope, element, attrs){
+                scope.$watch('data', function(data){
+                    if(data){
+                        nv.addGraph({
+                            generate: function(){
+                                var margin = {left:50, top:50, bottom:50, right:50};
+                                var width = attrs.width - (margin.left + margin.right),
+                                    height = attrs.height - (margin.top + margin.bottom);
+
+                                var chart = nv.models.discreteBarChart()
+                                    .margin(margin)
+                                    .x(function(d){ return d[0] })
+                                    .y(function(d){ return d[1] })
+                                    .width(width)
+                                    .height(height)
+                                    .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                    .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"));
+
+//                                chart.forceX(attrs.forcex === undefined ? false : (attrs.forcex === "true"))
+//                                    .forceY(attrs.forcey === undefined ? false : (attrs.forcey === "true"))
+
+                                d3.select('#' + attrs.id + ' svg')
+                                    .attr('height', height)
+                                    .attr('width', width)
+                                    .datum(data)
+                                    .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
+                                    .call(chart);
+
+                                nv.utils.windowResize(chart.update);
+
+                                return chart;
+                            },
+                            callback: function(graph){
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    })
 ;
