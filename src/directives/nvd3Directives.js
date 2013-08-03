@@ -337,4 +337,55 @@ angular.module('nvd3ChartDirectives', [])
             }
         }
     })
+    .directive('nvd3ScatterChart', function(){
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=',
+                width: '@',
+                height: '@',
+                id: '@',
+                showlegend: '@',
+                tooltips: '@',
+                showcontrols: '@',
+                forcex: '@',
+                forcey: '@',
+                margin: '&'
+            },
+            link: function(scope, element, attrs){
+                scope.$watch('data', function(data){
+                    if(data){
+                        nv.addGraph({
+                            generate: function(){
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
+                                    width = attrs.width - (margin.left + margin.right),
+                                    height = attrs.height - (margin.top + margin.bottom);
+                                var chart = nv.models.scatterChart()
+                                    .margin(margin)
+                                    .showDistX(true)
+                                    .showDistY(true)
+                                    .color(d3.scale.category10().range());
+
+                                chart.xAxis.tickFormat(d3.format('.02f'));
+                                chart.yAxis.tickFormat(d3.format('.02f'));
+
+                                d3.select('#' + attrs.id + ' svg')
+                                    .attr('height', height)
+                                    .attr('width', width)
+                                    .datum(data)
+                                    .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
+                                    .call(chart);
+
+                                nv.utils.windowResize(chart.update);
+
+                                return chart;
+                            },
+                            callback: function(graph){
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    })
 ;
