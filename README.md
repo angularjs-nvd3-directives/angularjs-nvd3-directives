@@ -6,7 +6,7 @@ angularjs-nvd3-directives
 ## Getting Started
 
 
-# Line Chart Example
+### Line Chart Example
 The complete example can be found in the examples folder.
 
 Include nvd3Directives.js in the HTML file.
@@ -47,6 +47,8 @@ Other directive attributes should be the same as the public attributes associate
 </div>
 ```
 
+###Adding multiple charts on one page
+To have multiple charts on one page, tbe id attribute needs to be unique.
 
 
 

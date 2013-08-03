@@ -15,17 +15,18 @@ angular.module('nvd3ChartDirectives', [])
                 showyaxis: '@',
                 rightalignyaxis: '@',
                 defaultstate: '@',
-                nodata: '@'
+                nodata: '@',
+                margin: '&',
+                tooltipcontent: '&'
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         nv.addGraph({
                             generate: function(){
-                                var margin = {left:50, top:50, bottom:50, right:50};
-                                var width = attrs.width - (margin.left + margin.right),
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
+                                    width = attrs.width - (margin.left + margin.right),
                                     height = attrs.height - (margin.top + margin.bottom);
-
                                 var chart = nv.models.lineChart()
                                     .margin(margin)
                                     .x(function(d){ return d[0] })
@@ -38,6 +39,10 @@ angular.module('nvd3ChartDirectives', [])
                                     .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                     .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : attrs.nodata);
+
+                                if(attrs.tooltipcontent){
+                                    chart.tooltipContent(scope.tooltipcontent);
+                                }
 
                                 chart.xAxis
                                     .tickFormat(function(d) {
@@ -83,8 +88,8 @@ angular.module('nvd3ChartDirectives', [])
                     if(data){
                         nv.addGraph({
                             generate: function(){
-                                var margin = {left:50, top:50, bottom:50, right:50};
-                                var width = attrs.width - (margin.left + margin.right),
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
+                                    width = attrs.width - (margin.left + margin.right),
                                     height = attrs.height - (margin.top + margin.bottom);
 
                                 var chart = nv.models.stackedAreaChart()
@@ -145,10 +150,9 @@ angular.module('nvd3ChartDirectives', [])
                     if(data){
                         nv.addGraph({
                             generate: function(){
-                                var margin = {left:50, top:50, bottom:50, right:50};
-                                var width = attrs.width - (margin.left + margin.right),
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
+                                    width = attrs.width - (margin.left + margin.right),
                                     height = attrs.height - (margin.top + margin.bottom);
-
                                 var chart = nv.models.multiBarChart()
                                     .margin(margin)
                                     .x(function(d){ return d[0] })
@@ -209,10 +213,9 @@ angular.module('nvd3ChartDirectives', [])
                     if(data){
                         nv.addGraph({
                             generate: function(){
-                                var margin = {left:50, top:50, bottom:50, right:50};
-                                var width = attrs.width - (margin.left + margin.right),
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
+                                    width = attrs.width - (margin.left + margin.right),
                                     height = attrs.height - (margin.top + margin.bottom);
-
                                 var chart = nv.models.discreteBarChart()
                                     .margin(margin)
                                     .x(function(d){ return d[0] })
@@ -264,10 +267,9 @@ angular.module('nvd3ChartDirectives', [])
                     if(data){
                         nv.addGraph({
                             generate: function(){
-                                var margin = {left:50, top:50, bottom:50, right:50};
-                                var width = attrs.width - (margin.left + margin.right),
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
+                                    width = attrs.width - (margin.left + margin.right),
                                     height = attrs.height - (margin.top + margin.bottom);
-
                                 var chart = nv.models.multiBarHorizontalChart()
                                     .margin(margin)
                                     .x(function(d){ return d[0] })
@@ -285,6 +287,45 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 nv.utils.windowResize(chart.update);
+
+                                return chart;
+                            },
+                            callback: function(graph){
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    })
+    .directive('nvd3PieChart', function(){
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=',
+                width: '@',
+                height: '@',
+                id: '@',
+                showlabels: '@',
+                margin: '&'
+            },
+            link: function(scope, element, attrs){
+                scope.$watch('data', function(data){
+                    if(data){
+                        nv.addGraph({
+                            generate: function(){
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
+                                    width = attrs.width - (margin.left + margin.right),
+                                    height = attrs.height - (margin.top + margin.bottom);
+                                var chart = nv.models.pieChart()
+                                    .x(function(d){ return d[0] })
+                                    .y(function(d){ return d[1] })
+                                    .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === "true"));
+
+                                d3.select('#' + attrs.id + ' svg')
+                                    .datum(data)
+                                    .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
+                                    .call(chart);
 
                                 return chart;
                             },

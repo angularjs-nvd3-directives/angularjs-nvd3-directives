@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular.js nvd3.js Pie Chart Directive</title>
+    <script src="../build/components/angular/angular.js"></script>
+    <script src="../build/components/d3/d3.js"></script>
+    <script src="../build/components/nvd3/nv.d3.js"></script>
+    <script src="../src/directives/nvd3Directives.js"></script>
+    <link rel="stylesheet" href="../bower_components/nvd3/src/nv.d3.css"/>
+    <script>
+        var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
+
+        function ExampleCtrl($scope){
+            $scope.exampleData = [
+                { key: "Cumulative Return",
+                  values: [
+                        ["One", 29.765957771107],
+                        ["Two", 0],
+                        ["Three", 32.807804682612],
+                        ["Four", 196.45946739256],
+                        ["Five", 0.19434030906893],
+                        ["Six", 98.079782601442],
+                        ["Seven", 13.925743130903],
+                        ["Eight", 5.1387322875705]
+                    ]
+                }
+            ];
+
+        }
+    </script>
+
+</head>
+<body ng-app='nvd3TestApp'>
+
+<div ng-controller="ExampleCtrl">
+    <nvd3-pie-chart
+        data="exampleData"
+        id="exampleId"
+        width="800"
+        height="400"
+    ><svg></svg></nvd3-pie-chart>
+</div>
+
+</body>
+</html>

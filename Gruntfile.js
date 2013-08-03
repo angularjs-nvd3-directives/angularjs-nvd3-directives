@@ -29,18 +29,6 @@ module.exports = function(grunt) {
               dest: 'dist/<%= pkg.name %>.spec.js'
           }
       },
-      uglify: {
-          libs: {
-              files: [
-                  {
-                      expand: true,
-                      cwd: 'bower_components',
-                      src: ['**/*.js', '**/*.css'],
-                      dest: 'build/components'
-                  }
-              ]
-          }
-      },
       jshint: {
       options: {
         curly: true,
