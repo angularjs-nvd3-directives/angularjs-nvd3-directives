@@ -47,7 +47,7 @@ angular.module('nvd3ChartDirectives', [])
                                 chart.xAxis
                                     .tickFormat(function(d) {
                                         return d3.time.format('%x')(new Date(d))
-                                    });
+                                });
 
                                 chart.yAxis
                                     .tickFormat(d3.format(',2f'));
@@ -348,8 +348,16 @@ angular.module('nvd3ChartDirectives', [])
                 showlegend: '@',
                 tooltips: '@',
                 showcontrols: '@',
-                forcex: '@',
-                forcey: '@',
+                showDistX: '@',
+                showDistY: '@',
+                fisheye: '@',
+                xPadding: '@',
+                yPadding: '@',
+                tooltipXcontent: '&',
+                tooltipYcontent: '&',
+//                state
+//                defaultState
+//                noData
                 margin: '&'
             },
             link: function(scope, element, attrs){
@@ -362,8 +370,16 @@ angular.module('nvd3ChartDirectives', [])
                                     height = attrs.height - (margin.top + margin.bottom);
                                 var chart = nv.models.scatterChart()
                                     .margin(margin)
-                                    .showDistX(true)
-                                    .showDistY(true)
+                                    .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                    .tooltipXContent(scope.$eval(attrs.tooltipxcontent) || function(key, x, y) { return '<strong>' + x + '</strong>' } )
+                                    .tooltipYContent(scope.$eval(attrs.tooltipycontent) || function(key, x, y) { return '<strong>' + y + '</strong>' } )
+                                    .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
+                                    .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
+                                    .showDistX(attrs.showdistx === undefined ? false : (attrs.showdistx === "true"))
+                                    .showDistY(attrs.showdisty === undefined ? false : (attrs.showdisty === "true"))
+                                    .xPadding(attrs.xpadding === undefined ? 0 : (+attrs.xpadding))
+                                    .yPadding(attrs.ypadding === undefined ? 0 : (+attrs.ypadding))
+                                    .fisheye(attrs.fisheye === undefined ? 0 : (+attrs.fisheye))
                                     .color(d3.scale.category10().range());
 
                                 chart.xAxis.tickFormat(d3.format('.02f'));
