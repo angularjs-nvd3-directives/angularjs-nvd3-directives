@@ -29,6 +29,12 @@ In the Angular App, include nvd3ChartDirectives as a dependency.
 Create an Angular.js Controller, and assign json data to a scope variable.
 ```javascript
         function ExampleCtrl($scope){
+            $scope.xAxisTickFormat = function() {
+        		return function(d) {
+        			return d3.time.format('%x')(new Date(d))
+        		}
+        	}
+            
             $scope.exampleData = [
             {
                 "key": "Series 1",
@@ -43,7 +49,14 @@ The data html attribute should point to the scope variable (exampleData).
 Other directive attributes should be the same as the public attributes associated with each chart.
 ```html
 <div ng-controller="ExampleCtrl">
-    <nvd3-line-chart data="exampleData" id="exampleId" width="800" height="400" showXAxis="true" showYAxis="true"><svg></svg></nvd3-line-chart>
+    <nvd3-line-chart 
+        data="exampleData" 
+        id="exampleId" 
+        width="800" 
+        height="400" 
+        showXAxis="true" 
+        showYAxis="true"
+        xaxistickformat='xaxistickformat()'><svg></svg></nvd3-line-chart>
 </div>
 ```
 
