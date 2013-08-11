@@ -48,7 +48,7 @@ Other directive attributes should be the same as the public attributes associate
 ```
 
 ###Adding multiple charts on one page
-To have multiple charts on one page, tbe id attribute needs to be unique.
+To have multiple charts on one page, the id attribute needs to be unique.
 
 
 
