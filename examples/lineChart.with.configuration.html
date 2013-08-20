@@ -6,8 +6,7 @@
     <script src="../build/components/angular/angular.js"></script>
     <script src="../build/components/d3/d3.js"></script>
     <script src="../build/components/nvd3/nv.d3.js"></script>
-    <script src="../src/directives/nvd3AxisConfiguration.js"></script>
-    <script src="../src/directives/nvd3Directives.js"></script>
+    <script src="../dist/angularjs-nvd3-directives.js"></script>
     <link rel="stylesheet" href="../bower_components/nvd3/src/nv.d3.css"/>
     <script>
         var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
@@ -22,7 +21,7 @@
             //configuration examples
             $scope.xAxisTickFormat = function(){
                 return function(d){
-                    //return d3.time.format('%X')(new Date(d));  //uncomment for time format
+//                    return d3.time.format('%X')(new Date(d));  //uncomment for time format
                     return d3.time.format('%x')(new Date(d));  //uncomment for date format
                 }
             }

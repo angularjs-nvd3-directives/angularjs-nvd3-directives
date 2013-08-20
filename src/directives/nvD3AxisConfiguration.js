@@ -1,5 +1,5 @@
-"use strict";
 function configureXaxis(chart, scope, attrs){
+"use strict";
     if(attrs.xaxisorient){
         chart.xAxis.orient(scope.xaxisorient());
     }
@@ -57,6 +57,7 @@ function configureXaxis(chart, scope, attrs){
 }
 
 function configureYaxis(chart, scope, attrs){
+"use strict";
     if(attrs.yaxisticks){
         chart.yAxis.ticks(scope.yaxisticks());
     }
