@@ -1,7 +1,11 @@
 angularjs-nvd3-directives
 =========================
 
+[![Build Status](https://travis-ci.org/cmaurer/angularjs-nvd3-directives.png?branch=master)](https://travis-ci.org/cmaurer/angularjs-nvd3-directives)
+
+
 [AngularJS](http://angularjs.org/) directive directives for [nvd3.js](http://www.nvd3.org).  The goal of this project is to allow for easier integration between [nvd3.js](http://www.nvd3.org) and [AngularJS](http://www.angularjs.org/).
+
 
 ## Getting Started
 
