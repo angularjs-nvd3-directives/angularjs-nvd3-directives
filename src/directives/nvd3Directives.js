@@ -677,4 +677,133 @@ angular.module('nvd3ChartDirectives', [])
                 });
             }
         };
+    })
+    .directive('nvd3LinePlusBarChart', function(){
+        "use strict";
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=',
+                width: '@',
+                height: '@',
+                id: '@',
+                showlegend: '@',
+                tooltips: '@',
+                showxaxis: '@',
+                showyaxis: '@',
+                rightalignyaxis: '@',
+                defaultstate: '@',
+                nodata: '@',
+                margin: '&',
+                tooltipcontent: '&',
+                color: '&',
+                x: '&',
+                y: '&',
+                clipvoronoi: '@',
+                interpolate: '@',
+//                'xScale', 'yScale', 'xDomain', 'yDomain', defined
+
+                //xaxis
+                xaxisorient: '&',
+                xaxisticks: '&',
+                xaxistickvalues: '&',
+                xaxisticksubdivide: '&',
+                xaxisticksize: '&',
+                xaxistickpadding: '&',
+                xaxistickformat: '&',
+                xaxislabel: '&',
+                xaxisscale: '&',
+                xaxisdomain: '&',
+                xaxisrange: '&',
+                xaxisrangeband: '&',
+                xaxisrangebands: '&',
+                xaxisshowmaxmin: '@',
+                xaxishighlightzero: '@',
+                xaxisrotatelables: '@',
+                xaxisrotateylabel: '@',
+                xaxisstaggerlabels: '@',
+
+                //yaxis
+                yaxisorient: '&',
+                yaxisticks: '&',
+                yaxistickvalues: '&',
+                yaxisticksubdivide: '&',
+                yaxisticksize: '&',
+                yaxistickpadding: '&',
+                yaxistickformat: '&',
+                yaxislabel: '&',
+                yaxisscale: '&',
+                yaxisdomain: '&',
+                yaxisrange: '&',
+                yaxisrangeband: '&',
+                yaxisrangebands: '&',
+                yaxisshowmaxmin: '@',
+                yaxishighlightzero: '@',
+                yaxisrotatelables: '@',
+                yaxisrotateylabel: '@',
+                yaxisstaggerlabels: '@',
+
+                //yaxis
+                y2axisorient: '&',
+                y2axisticks: '&',
+                y2axistickvalues: '&',
+                y2axisticksubdivide: '&',
+                y2axisticksize: '&',
+                y2axistickpadding: '&',
+                y2axistickformat: '&',
+                y2axislabel: '&',
+                y2axisscale: '&',
+                y2axisdomain: '&',
+                y2axisrange: '&',
+                y2axisrangeband: '&',
+                y2axisrangebands: '&',
+                y2axisshowmaxmin: '@',
+                y2axishighlightzero: '@',
+                y2axisrotatelables: '@',
+                y2axisrotateylabel: '@',
+                y2axisstaggerlabels: '@'
+
+            },
+            link: function(scope, element, attrs){
+                scope.$watch('data', function(data){
+                    if(data){
+                        nv.addGraph({
+                            generate: function(){
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
+                                    width = attrs.width - (margin.left + margin.right),
+                                    height = attrs.height - (margin.top + margin.bottom);
+
+                                var chart = nv.models.linePlusBarChart()
+                                    .margin(margin)
+                                    .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
+                                    .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                    .width(width)
+                                    .height(height)
+                                    .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
+                                    .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                    .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
+
+                                if(attrs.tooltipcontent){
+                                    chart.tooltipContent(scope.tooltipcontent());
+                                }
+
+                                configureXaxis(chart, scope, attrs);
+                                configureY1axis(chart, scope, attrs);
+                                configureY2axis(chart, scope, attrs);
+
+                                d3.select('#' + attrs.id + ' svg')
+                                    .attr('height', height)
+                                    .attr('width', width)
+                                    .datum(data)
+                                    .call(chart);
+
+                                nv.utils.windowResize(chart.update);
+
+                                return chart;
+                            }
+                        });
+                    }
+                });
+            }
+        };
     });

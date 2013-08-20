@@ -110,3 +110,115 @@ function configureYaxis(chart, scope, attrs){
         chart.yAxis.staggerlabels((scope.yaxisstaggerlabels === "true"));
     }
 }
+
+
+function configureY1axis(chart, scope, attrs){
+    "use strict";
+    if(attrs.y1axisticks){
+        chart.y1Axis.ticks(scope.y1axisticks());
+    }
+    if(attrs.y1axistickvalues){
+        chart.y1Axis.tickValues(scope.y1axistickvalues());
+    }
+    if(attrs.y1axisticksubdivide){
+        chart.y1Axis.tickSubdivide(scope.y1axisticksubdivide());
+    }
+    if(attrs.y1axisticksize){
+        chart.y1Axis.tickSize(scope.y1axisticksize());
+    }
+    if(attrs.y1axistickpadding){
+        chart.y1Axis.tickPadding(scope.y1axistickpadding());
+    }
+    if(attrs.y1axistickformat){
+        chart.y1Axis.tickFormat(scope.y1axistickformat());
+    }
+    if(attrs.y1axislabel){
+        chart.y1Axis.axisLabel(scope.y1axislabel());
+    }
+    if(attrs.y1axisscale){
+        chart.y1Axis.xScale(scope.y1axisscale());
+    }
+    if(attrs.y1axisdomain){
+        chart.y1Axis.domain(scope.y1axisdomain());
+    }
+    if(attrs.y1axisrange){
+        chart.y1Axis.range(scope.y1axisrange());
+    }
+    if(attrs.y1axisrangeband){
+        chart.y1Axis.rangeBand(scope.y1axisrangeband());
+    }
+    if(attrs.y1axisrangebands){
+        chart.y1Axis.rangeBands(scope.y1axisrangebands());
+    }
+    if(attrs.y1axisshowmaxmin){
+        chart.y1Axis.showMaxMin((scope.y1axisshowmaxmin === "true"));
+    }
+    if(attrs.y1axishighlightzero){
+        chart.y1Axis.highlightZero((scope.y1axishighlightzero === "true"));
+    }
+    if(attrs.y1axisrotatelables){
+        chart.y1Axis.highlightZero(scope.y1axisrotatelables);
+    }
+    if(attrs.y1axisrotateylabel){
+        chart.y1Axis.rotateYLabel((scope.y1axisrotateylabel === "true"));
+    }
+    if(attrs.y1axisstaggerlabels){
+        chart.y1Axis.staggerlabels((scope.y1axisstaggerlabels === "true"));
+    }
+}
+
+
+function configureY2axis(chart, scope, attrs){
+    "use strict";
+    if(attrs.y2axisticks){
+        chart.y2Axis.ticks(scope.y2axisticks());
+    }
+    if(attrs.y2axistickvalues){
+        chart.y2Axis.tickValues(scope.y2axistickvalues());
+    }
+    if(attrs.y2axisticksubdivide){
+        chart.y2Axis.tickSubdivide(scope.y2axisticksubdivide());
+    }
+    if(attrs.y2axisticksize){
+        chart.y2Axis.tickSize(scope.y2axisticksize());
+    }
+    if(attrs.y2axistickpadding){
+        chart.y2Axis.tickPadding(scope.y2axistickpadding());
+    }
+    if(attrs.y2axistickformat){
+        chart.y2Axis.tickFormat(scope.y2axistickformat());
+    }
+    if(attrs.y2axislabel){
+        chart.y2Axis.axisLabel(scope.y2axislabel());
+    }
+    if(attrs.y2axisscale){
+        chart.y2Axis.xScale(scope.y2axisscale());
+    }
+    if(attrs.y2axisdomain){
+        chart.y2Axis.domain(scope.y2axisdomain());
+    }
+    if(attrs.y2axisrange){
+        chart.y2Axis.range(scope.y2axisrange());
+    }
+    if(attrs.y2axisrangeband){
+        chart.y2Axis.rangeBand(scope.y2axisrangeband());
+    }
+    if(attrs.y2axisrangebands){
+        chart.y2Axis.rangeBands(scope.y2axisrangebands());
+    }
+    if(attrs.y2axisshowmaxmin){
+        chart.y2Axis.showMaxMin((scope.y2axisshowmaxmin === "true"));
+    }
+    if(attrs.y2axishighlightzero){
+        chart.y2Axis.highlightZero((scope.y2axishighlightzero === "true"));
+    }
+    if(attrs.y2axisrotatelables){
+        chart.y2Axis.highlightZero(scope.y2axisrotatelables);
+    }
+    if(attrs.y2axisrotateylabel){
+        chart.y2Axis.rotateYLabel((scope.y2axisrotateylabel === "true"));
+    }
+    if(attrs.y2axisstaggerlabels){
+        chart.y2Axis.staggerlabels((scope.y2axisstaggerlabels === "true"));
+    }
+}
