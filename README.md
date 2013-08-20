@@ -13,9 +13,9 @@ angularjs-nvd3-directives
 ### Line Chart Example
 The complete example can be found in the examples folder.
 
-Include nvd3Directives.js in the HTML file.
+Include angularjs-nvd3-directives.js in your HTML file.
 ```html
-    <script src="path/to/nvd3Directives.js"></script>
+    <script src="dist/angularjs-nvd3-directives.js"></script>
 ```
 
 Include other dependencies for nvd3 and d3.
