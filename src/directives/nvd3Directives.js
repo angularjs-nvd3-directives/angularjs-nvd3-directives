@@ -446,7 +446,6 @@ angular.module('nvd3ChartDirectives', [])
                 nodata: '@',
                 x: '&',
                 y: '&',
-                forcex: '@',
                 forcey: '@',
 
                 //xaxis
@@ -501,8 +500,7 @@ angular.module('nvd3ChartDirectives', [])
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
-                                    .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
-                                    .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
+                                    .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                     .width(width)
                                     .height(height)
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
