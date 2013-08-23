@@ -12,20 +12,49 @@
         var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
 
         function ExampleCtrl($scope){
-            $scope.exampleData = [
-                { key: "Cumulative Return",
-                  values: [
-                        ["One", 29.765957771107],
-                        ["Two", 0],
-                        ["Three", 32.807804682612],
-                        ["Four", 196.45946739256],
-                        ["Five", 0.19434030906893],
-                        ["Six", 98.079782601442],
-                        ["Seven", 13.925743130903],
-                        ["Eight", 5.1387322875705]
-                    ]
+            $scope.exampleData =[
+                    [
+                {
+                    key: "One",
+                    y: 5
+                },
+                {
+                    key: "Two",
+                    y: 2
+                },
+                {
+                    key: "Three",
+                    y: 9
+                },
+                {
+                    key: "Four",
+                    y: 7
+                },
+                {
+                    key: "Five",
+                    y: 4
+                },
+                {
+                    key: "Six",
+                    y: 3
+                },
+                {
+                    key: "Seven",
+                    y: 9
                 }
+            ]
             ];
+
+        $scope.xFunction = function(){
+            return function(d) {
+                return d.key;
+            };
+        }
+            $scope.yFunction = function(){
+                return function(d) {
+                    return d.y;
+                };
+            }
 
         }
     </script>
@@ -39,6 +68,8 @@
         id="exampleId"
         width="800"
         height="400"
+        x="xFunction()"
+        y="yFunction()"
     ><svg></svg></nvd3-pie-chart>
 </div>
 

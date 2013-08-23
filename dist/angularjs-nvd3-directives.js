@@ -763,7 +763,8 @@ angular.module('nvd3ChartDirectives', [])
                 nodata: '@',
                 margin: '&',
                 x: '&',
-                y: '&'
+                y: '&',
+                values: '&'
 
             },
             link: function(scope, element, attrs){
@@ -774,9 +775,11 @@ angular.module('nvd3ChartDirectives', [])
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
                                     width = attrs.width - (margin.left + margin.right),
                                     height = attrs.height - (margin.top + margin.bottom);
+
                                 var chart = nv.models.pieChart()
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                    .values(attrs.values === undefined ? function(d) { return d; } : scope.values())
                                     .width(width)
                                     .height(height)
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
