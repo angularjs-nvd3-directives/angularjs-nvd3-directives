@@ -61,7 +61,7 @@ module.exports = function(grunt) {
       }
     },
     curl: {
-    	'lib/angularjs-nvd3-directives/angularjs-nvd3-directives.js': 'https://raw.github.com/cmaurer/angularjs-nvd3-directives/master/dist/angularjs-nvd3-directives.js'
+    	'dist/angularjs-nvd3-directives.js': 'https://raw.github.com/cmaurer/angularjs-nvd3-directives/master/dist/angularjs-nvd3-directives.js'
     }
   });
 
@@ -74,6 +74,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-jekyll');
 
   // Default task.
-  grunt.registerTask('default', ['curl', 'jshint', 'concat', 'uglify']);
+  grunt.registerTask('default', ['curl', 'jshint']);
 
 };
