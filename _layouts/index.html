@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<title>angularjs, nvd3js, directives {% if page.title %} ~ {{ page.title }}{% endif %}</title>
+
+    <link rel="stylesheet" href="{{ site.path }}/stylesheets/styles.css">
+    <link rel="stylesheet" href="{{ site.path }}/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="{{ site.path }}/lib/nvd3/src/nv.d3.css">
+
+    <script type="text/javascript" src="{{ site.path }}/lib/angular/angular.js" charset="utf-8" ></script>
+    <script type="text/javascript" src="{{ site.path }}/lib/d3/d3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ site.path }}/lib/nvd3/nv.d3.js"/>
+    <script type="text/javascript" src="{{ site.path }}/lib/angularjs-nvd3-directives/angularjs-nvd3-directives.js"></script>
+		
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app='nvd3TestApp'>
+	<script type="text/javascript" src="lib/angularjs-nvd3-directives/angularjs-nvd3-directives.js"></script>
+    <div class="wrapper">
+      <header>
+        <h1>Angularjs-nvd3-directives</h1>
+        <p>Angular.js directives for nvd3.js</p>
+        <p class="view"><a href="https://github.com/cmaurer/angularjs-nvd3-directives">View the Project on GitHub <small>cmaurer/angularjs-nvd3-directives</small></a></p>
+        <ul>
+          <li><a href="https://github.com/cmaurer/angularjs-nvd3-directives/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/cmaurer/angularjs-nvd3-directives/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/cmaurer/angularjs-nvd3-directives">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section><div class="view"><a href="{{ site.path }}index.html">Home</a>	#	<a href="{{ site.path }}line.chart.html">Line Charts</a></div></section>
+      <section>
+		{{ content }}      
+	  </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/cmaurer">cmaurer</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="{{ site.path }}/javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,16 @@
+{
+    "name": "angularjs-nvd3-directives",
+    "version": "0.0.0",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "devDependencies": {
+        "angular": "~1.0.7",
+        "nvd3": "~1.0.0-beta",
+        "d3": "~3.2.8"
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "nvd3",
+  "homepage": "https://github.com/novus/nvd3",
+  "version": "1.0.0-beta",
+  "_release": "1.0.0-beta",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0-beta",
+    "commit": "7cbe823a2a0402eea0308d36b48acad8b4a506cb"
+  },
+  "_source": "git://github.com/novus/nvd3.git",
+  "_target": "~1.0.0-beta",
+  "_originalSource": "nvd3"
+}
