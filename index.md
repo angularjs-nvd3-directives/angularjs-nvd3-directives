@@ -98,12 +98,5 @@ function ExampleCtrl($scope){
 </div>
 
 
-## More information
-Check out the <a href="https://github.com/cmaurer/angularjs-nvd3-directives/tree/master/examples">examples</a> 
-Read the <a href="">documentation</a> 
-
-About Angular.js
-About d3.js
-About nvd3.js
-
-
+## Examples
+Check out more <a href="https://github.com/cmaurer/angularjs-nvd3-directives/tree/master/examples">examples</a> 
