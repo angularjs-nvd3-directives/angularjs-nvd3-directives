@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 	<title>angularjs, nvd3js, directives </title>
 
-    <link rel="stylesheet" href="/stylesheets/styles.css">
-    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
-    <link rel="stylesheet" href="/lib/nvd3/src/nv.d3.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="lib/nvd3/src/nv.d3.css">
 
-    <script type="text/javascript" src="/lib/angular/angular.js" charset="utf-8" ></script>
-    <script type="text/javascript" src="/lib/d3/d3.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/lib/nvd3/nv.d3.js"/>
-    <script type="text/javascript" src="/lib/angularjs-nvd3-directives/angularjs-nvd3-directives.js"></script>
+    <script type="text/javascript" src="lib/angular/angular.js" charset="utf-8" ></script>
+    <script type="text/javascript" src="lib/d3/d3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="lib/nvd3/nv.d3.js"/>
+    <script type="text/javascript" src="dist/angularjs-nvd3-directives.js"></script>
 		
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
@@ -20,7 +20,7 @@
     <![endif]-->
   </head>
   <body ng-app='nvd3TestApp'>
-	<script type="text/javascript" src="lib/angularjs-nvd3-directives/angularjs-nvd3-directives.js"></script>
+    <script type="text/javascript" src="dist/angularjs-nvd3-directives.js"></script>
     <div class="wrapper">
       <header>
         <h1>Angularjs-nvd3-directives</h1>
@@ -32,7 +32,7 @@
           <li><a href="https://github.com/cmaurer/angularjs-nvd3-directives">View On <strong>GitHub</strong></a></li>
         </ul>
       </header>
-      <section><div class="view"><a href="index.html">Home</a>	#	<a href="line.chart.html">Line Charts</a></div></section>
+      <section><div class="view"><a href="index.html">Home</a>	#	<a href="line.chart.html">Line Charts</a>	#	<a href="stacked.area.chart.html">Stacked Area Charts</a></div></section>
       <section>
 		<script>
 	var app = angular.module('nvd3TestApp', ['nvd3ChartDirectives']);
@@ -117,18 +117,27 @@
         <svg />
     </nvd3-line-chart>
 </div>
-<h2 id='more_information'>More information</h2>
+<h2 id='examples'>Examples</h2>
 
-<p>Check out the <a href='https://github.com/cmaurer/angularjs-nvd3-directives/tree/master/examples'>examples</a> Read the <a href=''>documentation</a></p>
-
-<p>About Angular.js About d3.js About nvd3.js</p>      
+<p>Check out more <a href='https://github.com/cmaurer/angularjs-nvd3-directives/tree/master/examples'>examples</a></p>      
 	  </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/cmaurer">cmaurer</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-    <script src="/javascripts/scale.fix.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43250024-1', 'cmaurer.github.io');
+  ga('send', 'pageview');
+
+</script>    
     
   </body>
 </html>

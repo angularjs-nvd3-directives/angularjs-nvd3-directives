@@ -692,7 +692,7 @@ Refer to Interpolation on the <a href="https://github.com/mbostock/d3/wiki/SVG-S
 
 If interpolate is specified, sets the interpolation mode to the specified string. If interpolate is not specified, returns the current interpolation mode.
 
-## *Linear*
+### *Linear*
 Piecewise linear segments, as in a polyline.
 
 {% highlight html %}
@@ -723,7 +723,7 @@ Piecewise linear segments, as in a polyline.
     </nvd3-line-chart>
 </div>
 
-## *Linear-Closed*
+### *Linear-Closed*
 Close the linear segments to form a polygon.
 
 {% highlight html %}
@@ -754,7 +754,7 @@ Close the linear segments to form a polygon.
     </nvd3-line-chart>
 </div>
 
-## *Step*
+### *Step*
 Alternate between horizontal and vertical segments, as in a step function.
 
 {% highlight html %}
@@ -785,7 +785,7 @@ Alternate between horizontal and vertical segments, as in a step function.
     </nvd3-line-chart>
 </div>
 
-## *Step-Before*
+### *Step-Before*
 Alternate between vertical and horizontal segments, as in a step function.
 
 {% highlight html %}
@@ -816,7 +816,7 @@ Alternate between vertical and horizontal segments, as in a step function.
     </nvd3-line-chart>
 </div>
 
-## *Step-After*
+### *Step-After*
 Alternate between horizontal and vertical segments, as in a step function.
 
 {% highlight html %}
@@ -847,7 +847,7 @@ Alternate between horizontal and vertical segments, as in a step function.
     </nvd3-line-chart>
 </div>
 
-## *Basis*
+### *Basis*
 A B-spline, with control point duplication on the ends.
 
 {% highlight html %}
@@ -878,7 +878,7 @@ A B-spline, with control point duplication on the ends.
     </nvd3-line-chart>
 </div>
 
-## *Basis-Open*
+### *Basis-Open*
 An open B-spline; may not intersect the start or end.
 
 {% highlight html %}
@@ -909,7 +909,7 @@ An open B-spline; may not intersect the start or end.
     </nvd3-line-chart>
 </div>
 
-## *Basis-Closed*
+### *Basis-Closed*
 A closed B-spline, as in a loop.
 
 {% highlight html %}
@@ -940,7 +940,7 @@ A closed B-spline, as in a loop.
     </nvd3-line-chart>
 </div>
 
-## *Bundle*
+### *Bundle*
 Equivalent to basis, except the tension parameter is used to straighten the spline.
 
 {% highlight html %}
@@ -971,7 +971,7 @@ Equivalent to basis, except the tension parameter is used to straighten the spli
     </nvd3-line-chart>
 </div>
 
-## *Cardinal*
+### *Cardinal*
 A Cardinal spline, with control point duplication on the ends.
 
 {% highlight html %}
@@ -1002,7 +1002,7 @@ A Cardinal spline, with control point duplication on the ends.
     </nvd3-line-chart>
 </div>
 
-## *Cardinal-Open*
+### *Cardinal-Open*
 An open Cardinal spline; may not intersect the start or end, but will intersect other control points.
 
 {% highlight html %}
@@ -1033,7 +1033,7 @@ An open Cardinal spline; may not intersect the start or end, but will intersect 
     </nvd3-line-chart>
 </div>
 
-## *Cardinal-Closed*
+### *Cardinal-Closed*
 A closed Cardinal spline, as in a loop.
 
 {% highlight html %}
@@ -1064,7 +1064,7 @@ A closed Cardinal spline, as in a loop.
     </nvd3-line-chart>
 </div>
 
-## *Monotone*
+### *Monotone*
 Cubic interpolation that preserves monotonicity in y.
 
 {% highlight html %}

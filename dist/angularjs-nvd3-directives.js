@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.0 - 2013-08-23
+/*! angularjs-nvd3-directives - v0.0.0 - 2013-08-28
 * Copyright (c) 2013 ; Licensed  */
 function configureXaxis(chart, scope, attrs){
 "use strict";
@@ -391,11 +391,29 @@ angular.module('nvd3ChartDirectives', [])
                 showcontrols: '@',
                 nodata: '@',
                 margin: '&',
+                tooltipcontent: '&',
                 color: '&',
                 x: '&',
                 y: '&',
-                forcex: '@',
-                forcey: '@',
+                forcex: '@', //List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
+                forcey: '@', // List of numbers to Force into the Y scale
+                forcesize: '@', // List of numbers to Force into the Size scale
+
+                interactive: '@',
+                usevoronoi: '@',
+                clipedge: '@',
+                interpolate: '@',
+                style: '@',     //stack, stream, stream-center, expand
+                order: '@',     //default, inside-out
+                offset: '@',    //zero, wiggle, silhouette, expand
+                size: '&', //accessor to get the point size
+                xScale: '&',
+                yScale: '&',
+                xDomain: '&',
+                yDomain: '&',
+                xRange: '&',
+                yRange: '&',
+                sizeDomain: '&',
 
                 //xaxis
                 xaxisorient: '&',
@@ -453,13 +471,60 @@ angular.module('nvd3ChartDirectives', [])
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                     .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
+                                    .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize)) // List of numbers to Force into the Size scale
                                     .width(width)
                                     .height(height)
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
+                                    .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
+                                    .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
+
+                                if(attrs.usevoronoi){
+                                    chart.useVoronoi((attrs.usevoronoi === "true"));
+                                }
+
+                                if(attrs.style){
+                                    chart.style(attrs.style);
+                                }
+
+                                if(attrs.order){
+                                    chart.order(attrs.order);
+                                }
+
+                                if(attrs.offset){
+                                    chart.offset(attrs.offset);
+                                }
+
+                                if(attrs.interpolate){
+                                    chart.interpolate(attrs.interpolate);
+                                }
+
+                                if(attrs.tooltipcontent){
+                                    chart.tooltipContent(scope.tooltipcontent());
+                                }
+
+                                if(attrs.xscale){
+                                    chart.xScale(scope.xscale());
+                                }
+
+                                if(attrs.yscale){
+                                    chart.yScale(scope.yscale());
+                                }
+
+                                if(attrs.xdomain){
+                                    chart.xDomain(scope.xdomain());
+                                }
+
+                                if(attrs.ydomain){
+                                    chart.yDomain(scope.ydomain());
+                                }
+
+                                if(attrs.sizedomain){
+                                    chart.sizeDomain(scope.sizedomain());
+                                }
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
