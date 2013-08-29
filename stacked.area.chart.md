@@ -161,69 +161,6 @@ Controls the external margin of the chart.
 
 Datatype: Object, Number: ``{left:0,top:0,bottom:0,right:0}``
 
-## Show X Axis
-Toggles visibility of the x axis
-
-Datatype: Boolean
-
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-	<nvd3-stacked-area-chart
-    	data="exampleData"
-        id="showXAxisExample"
-        width="550"
-        height="300"
-        showXAxis="false"
-        showYAxis="true">
-    		<svg></svg>
-    </nvd3-stacked-area-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-stacked-area-chart
-    	data="exampleData"
-        id="showXAxisExample"
-        width="550"
-        height="300"
-        showXAxis="false"
-        showYAxis="true">
-    		<svg></svg>
-    </nvd3-stacked-area-chart>
-</div>
-
-## Show Y Axis
-Toggles visibility of the y axis
-
-Datatype: boolean - (true/false)
-
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-	<nvd3-stacked-area-chart
-    	data="exampleData"
-        id="showXAxisExample"
-        width="550"
-        height="300"
-        showXAxis="true"
-        showYAxis="false">
-    		<svg></svg>
-    </nvd3-stacked-area-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-stacked-area-chart
-    	data="exampleData"
-        id="showYAxisExample"
-        width="550"
-        height="300"
-        showXAxis="true"
-        showYAxis="false">
-    		<svg></svg>
-    </nvd3-stacked-area-chart>
-</div>
-
-
 ## Color
 Controls the colors of the chart elements.
 
