@@ -388,8 +388,6 @@ angular.module('nvd3ChartDirectives', [])
                 id: '@',
                 showlegend: '@',
                 tooltips: '@',
-//                showxaxis: '@',
-//                showyaxis: '@',
                 showcontrols: '@',
                 nodata: '@',
                 margin: '&',
@@ -480,8 +478,6 @@ angular.module('nvd3ChartDirectives', [])
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
-//                                    .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
-//                                    .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                     .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
@@ -589,8 +585,6 @@ angular.module('nvd3ChartDirectives', [])
                 id: '@',
                 showlegend: '@',
                 tooltips: '@',
-                showxaxis: '@',
-                showyaxis: '@',
                 showcontrols: '@',
                 nodata: '@',
                 reducexticks: '@',
@@ -662,8 +656,6 @@ angular.module('nvd3ChartDirectives', [])
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
-                                    .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
-                                    .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                     .reduceXTicks(attrs.reducexticks === undefined ? false: (attrs.reducexticks === "true"))
                                     .staggerLabels(attrs.staggerlabels === undefined ? 0 : attrs.staggerlabels)
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)

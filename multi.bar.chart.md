@@ -24,8 +24,41 @@ layout: example
                     "values": [ [ 1025409600000 , -7.0674410638835] , [ 1028088000000 , -14.663359292964] , [ 1030766400000 , -14.104393060540] , [ 1033358400000 , -23.114477037218] , [ 1036040400000 , -16.774256687841] , [ 1038632400000 , -11.902028464000] , [ 1041310800000 , -16.883038668422] , [ 1043989200000 , -19.104223676831] , [ 1046408400000 , -20.420523282736] , [ 1049086800000 , -19.660555051587] , [ 1051675200000 , -13.106911231646] , [ 1054353600000 , -8.2448460302143] , [ 1056945600000 , -7.0313058730976] , [ 1059624000000 , -5.1485118700389] , [ 1062302400000 , -3.0011028761469] , [ 1064894400000 , -4.1367265281467] , [ 1067576400000 , 1.5425209565025] , [ 1070168400000 , 2.7673533607299] , [ 1072846800000 , 7.7077114755360] , [ 1075525200000 , 9.7565015112434] , [ 1078030800000 , 11.396888609473] , [ 1080709200000 , 10.013964745578] , [ 1083297600000 , 8.0558890950562] , [ 1085976000000 , 9.6081966657458] , [ 1088568000000 , 11.918590426432] , [ 1091246400000 , 7.9945345523982] , [ 1093924800000 , 8.3201276776796] , [ 1096516800000 , 9.8283954846342] , [ 1099195200000 , 11.527125859650] , [ 1101790800000 , 16.413657596527] , [ 1104469200000 , 20.393798297928] , [ 1107147600000 , 17.456308413907] , [ 1109566800000 , 20.087778400999] , [ 1112245200000 , 17.988336990817] , [ 1114833600000 , 15.378490151331] , [ 1117512000000 , 19.474322935730] , [ 1120104000000 , 20.013851070354] , [ 1122782400000 , 24.749943726975] , [ 1125460800000 , 23.558710274826] , [ 1128052800000 , 24.558915040889] , [ 1130734800000 , 22.355860488034] , [ 1133326800000 , 27.138026265756] , [ 1136005200000 , 27.202220808591] , [ 1138683600000 , 31.219437344964] , [ 1141102800000 , 31.392355525125] , [ 1143781200000 , 33.373099232542] , [ 1146369600000 , 35.095277582309] , [ 1149048000000 , 30.923356507615] , [ 1151640000000 , 31.083717332561] , [ 1154318400000 , 31.290690671561] , [ 1156996800000 , 34.247769216679] , [ 1159588800000 , 37.411073177620] , [ 1162270800000 , 42.079177096411] , [ 1164862800000 , 44.978191659648] , [ 1167541200000 , 46.713271025310] , [ 1170219600000 , 49.203892437699] , [ 1172638800000 , 46.684723471826] , [ 1175313600000 , 48.385458973500] , [ 1177905600000 , 54.660197840305] , [ 1180584000000 , 60.311838415602] , [ 1183176000000 , 57.583282204682] , [ 1185854400000 , 52.425398898751] , [ 1188532800000 , 54.663538086985] , [ 1191124800000 , 60.181844325224] , [ 1193803200000 , 62.877219773621] , [ 1196398800000 , 55.760611512951] , [ 1199077200000 , 54.735280367784] , [ 1201755600000 , 45.495912959474] , [ 1204261200000 , 40.934919015876] , [ 1206936000000 , 40.303777633187] , [ 1209528000000 , 47.403740368773] , [ 1212206400000 , 49.951960898839] , [ 1214798400000 , 37.534590035098] , [ 1217476800000 , 36.405758293321] , [ 1220155200000 , 38.545373001858] , [ 1222747200000 , 26.106358664455] , [ 1225425600000 , 4.2658006768744] , [ 1228021200000 , -3.5517839867557] , [ 1230699600000 , -2.0878920761513] , [ 1233378000000 , -10.408879093829] , [ 1235797200000 , -19.924242196038] , [ 1238472000000 , -12.906491912782] , [ 1241064000000 , -3.9774866468346] , [ 1243742400000 , 1.0319171601402] , [ 1246334400000 , 1.3109350357718] , [ 1249012800000 , 9.1668309061935] , [ 1251691200000 , 13.121178985954] , [ 1254283200000 , 17.578680237511] , [ 1256961600000 , 14.971294355085] , [ 1259557200000 , 21.551327027338] , [ 1262235600000 , 24.592328423819] , [ 1264914000000 , 20.158087829555] , [ 1267333200000 , 24.135661929185] , [ 1270008000000 , 31.815205405903] , [ 1272600000000 , 34.389524768466] , [ 1275278400000 , 23.785555857522] , [ 1277870400000 , 17.082756649072] , [ 1280548800000 , 25.248007727100] , [ 1283227200000 , 19.415179069165] , [ 1285819200000 , 30.413636349327] , [ 1288497600000 , 35.357952964550] , [ 1291093200000 , 35.886413535859] , [ 1293771600000 , 45.003601951959] , [ 1296450000000 , 48.274893564020] , [ 1298869200000 , 53.562864914648] , [ 1301544000000 , 54.108274337412] , [ 1304136000000 , 58.618190111927] , [ 1306814400000 , 56.806793965598] , [ 1309406400000 , 54.135477252994] , [ 1312084800000 , 50.735258942442] , [ 1314763200000 , 42.208170945813] , [ 1317355200000 , 31.617916826724] , [ 1320033600000 , 46.492005006737] , [ 1322629200000 , 46.203116922145] , [ 1325307600000 , 47.541427643137] , [ 1327986000000 , 54.518998440993] , [ 1330491600000 , 61.099720234693]]
                 }
             ];
-            
+
+            $scope.noDataData = [
+                {
+                    "key": "Series 1",
+                    "values": [ ]
+                }
+            ];
+
+			$scope.xFunction = function(){
+				return function(d){
+					return d[0];
+				};
+			}
+
+			$scope.yFunction = function(){
+				return function(d){
+					return d[1];
+				};
+			}
+			
+            $scope.colorFunction = function() {
+                return function(d, i) {
+                    return '#E01B5D'
+                };
             }
+
+            $scope.toolTipContentFunction = function(){
+                return function(key, x, y, e, graph) {
+                        return  'Super New Tooltip' +
+                        '<h1>' + key + '</h1>' +
+                        '<p>' +  y + ' at ' + x + '</p>'
+                }
+            }
+            
+        }
 </script>
             
 Creating and Configuring a Multi Bar Chart
@@ -128,113 +161,8 @@ Controls the external margin of the chart.
 
 Datatype: Object, Number: ``{left:0,top:0,bottom:0,right:0}``
 
-## Show X Axis
-Toggles visibility of the x axis
-
-Datatype: Boolean
-
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-chart
-    	data="exampleData"
-        id="showXAxisExample"
-        width="550"
-        height="300"
-        showXAxis="false"
-        showYAxis="true">
-    		<svg></svg>
-    </nvd3-multi-bar-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-chart
-    	data="exampleData"
-        id="showXAxisExample"
-        width="550"
-        height="300"
-        showXAxis="false"
-        showYAxis="true">
-    		<svg></svg>
-    </nvd3-multi-bar-chart>
-</div>
-
-## Show Y Axis
-Toggles visibility of the y axis
-
-Datatype: boolean - (true/false)
-
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-chart
-    	data="exampleData"
-        id="showXAxisExample"
-        width="550"
-        height="300"
-        showXAxis="true"
-        showYAxis="false">
-    		<svg></svg>
-    </nvd3-multi-bar-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-chart
-    	data="exampleData"
-        id="showYAxisExample"
-        width="550"
-        height="300"
-        showXAxis="true"
-        showYAxis="false">
-    		<svg></svg>
-    </nvd3-multi-bar-chart>
-</div>
-
 ## Color
-Controls the colors of the chart elements.
 
-Datatype: Function
-
-The function is the same as the d3.js color functions.  Refer to <a href="https://github.com/mbostock/d3/wiki/Colors">d3.js Colors</a> for d3.js color-specific documentation.
-
-To use a configuration function, create a function on the $scope (i.e. $scope.colorFunction).  The function can be named anything, as long as it does not conflict with an existing function name.
-To 'connect' the $scope function with the chart.color() function, add a color="" attribute to the directive, with the value of the attribute being the name of the $scope function (i.e. scope="colorFunction()").
-
-{% highlight javascript %}
-$scope.colorFunction = function() {
-	return function(d, i) {
-    	return '#E01B5D'
-    };
-}
-{% endhighlight %}
-
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-chart
-    	data="exampleData"
-        id="colorExample"
-        width="550"
-        height="300"
-        showXAxis="true"
-        showYAxis="true"
-        color="colorFunction()">
-        	<svg></svg>
-    </nvd3-multi-bar-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-chart
-    	data="exampleData"
-        id="colorExample"
-        width="550"
-        height="300"
-        showXAxis="true"
-        showYAxis="true"
-        color="colorFunction()">
-        	<svg></svg>
-    </nvd3-multi-bar-chart>
-</div>
 
 ## Show Legend
 Enables (true) or Disables (false) rendering of the Chart Legend.
@@ -248,8 +176,6 @@ Datatype: boolean - (true/false)
         id="showLegendExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         showLegend="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -262,8 +188,6 @@ Datatype: boolean - (true/false)
         id="showLegendExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         showLegend="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -281,8 +205,6 @@ Datatype: boolean - (true/false)
         id="showControlsExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         showControls="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -295,8 +217,6 @@ Datatype: boolean - (true/false)
         id="showControlsExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         showControls="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -314,8 +234,6 @@ Datatype: String
         id="noDataExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         noData="Data aint here">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -328,8 +246,6 @@ Datatype: String
         id="noDataExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         noData="No Data For You!">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -363,8 +279,6 @@ $scope.xFunction = function(){
         id="xExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         x="xFunction()">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -377,8 +291,6 @@ $scope.xFunction = function(){
         id="xExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         x="xFunction()">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -403,8 +315,6 @@ $scope.yFunction = function(){
         id="yExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         y="yFunction()">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -417,8 +327,6 @@ $scope.yFunction = function(){
         id="yExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         y="yFunction()">        
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -436,8 +344,6 @@ Datatype: Array of Numbers (i.e. [0, 50])
         id="forcexExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         forcex="[0]">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -450,8 +356,6 @@ Datatype: Array of Numbers (i.e. [0, 50])
         id="forcexExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         forcex="[0]">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -469,8 +373,6 @@ Datatype: Array of Numbers (i.e. [0, 50]
         id="forceyExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         forcey="[500]">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -483,8 +385,6 @@ Datatype: Array of Numbers (i.e. [0, 50]
         id="forceyExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         forcey="[500]">
     		<svg></svg>
     </nvd3-multi-bar-chart>
@@ -502,8 +402,6 @@ Datatype: boolean - (true/false)
         id="interactiveExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -516,8 +414,6 @@ Datatype: boolean - (true/false)
         id="interactiveExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -537,8 +433,6 @@ Datatype: boolean - (true/false)
         id="toolTipExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         tooltips="true">
         	<svg></svg>
@@ -552,8 +446,6 @@ Datatype: boolean - (true/false)
         id="toolTipExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         tooltips="true">
         	<svg></svg>
@@ -589,8 +481,6 @@ $scope.toolTipContentFunction = function(){
         id="toolTipContentExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
@@ -605,8 +495,6 @@ $scope.toolTipContentFunction = function(){
         id="toolTipContentExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
@@ -626,8 +514,6 @@ Datatype: boolean - (true/false)
         id="clipEdgeExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         clipEdge="true">
         	<svg></svg>
@@ -641,8 +527,6 @@ Datatype: boolean - (true/false)
         id="clipEdgeExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         clipEdge="true">
     		<svg></svg>
