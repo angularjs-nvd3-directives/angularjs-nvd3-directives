@@ -388,6 +388,8 @@ angular.module('nvd3ChartDirectives', [])
                 id: '@',
                 showlegend: '@',
                 tooltips: '@',
+                showxaxis: '@',
+                showyaxis: '@',
                 showcontrols: '@',
                 nodata: '@',
                 margin: '&',
@@ -406,7 +408,7 @@ angular.module('nvd3ChartDirectives', [])
                 style: '@',     //stack, stream, stream-center, expand
                 order: '@',     //default, inside-out
                 offset: '@',    //zero, wiggle, silhouette, expand
-                size: '&', //accessor to get the point size
+                size: '&',      //accessor to get the point size
                 xScale: '&',
                 yScale: '&',
                 xDomain: '&',
@@ -471,12 +473,15 @@ angular.module('nvd3ChartDirectives', [])
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                     .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
+                                    .size(attrs.size === undefined ? function(d) { return d.size || 1; } : scope.size())
                                     .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize)) // List of numbers to Force into the Size scale
                                     .width(width)
                                     .height(height)
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                    .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
+                                    .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                     .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
@@ -584,6 +589,8 @@ angular.module('nvd3ChartDirectives', [])
                 id: '@',
                 showlegend: '@',
                 tooltips: '@',
+                showxaxis: '@',
+                showyaxis: '@',
                 showcontrols: '@',
                 nodata: '@',
                 reducexticks: '@',
@@ -655,6 +662,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                    .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
+                                    .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                     .reduceXTicks(attrs.reducexticks === undefined ? false: (attrs.reducexticks === "true"))
                                     .staggerLabels(attrs.staggerlabels === undefined ? 0 : attrs.staggerlabels)
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
