@@ -122,9 +122,7 @@ Other directive attributes should be the same as the public attributes associate
     	data="exampleData"
         id="exampleId"
         width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true">
+        height="350">
         	<svg></svg>
     </nvd3-stacked-area-chart>
 </div>
@@ -135,9 +133,7 @@ Other directive attributes should be the same as the public attributes associate
     	data="exampleData"
         id="exampleId"
         width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true">
+        height="350">
         <svg></svg>
     </nvd3-stacked-area-chart>
 </div>
@@ -186,8 +182,6 @@ $scope.colorFunction = function() {
         id="colorExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         color="colorFunction()">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -200,8 +194,6 @@ $scope.colorFunction = function() {
         id="colorExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         color="colorFunction()">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -219,8 +211,6 @@ Datatype: boolean - (true/false)
         id="showLegendExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         showLegend="true">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -233,8 +223,6 @@ Datatype: boolean - (true/false)
         id="showLegendExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         showLegend="true">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -252,8 +240,6 @@ Datatype: boolean - (true/false)
         id="showControlsExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         showControls="true">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -266,8 +252,6 @@ Datatype: boolean - (true/false)
         id="showControlsExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         showControls="true">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -285,8 +269,6 @@ Datatype: String
         id="noDataExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         noData="Data aint here">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -299,8 +281,6 @@ Datatype: String
         id="noDataExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         noData="No Data For You!">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -326,8 +306,6 @@ $scope.xFunction = function(){
         id="xExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         x="xFunction()">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -340,8 +318,6 @@ $scope.xFunction = function(){
         id="xExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         x="xFunction()">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -366,8 +342,6 @@ $scope.yFunction = function(){
         id="yExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         y="yFunction()">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -380,8 +354,6 @@ $scope.yFunction = function(){
         id="yExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         y="yFunction()">        
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -399,8 +371,6 @@ Datatype: Array of Numbers (i.e. [0, 50])
         id="forcexExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         forcex="[0]">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -413,8 +383,6 @@ Datatype: Array of Numbers (i.e. [0, 50])
         id="forcexExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         forcex="[0]">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -432,8 +400,6 @@ Datatype: Array of Numbers (i.e. [0, 50]
         id="forceyExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         forcey="[500]">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -446,8 +412,6 @@ Datatype: Array of Numbers (i.e. [0, 50]
         id="forceyExample"
         width="550"
         height="300"
-        showXAxis="true"
-        showYAxis="true"
         forcey="[500]">
     		<svg></svg>
     </nvd3-stacked-area-chart>
@@ -465,8 +429,6 @@ Datatype: boolean - (true/false)
         id="interactiveExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -479,8 +441,6 @@ Datatype: boolean - (true/false)
         id="interactiveExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -500,8 +460,6 @@ Datatype: boolean - (true/false)
         id="toolTipExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         tooltips="true">
         	<svg></svg>
@@ -515,8 +473,6 @@ Datatype: boolean - (true/false)
         id="toolTipExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         tooltips="true">
         	<svg></svg>
@@ -552,8 +508,6 @@ $scope.toolTipContentFunction = function(){
         id="toolTipContentExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
@@ -568,8 +522,6 @@ $scope.toolTipContentFunction = function(){
         id="toolTipContentExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
@@ -589,8 +541,6 @@ Datatype: boolean - (true/false)
         id="clipEdgeExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         clipEdge="true">
         	<svg></svg>
@@ -604,8 +554,6 @@ Datatype: boolean - (true/false)
         id="clipEdgeExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interactive="true"
         clipEdge="true">
     		<svg></svg>
@@ -628,8 +576,6 @@ Piecewise linear segments, as in a polyline.
         id="interpolateExampleLinear"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="linear">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -642,8 +588,6 @@ Piecewise linear segments, as in a polyline.
         id="interpolateExampleLinear"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="linear">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -660,8 +604,6 @@ Close the linear segments to form a polygon.
         id="interpolateExampleLinearClosed"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="linear-closed">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -674,8 +616,6 @@ Close the linear segments to form a polygon.
         id="interpolateExampleLinearClosed"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="linear-closed">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -691,8 +631,6 @@ Alternate between horizontal and vertical segments, as in a step function.
         id="interpolateExampleStep"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="step">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -705,8 +643,6 @@ Alternate between horizontal and vertical segments, as in a step function.
         id="interpolateExampleStep"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="step">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -722,8 +658,6 @@ Alternate between vertical and horizontal segments, as in a step function.
         id="interpolateExampleStepBefore"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="step-before">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -736,8 +670,6 @@ Alternate between vertical and horizontal segments, as in a step function.
         id="interpolateExampleStepBefore"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="step-before">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -753,8 +685,6 @@ Alternate between horizontal and vertical segments, as in a step function.
         id="interpolateExampleStepAfter"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="step-after">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -767,8 +697,6 @@ Alternate between horizontal and vertical segments, as in a step function.
         id="interpolateExampleStepAfter"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="step-after">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -784,8 +712,6 @@ A B-spline, with control point duplication on the ends.
         id="interpolateExampleBasis"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="basis">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -798,8 +724,6 @@ A B-spline, with control point duplication on the ends.
         id="interpolateExampleBasis"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="basis">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -815,8 +739,6 @@ An open B-spline; may not intersect the start or end.
         id="interpolateExampleBasisOpen"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="basis-open">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -829,8 +751,6 @@ An open B-spline; may not intersect the start or end.
         id="interpolateExampleBasisOpen"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="basis-open">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -846,8 +766,6 @@ A closed B-spline, as in a loop.
         id="interpolateExampleBasisClosed"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="basis-closed">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -860,8 +778,6 @@ A closed B-spline, as in a loop.
         id="interpolateExampleBasisClosed"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="basis-closed">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -877,8 +793,6 @@ Equivalent to basis, except the tension parameter is used to straighten the spli
         id="interpolateExampleBundle"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="bundle">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -891,8 +805,6 @@ Equivalent to basis, except the tension parameter is used to straighten the spli
         id="interpolateExampleBundle"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="bundle">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -908,8 +820,6 @@ A Cardinal spline, with control point duplication on the ends.
         id="interpolateExampleCardinal"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="cardinal">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -922,8 +832,6 @@ A Cardinal spline, with control point duplication on the ends.
         id="interpolateExampleCardinal"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="cardinal">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -939,8 +847,6 @@ An open Cardinal spline; may not intersect the start or end, but will intersect 
         id="interpolateExampleCardinalOpen"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="cardinal-open">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -953,8 +859,6 @@ An open Cardinal spline; may not intersect the start or end, but will intersect 
         id="interpolateExampleCardinalOpen"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="cardinal-open">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -970,8 +874,6 @@ A closed Cardinal spline, as in a loop.
         id="interpolateExampleCardinalClosed"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="cardinal-closed">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -984,8 +886,6 @@ A closed Cardinal spline, as in a loop.
         id="interpolateExampleCardinalClosed"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="cardinal-closed">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1001,8 +901,6 @@ Cubic interpolation that preserves monotonicity in y.
         id="interpolateExampleMonotone"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="monotone">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1015,8 +913,6 @@ Cubic interpolation that preserves monotonicity in y.
         id="interpolateExampleMonotone"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         interpolate="monotone">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1045,8 +941,6 @@ Shorthand for the combination of order and offset.
         id="stackExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         style="stack">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1059,8 +953,6 @@ Shorthand for the combination of order and offset.
         id="stackExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         style="stack">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1075,8 +967,6 @@ Shorthand for the combination of order and offset.
         id="streamExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         style="stream">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1089,8 +979,6 @@ Shorthand for the combination of order and offset.
         id="streamExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         style="stream">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1105,8 +993,6 @@ Shorthand for the combination of order and offset.
         id="streamCenterExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         style="stream-center">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1119,8 +1005,6 @@ Shorthand for the combination of order and offset.
         id="streamCenterExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         style="stream-center">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1135,8 +1019,6 @@ Shorthand for the combination of order and offset.
         id="expandExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         style="expand">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1149,8 +1031,6 @@ Shorthand for the combination of order and offset.
         id="expandExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         style="expand">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1167,8 +1047,6 @@ Shorthand for the combination of order and offset.
         id="defaultOrderExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         order="default">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1181,8 +1059,6 @@ Shorthand for the combination of order and offset.
         id="defaultOrderExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         order="default">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1197,8 +1073,6 @@ Shorthand for the combination of order and offset.
         id="insideOutExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         order="inside-out">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1211,8 +1085,6 @@ Shorthand for the combination of order and offset.
         id="insideOutExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         order="inside-out">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1231,8 +1103,6 @@ zero, wiggle, silhouette, expand
         id="offsetZeroExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         offset="zero">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1245,8 +1115,6 @@ zero, wiggle, silhouette, expand
         id="offsetZeroExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         offset="zero">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1261,8 +1129,6 @@ zero, wiggle, silhouette, expand
         id="offsetWiggleExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         offset="wiggle">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1275,8 +1141,6 @@ zero, wiggle, silhouette, expand
         id="offsetWiggleExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         offset="wiggle">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1291,8 +1155,6 @@ zero, wiggle, silhouette, expand
         id="offsetSilhouetteExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         offset="silhouette">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1305,8 +1167,6 @@ zero, wiggle, silhouette, expand
         id="offsetSilhouetteExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         offset="silhouette">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1322,8 +1182,6 @@ zero, wiggle, silhouette, expand
         id="offsetExpandExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         offset="expand">
         	<svg></svg>
     </nvd3-stacked-area-chart>
@@ -1336,8 +1194,6 @@ zero, wiggle, silhouette, expand
         id="offsetExpandExample"
         width="550"
         height="350"
-        showXAxis="true"
-        showYAxis="true"
         offset="expand">
         	<svg></svg>
     </nvd3-stacked-area-chart>
