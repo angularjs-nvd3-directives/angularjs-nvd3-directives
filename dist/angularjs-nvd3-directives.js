@@ -1,5 +1,5 @@
-/*! angularjs-nvd3-directives - v0.0.0 - 2013-08-28
-* Copyright (c) 2013 ; Licensed  */
+/*! angularjs-nvd3-directives - v0.0.0 - 2013-08-29
+* Copyright (c) 2013 Christian Maurer; Licensed Apache */
 function configureXaxis(chart, scope, attrs){
 "use strict";
     if(attrs.xaxisorient){
@@ -253,7 +253,6 @@ angular.module('nvd3ChartDirectives', [])
                 clipedge: '@',
                 clipvoronoi: '@',
                 interpolate: '@',
-//                'xScale', 'yScale', 'xDomain', 'yDomain', defined
 
                 //xaxis
                 xaxisorient: '&',
@@ -293,7 +292,10 @@ angular.module('nvd3ChartDirectives', [])
                 yaxishighlightzero: '@',
                 yaxisrotatelables: '@',
                 yaxisrotateylabel: '@',
-                yaxisstaggerlabels: '@'
+                yaxisstaggerlabels: '@',
+
+                //angularjs specific
+                objectequality: '@'  //$watch(watchExpression, listener, objectEquality)
 
             },
             link: function(scope, element, attrs){
@@ -345,12 +347,16 @@ angular.module('nvd3ChartDirectives', [])
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
+                                    if(newHeight < 0){
+                                        newHeight = 0;
+                                    }
+
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
                                     }
 
                                     d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
+                                    nv.log('newWidth',newWidth, 'newHeight', newHeight );
                                     chart.width(newWidth).height(newHeight); //Update the dims
                                     d3.select(element[0]).append("svg")
                                         .attr('id', attrs.id)
@@ -374,7 +380,7 @@ angular.module('nvd3ChartDirectives', [])
                             }
                         });
                     }
-                });
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
     }])
@@ -453,7 +459,10 @@ angular.module('nvd3ChartDirectives', [])
                 yaxishighlightzero: '@',
                 yaxisrotatelables: '@',
                 yaxisrotateylabel: '@',
-                yaxisstaggerlabels: '@'
+                yaxisstaggerlabels: '@',
+
+                //angularjs specific
+                objectequality: '@'
 
             },
             link: function(scope, element, attrs){
@@ -571,7 +580,7 @@ angular.module('nvd3ChartDirectives', [])
                             }
                         });
                     }
-                });
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
     }])
@@ -585,6 +594,8 @@ angular.module('nvd3ChartDirectives', [])
                 id: '@',
                 showlegend: '@',
                 tooltips: '@',
+                tooltipcontent: '&',
+                color: '&',
                 showcontrols: '@',
                 nodata: '@',
                 reducexticks: '@',
@@ -596,6 +607,7 @@ angular.module('nvd3ChartDirectives', [])
                 y: '&',
                 //forcex is not exposed in the nvd3 multibar.js file.  it is not here on purpose.
                 forcey: '@',
+                delay: '@',
 
                 //xaxis
                 xaxisorient: '&',
@@ -635,7 +647,10 @@ angular.module('nvd3ChartDirectives', [])
                 yaxishighlightzero: '@',
                 yaxisrotatelables: '@',
                 yaxisrotateylabel: '@',
-                yaxisstaggerlabels: '@'
+                yaxisstaggerlabels: '@',
+
+                //angularjs specific
+                objectequality: '@'
 
             },
             link: function(scope, element, attrs){
@@ -657,12 +672,19 @@ angular.module('nvd3ChartDirectives', [])
                                     .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .reduceXTicks(attrs.reducexticks === undefined ? false: (attrs.reducexticks === "true"))
-                                    .staggerLabels(attrs.staggerlabels === undefined ? 0 : attrs.staggerlabels)
+                                    .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                    .rotateLabels(attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels);
+                                    .rotateLabels(attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels)
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
+                                    .delay(attrs.delay === undefined ? 1200 : attrs.delay)
+                                    .stacked(attrs.stacked === undefined ? false : (attrs.stacked === "true"));
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
+
+                                if(attrs.tooltipcontent){
+                                    chart.tooltipContent(scope.tooltipcontent());
+                                }
 
                                 d3.select('#' + attrs.id + ' svg')
                                     .attr('height', height)
@@ -706,7 +728,7 @@ angular.module('nvd3ChartDirectives', [])
                             }
                         });
                     }
-                });
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
     }])
@@ -766,7 +788,10 @@ angular.module('nvd3ChartDirectives', [])
                 yaxishighlightzero: '@',
                 yaxisrotatelables: '@',
                 yaxisrotateylabel: '@',
-                yaxisstaggerlabels: '@'
+                yaxisstaggerlabels: '@',
+
+                //angularjs specific
+                objectequality: '@'
 
             },
             link: function(scope, element, attrs){
@@ -833,7 +858,7 @@ angular.module('nvd3ChartDirectives', [])
                             }
                         });
                     }
-                });
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
     }])
@@ -893,7 +918,10 @@ angular.module('nvd3ChartDirectives', [])
                 yaxishighlightzero: '@',
                 yaxisrotatelables: '@',
                 yaxisrotateylabel: '@',
-                yaxisstaggerlabels: '@'
+                yaxisstaggerlabels: '@',
+
+                //angularjs specific
+                objectequality: '@'
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
@@ -912,6 +940,7 @@ angular.module('nvd3ChartDirectives', [])
                                     .height(height)
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
+                                    .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"));
 
                                 configureXaxis(chart, scope, attrs);
@@ -959,7 +988,7 @@ angular.module('nvd3ChartDirectives', [])
                             }
                         });
                     }
-                });
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
     }])
@@ -976,7 +1005,10 @@ angular.module('nvd3ChartDirectives', [])
                 margin: '&',
                 x: '&',
                 y: '&',
-                values: '&'
+                values: '&',
+
+                //angularjs specific
+                objectequality: '@'
 
             },
             link: function(scope, element, attrs){
@@ -1006,7 +1038,7 @@ angular.module('nvd3ChartDirectives', [])
                             }
                         });
                     }
-                });
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
     })
@@ -1069,7 +1101,10 @@ angular.module('nvd3ChartDirectives', [])
                 yaxishighlightzero: '@',
                 yaxisrotatelables: '@',
                 yaxisrotateylabel: '@',
-                yaxisstaggerlabels: '@'
+                yaxisstaggerlabels: '@',
+
+                //angularjs specific
+                objectequality: '@'
 
             },
             link: function(scope, element, attrs){
@@ -1140,7 +1175,7 @@ angular.module('nvd3ChartDirectives', [])
                             }
                         });
                     }
-                });
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
     }])
@@ -1227,7 +1262,10 @@ angular.module('nvd3ChartDirectives', [])
                 y2axishighlightzero: '@',
                 y2axisrotatelables: '@',
                 y2axisrotateylabel: '@',
-                y2axisstaggerlabels: '@'
+                y2axisstaggerlabels: '@',
+
+                //angularjs specific
+                objectequality: '@'
 
             },
             link: function(scope, element, attrs){
@@ -1298,7 +1336,7 @@ angular.module('nvd3ChartDirectives', [])
                             }
                         });
                     }
-                });
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
     }]);
