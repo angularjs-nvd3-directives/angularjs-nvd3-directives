@@ -20,7 +20,7 @@
     "d3.js",
     "directives"
   ],
-  "author": "Chris Maurer",
+  "author": { "name": "Christian Maurer"},
   "license": "Apache",
   "readmeFilename": "README.md",
   "gitHead": "82273b2c5a38c9e5841e767da4f3252ba31927e8",
