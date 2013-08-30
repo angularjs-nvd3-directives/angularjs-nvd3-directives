@@ -84,10 +84,10 @@ layout: example
 					return d[1];
 				};
 			}
+
 			var colorArray = ['#FF0000', '#0000FF', '#FFFF00', '#00FFFF'];
             $scope.colorFunction = function() {
                 return function(d, i) {
-                console.log(d, i);
                     return colorArray[i];
                 };
             }
@@ -210,10 +210,11 @@ To use a configuration function, create a function on the $scope (i.e. $scope.co
 To 'connect' the $scope function with the chart.color() function, add a color="" attribute to the directive, with the value of the attribute being the name of the $scope function (i.e. scope="colorFunction()").
 
 {% highlight javascript %}
+var colorArray = ['#FF0000', '#0000FF', '#FFFF00', '#00FFFF'];
 $scope.colorFunction = function() {
 	return function(d, i) {
-    	return '#E01B5D'
-    };
+    	return colorArray[i];
+	};
 }
 {% endhighlight %}
 
