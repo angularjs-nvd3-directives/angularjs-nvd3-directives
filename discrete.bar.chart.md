@@ -1,5 +1,5 @@
 ---
-title: multibarhorizontalchart
+title: discretebarchart
 layout: example
 ---
 
@@ -99,7 +99,7 @@ layout: example
                         '<p>' +  y + ' at ' + x + '</p>'
                 }
             }
-			
+
 			var format = d3.format(',.4f');
             $scope.valueFormatFunction = function(){
             	return function(d){
@@ -110,7 +110,7 @@ layout: example
         }
 </script>
             
-Creating and Configuring a Multi Bar Horizontal Chart
+Creating and Configuring a Discrete Bar Chart
 =========================
 
 ## How to create a basic chart
@@ -167,24 +167,24 @@ Other directive attributes should be the same as the public attributes associate
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="exampleId"
         width="550"
         height="350">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="exampleId"
         width="550"
         height="350">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 
 # Configuration Options
@@ -220,92 +220,35 @@ To 'connect' the $scope function with the chart.color() function, add a color=""
 var colorArray = ['#FF0000', '#0000FF', '#FFFF00', '#00FFFF'];
 $scope.colorFunction = function() {
 	return function(d, i) {
-		return colorArray[i];
+    	return colorArray[i];
 	};
 }
 {% endhighlight %}
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="colorExample"
         width="550"
         height="300"
         color="colorFunction()">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="colorExample"
         width="550"
         height="300"
         color="colorFunction()">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
-
-## Show Legend
-Enables (true) or Disables (false) rendering of the Chart Legend.
-
-Datatype: boolean - (true/false)
-
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
- 	<nvd3-multi-bar-horizontal-chart
-    	data="exampleData"
-        id="showLegendExample"
-        width="550"
-        height="300"
-        showLegend="true">
-        	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
-</div>            
-{% endhighlight %}
-            
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
-    	data="exampleData"
-        id="showLegendExample"
-        width="550"
-        height="300"
-        showLegend="true">
-        	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
-</div>            
-
-## Show Controls
-Enables (true) or Disables (false) rendering chart-specific controls.
-
-Datatype: boolean - (true/false)
-
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
- 	<nvd3-multi-bar-horizontal-chart
-    	data="exampleData"
-        id="showControlsExample"
-        width="550"
-        height="300"
-        showControls="true">
-        	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
-</div>            
-{% endhighlight %}
-            
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
-    	data="exampleData"
-        id="showControlsExample"
-        width="550"
-        height="300"
-        showControls="true">
-        	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
-</div>            
+      
                         
 ## No Data
 Defines the message displayed when data is not available.
@@ -314,55 +257,26 @@ Datatype: String
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="noDataData"
         id="noDataExample"
         width="550"
         height="300"
         noData="Data aint here">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="noDataData"
         id="noDataExample"
         width="550"
         height="300"
         noData="No Data For You!">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
-</div>
-
-
-## Delay
-Sets the transition time during rendering of the chart.  Default is 1200.
-
-Datatype: Integer
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
-    	data="reduceXTicksData"
-        id="delayExample"
-        width="550"
-        height="300"
-        delay="2400">
-        	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
-    	data="reduceXTicksData"
-        id="delayExample"
-        width="550"
-        height="300"
-        delay="2400">
-        	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 
 
@@ -373,26 +287,26 @@ Datatype: boolean - (true/false)
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="reduceXTicksData"
         id="showValueExample"
         width="550"
         height="300"
         showValues="true">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="reduceXTicksData"
         id="showValueExample"
         width="550"
         height="300"
         showValues="true">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 
 
@@ -403,7 +317,7 @@ Datatype: Function
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="reduceXTicksData"
         id="formatValueExample"
         width="550"
@@ -411,7 +325,7 @@ Datatype: Function
         showValues="true"
         valueFormat="valueFormatFunction()">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
@@ -425,7 +339,7 @@ $scope.valueFormatFunction = function(){
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="reduceXTicksData"
         id="formatValueExample"
         width="550"
@@ -433,33 +347,33 @@ $scope.valueFormatFunction = function(){
         showValues="true"
         valueFormat="valueFormatFunction()">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 
-## Stacked
+## Stagger Labels
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
-    	data="stackedData"
-        id="stackedExample"
+	<nvd3-discrete-bar-chart
+    	data="reduceXTicksData"
+        id="staggerLablesExample"
         width="550"
         height="300"
-        stacked="true">
+        staggerLabels="true">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
-    	data="stackedData"
-        id="stackedExample"
+	<nvd3-discrete-bar-chart
+    	data="reduceXTicksData"
+        id="staggerLablesExample"
         width="550"
         height="300"
-        stacked="true">
+        staggerLabels="true">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 
             
@@ -478,26 +392,26 @@ $scope.xFunction = function(){
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="xExample"
         width="550"
         height="300"
         x="xFunction()">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="xExample"
         width="550"
         height="300"
         x="xFunction()">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 
 ## Y
@@ -515,26 +429,26 @@ $scope.yFunction = function(){
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="yExample"
         width="550"
         height="300"
         y="yFunction()">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="yExample"
         width="550"
         height="300"
         y="yFunction()">        
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div> 
             
 ## Force Y
@@ -544,95 +458,60 @@ Datatype: Array of Numbers (i.e. [0, 50]
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="forceyExample"
         width="550"
         height="300"
         forcey="[500]">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="forceyExample"
         width="550"
         height="300"
         forcey="[500]">
     		<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
-</div>
-      
-## Interactive
-Enables (true) or Disables (false) interactivity for a chart.  Interactivity includes tooltips, click events, etc.
-
-Datatype: boolean - (true/false)
-
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
-    	data="exampleData"
-        id="interactiveExample"
-        width="550"
-        height="350"
-        interactive="true">
-        	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
-    	data="exampleData"
-        id="interactiveExample"
-        width="550"
-        height="350"
-        interactive="true">
-        	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 
 ## Tooltips
 Enables (true) or Disables (false) rendering of the tooltips.
 
-The Interactive attribute must be included and set to true before tooltips will be rendered.
-
 Datatype: boolean - (true/false)
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="toolTipExample"
         width="550"
         height="350"
-        interactive="true"
         tooltips="true">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="toolTipExample"
         width="550"
         height="350"
-        interactive="true"
         tooltips="true">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 
 
 ## Tooltip Content
 Controls how the tooltips are displayed.
-
-The Interactive attribute must be included and set to true before tooltips will be rendered.
 
 The Tooltips attribute must be included and set to true before tooltips will be rendered.
 
@@ -652,59 +531,27 @@ $scope.toolTipContentFunction = function(){
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="toolTipContentExample"
         width="550"
         height="350"
-        interactive="true"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
+	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="toolTipContentExample"
         width="550"
         height="350"
-        interactive="true"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
         	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
+    </nvd3-discrete-bar-chart>
 </div>
 
-## Clip Edge
-Enables (true) or Disables (false) masking points within x and y scale.
-
-Datatype: boolean - (true/false)
-
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
-    	data="exampleData"
-        id="clipEdgeExample"
-        width="550"
-        height="350"
-        interactive="true"
-        clipEdge="true">
-        	<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-horizontal-chart
-    	data="exampleData"
-        id="clipEdgeExample"
-        width="550"
-        height="350"
-        interactive="true"
-        clipEdge="true">
-    		<svg></svg>
-    </nvd3-multi-bar-horizontal-chart>
-</div>
