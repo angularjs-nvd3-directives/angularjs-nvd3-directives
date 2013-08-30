@@ -515,15 +515,18 @@ angular.module('nvd3ChartDirectives', [])
                 width: '@',
                 height: '@',
                 id: '@',
-                showlegend: '@',
                 tooltips: '@',
+                tooltipcontent: '&',
                 staggerlabels: '@',
+                color: '&',
                 margin: '&',
                 nodata: '@',
                 x: '&',
                 y: '&',
                 //forcex is not exposed in the nvd3 multibar.js file.  it is not here on purpose.
                 forcey: '@',
+                showvalues: '@',
+                valueformat: '&',
 
                 //xaxis
                 xaxisorient: '&',
@@ -584,6 +587,7 @@ angular.module('nvd3ChartDirectives', [])
                                     .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                     .width(width)
                                     .height(height)
+                                    .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"))
@@ -591,6 +595,14 @@ angular.module('nvd3ChartDirectives', [])
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
+
+                                if(attrs.tooltipcontent){
+                                    chart.tooltipContent(scope.tooltipcontent());
+                                }
+
+                                if(attrs.valueformat){
+                                    chart.valueFormat(scope.valueformat());
+                                }
 
                                 d3.select('#' + attrs.id + ' svg')
                                     .attr('height', height)
