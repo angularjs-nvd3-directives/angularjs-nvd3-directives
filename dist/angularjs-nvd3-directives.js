@@ -608,6 +608,7 @@ angular.module('nvd3ChartDirectives', [])
                 //forcex is not exposed in the nvd3 multibar.js file.  it is not here on purpose.
                 forcey: '@',
                 delay: '@',
+                stacked: '@',
 
                 //xaxis
                 xaxisorient: '&',
@@ -811,7 +812,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .height(height)
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                    .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"));
+                                    .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"))
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
@@ -872,13 +874,20 @@ angular.module('nvd3ChartDirectives', [])
                 id: '@',
                 showlegend: '@',
                 tooltips: '@',
+                tooltipcontent: '&',
+                color: '&',
                 showcontrols: '@',
                 margin: '&',
                 nodata: '@',
                 x: '&',
                 y: '&',
-                //forcex is not exposed in the nvd3 multibar.js file.  it is not here on purpose.
+                //forcex: '@',  //forcex is rebound from multibarhorizontalchart, but is not on multibar
                 forcey: '@',
+                stacked: '@',
+                showvalues: '@',
+                valueformat: '&',
+                //'xDomain', 'yDomain',
+                //state: '@', //stacked, grouped: same as stacked === true, or stacked === false
 
                 //xaxis
                 xaxisorient: '&',
@@ -940,11 +949,22 @@ angular.module('nvd3ChartDirectives', [])
                                     .height(height)
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
-                                    .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"));
+                                    .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
+                                    .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === "true"))
+                                    .stacked(attrs.stacked === undefined ? false : (attrs.stacked === "true"));
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
+
+                                if(attrs.tooltipcontent){
+                                    chart.tooltipContent(scope.tooltipcontent());
+                                }
+
+                                if(attrs.valueformat){
+                                    chart.valueFormat(scope.valueformat());
+                                }
 
                                 d3.select('#' + attrs.id + ' svg')
                                     .attr('height', height)
