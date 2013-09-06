@@ -80,7 +80,7 @@ function configureYaxis(chart, scope, attrs){
         chart.yAxis.axisLabel(scope.yaxislabel());
     }
     if(attrs.yaxisscale){
-        chart.yAxis.xScale(scope.yaxisscale());
+        chart.yAxis.yScale(scope.yaxisscale());
     }
     if(attrs.yaxisdomain){
         chart.yAxis.domain(scope.yaxisdomain());
@@ -136,7 +136,7 @@ function configureY1axis(chart, scope, attrs){
         chart.y1Axis.axisLabel(scope.y1axislabel());
     }
     if(attrs.y1axisscale){
-        chart.y1Axis.xScale(scope.y1axisscale());
+        chart.y1Axis.yScale(scope.y1axisscale());
     }
     if(attrs.y1axisdomain){
         chart.y1Axis.domain(scope.y1axisdomain());
@@ -192,7 +192,7 @@ function configureY2axis(chart, scope, attrs){
         chart.y2Axis.axisLabel(scope.y2axislabel());
     }
     if(attrs.y2axisscale){
-        chart.y2Axis.xScale(scope.y2axisscale());
+        chart.y2Axis.yScale(scope.y2axisscale());
     }
     if(attrs.y2axisdomain){
         chart.y2Axis.domain(scope.y2axisdomain());
