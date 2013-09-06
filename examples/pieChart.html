@@ -12,8 +12,7 @@
         var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
 
         function ExampleCtrl($scope){
-            $scope.exampleData =[
-                    [
+            $scope.exampleData = [
                 {
                     key: "One",
                     y: 5
@@ -42,7 +41,6 @@
                     key: "Seven",
                     y: 9
                 }
-            ]
             ];
 
         $scope.xFunction = function(){
@@ -70,7 +68,7 @@
         height="400"
         x="xFunction()"
         y="yFunction()"
-    ><svg></svg></nvd3-pie-chart>
+    ><svg height="300"></svg></nvd3-pie-chart>
 </div>
 
 </body>
