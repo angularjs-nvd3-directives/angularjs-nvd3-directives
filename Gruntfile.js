@@ -61,7 +61,7 @@ module.exports = function(grunt) {
       }
     },
     curl: {
-    	'dist/angularjs-nvd3-directives.js': 'https://raw.github.com/cmaurer/angularjs-nvd3-directives/master/dist/angularjs-nvd3-directives.js'
+      'dist/angularjs-nvd3-directives.js': 'https://raw.github.com/cmaurer/angularjs-nvd3-directives/master/dist/angularjs-nvd3-directives.js'
     }
   });
 
