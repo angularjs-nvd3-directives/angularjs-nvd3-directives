@@ -41,7 +41,7 @@ div {
 <body>
 
 <div id="offsetDiv">
-  <div id="test1" class="chartWrap">
+  <div id="test1" class='with-3d-shadow with-transitions'>
     <svg></svg>
   </div>
 </div>
@@ -66,16 +66,19 @@ nv.addGraph(function() {
   chart = nv.models.scatterChart()
                 .showDistX(true)
                 .showDistY(true)
-                //.height(500)
                 .useVoronoi(true)
-                .color(d3.scale.category10().range());
+                .color(d3.scale.category10().range())
+                .transitionDuration(300)
+                ;
 
-  chart.xAxis.tickFormat(d3.format('.02f'))
-  chart.yAxis.tickFormat(d3.format('.02f'))
+  chart.xAxis.tickFormat(d3.format('.02f'));
+  chart.yAxis.tickFormat(d3.format('.02f'));
+  chart.tooltipContent(function(key) {
+      return '<h2>' + key + '</h2>';
+  });
 
   d3.select('#test1 svg')
       .datum(randomData(4,40))
-    .transition().duration(500)
       .call(chart);
 
   nv.utils.windowResize(chart.update);

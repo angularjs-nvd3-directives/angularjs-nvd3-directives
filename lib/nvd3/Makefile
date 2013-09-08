@@ -1,6 +1,7 @@
 JS_FILES = \
 	src/intro.js \
 	src/core.js \
+	src/interactiveLayer.js \
 	src/tooltip.js \
 	src/utils.js \
 	src/models/axis.js \
@@ -49,7 +50,7 @@ nv.d3.js: Makefile
 
 %.min.js:: Makefile
 	rm -f $@
-	cat $(filter %.js,$^) | $(JS_COMPILER) >> $@
+	$(JS_COMPILER) nv.d3.js >> $@
 
 clean:
 	rm -rf nv.d3.js nv.d3.min.js
