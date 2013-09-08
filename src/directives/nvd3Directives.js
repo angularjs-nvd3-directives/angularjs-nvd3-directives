@@ -30,7 +30,7 @@ angular.module('nvd3ChartDirectives', [])
 
                 //xaxis
                 xaxisorient: '&',
-                xaxisticks: '&',
+                xaxisticks: '@',
                 xaxistickvalues: '&',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
@@ -1125,7 +1125,7 @@ angular.module('nvd3ChartDirectives', [])
                 margin: '&',
                 x: '&',
                 y: '&',
-                values: '&',
+                color: '&',
 
                 //angularjs specific
                 objectequality: '@'
@@ -1146,7 +1146,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .width(width)
                                     .height(height)
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                    .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === "true"));
+                                    .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === "true"))
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                 d3.select('#' + attrs.id + ' svg')
                                     .datum(data)
