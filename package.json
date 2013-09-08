@@ -12,13 +12,14 @@
   },
   "keywords": [
     "angular.js",
-    "angular",
+    "nvd3.js",
     "d3.js",
-    "nvd3.js"
+    "directives"
   ],
-  "author": "Christian Maurer",
+  "author": { "name": "Christian Maurer"},
   "license": "Apache",
-  "gitHead": "da2c75e49683fb9a39401998aa68f2b9e877e8c3",
+  "readmeFilename": "README.md",
+  "gitHead": "82273b2c5a38c9e5841e767da4f3252ba31927e8",
   "bugs": {
     "url": "https://github.com/cmaurer/angularjs-nvd3-directives/issues"
   },

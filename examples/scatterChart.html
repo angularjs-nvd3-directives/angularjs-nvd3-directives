@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <title>Scatter Chart Example</title>
+    <script src="../build/components/angular/angular.js"></script>
+    <script src="../build/components/d3/d3.js"></script>
+    <script src="../build/components/nvd3/nv.d3.js"></script>
+    <script src="../dist/angularjs-nvd3-directives.js"></script>
+    <link rel="stylesheet" href="../bower_components/nvd3/src/nv.d3.css"/>
+    <script>
+        var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
+
+        function ExampleCtrl($scope){
+
+            var getData = function(groups, points) {
+                var data = [],
+                        shapes = ['circle', 'cross', 'triangle-up', 'triangle-down', 'diamond', 'square'],
+                        random = d3.random.normal();
+
+                for (i = 0; i < groups; i++) {
+                    data.push({
+                        key: 'Group ' + i,
+                        values: []
+                    });
+
+                    for (j = 0; j < points; j++) {
+                        data[i].values.push({
+                            x: random()
+                            , y: random()
+                            , size: Math.random()
+                            //, shape: shapes[j % 6]
+                        });
+                    }
+                }
+                console.log(JSON.stringify(data));
+                return data;
+            }
+
+            $scope.exampleData =  getData(4, 40);
+        };
+
+    </script>
+
+</head>
+<body ng-app='nvd3TestApp'>
+
+<div ng-controller="ExampleCtrl">
+    <nvd3-scatter-chart
+            data="exampleData"
+            id="exampleId"
+            width="800"
+            height="400"
+            ><svg></svg></nvd3-scatter-chart>
+</div>
+
+
+
+</body>
+</html>

@@ -1,16 +1,17 @@
 {
-    "name": "angularjs-nvd3-directives",
-    "version": "0.0.0",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "devDependencies": {
-        "angular": "~1.0.7",
-        "nvd3": "~1.0.0-beta",
-        "d3": "~3.2.8"
-    }
+  "name": "angularjs-nvd3-directives",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.0.7",
+    "nvd3": "~v1.1.10-beta",
+    "d3": "~3.2.8",
+    "moment": "~2.1.0"
+  }
 }

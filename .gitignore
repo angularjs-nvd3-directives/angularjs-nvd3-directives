@@ -66,3 +66,7 @@ node_modules
 # JavaScript dependencies
 lib
 
+.idea/
+node_modules/
+bower_components/
+build/
