@@ -6,7 +6,7 @@ function configureXaxis(chart, scope, attrs){
         chart.xAxis.orient(attrs.xaxisorient);
     }
     if(attrs.xaxisticks){
-        chart.xAxis.ticks(scope.xaxisticks());
+        chart.xAxis.scale().ticks(attrs.xaxisticks);
     }
     if(attrs.xaxistickvalues){
         chart.xAxis.tickValues(scope.$eval(attrs.xaxistickvalues));
@@ -48,13 +48,13 @@ function configureXaxis(chart, scope, attrs){
         chart.xAxis.highlightZero((attrs.xaxishighlightzero === "true"));
     }
     if(attrs.xaxisrotatelables){
-        chart.xAxis.highlightZero(scope.xaxisrotatelables);
+        chart.xAxis.rotateLabels(attrs.xaxisrotatelables);
     }
-    if(attrs.xaxisrotateylabel){
-        chart.xAxis.rotateYLabel((attrs.xaxisrotateylabel === "true"));
-    }
+//    if(attrs.xaxisrotateylabel){
+//        chart.xAxis.rotateYLabel((attrs.xaxisrotateylabel === "true"));
+//    }
     if(attrs.xaxisstaggerlabels){
-        chart.xAxis.staggerlabels((attrs.xaxisstaggerlabels === "true"));
+        chart.xAxis.staggerLabels((attrs.xaxisstaggerlabels === "true"));
     }
 }
 
@@ -64,7 +64,7 @@ function configureYaxis(chart, scope, attrs){
         chart.yAxis.orient(attrs.yaxisorient);
     }
     if(attrs.yaxisticks){
-        chart.yAxis.ticks(scope.yaxisticks());
+        chart.yAxis.scale().ticks(attrs.yaxisticks);
     }
     if(attrs.yaxistickvalues){
         chart.yAxis.tickValues(scope.$eval(attrs.yaxistickvalues));
@@ -106,13 +106,13 @@ function configureYaxis(chart, scope, attrs){
         chart.yAxis.highlightZero((attrs.yaxishighlightzero === "true"));
     }
     if(attrs.yaxisrotatelables){
-        chart.yAxis.highlightZero(scope.yaxisrotatelables);
+        chart.yAxis.rotateLables(attrs.yaxisrotatelables);
     }
     if(attrs.yaxisrotateylabel){
         chart.yAxis.rotateYLabel((attrs.yaxisrotateylabel === "true"));
     }
     if(attrs.yaxisstaggerlabels){
-        chart.yAxis.staggerlabels((attrs.yaxisstaggerlabels === "true"));
+        chart.yAxis.staggerLabels((attrs.yaxisstaggerlabels === "true"));
     }
 }
 
@@ -120,10 +120,10 @@ function configureYaxis(chart, scope, attrs){
 function configureY1axis(chart, scope, attrs){
     "use strict";
     if(attrs.y1axisticks){
-        chart.y1Axis.ticks(scope.y1axisticks());
+        chart.y1Axis.scale().ticks(attrs.y1axisticks);
     }
     if(attrs.y1axistickvalues){
-        chart.y1Axis.tickValues(scope.y1axistickvalues());
+        chart.y1Axis.tickValues(attrs.y1axistickvalues);
     }
     if(attrs.y1axisticksubdivide){
         chart.y1Axis.tickSubdivide(scope.y1axisticksubdivide());
@@ -176,10 +176,10 @@ function configureY1axis(chart, scope, attrs){
 function configureY2axis(chart, scope, attrs){
     "use strict";
     if(attrs.y2axisticks){
-        chart.y2Axis.ticks(scope.y2axisticks());
+        chart.y2Axis.scale().ticks(attrs.y2axisticks);
     }
     if(attrs.y2axistickvalues){
-        chart.y2Axis.tickValues(scope.y2axistickvalues());
+        chart.y2Axis.tickValues(scope.$eval(attrs.y2axistickvalues));
     }
     if(attrs.y2axisticksubdivide){
         chart.y2Axis.tickSubdivide(scope.y2axisticksubdivide());
@@ -259,7 +259,7 @@ angular.module('nvd3ChartDirectives', [])
 
                 //xaxis
                 xaxisorient: '&',
-                xaxisticks: '&',
+                xaxisticks: '@',
                 xaxistickvalues: '&',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
@@ -1354,7 +1354,7 @@ angular.module('nvd3ChartDirectives', [])
                 margin: '&',
                 x: '&',
                 y: '&',
-                values: '&',
+                color: '&',
 
                 //angularjs specific
                 objectequality: '@'
@@ -1375,7 +1375,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .width(width)
                                     .height(height)
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                    .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === "true"));
+                                    .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === "true"))
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                 d3.select('#' + attrs.id + ' svg')
                                     .datum(data)
