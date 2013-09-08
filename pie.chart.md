@@ -7,8 +7,7 @@ layout: example
         var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
         function ExampleCtrl($scope){
 
-            $scope.exampleData =
-                [
+            $scope.exampleData = [
                 	{ key: "One", y: 5 },
                 	{ key: "Two", y: 2 },
                 	{ key: "Three", y: 9 },
@@ -76,7 +75,6 @@ Create an Angular.js Controller, and assign json data to a scope variable.
 {% highlight javascript linenos %}
 function ExampleCtrl($scope){
 $scope.exampleData = [
-	[
     	{ key: "One", y: 5 },
         { key: "Two", y: 2 },
         { key: "Three", y: 9 },
@@ -84,7 +82,6 @@ $scope.exampleData = [
         { key: "Five", y: 4 },
         { key: "Six", y: 3 },
         { key: "Seven", y: 9 }
-        ]
     ];
 }
 {% endhighlight %}
@@ -417,4 +414,23 @@ $scope.toolTipContentFunction = function(){
 </div>
             
 
- 'valueFormat', 'values', 'description',  'showLabels', 'donutLabelsOutside', 'pieLabelsOutside', 'labelType', 'donut', 'donutRatio', 'labelThreshold'      
+ 'valueFormat', 'values',
+
+## Description
+
+## Show Labels
+
+## Donut Labels Outside
+
+## Pie Labels Outside
+
+## Label Type
+
+## Donut
+
+## Donut Ratio
+
+## Label Threshold
+
+
+'description',  'showLabels', 'donutLabelsOutside', 'pieLabelsOutside', 'labelType', 'donut', 'donutRatio', 'labelThreshold'

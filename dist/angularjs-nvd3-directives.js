@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.0 - 2013-09-06
+/*! angularjs-nvd3-directives - v0.0.0 - 2013-09-08
 * Copyright (c) 2013 Christian Maurer; Licensed Apache */
 function configureXaxis(chart, scope, attrs){
 "use strict";
