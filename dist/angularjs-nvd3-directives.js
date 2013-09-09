@@ -1350,11 +1350,22 @@ angular.module('nvd3ChartDirectives', [])
                 height: '@',
                 id: '@',
                 showlabels: '@',
+                showlegend: '@',
+                donutLabelsOutside: '@',
+                pieLabelsOutside: '@',
+                labelType: '@',
                 nodata: '@',
                 margin: '&',
                 x: '&',
                 y: '&',
                 color: '&',
+                donut: '@',
+                donutRatio: '@',
+                labelThreshold: '@',
+                description: '&',
+                tooltips: '@',
+                tooltipcontent: '&',
+                valueFormat: '&',
 
                 //angularjs specific
                 objectequality: '@'
@@ -1374,9 +1385,23 @@ angular.module('nvd3ChartDirectives', [])
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .width(width)
                                     .height(height)
+                                    .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === "true"))
-                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
+                                    .labelThreshold(attrs.labelThreshold === undefined ? 0.02 : attrs.labelthreshold)
+                                    .labelType(attrs.labeltype === undefined ? 'key' : attrs.labeltype)
+                                    .pieLabelsOutside(attrs.pielabelsoutside === undefined ? true : (attrs.pielabelsoutside === "true"))
+                                    .valueFormat(attrs.valueformat === undefined ? d3.format(',.2f') : attrs.valueformat)
+                                    .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
+                                    .description(attrs.description === undefined ?  function(d) { return d.description; } : scope.description())
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
+                                    .donutLabelsOutside(attrs.donutlabelsoutside === undefined ? false : (attrs.donutlabelsoutside === "true"))
+                                    .donut(attrs.donut === undefined ? false : (attrs.donut === "true"))
+                                    .donutRatio(attrs.donutratio === undefined ? 0.5 : (attrs.donutratio));
+
+                                if(attrs.tooltipcontent){
+                                    chart.tooltipContent(scope.tooltipcontent());
+                                }
 
                                 d3.select('#' + attrs.id + ' svg')
                                     .datum(data)

@@ -37,8 +37,23 @@ layout: example
 				return function(d, i) {
     				return colorArray[i];
     			};
-			}
-        
+	  		}
+
+	  		$scope.descriptionFunction = function(){
+	  		    return function(d){
+	  		        return d.key;
+	  		    }
+	  		}
+
+
+            $scope.toolTipContentFunction = function(){
+                return function(key, x, y, e, graph) {
+                        return  'Super New Tooltip' +
+                        '<h1>' + key + '</h1>' +
+                        '<p>' +  y + ' at ' + x + '</p>'
+                }
+            }
+
         }
 
 </script>
@@ -357,7 +372,8 @@ Datatype: boolean - (true/false)
         width="550"
         height="350"
         x="xFunction()"
-        y="yFunction()">
+        y="yFunction()"
+        tooltips="true">
         	<svg height="250"></svg>
     </nvd3-pie-chart>
 </div>
@@ -412,25 +428,348 @@ $scope.toolTipContentFunction = function(){
         	<svg height="250"></svg>
     </nvd3-pie-chart>
 </div>
-            
-
- 'valueFormat', 'values',
 
 ## Description
+Controls the text that is displayed in the tooltip.
+
+{% highlight javascript %}
+$scope.descriptionFunction = function(){
+    return function(d){
+        return d.key;
+    }
+}
+{% endhighlight %}
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="descriptionExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        tooltips="true"
+        description="descriptionFunction()">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="descriptionExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        tooltips="true"
+        tooltipcontent="descriptionFunction()">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
 
 ## Show Labels
 
-## Donut Labels Outside
+Toggles the display of chart labels.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="showLabelsExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="showLabelsExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true">
+            <svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+
 
 ## Pie Labels Outside
 
+Toggles whether labels are displayed on the outside (true) or the inside (false) of the chart.  The default setting is outside (true).
+
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="pieLabelsOutsideExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        pieLabelsOutside="false">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="pieLabelsOutsideExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        pieLabelsOutside="false">
+            <svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+
 ## Label Type
 
+The Pie Chart supports three different label types (key, value, percent).  Key is the value of the key data, value is the data value, and percent represents the percentage that the slice of data represents.
+
+### Key
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="labelTypeKeyExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        labelType="key">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="labelTypeKeyExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        labelType="key">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+
+### Value
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="labelTypeValueExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        labelType="value">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="labelTypeValueExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        labelType="value">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+
+### Percent
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="labelTypePercentExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        labelType="percent">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="labelTypePercentExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        labelType="percent">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+
+
 ## Donut
+Turns pie chart into a donut chart.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="donutExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        donut="true">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="donutExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        donut="true">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+
+
 
 ## Donut Ratio
+
+Determines how large the donut hole will be.  0 is no hole.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="donutRatioExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        donut="true"
+        donutRatio=".25">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="donutRatioExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        donut="true"
+        donutRatio=".25">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+
+
+## Donut Labels Outside
+
+Displays labels on the outside of the chart.
+Default: false
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="donutLabelsOutsideExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        donut="true"
+        showLabels="true"
+        donutLabelsOutside="true">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="donutLabelsOutsideExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        donut="true"
+        showLabels="true"
+        donutLabelsOutside="true">
+            <svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
 
 ## Label Threshold
 
 
-'description',  'showLabels', 'donutLabelsOutside', 'pieLabelsOutside', 'labelType', 'donut', 'donutRatio', 'labelThreshold'
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="labelThresholdExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        labelThreshold="0.5">
+        	<svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="labelThresholdExample"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        labelThreshold="0.5">
+            <svg height="250"></svg>
+    </nvd3-pie-chart>
+</div>
