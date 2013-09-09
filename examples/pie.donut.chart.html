@@ -43,23 +43,18 @@
                 }
             ];
 
-        $scope.xFunction = function(){
-            return function(d) {
-                return d.key;
-            };
-        }
+            $scope.xFunction = function(){
+                return function(d) {
+                    return d.key;
+                };
+            }
             $scope.yFunction = function(){
                 return function(d) {
                     return d.y;
                 };
             }
 
-        $scope.descriptionFunction = function(){
-            return function(d){
-                return d.key;
-            }
         }
-    }
     </script>
 
 </head>
@@ -67,17 +62,18 @@
 
 <div ng-controller="ExampleCtrl">
     <nvd3-pie-chart
-        data="exampleData"
-        id="exampleId"
-        width="800"
-        height="400"
-        x="xFunction()"
-        y="yFunction()"
-        showLabels="true"
-        pieLabelsOutside="false"
-        showValues="true"
-        labelType="percent"
-    ><svg height="300"></svg></nvd3-pie-chart>
+            data="exampleData"
+            id="exampleId"
+            width="800"
+            height="400"
+            showLabels="true"
+            x="xFunction()"
+            y="yFunction()"
+            donut="true"
+            donutRatio=".5"
+            donutLabelsOutside="true">
+        <svg height="300"></svg>
+    </nvd3-pie-chart>
 </div>
 
 </body>
