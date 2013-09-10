@@ -29,6 +29,7 @@
                             tickVals.push(values[i][0]);
                         }
                     }
+                    console.log('xAxisTickValuesFunction', d);
                     return tickVals;
                 };
             };
@@ -48,7 +49,23 @@
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
             data="exampleData"
-            id="exampleId"
+            id="arrayExample"
+            width="800"
+            height="400"
+            showXAxis="true"
+            showYAxis="true"
+            tooltips="true"
+            interactive="true"
+            xAxisTickValues="[1378387200, 1378388100, 1378389600]"
+            xAxisTickFormat="xAxisTickFormatFunction()"
+            margin="{left:50,top:50,bottom:50,right:50}"
+            >
+        <svg></svg>
+    </nvd3-line-chart>
+
+    <nvd3-line-chart
+            data="exampleData"
+            id="functionExample"
             width="800"
             height="400"
             showXAxis="true"

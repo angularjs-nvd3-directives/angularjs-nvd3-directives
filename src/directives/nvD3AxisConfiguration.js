@@ -7,7 +7,11 @@ function configureXaxis(chart, scope, attrs){
         chart.xAxis.scale().ticks(attrs.xaxisticks);
     }
     if(attrs.xaxistickvalues){
-        chart.xAxis.tickValues(scope.$eval(attrs.xaxistickvalues));
+        if(Array.isArray(scope.$eval(attrs.xaxistickvalues))){
+            chart.xAxis.tickValues(scope.$eval(attrs.xaxistickvalues));
+        } else if(typeof scope.xaxistickvalues() === 'function'){
+            chart.xAxis.tickValues(scope.xaxistickvalues());
+        }
     }
     if(attrs.xaxisticksubdivide){
         chart.xAxis.tickSubdivide(scope.xaxisticksubdivide());
@@ -65,7 +69,11 @@ function configureYaxis(chart, scope, attrs){
         chart.yAxis.scale().ticks(attrs.yaxisticks);
     }
     if(attrs.yaxistickvalues){
-        chart.yAxis.tickValues(scope.$eval(attrs.yaxistickvalues));
+        if(Array.isArray(scope.$eval(attrs.yaxistickvalues))){
+            chart.yAxis.tickValues(scope.$eval(attrs.yaxistickvalues));
+        } else if(typeof scope.yaxistickvalues() === 'function'){
+            chart.yAxis.tickValues(scope.yaxistickvalues());
+        }
     }
     if(attrs.yaxisticksubdivide){
         chart.yAxis.tickSubdivide(scope.yaxisticksubdivide());

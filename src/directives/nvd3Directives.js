@@ -31,7 +31,7 @@ angular.module('nvd3ChartDirectives', [])
                 //xaxis
                 xaxisorient: '&',
                 xaxisticks: '@',
-                xaxistickvalues: '&',
+                xaxistickvalues: '&xaxistickvalues',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
@@ -51,7 +51,7 @@ angular.module('nvd3ChartDirectives', [])
                 //yaxis
                 yaxisorient: '&',
                 yaxisticks: '&',
-                yaxistickvalues: '&',
+                yaxistickvalues: '&yaxistickvalues',
                 yaxisticksubdivide: '&',
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
@@ -148,6 +148,7 @@ angular.module('nvd3ChartDirectives', [])
                                     timeoutPromise = $timeout(chartResize, 100);
                                 };
                                 //nv.utils.windowResize(windowResize);
+                                nv.utils.windowResize(chart.update);
                                 $window.addEventListener('resize', windowResize);
 
                                 return chart;
@@ -192,7 +193,7 @@ angular.module('nvd3ChartDirectives', [])
                 //xaxis
                 xaxisorient: '&',
                 xaxisticks: '&',
-                xaxistickvalues: '&',
+                xaxistickvalues: '&xaxistickvalues',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
@@ -212,7 +213,7 @@ angular.module('nvd3ChartDirectives', [])
                 //yaxis
                 yaxisorient: '&',
                 yaxisticks: '&',
-                yaxistickvalues: '&',
+                yaxistickvalues: '&yaxistickvalues',
                 yaxisticksubdivide: '&',
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
@@ -360,7 +361,7 @@ angular.module('nvd3ChartDirectives', [])
                 //xaxis
                 xaxisorient: '&',
                 xaxisticks: '&',
-                xaxistickvalues: '&',
+                xaxistickvalues: '&xaxistickvalues',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
@@ -380,7 +381,7 @@ angular.module('nvd3ChartDirectives', [])
                 //yaxis
                 yaxisorient: '&',
                 yaxisticks: '&',
-                yaxistickvalues: '&',
+                yaxistickvalues: '&yaxistickvalues',
                 yaxisticksubdivide: '&',
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
@@ -549,7 +550,7 @@ angular.module('nvd3ChartDirectives', [])
                 //xaxis
                 xaxisorient: '&',
                 xaxisticks: '&',
-                xaxistickvalues: '&',
+                xaxistickvalues: '&xaxistickvalues',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
@@ -569,7 +570,7 @@ angular.module('nvd3ChartDirectives', [])
                 //yaxis
                 yaxisorient: '&',
                 yaxisticks: '&',
-                yaxistickvalues: '&',
+                yaxistickvalues: '&yaxistickvalues',
                 yaxisticksubdivide: '&',
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
@@ -693,7 +694,7 @@ angular.module('nvd3ChartDirectives', [])
                 //xaxis
                 xaxisorient: '&',
                 xaxisticks: '&',
-                xaxistickvalues: '&',
+                xaxistickvalues: '&xaxistickvalues',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
@@ -713,7 +714,7 @@ angular.module('nvd3ChartDirectives', [])
                 //yaxis
                 yaxisorient: '&',
                 yaxisticks: '&',
-                yaxistickvalues: '&',
+                yaxistickvalues: '&yaxistickvalues',
                 yaxisticksubdivide: '&',
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
@@ -840,7 +841,7 @@ angular.module('nvd3ChartDirectives', [])
                 //xaxis
                 xaxisorient: '&',
                 xaxisticks: '&',
-                xaxistickvalues: '&',
+                xaxistickvalues: '&xaxistickvalues',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
@@ -860,7 +861,7 @@ angular.module('nvd3ChartDirectives', [])
                 //yaxis
                 yaxisorient: '&',
                 yaxisticks: '&',
-                yaxistickvalues: '&',
+                yaxistickvalues: '&yaxistickvalues',
                 yaxisticksubdivide: '&',
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
@@ -992,7 +993,7 @@ angular.module('nvd3ChartDirectives', [])
                 //xaxis
                 xaxisorient: '&',
                 xaxisticks: '&',
-                xaxistickvalues: '&',
+                xaxistickvalues: '&xaxistickvalues',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
@@ -1012,7 +1013,7 @@ angular.module('nvd3ChartDirectives', [])
                 //yaxis
                 yaxisorient: '&',
                 yaxisticks: '&',
-                yaxistickvalues: '&',
+                yaxistickvalues: '&yaxistickvalues',
                 yaxisticksubdivide: '&',
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
@@ -1211,7 +1212,7 @@ angular.module('nvd3ChartDirectives', [])
                 //xaxis
                 xaxisorient: '&',
                 xaxisticks: '&',
-                xaxistickvalues: '&',
+                xaxistickvalues: '&xaxistickvalues',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
@@ -1231,7 +1232,7 @@ angular.module('nvd3ChartDirectives', [])
                 //yaxis
                 yaxisorient: '&',
                 yaxisticks: '&',
-                yaxistickvalues: '&',
+                yaxistickvalues: '&yaxistickvalues',
                 yaxisticksubdivide: '&',
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
@@ -1352,7 +1353,7 @@ angular.module('nvd3ChartDirectives', [])
                 //xaxis
                 xaxisorient: '&',
                 xaxisticks: '&',
-                xaxistickvalues: '&',
+                xaxistickvalues: '&xaxistickvalues',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
@@ -1372,7 +1373,7 @@ angular.module('nvd3ChartDirectives', [])
                 //yaxis
                 yaxisorient: '&',
                 yaxisticks: '&',
-                yaxistickvalues: '&',
+                yaxistickvalues: '&yaxistickvalues',
                 yaxisticksubdivide: '&',
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
@@ -1430,7 +1431,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .height(height)
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
-                                    .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
+                                    .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
@@ -1514,7 +1516,7 @@ angular.module('nvd3ChartDirectives', [])
                 //xaxis
                 xaxisorient: '&',
                 xaxisticks: '&',
-                xaxistickvalues: '&',
+                xaxistickvalues: '&xaxistickvalues',
                 xaxisticksubdivide: '&',
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
@@ -1534,7 +1536,7 @@ angular.module('nvd3ChartDirectives', [])
                 //yaxis
                 yaxisorient: '&',
                 yaxisticks: '&',
-                yaxistickvalues: '&',
+                yaxistickvalues: '&yaxistickvalues',
                 yaxisticksubdivide: '&',
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
