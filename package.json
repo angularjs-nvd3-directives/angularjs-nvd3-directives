@@ -20,7 +20,9 @@
     "d3.js",
     "directives"
   ],
-  "author": { "name": "Christian Maurer"},
+  "author": {
+    "name": "Christian Maurer"
+  },
   "license": "Apache",
   "readmeFilename": "README.md",
   "gitHead": "82273b2c5a38c9e5841e767da4f3252ba31927e8",
@@ -34,6 +36,7 @@
     "grunt-contrib-jshint": "~0.6.2",
     "grunt-contrib-watch": "~0.5.1",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-cli": "~0.1.9"
+    "grunt-cli": "~0.1.9",
+    "grunt-bower-task": "~0.3.2"
   }
 }

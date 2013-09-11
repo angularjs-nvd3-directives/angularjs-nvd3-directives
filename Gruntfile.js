@@ -44,6 +44,17 @@ module.exports = function (grunt) {
                 src: 'Gruntfile.js'
             }
         },
+        bower: {
+            install: {
+                options:{
+                    targetDir: './build/components',
+                    layout: 'byComponent',
+                    cleanTargetDir: true,
+                    cleanBowerDir: false,
+                    verbose: true
+                }
+            }
+        },
         watch: {
             gruntfile: {
                 files: '<%= jshint.gruntfile.src %>',
@@ -61,6 +72,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-bower-task');
+
+    grunt.registerTask('bower', ['bower:install']);
 
     // Default task.
     grunt.registerTask('default', ['clean', 'concat', 'jshint']);

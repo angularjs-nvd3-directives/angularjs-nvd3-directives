@@ -1885,6 +1885,99 @@ angular.module('nvd3ChartDirectives', [])
                 }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
+    }])
+    .directive('nvd3BulletChart', ['$window', '$timeout', function($window, $timeout){
+        "use strict";
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=',
+                width: '@',
+                height: '@',
+                id: '@',
+                margin: '&',
+                tooltips: '@',
+                tooltipcontent: '&',
+                orient: '@',
+                ranges: '&',
+                markers: '&',
+                measures: '&',
+                tickformat: '&',
+                nodata: '@',
+
+                //angularjs specific
+                objectequality: '@'
+
+            },
+            link: function(scope, element, attrs){
+                scope.$watch('data', function(data){
+                    if(data){
+                        nv.addGraph({
+                            generate: function(){
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
+                                    width = attrs.width - (margin.left + margin.right),
+                                    height = attrs.height - (margin.top + margin.bottom);
+
+                                var chart = nv.models.bulletChart()
+                                    .width(width)
+                                    .height(height)
+                                    .margin(margin)
+                                    .orient(attrs.orient === undefined ? 'left' : attrs.orient)
+                                    .ranges(attrs.ranges === undefined ? function(d){ return d.ranges; } : scope.ranges())
+                                    .markers(attrs.markers === undefined ? function(d){ return d.markers; } : scope.markers())
+                                    .measures(attrs.measures === undefined ? function(d){ return d.measures; } : scope.measures())
+                                    .tickFormat(attrs.tickformat === undefined ? null : scope.tickformat())
+                                    .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                    .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
+
+                                if(attrs.tooltipcontent){
+                                    chart.tooltipContent(scope.tooltipcontent());
+                                }
+
+                                d3.select('#' + attrs.id + ' svg')
+                                    .attr('height', height)
+                                    .attr('width', width)
+                                    .datum(data)
+                                    .call(chart);
+
+                                var chartResize = function() {
+                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
+                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
+                                    if(newWidth === currentWidth && newHeight === currentHeight) {
+                                        return; //Nothing to do, the size is fixed or not changing.
+                                    }
+
+                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
+
+                                    chart.width(newWidth).height(newHeight); //Update the dims
+                                    d3.select(element[0]).append("svg")
+                                        .attr('id', attrs.id)
+                                        .attr('width', newWidth)
+                                        .attr('height', newHeight)
+                                        .datum(data)
+                                        .transition()
+                                        .duration(500)
+                                        .call(chart);
+                                };
+
+                                var timeoutPromise;
+                                var windowResize = function() {
+                                    $timeout.cancel(timeoutPromise);
+                                    timeoutPromise = $timeout(chartResize, 100);
+                                };
+
+                                $window.addEventListener('resize', windowResize);
+
+                                return chart;
+                            }
+                        });
+                    }
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+            }
+        };
     }]);
 
 //still need to implement
