@@ -44,6 +44,19 @@ module.exports = function (grunt) {
                 src: 'Gruntfile.js'
             }
         },
+        copy: {
+            main: {
+                files: [
+                    {src: ['build/components/angular/angular.js'], dest: 'examples/js/angular.js', filter: 'isFile'},
+                    {src: ['build/components/d3/d3.js'], dest: 'examples/js/d3.js', filter: 'isFile'},
+                    {src: ['build/components/nvd3/nv.d3.js'], dest: 'examples/js/nv.d3.js', filter: 'isFile'},
+                    {src: ['build/components/nvd3/src/nv.d3.css'], dest: 'examples/stylesheets/nv.d3.css', filter: 'isFile'},
+                    {src: ['build/components/moment/moment.js'], dest: 'examples/js/moment.js', filter: 'isFile'}
+
+
+                ]
+            }
+        },
         bower: {
             install: {
                 options:{
@@ -73,6 +86,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('bower', ['bower:install']);
 
