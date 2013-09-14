@@ -61,7 +61,15 @@ layout: example
                     return d3.time.format('%X')(new Date(d)); 
                 }
             }
-            
+
+            $scope.xAxisTickValueFunction = function(){
+                var tickValues = [];
+                return function(d){
+                    var minute = d3.time.format('%M')(new Date(d));
+                    console.log(minute);
+                }
+            }
+
         }
 
 </script>
@@ -349,7 +357,8 @@ Suitable arguments depends on the associated scale: for a linear scale, you migh
 
 Datatype:  
 
-#### xAxisTicks
+#### xAxisTickFormat
+
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
@@ -383,8 +392,9 @@ Datatype:
 https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickValues
 The explicit tick values take precedent over the tick arguments set by axis.ticks
 
-Datatype: Array of values where the axis will be rendered.  d3 will use the supplied array of values to create the respective axes, rather than calculating the axes itself.
+Datatype: (Array or Function) Array of values where the axis will be rendered.  d3 will use the supplied array of values to create the respective axes, rather than calculating the axes itself.
 
+Array
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
@@ -412,6 +422,37 @@ Datatype: Array of values where the axis will be rendered.  d3 will use the supp
         <svg></svg>
     </nvd3-line-chart>
 </div>
+
+
+Function
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="tickValuesExample"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+		xAxisTickValues="xAxisTickValueFunction()">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="tickValues"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+		xAxisTickValues="xAxisTickValueFunction()">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+
 
 ## Tick Subdivide
 
