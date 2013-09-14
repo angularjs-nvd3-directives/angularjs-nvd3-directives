@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular.js nvd3.js Line Chart Directive</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <script src="../build/components/angular/angular.js"></script>
+    <script src="../build/components/d3/d3.js"></script>
+    <script src="../build/components/nvd3/nv.d3.js"></script>
+    <script src="../dist/angularjs-nvd3-directives.js"></script>
+    <link rel="stylesheet" href="../bower_components/nvd3/src/nv.d3.css"/>
+    <script>
+        var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
+
+        function ExampleCtrl($scope){
+
+            $scope.fetchData = function() {
+                var sin = [],
+                        cos = [];
+
+                for (var i = 0; i < 100; i++) {
+                    sin.push({x: i, y: Math.sin(i/Math.random())});
+                    cos.push({x: i, y: .5 * Math.cos(i/Math.random())});
+                }
+
+                return [
+                    {
+                        values: sin,
+                        key: 'Sine Wave',
+                        color: '#ff7f0e'
+                    },
+                    {
+                        values: cos,
+                        key: 'Cosine Wave',
+                        color: '#2ca02c'
+                    }
+                ];
+            }
+
+
+            $scope.xFunction = function(){
+                return function(d){
+                    return d.x;
+                }
+            }
+
+            $scope.yFunction = function(){
+                return function(d){
+                    return d.y;
+                }
+            }
+
+            $scope.exampleData = $scope.fetchData();
+
+            setInterval(function(){
+                $scope.$apply(function(){
+                    $scope.exampleData = $scope.fetchData();
+                })
+            }, 15000);
+
+
+        }
+    </script>
+
+</head>
+<body ng-app='nvd3TestApp'>
+
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+            data="exampleData"
+            id="exampleId"
+            width="800"
+            height="400"
+            showXAxis="true"
+            showYAxis="true"
+            x="xFunction()"
+            y="yFunction()"
+            tooltips="true"
+            interactive="true"
+            margin="{left:50,top:50,bottom:50,right:50}"
+            >
+        <svg></svg>
+    </nvd3-line-chart>
+
+</div>
+
+</body>
+</html>

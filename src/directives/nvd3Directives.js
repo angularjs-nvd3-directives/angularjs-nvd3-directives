@@ -75,6 +75,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -116,8 +122,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'), 10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'), 10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -147,10 +153,8 @@ angular.module('nvd3ChartDirectives', [])
                                     $timeout.cancel(timeoutPromise);
                                     timeoutPromise = $timeout(chartResize, 100);
                                 };
-                                //nv.utils.windowResize(windowResize);
-                                nv.utils.windowResize(chart.update);
                                 $window.addEventListener('resize', windowResize);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -237,6 +241,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -280,8 +290,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -310,9 +320,8 @@ angular.module('nvd3ChartDirectives', [])
                                     $timeout.cancel(timeoutPromise);
                                     timeoutPromise = $timeout(chartResize, 100);
                                 };
-                                //nv.utils.windowResize(windowResize);
                                 $window.addEventListener('resize', windowResize);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -405,6 +414,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -483,8 +498,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -512,7 +527,7 @@ angular.module('nvd3ChartDirectives', [])
                                 };
 
                                 $window.addEventListener('resize', windowResize);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -594,6 +609,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -632,8 +653,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -661,7 +682,7 @@ angular.module('nvd3ChartDirectives', [])
                                 };
 
                                 $window.addEventListener('resize', windowResize);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -738,6 +759,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -775,8 +802,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -804,7 +831,7 @@ angular.module('nvd3ChartDirectives', [])
                                 };
 
                                 $window.addEventListener('resize', windowResize);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -885,6 +912,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -927,8 +960,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -956,7 +989,7 @@ angular.module('nvd3ChartDirectives', [])
                                 };
 
                                 $window.addEventListener('resize', windowResize);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -1036,6 +1069,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -1075,8 +1114,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -1104,7 +1143,7 @@ angular.module('nvd3ChartDirectives', [])
                                 };
 
                                 $window.addEventListener('resize', windowResize);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -1146,6 +1185,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -1179,7 +1224,7 @@ angular.module('nvd3ChartDirectives', [])
                                     .datum(data)
                                     .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
                                     .call(chart);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -1256,6 +1301,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -1287,8 +1338,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -1316,7 +1367,7 @@ angular.module('nvd3ChartDirectives', [])
                                 };
 
                                 $window.addEventListener('resize', windowResize);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -1417,6 +1468,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -1449,8 +1506,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -1478,7 +1535,7 @@ angular.module('nvd3ChartDirectives', [])
                                 };
 
                                 $window.addEventListener('resize', windowResize);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -1580,6 +1637,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -1611,8 +1674,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -1640,7 +1703,7 @@ angular.module('nvd3ChartDirectives', [])
                                 };
 
                                 $window.addEventListener('resize', windowResize);
-
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -1675,6 +1738,12 @@ angular.module('nvd3ChartDirectives', [])
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
@@ -1704,8 +1773,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .call(chart);
 
                                 var chartResize = function() {
-                                    var currentWidth = d3.select('#' + attrs.id + ' svg').attr('width'),
-                                        currentHeight = d3.select('#' + attrs.id + ' svg').attr('height'),
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
                                         newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
                                         newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -1733,7 +1802,107 @@ angular.module('nvd3ChartDirectives', [])
                                 };
 
                                 $window.addEventListener('resize', windowResize);
+                                scope.chart = chart;
+                                return chart;
+                            }
+                        });
+                    }
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+            }
+        };
+    }])
+    .directive('nvd3Sparkline', ['$window', '$timeout', function($window, $timeout){
+        "use strict";
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=',
+                width: '@',
+                height: '@',
+                id: '@',
+                animate: '@',
+                margin: '&',
+                x: '&',
+                y: '&',
+                color: '&',
+                xscale: '&',
+                yscale: '&',
+                xdomain: '&',
+                ydomain: '&',
+                xrange: '&',
+                yrange: '&',
 
+                //angularjs specific
+                objectequality: '@'
+
+            },
+            link: function(scope, element, attrs){
+                scope.$watch('data', function(data){
+                    if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return d3.select('#' + attrs.id + ' svg')
+                                .datum(data)
+                                .call(scope.chart);
+                        }
+                        nv.addGraph({
+                            generate: function(){
+                                var margin = (scope.$eval(attrs.margin) || {left:0, top:2, bottom:2, right:0}),
+                                    width = attrs.width - (margin.left + margin.right),
+                                    height = attrs.height - (margin.top + margin.bottom);
+
+                                var chart = nv.models.bulletChart()
+                                    .width(width)
+                                    .height(height)
+                                    .margin(margin)
+                                    .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
+                                    .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                    .animate(attrs.animate === undefined ? true : (attrs.animate === "true"))
+                                    .color(attrs.color === undefined ? nv.utils.getColor(['#000']) : scope.color())
+                                    .xscale(attrs.xscale === undefined ? null : scope.$eval(attrs.xscale))
+                                    .yscale(attrs.yscale === undefined ? null : scope.$eval(attrs.yscale))
+                                    .xdomain(attrs.xdomain === undefined ? null : scope.$eval(attrs.xdomain))
+                                    .ydomain(attrs.ydomain === undefined ? null : scope.$eval(attrs.ydomain))
+                                    .xrange(attrs.xrange === undefined ? null : scope.$eval(attrs.xrange))
+                                    .yrange(attrs.yrange === undefined ? null : scope.$eval(attrs.yrange));
+
+                                d3.select('#' + attrs.id + ' svg')
+                                    .attr('height', height)
+                                    .attr('width', width)
+                                    .datum(data)
+                                    .call(chart);
+
+                                var chartResize = function() {
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
+                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
+                                    if(newWidth === currentWidth && newHeight === currentHeight) {
+                                        return; //Nothing to do, the size is fixed or not changing.
+                                    }
+
+                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
+
+                                    chart.width(newWidth).height(newHeight); //Update the dims
+                                    d3.select(element[0]).append("svg")
+                                        .attr('id', attrs.id)
+                                        .attr('width', newWidth)
+                                        .attr('height', newHeight)
+                                        .datum(data)
+                                        .transition()
+                                        .duration(500)
+                                        .call(chart);
+                                };
+
+                                var timeoutPromise;
+                                var windowResize = function() {
+                                    $timeout.cancel(timeoutPromise);
+                                    timeoutPromise = $timeout(chartResize, 100);
+                                };
+
+                                $window.addEventListener('resize', windowResize);
+                                scope.chart = chart;
                                 return chart;
                             }
                         });
@@ -1745,6 +1914,11 @@ angular.module('nvd3ChartDirectives', [])
 
 //still need to implement
 
+//nv.models.sparkline
+//nv.models.sparklinePlus
 //nv.models.multiChart
 //nv.models.scatterPlusLineChart
 //nv.models.linePlusBarWithFocusChart
+
+
+//crossfilter using $services?
