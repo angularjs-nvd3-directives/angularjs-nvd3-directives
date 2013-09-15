@@ -1,6 +1,7 @@
 ---
 title: cumulativelinechart
 layout: example
+description: d3.js, nvd3.js Cumulative Line Charts with Angular.js
 ---
 
 <script>

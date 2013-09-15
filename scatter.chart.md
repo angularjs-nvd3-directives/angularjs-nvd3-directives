@@ -1,6 +1,7 @@
 ---
 title: scatterchart
 layout: example
+description: d3.js, nvd3.js Scatter Charts with Angular.js
 ---
 
 <script>

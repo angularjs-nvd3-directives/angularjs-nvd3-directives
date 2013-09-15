@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <meta property="og:description" content="Angular.js Directives for d3.js and nvd3.js charts">
+      {% if page.description %}
+      <meta property="og:description" content="{{ page.description }}">
+      {% else %}
+      <meta property="og:description" content="Angular.js Directives for d3.js and nvd3.js charts">
+      {% endif %}
     <meta content="website" property="og:type">
     <meta http-equiv="cache-control" content="max-age=0" />
     <meta http-equiv="cache-control" content="no-cache" />

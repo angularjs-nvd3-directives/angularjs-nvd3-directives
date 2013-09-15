@@ -1,6 +1,7 @@
 ---
 title: multibarhorizontalchart
 layout: example
+description: d3.js, nvd3.js Multi Bar Horizontal Charts with Angular.js
 ---
 
 <script>

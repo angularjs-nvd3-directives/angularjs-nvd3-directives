@@ -1,6 +1,7 @@
 ---
 title: stackedareachart
 layout: example
+description: d3.js, nvd3.js Stacked Area Charts with Angular.js
 ---
 
 <script>

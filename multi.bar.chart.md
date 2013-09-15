@@ -1,6 +1,7 @@
 ---
 title: multibarchart
 layout: example
+description: d3.js, nvd3.js Multi Bar Charts with Angular.js
 ---
 
 <script>
