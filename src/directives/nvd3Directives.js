@@ -1187,8 +1187,9 @@ angular.module('nvd3ChartDirectives', [])
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
+                            d3.select('#' + attrs.id + ' svg')
                                 .datum(data)
+                                .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
                                 .call(scope.chart);
                         }
                         nv.addGraph({

@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.0 - 2013-09-13
+/*! angularjs-nvd3-directives - v0.0.0 - 2013-09-15
 * Copyright (c) 2013 Christian Maurer; Licensed Apache */
 function configureXaxis(chart, scope, attrs){
 "use strict";
@@ -1424,8 +1424,9 @@ angular.module('nvd3ChartDirectives', [])
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
+                            d3.select('#' + attrs.id + ' svg')
                                 .datum(data)
+                                .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
                                 .call(scope.chart);
                         }
                         nv.addGraph({
