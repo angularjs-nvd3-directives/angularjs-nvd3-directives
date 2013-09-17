@@ -65,48 +65,20 @@
                     //var data = $scope.fetchData();
                     $scope.exampleData = data;
                 })
-            }, 5000);
+            }, 10000);
 
 
         }
-
-
-        app.directive('extendedLineChart', function(){
-            "use strict";
-           return {
-               restrict: 'E',
-               require: '^nvd3LineChart',
-               link: function($scope, $element, $attributes, nvd3LineChart) {
-                   $scope.d3Call = function(data, chart){
-                       console.log('extended d3 call', $scope, $element, $attributes, nvd3LineChart);
-                       return d3.select('#' + $scope.id + ' svg')
-                               .attr('height', $scope.height)
-                               .attr('width', $scope.width)
-                               .datum(data)
-                               .transition()
-                               .duration(750)
-                               .ease('elastic')
-                               .call(chart);
-                   }
-               }
-           }
-
-
-        });
-
-
     </script>
 
 </head>
 <body ng-app='nvd3TestApp'>
 
-
-
 <div ng-controller="ExampleCtrl">
 
     <nvd3-line-chart
             data="exampleData"
-            id="exampleId"
+            id="withoutObjectEquality"
             width="800"
             height="400"
             showXAxis="true"
@@ -115,14 +87,14 @@
             y="yFunction()"
             tooltips="true"
             interactive="true"
-            margin="{left:50,top:50,bottom:50,right:50}"
-            objectEquality="true">
-        <svg height="200"></svg>
+            margin="{left:50,top:50,bottom:50,right:50}">
+        <svg></svg>
     </nvd3-line-chart>
+
 
     <nvd3-line-chart
             data="exampleData"
-            id="extendedExampleId"
+            id="withObjectEqaulity"
             width="800"
             height="400"
             showXAxis="true"
@@ -133,10 +105,9 @@
             interactive="true"
             margin="{left:50,top:50,bottom:50,right:50}"
             objectEquality="true">
-    <extended-line-chart>
         <svg></svg>
-    </extended-line-chart>
     </nvd3-line-chart>
+
 </div>
 
 </body>

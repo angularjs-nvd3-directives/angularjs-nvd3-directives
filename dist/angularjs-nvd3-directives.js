@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.0 - 2013-09-15
+/*! angularjs-nvd3-directives - v0.0.0 - 2013-09-17
 * Copyright (c) 2013 Christian Maurer; Licensed Apache */
 function configureXaxis(chart, scope, attrs){
 "use strict";
@@ -306,32 +306,43 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisstaggerlabels: '@',
 
                 //angularjs specific
-                objectequality: '@'  //$watch(watchExpression, listener, objectEquality)
+                objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
 
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){  //function($scope, $element, $attrs, $transclude)
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                    height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                 var chart = nv.models.lineChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                    .width(width)
-                                    .height(height)
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
@@ -352,11 +363,7 @@ angular.module('nvd3ChartDirectives', [])
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'), 10),
@@ -472,32 +479,43 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisstaggerlabels: '@',
 
                 //angularjs specific
-                objectequality: '@'  //$watch(watchExpression, listener, objectEquality)
+                objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
 
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                    height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                 var chart = nv.models.cumulativeLineChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                    .width(width)
-                                    .height(height)
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
@@ -520,11 +538,7 @@ angular.module('nvd3ChartDirectives', [])
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
@@ -645,25 +659,39 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisstaggerlabels: '@',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
 
+                //d3.js specific
+                transitionduration: '@'
+
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                 var chart = nv.models.stackedAreaChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
@@ -671,8 +699,6 @@ angular.module('nvd3ChartDirectives', [])
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                     .size(attrs.size === undefined ? function(d) { return d.size || 1; } : scope.size())
                                     .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize)) // List of numbers to Force into the Size scale
-                                    .width(width)
-                                    .height(height)
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
@@ -728,11 +754,7 @@ angular.module('nvd3ChartDirectives', [])
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
@@ -790,7 +812,6 @@ angular.module('nvd3ChartDirectives', [])
                 reducexticks: '@',
                 staggerlabels: '@',
                 rotatelabels: '@',
-                transitionduration: '@',
                 margin: '&',
                 x: '&',
                 y: '&',
@@ -840,30 +861,43 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisstaggerlabels: '@',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
 
+                //d3.js specific
+                transitionduration: '@'
+
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
                                 var chart = nv.models.multiBarChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                    .width(width)
-                                    .height(height)
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
@@ -882,12 +916,7 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
@@ -990,30 +1019,42 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisstaggerlabels: '@',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
 
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
                                 var chart = nv.models.discreteBarChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                    .width(width)
-                                    .height(height)
                                     .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
@@ -1031,12 +1072,7 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.valueFormat(scope.valueformat());
                                 }
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
@@ -1143,39 +1179,45 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisstaggerlabels: '@',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
 
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                    scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                    scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
                                 var chart = nv.models.historicalBarChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                    .width(width)
-                                    .height(height)
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
-//                                    .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
-//                                   .clipVoronoi(attrs.clipvoronoi === undefined ? false : (attrs.clipvoronoi === "true"))
-//                                    .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
-//                                    .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); })
-//                                    .highlightPoint(attrs.highlightpoint === undefined ? false : (attrs.highlightpoint === "true"))
-                                    //.clearHighlights(attrs.clearhighlights === undefined ? false : (attrs.clearhighlights === "true"))
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                 configureXaxis(chart, scope, attrs);
@@ -1189,12 +1231,7 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.valueFormat(scope.valueformat());
                                 }
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
@@ -1301,29 +1338,42 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisstaggerlabels: '@',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
+
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                    scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                    scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
                                 var chart = nv.models.multiBarHorizontalChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey))
-                                    .width(width)
-                                    .height(height)
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
@@ -1343,12 +1393,7 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.valueFormat(scope.valueformat());
                                 }
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
@@ -1416,30 +1461,41 @@ angular.module('nvd3ChartDirectives', [])
                 valueFormat: '&',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
 
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                    scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                    scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                 var chart = nv.models.pieChart()
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
-                                    .width(width)
-                                    .height(height)
+                                    .width(scope.width)
+                                    .height(scope.height)
+                                    .margin(margin)
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === "true"))
@@ -1458,10 +1514,8 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .datum(data)
-                                    .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
-                                    .call(chart);
+                                scope.d3Call(data, chart);
+
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -1533,24 +1587,38 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisstaggerlabels: '@',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
 
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                    scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                    scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
                                 var chart = nv.models.scatterChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .tooltipXContent(scope.$eval(attrs.tooltipxcontent) || function(key, x) { return '<strong>' + x + '</strong>'; } )
@@ -1568,12 +1636,7 @@ angular.module('nvd3ChartDirectives', [])
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .transition().duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
@@ -1700,30 +1763,41 @@ angular.module('nvd3ChartDirectives', [])
                 y2axisstaggerlabels: '@',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
 
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                    scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                    scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                 var chart = nv.models.linePlusBarChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
-                                    .width(width)
-                                    .height(height)
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
@@ -1737,11 +1811,7 @@ angular.module('nvd3ChartDirectives', [])
                                 configureY1axis(chart, scope, attrs);
                                 configureY2axis(chart, scope, attrs);
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
@@ -1869,30 +1939,41 @@ angular.module('nvd3ChartDirectives', [])
                 y2axisstaggerlabels: '@',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
 
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                    scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                    scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                 var chart = nv.models.lineWithFocusChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
-                                    .width(width)
-                                    .height(height)
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
@@ -1905,11 +1986,7 @@ angular.module('nvd3ChartDirectives', [])
                                 configureY1axis(chart, scope, attrs);
                                 configureY2axis(chart, scope, attrs);
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
@@ -1970,27 +2047,38 @@ angular.module('nvd3ChartDirectives', [])
                 nodata: '@',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
 
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                    scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                    scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                 var chart = nv.models.bulletChart()
-                                    .width(width)
-                                    .height(height)
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .orient(attrs.orient === undefined ? 'left' : attrs.orient)
                                     .ranges(attrs.ranges === undefined ? function(d){ return d.ranges; } : scope.ranges())
@@ -2004,11 +2092,7 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
@@ -2071,27 +2155,38 @@ angular.module('nvd3ChartDirectives', [])
                 yrange: '&',
 
                 //angularjs specific
-                objectequality: '@'
+                objectequality: '@',
 
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .call(chart);
+                };
             },
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
                         //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                         if(scope.chart){
-                            return d3.select('#' + attrs.id + ' svg')
-                                .datum(data)
-                                .call(scope.chart);
+                            return scope.d3Call(data, scope.chart);
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = (scope.$eval(attrs.margin) || {left:0, top:2, bottom:2, right:0}),
-                                    width = attrs.width - (margin.left + margin.right),
-                                    height = attrs.height - (margin.top + margin.bottom);
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                    scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                    scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                 var chart = nv.models.bulletChart()
-                                    .width(width)
-                                    .height(height)
+                                    .width(scope.width)
+                                    .height(scope.height)
                                     .margin(margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
@@ -2104,11 +2199,7 @@ angular.module('nvd3ChartDirectives', [])
                                     .xrange(attrs.xrange === undefined ? null : scope.$eval(attrs.xrange))
                                     .yrange(attrs.yrange === undefined ? null : scope.$eval(attrs.yrange));
 
-                                d3.select('#' + attrs.id + ' svg')
-                                    .attr('height', height)
-                                    .attr('width', width)
-                                    .datum(data)
-                                    .call(chart);
+                                scope.d3Call(data, chart);
 
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
