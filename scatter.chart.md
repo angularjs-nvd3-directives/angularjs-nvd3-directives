@@ -24,9 +24,36 @@ description: d3.js, nvd3.js Scatter Charts with Angular.js
             }
         ];
 
+        $scope.noDataData = [
+            {
+                "key": "Series 1",
+                "values": [ ]
+            }
+        ];
+
+
         $scope.xAxisTickFormatFunction = function(){
             return function(d){
                 return d3.round(d, 4)
+            }
+        }
+
+        var colorArray = ['#000000', '#660000', '#CC0000', '#FF6666', '#FF3333', '#FF6666', '#FFE6E6'];
+        $scope.colorFunction = function() {
+            return function(d, i) {
+                return colorArray[i];
+            };
+        }
+
+        $scope.tooltipXContentFunction = function(){
+            return function(key, x, y) {
+                return 'New Tooltip <strong>' + x + '</strong>'
+            }
+        }
+
+        $scope.tooltipYContentFunction = function(){
+            return function(key, x, y) {
+                return 'New Tooltip <strong>' + y + '</strong>'
             }
         }
 
@@ -131,3 +158,409 @@ Controls the external margin of the chart.
 
 Datatype: Object, Number: ``{left:0,top:0,bottom:0,right:0}``
 
+## Color
+Controls the colors of the chart elements.
+
+Datatype: Function
+
+The function is the same as the d3.js color functions.  Refer to <a href="https://github.com/mbostock/d3/wiki/Colors">d3.js Colors</a> for d3.js color-specific documentation.
+
+To use a configuration function, create a function on the $scope (i.e. $scope.colorFunction).  The function can be named anything, as long as it does not conflict with an existing function name.
+To 'connect' the $scope function with the chart.color() function, add a color="" attribute to the directive, with the value of the attribute being the name of the $scope function (i.e. scope="colorFunction()").
+
+{% highlight javascript %}
+var colorArray = ['#000000', '#660000', '#CC0000', '#FF6666', '#FF3333', '#FF6666', '#FFE6E6'];
+$scope.colorFunction = function() {
+    return function(d, i) {
+        return colorArray[i];
+    };
+}
+{% endhighlight %}
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="colorExample"
+        width="550"
+        height="300"
+        color="colorFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="colorExample"
+        width="550"
+        height="300"
+        color="colorFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+## Show Legend
+Enables (true) or Disables (false) rendering of the Chart Legend.
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="showLegendExample"
+        width="550"
+        height="300"
+        showLegend="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="showLegendExample"
+        width="550"
+        height="300"
+        showLegend="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+## No Data
+Defines the message displayed when data is not available.
+
+Datatype: String
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="noDataData"
+        id="noDataExample"
+        width="550"
+        height="300"
+        noData="Data aint here">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="noDataData"
+        id="noDataExample"
+        width="550"
+        height="300"
+        noData="No Data For You!">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+## Tooltips
+Enables (true) or Disables (false) rendering of the tooltips.
+
+The Interactive attribute must be included and set to true before tooltips will be rendered.
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="toolTipExample"
+        width="550"
+        height="350"
+        interactive="true"
+        tooltips="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="toolTipExample"
+        width="550"
+        height="350"
+        interactive="true"
+        tooltips="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+
+## Show Controls
+Enables (true) or Disables (false) rendering chart-specific controls.
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="showControlsExample"
+        width="550"
+        height="300"
+        showControls="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="showControlsExample"
+        width="550"
+        height="300"
+        showControls="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+
+## Show Dist X
+Enables (true) or Disables (false) rendering the X-Axis Histogram
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="showDistXExample"
+        width="550"
+        height="300"
+        showDistX="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="showDistXExample"
+        width="550"
+        height="300"
+        showDistX="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+## Show Dist Y
+Enables (true) or Disables (false) rendering the Y-Axis Histogram
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="showDistYExample"
+        width="550"
+        height="300"
+        showDistY="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="showDistYExample"
+        width="550"
+        height="300"
+        showDistY="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+
+## Fisheye
+Determines the size of the bubble when hovering over a specific point on the chart.
+
+Datatype: Integer
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="fisheyeExample"
+        width="550"
+        height="300"
+        fisheye="100">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="fisheyeExample"
+        width="550"
+        height="300"
+        fisheye="100">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+## Right Align Y Axis
+...
+
+Datatype: Boolean
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="rightAlignYAxisExample"
+        width="550"
+        height="300"
+        rightAlignYAxis="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="rightAlignYAxisExample"
+        width="550"
+        height="300"
+        rightAlignYAxis="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+
+## X Padding
+Adds a padding factor to the to the x scale domain.
+
+{% highlight javascript %}
+scatter.xDomain([x.domain()[0] - (xPadding * xRange), x.domain()[1] + (xPadding * xRange)]);
+{% endhighlight %}
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="xPaddingExample"
+        width="550"
+        height="300"
+        xPadding="10">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="xPaddingExample"
+        width="550"
+        height="300"
+        xPadding="10">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+
+## Y Padding
+Adds a padding factor to the to the y scale domain.
+
+{% highlight javascript %}
+scatter.yDomain([y.domain()[0] - (yPadding * yRange), y.domain()[1] + (yPadding * yRange)]);
+{% endhighlight %}
+
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="yPaddingExample"
+        width="550"
+        height="300"
+        yPadding="10">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="yPaddingExample"
+        width="550"
+        height="300"
+        yPadding="10">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+
+## Transistion Duration
+Controls the amount length of animation time for rendering the chart.
+
+See <a href="https://github.com/mbostock/d3/wiki/Transitions#wiki-duration">d3.js</a> wiki for more details.
+
+Datatype: Integer
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="transitionDurationExample"
+        width="550"
+        height="300"
+        transitionDuration="1000">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="transitionDurationExample"
+        width="550"
+        height="300"
+        transitionDuration="1000">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+
+
+## Shape
+
+
+## Only Circles
+
+
+
+'interactive',
+'pointActive',
+'size',
+'xScale',
+'yScale',
+'zScale',
+'xDomain',
+'yDomain',
+'xRange',
+'yRange',
+'sizeDomain',
+'sizeRange',
+'forceX',
+'forceY',
+'forceSize',
+'clipVoronoi',
+'clipRadius',
+'useVoronoi'
