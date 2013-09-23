@@ -78,15 +78,25 @@
                require: '^nvd3LineChart',
                link: function($scope, $element, $attributes, nvd3LineChart) {
                    $scope.d3Call = function(data, chart){
-                       console.log('extended d3 call', $scope, $element, $attributes, nvd3LineChart);
-                       return d3.select('#' + $scope.id + ' svg')
-                               .attr('height', $scope.height)
-                               .attr('width', $scope.width)
-                               .datum(data)
-                               .transition()
-                               .duration(750)
-                               .ease('elastic')
-                               .call(chart);
+//                       return d3.select('#' + $scope.id + ' svg')
+//                               .datum(data)
+//                               .transition()
+//                               .duration(500)
+//                               .call(chart);
+
+                       var svg = d3.select('#' + $scope.id + ' svg')
+                           .datum(data);
+
+                       var path = svg.selectAll('path');
+                            path.data(data)
+                            .transition()
+                            .ease("linear")
+                            .duration(500)
+
+                       return svg.transition()
+                           .duration(500)
+                           .call(chart);
+
                    }
                }
            }

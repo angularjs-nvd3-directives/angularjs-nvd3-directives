@@ -34,11 +34,19 @@
                         });
                     }
                 }
-                console.log(JSON.stringify(data));
                 return data;
             }
 
             $scope.exampleData =  getData(4, 40);
+
+            $scope.tooltipXContentFunction = function(){
+                return function(key, x, y) {
+                    return '<strong>YO!' + x + '</strong>'
+                }
+            }
+
+
+
         };
 
     </script>
@@ -52,7 +60,10 @@
             id="exampleId"
             width="800"
             height="400"
-            ><svg></svg></nvd3-scatter-chart>
+            tooltips="true"
+            tooltipContent="tooltipXContentFunction()">
+        <svg></svg>
+    </nvd3-scatter-chart>
 </div>
 
 

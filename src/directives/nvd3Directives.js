@@ -1197,7 +1197,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3PieChart', function(){
+    .directive('nvd3PieChart', ['$window', '$timeout', function($window, $timeout){
         return {
             restrict: 'E',
             scope: {
@@ -1250,8 +1250,8 @@ angular.module('nvd3ChartDirectives', [])
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
-                                    scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
-                                    scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                 var chart = nv.models.pieChart()
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
@@ -1279,6 +1279,37 @@ angular.module('nvd3ChartDirectives', [])
 
                                 scope.d3Call(data, chart);
 
+                                var chartResize = function() {
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
+                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
+                                    if(newWidth === currentWidth && newHeight === currentHeight) {
+                                        return; //Nothing to do, the size is fixed or not changing.
+                                    }
+
+                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
+
+                                    chart.width(newWidth).height(newHeight); //Update the dims
+                                    d3.select(element[0]).append("svg")
+                                        .attr('id', attrs.id)
+                                        .attr('width', newWidth)
+                                        .attr('height', newHeight)
+                                        .datum(data)
+                                        .transition()
+                                        .duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
+                                        .call(chart);
+                                };
+
+                                var timeoutPromise;
+                                var windowResize = function() {
+                                    $timeout.cancel(timeoutPromise);
+                                    timeoutPromise = $timeout(chartResize, 100);
+                                };
+
+                                $window.addEventListener('resize', windowResize);
+
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -1287,7 +1318,7 @@ angular.module('nvd3ChartDirectives', [])
                 }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
             }
         };
-    })
+    }])
     .directive('nvd3ScatterChart', ['$window', '$timeout', function($window, $timeout){
         return {
             restrict: 'E',
@@ -1301,13 +1332,19 @@ angular.module('nvd3ChartDirectives', [])
                 showcontrols: '@',
                 showDistX: '@',
                 showDistY: '@',
+                rightAlignYAxis: '@',
                 fisheye: '@',
                 xPadding: '@',
                 yPadding: '@',
-                tooltipXcontent: '&',
-                tooltipYcontent: '&',
+                tooltipContent: '&',
+                tooltipXContent: '&',
+                tooltipYContent: '&',
+                color: '&',
                 margin: '&',
                 nodata: '@',
+                transitionDuration: '@',
+                shape: '@',
+                onlyCircles: '@',
 
                 //xaxis
                 xaxisorient: '&',
@@ -1384,8 +1421,9 @@ angular.module('nvd3ChartDirectives', [])
                                     .height(scope.height)
                                     .margin(margin)
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
-                                    .tooltipXContent(scope.$eval(attrs.tooltipxcontent) || function(key, x) { return '<strong>' + x + '</strong>'; } )
-                                    .tooltipYContent(scope.$eval(attrs.tooltipycontent) || function(key, x, y) { return '<strong>' + y + '</strong>'; } )
+                                    .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
+                                    .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
+                                    .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
                                     .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .showDistX(attrs.showdistx === undefined ? false : (attrs.showdistx === "true"))
@@ -1394,7 +1432,12 @@ angular.module('nvd3ChartDirectives', [])
                                     .yPadding(attrs.ypadding === undefined ? 0 : (+attrs.ypadding))
                                     .fisheye(attrs.fisheye === undefined ? 0 : (+attrs.fisheye))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                    .color(d3.scale.category10().range());
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
+                                    .shape(attrs.shape === undefined ? function(d) { return d.shape || 'circle'; } : attrs.shape)
+                                    .onlyCircles(attrs.onlycircles === undefined ? true : (attrs.onlycircles === "true"))
+                                    .transitionDuration(attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration));
+
+//'interactive', 'pointActive', 'x', 'y', 'shape', 'size', 'xScale', 'yScale', 'zScale', 'xDomain', 'yDomain', 'xRange', 'yRange', 'sizeDomain', 'sizeRange', 'forceX', 'forceY', 'forceSize', 'clipVoronoi', 'clipRadius', 'useVoronoi'
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
@@ -2011,6 +2054,6 @@ angular.module('nvd3ChartDirectives', [])
 //nv.models.multiChart
 //nv.models.scatterPlusLineChart
 //nv.models.linePlusBarWithFocusChart
-
+//dual y-axis chart
 
 //crossfilter using $services?
