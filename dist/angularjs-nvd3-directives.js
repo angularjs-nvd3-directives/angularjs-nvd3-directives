@@ -356,6 +356,10 @@ angular.module('nvd3ChartDirectives', [])
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                     .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); });
 
+                                if (chart.useInteractiveGuideline) {
+                                    chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                }
+
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }
@@ -530,6 +534,10 @@ angular.module('nvd3ChartDirectives', [])
                                     .color(attrs.color === undefined ? d3.scale.category10().range() : scope.color())
                                     .isArea(attrs.isarea === undefined ? false : (attrs.isarea === "true"));
                                     //.rescaleY(attrs.rescaley === undefined ? false : (attrs.rescaley === "true"));
+
+                                if (chart.useInteractiveGuideline) {
+                                    chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                }
 
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
@@ -706,6 +714,10 @@ angular.module('nvd3ChartDirectives', [])
                                     .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                     .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
+
+                                if (chart.useInteractiveGuideline) {
+                                    chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                }
 
                                 if(attrs.usevoronoi){
                                     chart.useVoronoi((attrs.usevoronoi === "true"));
@@ -1222,6 +1234,10 @@ angular.module('nvd3ChartDirectives', [])
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
+
+                                if (chart.useInteractiveGuideline) {
+                                    chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                }
 
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
