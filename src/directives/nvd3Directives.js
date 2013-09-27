@@ -75,7 +75,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){  //function($scope, $element, $attrs, $transclude)
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){  //function($scope, $element, $attrs, $transclude)
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -84,7 +84,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -248,7 +248,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -257,7 +257,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -429,7 +429,7 @@ angular.module('nvd3ChartDirectives', [])
 
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -438,7 +438,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -631,7 +631,7 @@ angular.module('nvd3ChartDirectives', [])
 
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -640,7 +640,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -788,7 +788,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -797,7 +797,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -948,7 +948,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -957,7 +957,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -1107,7 +1107,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -1116,7 +1116,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -1230,7 +1230,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -1239,7 +1239,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -1393,7 +1393,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -1402,7 +1402,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -1575,7 +1575,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -1584,7 +1584,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -1751,7 +1751,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -1760,7 +1760,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -1859,7 +1859,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -1868,7 +1868,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
@@ -1967,7 +1967,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: function($scope, $element, $attrs){
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -1976,7 +1976,7 @@ angular.module('nvd3ChartDirectives', [])
                         .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
                         .call(chart);
                 };
-            },
+            }],
             link: function(scope, element, attrs){
                 scope.$watch('data', function(data){
                     if(data){
