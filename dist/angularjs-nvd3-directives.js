@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.0 - 2013-09-22
+/*! angularjs-nvd3-directives - v0.0.0 - 2013-09-27
 * Copyright (c) 2013 Christian Maurer; Licensed Apache */
 function configureXaxis(chart, scope, attrs){
 "use strict";
@@ -332,7 +332,6 @@ angular.module('nvd3ChartDirectives', [])
                         nv.addGraph({
                             generate: function(){
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
-
                                 scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
                                 scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
@@ -356,6 +355,10 @@ angular.module('nvd3ChartDirectives', [])
                                     .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                     .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); });
+
+                                if (chart.useInteractiveGuideline) {
+                                    chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                }
 
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
@@ -532,6 +535,10 @@ angular.module('nvd3ChartDirectives', [])
                                     .isArea(attrs.isarea === undefined ? false : (attrs.isarea === "true"));
                                     //.rescaleY(attrs.rescaley === undefined ? false : (attrs.rescaley === "true"));
 
+                                if (chart.useInteractiveGuideline) {
+                                    chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                }
+
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }
@@ -707,6 +714,10 @@ angular.module('nvd3ChartDirectives', [])
                                     .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                     .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
+
+                                if (chart.useInteractiveGuideline) {
+                                    chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                }
 
                                 if(attrs.usevoronoi){
                                     chart.useVoronoi((attrs.usevoronoi === "true"));
@@ -1224,6 +1235,10 @@ angular.module('nvd3ChartDirectives', [])
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
 
+                                if (chart.useInteractiveGuideline) {
+                                    chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                }
+
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }
@@ -1490,6 +1505,7 @@ angular.module('nvd3ChartDirectives', [])
                                 var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
                                 scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
                                 scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
                                 var chart = nv.models.pieChart()
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
