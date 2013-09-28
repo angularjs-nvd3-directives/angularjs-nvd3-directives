@@ -5176,6 +5176,9 @@ nv.models.line = function() {
 
       var linePaths = groups.selectAll('path.nv-line')
           .data(function(d) { return [d.values] });
+
+
+
       linePaths.enter().append('path')
           .attr('class', 'nv-line')
           .attr('d',
@@ -5184,7 +5187,12 @@ nv.models.line = function() {
               .defined(defined)
               .x(function(d,i) { return nv.utils.NaNtoZero(x0(getX(d,i))) })
               .y(function(d,i) { return nv.utils.NaNtoZero(y0(getY(d,i))) })
-          );
+          )
+          .attr("transform", null)
+          .transition()
+          .ease("linear")
+          .attr("transform", "translate(" + x(-1) + ")");
+
       groups.exit().selectAll('path.nv-line')
           .transition()
           .attr('d',
@@ -5194,6 +5202,7 @@ nv.models.line = function() {
               .x(function(d,i) { return nv.utils.NaNtoZero(x(getX(d,i))) })
               .y(function(d,i) { return nv.utils.NaNtoZero(y(getY(d,i))) })
           );
+
       linePaths
           .transition()
           .attr('d',
@@ -8645,7 +8654,8 @@ nv.models.multiBarHorizontal = function() {
           .style('stroke', function(d,i,j) { return d3.rgb(barColor(d,i)).darker(  disabled.map(function(d,i) { return i }).filter(function(d,i){ return !disabled[i]  })[j]   ).toString(); });
       }
 
-      if (stacked)
+      if (stacked){
+      console.log('multibarhorizontal stacked');
         bars.transition()
             .attr('transform', function(d,i) {
               return 'translate(' + y(d.y1) + ',' + x(getX(d,i)) + ')'
@@ -8655,7 +8665,7 @@ nv.models.multiBarHorizontal = function() {
               return Math.abs(y(getY(d,i) + d.y0) - y(d.y0))
             })
             .attr('height', x.rangeBand() );
-      else
+      } else {
         bars.transition()
             .attr('transform', function(d,i) {
               //TODO: stacked must be all positive or all negative, not both?
@@ -8672,7 +8682,7 @@ nv.models.multiBarHorizontal = function() {
             .attr('width', function(d,i) {
               return Math.max(Math.abs(y(getY(d,i)) - y(0)),1)
             });
-
+      }
 
       //store old scales for use in transitions on update
       x0 = x.copy();
@@ -9278,6 +9288,8 @@ nv.models.multiChart = function() {
       },
       x,
       y,
+      getX = function(d) { return d.x },
+      getY = function(d) { return d.y },
       yDomain1,
       yDomain2
       ; //can be accessed via chart.lines.[x/y]Scale()
@@ -11140,7 +11152,7 @@ nv.models.scatter = function() {
 
 
       if (onlyCircles) {
-
+nv.log('onlyCircles');
         var points = groups.selectAll('circle.nv-point')
             .data(function(d) { return d.values }, pointKey);
         points.enter().append('circle')

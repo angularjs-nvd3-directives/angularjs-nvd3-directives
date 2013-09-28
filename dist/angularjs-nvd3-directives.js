@@ -312,7 +312,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionduration: '@'
 
             },
-            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){  //function($scope, $element, $attrs, $transclude)
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
                     d3.select('#' + $attrs.id + ' svg')
                         .attr('height', $scope.height)
@@ -1596,8 +1596,9 @@ angular.module('nvd3ChartDirectives', [])
                 margin: '&',
                 nodata: '@',
                 transitionDuration: '@',
-                shape: '@',
+                shape: '&',
                 onlyCircles: '@',
+                interactive: '@',
 
                 //xaxis
                 xaxisorient: '&',
@@ -1673,6 +1674,7 @@ angular.module('nvd3ChartDirectives', [])
                                     .width(scope.width)
                                     .height(scope.height)
                                     .margin(margin)
+                                    .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
                                     .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
@@ -1686,9 +1688,13 @@ angular.module('nvd3ChartDirectives', [])
                                     .fisheye(attrs.fisheye === undefined ? 0 : (+attrs.fisheye))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                    .shape(attrs.shape === undefined ? function(d) { return d.shape || 'circle'; } : attrs.shape)
-                                    .onlyCircles(attrs.onlycircles === undefined ? true : (attrs.onlycircles === "true"))
                                     .transitionDuration(attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration));
+
+                                if(attrs.shape){
+                                    chart.scatter.onlyCircles(false);
+                                    chart.scatter.shape(attrs.shape === undefined ? function(d) { return d.shape || 'circle'; } : scope.shape());
+                                }
+
 
 //'interactive', 'pointActive', 'x', 'y', 'shape', 'size', 'xScale', 'yScale', 'zScale', 'xDomain', 'yDomain', 'xRange', 'yRange', 'sizeDomain', 'sizeRange', 'forceX', 'forceY', 'forceSize', 'clipVoronoi', 'clipRadius', 'useVoronoi'
 
