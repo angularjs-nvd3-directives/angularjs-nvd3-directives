@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.0 - 2013-09-27
+/*! angularjs-nvd3-directives - v0.0.0 - 2013-09-28
 * Copyright (c) 2013 Christian Maurer; Licensed Apache */
 function configureXaxis(chart, scope, attrs){
 "use strict";
@@ -1598,6 +1598,7 @@ angular.module('nvd3ChartDirectives', [])
                 transitionDuration: '@',
                 shape: '&',
                 onlyCircles: '@',
+                interactive: '@',
 
                 //xaxis
                 xaxisorient: '&',
@@ -1673,6 +1674,7 @@ angular.module('nvd3ChartDirectives', [])
                                     .width(scope.width)
                                     .height(scope.height)
                                     .margin(margin)
+                                    .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
                                     .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
@@ -2196,7 +2198,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3Sparkline', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3SparklineChart', ['$window', '$timeout', function($window, $timeout){
         "use strict";
         return {
             restrict: 'E',
@@ -2205,17 +2207,18 @@ angular.module('nvd3ChartDirectives', [])
                 width: '@',
                 height: '@',
                 id: '@',
-                animate: '@',
                 margin: '&',
                 x: '&',
                 y: '&',
                 color: '&',
                 xscale: '&',
                 yscale: '&',
-                xdomain: '&',
-                ydomain: '&',
-                xrange: '&',
-                yrange: '&',
+                showvalue: '@',
+                alignvalue: '@',
+                rightalignvalue: '@',
+
+                xaxistickformat: '&',
+                yaxistickformat: '&',
 
                 //angularjs specific
                 objectequality: '@',
@@ -2247,20 +2250,28 @@ angular.module('nvd3ChartDirectives', [])
                                     scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
                                     scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
-                                var chart = nv.models.bulletChart()
+                                var chart = nv.models.sparklinePlus()
                                     .width(scope.width)
                                     .height(scope.height)
                                     .margin(margin)
-                                    .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
-                                    .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
-                                    .animate(attrs.animate === undefined ? true : (attrs.animate === "true"))
+                                    .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
+                                    .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                     .color(attrs.color === undefined ? nv.utils.getColor(['#000']) : scope.color())
-                                    .xscale(attrs.xscale === undefined ? null : scope.$eval(attrs.xscale))
-                                    .yscale(attrs.yscale === undefined ? null : scope.$eval(attrs.yscale))
-                                    .xdomain(attrs.xdomain === undefined ? null : scope.$eval(attrs.xdomain))
-                                    .ydomain(attrs.ydomain === undefined ? null : scope.$eval(attrs.ydomain))
-                                    .xrange(attrs.xrange === undefined ? null : scope.$eval(attrs.xrange))
-                                    .yrange(attrs.yrange === undefined ? null : scope.$eval(attrs.yrange));
+                                    .showValue(attrs.showvalue === undefined ? true : (attrs.showvalue === "true"))
+                                    .alignValue(attrs.alignvalue === undefined ? true : (attrs.alignvalue === "true"))
+                                    .rightAlignValue(attrs.rightalignvalue === undefined ? false : (attrs.rightalignvalue === "true"))
+                                    .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
+
+                                if(attrs.xScale){
+                                    chart.xScale(scope.xScale());
+                                }
+
+                                if(attrs.yScale){
+                                    chart.yScale(scope.yScale());
+                                }
+
+                                configureXaxis(chart, scope, attrs);
+                                configureYaxis(chart, scope, attrs);
 
                                 scope.d3Call(data, chart);
 
