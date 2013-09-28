@@ -57,6 +57,36 @@ description: d3.js, nvd3.js Scatter Charts with Angular.js
             }
         }
 
+        $scope.shapeCrossFunction = function() {
+            return function(d) {
+                return 'cross';
+            };
+        }
+
+        $scope.shapeSquareFunction = function() {
+            return function(d) {
+                return 'square';
+            };
+        }
+
+        $scope.shapeDiamondFunction = function() {
+            return function(d) {
+                return 'diamond';
+            };
+        }
+
+        $scope.shapeTriangleDownFunction = function() {
+            return function(d) {
+                return 'triangle-down';
+            };
+        }
+
+        $scope.shapeTriangleUpFunction = function() {
+            return function(d) {
+                return 'triangle-up';
+            };
+        }
+
     };
 
 </script>
@@ -255,6 +285,35 @@ Datatype: String
         width="550"
         height="300"
         noData="No Data For You!">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+## Interactive
+Enables (true) or Disables (false) interactivity for a chart.  Interactivity includes tooltips, click events, etc.
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="interactiveExample"
+        width="550"
+        height="350"
+        interactive="true">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="interactiveExample"
+        width="550"
+        height="350"
+        interactive="true">
         	<svg></svg>
     </nvd3-scatter-chart>
 </div>
@@ -540,27 +599,201 @@ Datatype: Integer
 
 
 ## Shape
+Changes the shape of the chart datapoints
+https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-symbol_type
+
+circle - a circle.
+cross - a Greek cross or plus sign.
+diamond - a rhombus.
+square - an axis-aligned square.
+triangle-down - a downward-pointing equilateral triangle.
+triangle-up - an upward-pointing equilateral triangle.
+
+Datatype: function
 
 
-## Only Circles
+### *Cross*
+
+{% highlight javascript %}
+$scope.shapeCrossFunction = function() {
+    return function(d) {
+        return 'cross';
+    };
+}
+{% endhighlight %}
 
 
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="crossExample"
+        width="550"
+        height="300"
+        transitionDuration="1000"
+        shape="shapeCrossFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
 
-'interactive',
-'pointActive',
-'size',
-'xScale',
-'yScale',
-'zScale',
-'xDomain',
-'yDomain',
-'xRange',
-'yRange',
-'sizeDomain',
-'sizeRange',
-'forceX',
-'forceY',
-'forceSize',
-'clipVoronoi',
-'clipRadius',
-'useVoronoi'
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="crossExample"
+        width="550"
+        height="300"
+        transitionDuration="1000"
+        shape="shapeCrossFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+### *Diamond*
+
+{% highlight javascript %}
+$scope.shapeDiamondFunction = function() {
+    return function(d) {
+        return 'diamond';
+    };
+}
+{% endhighlight %}
+
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="diamondExample"
+        width="550"
+        height="300"
+        transitionDuration="1000"
+        shape="shapeDiamondFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="diamondExample"
+        width="550"
+        height="300"
+        transitionDuration="1000"
+        shape="shapeDiamondFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+### *Square*
+
+{% highlight javascript %}
+$scope.shapeSquareFunction = function() {
+    return function(d) {
+        return 'square';
+    };
+}
+{% endhighlight %}
+
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="squareExample"
+        width="550"
+        height="300"
+        transitionDuration="1000"
+        shape="shapeSquareFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="squareExample"
+        width="550"
+        height="300"
+        transitionDuration="1000"
+        shape="shapeSquareFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+
+### *Triangle-Down*
+
+{% highlight javascript %}
+$scope.shapeTriangleDownFunction = function() {
+    return function(d) {
+        return 'traingle-down';
+    };
+}
+{% endhighlight %}
+
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="triangleDownExample"
+        width="550"
+        height="300"
+        transitionDuration="1000"
+        shape="shapeTriangleDownFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="triangleDownExample"
+        width="550"
+        height="300"
+        transitionDuration="1000"
+        shape="shapeTriangleDownFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+### *Triangle-Up*
+
+{% highlight javascript %}
+$scope.shapeTriangleUpFunction = function() {
+    return function(d) {
+        return 'traingle-up';
+    };
+}
+{% endhighlight %}
+
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-scatter-chart
+    	data="exampleData"
+        id="triangleUpExample"
+        width="550"
+        height="300"
+        transitionDuration="1000"
+        shape="shapeTriangleUpFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="triangleUpExample"
+        width="550"
+        height="300"
+        transitionDuration="1000"
+        shape="shapeTriangleUpFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
