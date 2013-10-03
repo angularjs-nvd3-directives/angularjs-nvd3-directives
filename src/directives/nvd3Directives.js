@@ -36,7 +36,7 @@ angular.module('nvd3ChartDirectives', [])
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
                 xaxistickformat: '&',
-                xaxislabel: '&',
+                xaxislabel: '@',
                 xaxisscale: '&',
                 xaxisdomain: '&',
                 xaxisrange: '&',
@@ -56,7 +56,7 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
                 yaxistickformat: '&',
-                yaxislabel: '&',
+                yaxislabel: '@',
                 yaxisscale: '&',
                 yaxisdomain: '&',
                 yaxisrange: '&',
@@ -81,7 +81,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -213,7 +213,7 @@ angular.module('nvd3ChartDirectives', [])
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
                 xaxistickformat: '&',
-                xaxislabel: '&',
+                xaxislabel: '@',
                 xaxisscale: '&',
                 xaxisdomain: '&',
                 xaxisrange: '&',
@@ -233,7 +233,7 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
                 yaxistickformat: '&',
-                yaxislabel: '&',
+                yaxislabel: '@',
                 yaxisscale: '&',
                 yaxisdomain: '&',
                 yaxisrange: '&',
@@ -258,7 +258,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -397,7 +397,7 @@ angular.module('nvd3ChartDirectives', [])
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
                 xaxistickformat: '&',
-                xaxislabel: '&',
+                xaxislabel: '@',
                 xaxisscale: '&',
                 xaxisdomain: '&',
                 xaxisrange: '&',
@@ -417,7 +417,7 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
                 yaxistickformat: '&',
-                yaxislabel: '&',
+                yaxislabel: '@',
                 yaxisscale: '&',
                 yaxisdomain: '&',
                 yaxisrange: '&',
@@ -443,7 +443,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -603,7 +603,7 @@ angular.module('nvd3ChartDirectives', [])
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
                 xaxistickformat: '&',
-                xaxislabel: '&',
+                xaxislabel: '@',
                 xaxisscale: '&',
                 xaxisdomain: '&',
                 xaxisrange: '&',
@@ -623,7 +623,7 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
                 yaxistickformat: '&',
-                yaxislabel: '&',
+                yaxislabel: '@',
                 yaxisscale: '&',
                 yaxisdomain: '&',
                 yaxisrange: '&',
@@ -649,7 +649,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -761,7 +761,7 @@ angular.module('nvd3ChartDirectives', [])
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
                 xaxistickformat: '&',
-                xaxislabel: '&',
+                xaxislabel: '@',
                 xaxisscale: '&',
                 xaxisdomain: '&',
                 xaxisrange: '&',
@@ -781,7 +781,7 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
                 yaxistickformat: '&',
-                yaxislabel: '&',
+                yaxislabel: '@',
                 yaxisscale: '&',
                 yaxisdomain: '&',
                 yaxisrange: '&',
@@ -806,7 +806,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -921,7 +921,7 @@ angular.module('nvd3ChartDirectives', [])
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
                 xaxistickformat: '&',
-                xaxislabel: '&',
+                xaxislabel: '@',
                 xaxisscale: '&',
                 xaxisdomain: '&',
                 xaxisrange: '&',
@@ -941,7 +941,7 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
                 yaxistickformat: '&',
-                yaxislabel: '&',
+                yaxislabel: '@',
                 yaxisscale: '&',
                 yaxisdomain: '&',
                 yaxisrange: '&',
@@ -966,7 +966,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -1084,7 +1084,7 @@ angular.module('nvd3ChartDirectives', [])
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
                 xaxistickformat: '&',
-                xaxislabel: '&',
+                xaxislabel: '@',
                 xaxisscale: '&',
                 xaxisdomain: '&',
                 xaxisrange: '&',
@@ -1104,7 +1104,7 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
                 yaxistickformat: '&',
-                yaxislabel: '&',
+                yaxislabel: '@',
                 yaxisscale: '&',
                 yaxisdomain: '&',
                 yaxisrange: '&',
@@ -1129,7 +1129,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -1252,7 +1252,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -1362,6 +1362,21 @@ angular.module('nvd3ChartDirectives', [])
                 shape: '&',
                 onlyCircles: '@',
                 interactive: '@',
+                x: '&',
+                y: '&',
+                size: '&',
+                forceX: '@',
+                forceY: '@',
+                forceSize: '@',
+                xrange: '&',
+                xdomain: '&',
+                xscale: '&',
+                yrange: '&',
+                ydomain: '&',
+                yscale: '&',
+                sizerange: '&',
+                sizedomain: '&',
+                zscale: '&',
 
                 //xaxis
                 xaxisorient: '&',
@@ -1371,7 +1386,7 @@ angular.module('nvd3ChartDirectives', [])
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
                 xaxistickformat: '&',
-                xaxislabel: '&',
+                xaxislabel: '@',
                 xaxisscale: '&',
                 xaxisdomain: '&',
                 xaxisrange: '&',
@@ -1391,7 +1406,7 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
                 yaxistickformat: '&',
-                yaxislabel: '&',
+                yaxislabel: '@',
                 yaxisscale: '&',
                 yaxisdomain: '&',
                 yaxisrange: '&',
@@ -1416,7 +1431,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -1437,6 +1452,12 @@ angular.module('nvd3ChartDirectives', [])
                                     .width(scope.width)
                                     .height(scope.height)
                                     .margin(margin)
+                                    .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
+                                    .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
+                                    .size(attrs.size === undefined ? function(d){ return d.size; }: scope.size())
+                                    .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex))
+                                    .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
+                                    .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize))
                                     .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
@@ -1458,11 +1479,29 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.scatter.shape(attrs.shape === undefined ? function(d) { return d.shape || 'circle'; } : scope.shape());
                                 }
 
-
-//'interactive', 'pointActive', 'x', 'y', 'shape', 'size', 'xScale', 'yScale', 'zScale', 'xDomain', 'yDomain', 'xRange', 'yRange', 'sizeDomain', 'sizeRange', 'forceX', 'forceY', 'forceSize', 'clipVoronoi', 'clipRadius', 'useVoronoi'
+//'pointActive', 'clipVoronoi', 'clipRadius', 'useVoronoi'
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
+
+                                if(attrs.xscale){
+                                    chart.xDomain(scope.xdomain());
+                                    chart.xRange(scope.xrange());
+                                    chart.xScale(scope.xscale());
+                                }
+
+                                if(attrs.yscale){
+                                    chart.yDomain(scope.ydomain());
+                                    chart.yRange(scope.yrange());
+                                    chart.yScale(scope.yscale());
+                                }
+
+                                if(attrs.zscale){
+                                    chart.sizeDomain(scope.sizedomain());
+                                    chart.sizeRange(scope.sizerange());
+                                    chart.zScale(scope.zscale());
+                                }
+
 
                                 scope.d3Call(data, chart);
 
@@ -1505,6 +1544,107 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
+    .directive('nvd3ScatterPlusLineChart', ['$window', '$timeout', function($window, $timeout){
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=',
+                width: '@',
+                height: '@',
+                id: '@'
+            },
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
+                $scope.d3Call = function(data, chart){
+                    d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data)
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
+                        .call(chart);
+                };
+            }],
+            link: function(scope, element, attrs){
+                scope.$watch('data', function(data){
+                    if(data){
+
+                        if(scope.chart){
+                            return scope.d3Call(data, scope.chart);
+                        }
+                        nv.addGraph({
+                            generate: function(){
+                                var margin = (scope.$eval(attrs.margin) || {left:50, top:50, bottom:50, right:50});
+                                scope.width = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right);
+                                scope.height = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
+                                var chart = nv.models.scatterPlusLineChart()
+                                    .width(scope.width)
+                                    .height(scope.height)
+                                    .margin(margin)
+                                    .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
+                                    .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
+                                    .size(attrs.size === undefined ? function(d){ return d.size; }: scope.size())
+                                    .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
+                                    .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                    .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
+                                    .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
+                                    .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
+                                    .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
+                                    .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
+                                    .showDistX(attrs.showdistx === undefined ? false : (attrs.showdistx === "true"))
+                                    .showDistY(attrs.showdisty === undefined ? false : (attrs.showdisty === "true"))
+                                    .xPadding(attrs.xpadding === undefined ? 0 : (+attrs.xpadding))
+                                    .yPadding(attrs.ypadding === undefined ? 0 : (+attrs.ypadding))
+                                    .fisheye(attrs.fisheye === undefined ? 0 : (+attrs.fisheye))
+                                    .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
+                                    .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
+                                    .transitionDuration(attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration));
+
+                                if(attrs.shape){
+                                    chart.scatter.onlyCircles(false);
+                                    chart.scatter.shape(attrs.shape === undefined ? function(d) { return d.shape || 'circle'; } : scope.shape());
+                                }
+
+                                scope.d3Call(data, chart);
+
+                                var chartResize = function() {
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
+                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
+                                    if(newWidth === currentWidth && newHeight === currentHeight) {
+                                        return; //Nothing to do, the size is fixed or not changing.
+                                    }
+
+                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
+
+                                    chart.width(newWidth).height(newHeight); //Update the dims
+                                    d3.select(element[0]).append("svg")
+                                        .attr('id', attrs.id)
+                                        .attr('width', newWidth)
+                                        .attr('height', newHeight)
+                                        .datum(data)
+                                        .transition()
+                                        .duration(500)
+                                        .call(chart);
+                                };
+
+                                var timeoutPromise;
+                                var windowResize = function() {
+                                    $timeout.cancel(timeoutPromise);
+                                    timeoutPromise = $timeout(chartResize, 100);
+                                };
+
+                                $window.addEventListener('resize', windowResize);
+                                scope.chart = chart;
+                                return chart;
+                            }
+                        });
+                    }
+                });
+            }
+        };
+    }])
     .directive('nvd3LinePlusBarChart', ['$window', '$timeout', function($window, $timeout){
         "use strict";
         return {
@@ -1538,7 +1678,7 @@ angular.module('nvd3ChartDirectives', [])
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
                 xaxistickformat: '&',
-                xaxislabel: '&',
+                xaxislabel: '@',
                 xaxisscale: '&',
                 xaxisdomain: '&',
                 xaxisrange: '&',
@@ -1558,7 +1698,7 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
                 yaxistickformat: '&',
-                yaxislabel: '&',
+                yaxislabel: '@',
                 yaxisscale: '&',
                 yaxisdomain: '&',
                 yaxisrange: '&',
@@ -1603,7 +1743,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -1714,7 +1854,7 @@ angular.module('nvd3ChartDirectives', [])
                 xaxisticksize: '&',
                 xaxistickpadding: '&',
                 xaxistickformat: '&',
-                xaxislabel: '&',
+                xaxislabel: '@',
                 xaxisscale: '&',
                 xaxisdomain: '&',
                 xaxisrange: '&',
@@ -1734,7 +1874,7 @@ angular.module('nvd3ChartDirectives', [])
                 yaxisticksize: '&',
                 yaxistickpadding: '&',
                 yaxistickformat: '&',
-                yaxislabel: '&',
+                yaxislabel: '@',
                 yaxisscale: '&',
                 yaxisdomain: '&',
                 yaxisrange: '&',
@@ -1779,7 +1919,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -1887,7 +2027,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],
@@ -1996,7 +2136,7 @@ angular.module('nvd3ChartDirectives', [])
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
-                        .transition().duration(($attrs.transitionduration === undefined ? 500 : $attrs.transitionduration))
+                        .transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
                         .call(chart);
                 };
             }],

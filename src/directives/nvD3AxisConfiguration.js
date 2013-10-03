@@ -29,7 +29,7 @@ function configureXaxis(chart, scope, attrs){
         chart.xAxis.axisLabel(attrs.xaxislabel);
     }
     if(attrs.xaxisscale){
-        chart.xAxis.xScale(scope.xaxisscale());
+        chart.xAxis.scale(scope.xaxisscale());
     }
     if(attrs.xaxisdomain){
         chart.xAxis.domain(scope.xaxisdomain());
@@ -50,7 +50,7 @@ function configureXaxis(chart, scope, attrs){
         chart.xAxis.highlightZero((attrs.xaxishighlightzero === "true"));
     }
     if(attrs.xaxisrotatelables){
-        chart.xAxis.rotateLabels(attrs.xaxisrotatelables);
+        chart.xAxis.rotateLabels((+attrs.xaxisrotatelables));
     }
 //    if(attrs.xaxisrotateylabel){
 //        chart.xAxis.rotateYLabel((attrs.xaxisrotateylabel === "true"));
@@ -91,7 +91,7 @@ function configureYaxis(chart, scope, attrs){
         chart.yAxis.axisLabel(attrs.yaxislabel);
     }
     if(attrs.yaxisscale){
-        chart.yAxis.yScale(scope.yaxisscale());
+        chart.yAxis.scale(scope.yaxisscale());
     }
     if(attrs.yaxisdomain){
         chart.yAxis.domain(scope.yaxisdomain());
