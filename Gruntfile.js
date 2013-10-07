@@ -10,7 +10,6 @@ module.exports = function (grunt) {
             '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
             '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
             ' Licensed <%= pkg.license %> */\n',
-            //' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
         // Task configuration.
         concat: {
             options: {
@@ -18,8 +17,9 @@ module.exports = function (grunt) {
                 stripBanners: true
             },
             js: {
-                src: ['src/**/*.js'],
-                dest: 'dist/<%= pkg.name %>.js'
+                files:{
+                    'dist/<%= pkg.name %>.js': ['src/directives/nvd3Events.js', 'src/directives/nvd3AxisConfiguration.js', 'src/directives/nvd3Directives.js']
+                }
             }
         },
         clean: ["dist/"],
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
                 browser: true,
                 globals: {"angular": false, "nv": false, "d3": false, "configureYaxis": false, "configureXaxis": false}
             },
-            afterconcat: ['dist/angularjs-nvd3-directives.js'],
+            afterconcat: ['dist/angularjs-nvd3-directives.js', 'dist/legend-directives.js'],
             gruntfile: {
                 src: 'Gruntfile.js'
             }
@@ -52,8 +52,6 @@ module.exports = function (grunt) {
                     {src: ['build/components/nvd3/nv.d3.js'], dest: 'examples/js/nv.d3.js', filter: 'isFile'},
                     {src: ['build/components/nvd3/src/nv.d3.css'], dest: 'examples/stylesheets/nv.d3.css', filter: 'isFile'},
                     {src: ['build/components/moment/moment.js'], dest: 'examples/js/moment.js', filter: 'isFile'}
-
-
                 ]
             }
         },

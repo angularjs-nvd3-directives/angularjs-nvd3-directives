@@ -130,6 +130,8 @@ angular.module('nvd3ChartDirectives', [])
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
 
+                                processEvents(chart, scope);
+
                                 scope.d3Call(data, chart);
 
                                 var chartResize = function() {
@@ -308,6 +310,8 @@ angular.module('nvd3ChartDirectives', [])
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
+
+                                processEvents(chart, scope);
 
                                 scope.d3Call(data, chart);
 
@@ -528,6 +532,7 @@ angular.module('nvd3ChartDirectives', [])
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
+                                processEvents(chart, scope);
 
                                 scope.d3Call(data, chart);
 
@@ -686,6 +691,7 @@ angular.module('nvd3ChartDirectives', [])
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
+                                processEvents(chart, scope);
 
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
@@ -847,6 +853,12 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.valueFormat(scope.valueformat());
                                 }
 
+                                //events
+                                //https://github.com/mbostock/d3/wiki/Internals#wiki-dispatch
+                                //dispatch: 'tooltipShow', 'tooltipHide', 'beforeUpdate',
+                                //discretebar.dispatch: 'elementMouseout.tooltip', 'elementMouseover.tooltip'
+
+                                processEvents(chart, scope);
                                 scope.d3Call(data, chart);
 
                                 var chartResize = function() {
@@ -1009,6 +1021,7 @@ angular.module('nvd3ChartDirectives', [])
                                 if(attrs.valueformat){
                                     chart.valueFormat(scope.valueformat());
                                 }
+                                processEvents(chart, scope);
 
                                 scope.d3Call(data, chart);
 
@@ -1292,6 +1305,7 @@ angular.module('nvd3ChartDirectives', [])
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }
+                                processEvents(chart, scope);
 
                                 scope.d3Call(data, chart);
 
@@ -1502,6 +1516,7 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.zScale(scope.zscale());
                                 }
 
+                                processEvents(chart, scope);
 
                                 scope.d3Call(data, chart);
 
@@ -1603,6 +1618,7 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.scatter.onlyCircles(false);
                                     chart.scatter.shape(attrs.shape === undefined ? function(d) { return d.shape || 'circle'; } : scope.shape());
                                 }
+                                processEvents(chart, scope);
 
                                 scope.d3Call(data, chart);
 
@@ -1778,7 +1794,7 @@ angular.module('nvd3ChartDirectives', [])
                                 configureXaxis(chart, scope, attrs);
                                 configureY1axis(chart, scope, attrs);
                                 configureY2axis(chart, scope, attrs);
-
+                                processEvents(chart, scope);
                                 scope.d3Call(data, chart);
 
                                 var chartResize = function() {
@@ -1953,6 +1969,7 @@ angular.module('nvd3ChartDirectives', [])
                                 configureXaxis(chart, scope, attrs);
                                 configureY1axis(chart, scope, attrs);
                                 configureY2axis(chart, scope, attrs);
+                                processEvents(chart, scope);
 
                                 scope.d3Call(data, chart);
 
@@ -2059,6 +2076,7 @@ angular.module('nvd3ChartDirectives', [])
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }
+                                processEvents(chart, scope);
 
                                 scope.d3Call(data, chart);
 
@@ -2175,6 +2193,7 @@ angular.module('nvd3ChartDirectives', [])
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
+                                processEvents(chart, scope);
 
                                 scope.d3Call(data, chart);
 
