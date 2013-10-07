@@ -39,7 +39,7 @@ module.exports = function (grunt) {
                 browser: true,
                 globals: {"angular": false, "nv": false, "d3": false, "configureYaxis": false, "configureXaxis": false}
             },
-            afterconcat: ['dist/angularjs-nvd3-directives.js', 'dist/legend-directives.js'],
+            afterconcat: ['dist/angularjs-nvd3-directives.js'],
             gruntfile: {
                 src: 'Gruntfile.js'
             }
