@@ -2,14 +2,11 @@ angularjs-nvd3-directives
 =========================
 
 [![Build Status](https://travis-ci.org/cmaurer/angularjs-nvd3-directives.png?branch=master)](https://travis-ci.org/cmaurer/angularjs-nvd3-directives)
-
+[Dev Dependencies Status](https://david-dm.org/cmaurer/angularjs-nvd3-directives.png]
 
 [AngularJS](http://angularjs.org/) directive directives for [nvd3.js](http://www.nvd3.org).
 
 Create nvd3.js, d3.js charts using simple HTML markup.
-
-
-
 
 
 ## Getting Started
