@@ -17,9 +17,8 @@ module.exports = function (grunt) {
                 stripBanners: true
             },
             js: {
-                files:{
-                    'dist/<%= pkg.name %>.js': ['src/directives/nvd3Events.js', 'src/directives/nvd3AxisConfiguration.js', 'src/directives/nvd3Directives.js']
-                }
+                src: ['src/**/nvD3Events.js', 'src/**/nvD3AxisConfiguration.js', 'src/**/nvd3Directives.js'],
+                dest: 'dist/<%= pkg.name %>.js'
             }
         },
         clean: ["dist/"],
