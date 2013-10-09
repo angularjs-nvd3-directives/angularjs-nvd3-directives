@@ -354,6 +354,8 @@ Datatype: String
 ## Ranges
 Defines the ranges element on the chart
 
+Datatype: Function
+
 {% highlight javascript %}
 $scope.rangesFunction = function(){
 	return function(d) {
