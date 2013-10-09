@@ -65,10 +65,22 @@ layout: example
             $scope.xAxisTickValueFunction = function(){
                 var tickValues = [];
                 return function(d){
-                    var minute = d3.time.format('%M')(new Date(d));
-                    console.log(minute);
+                    var values = d[0].values;
+                    for(var value in values){
+                        if((value % 25) === 0){
+                            tickValues.push(values[value][0]);
+                        }
+                    }
+                    return tickValues;
                 }
             }
+
+            var numberFormat = d3.format('.2f');
+            $scope.yAxisFormatFunction = function(){
+                return function(d){
+                    return numberFormat(d);
+                }
+            };
 
         }
 
@@ -77,29 +89,17 @@ layout: example
 Configuring Chart Axes
 =========================
 
-## How to change the formatting of an axis
-
-Format an axis utilizing xAxisTickFormat and yAxisTickFormat functions.
-
-<a href="https://github.com/mbostock/d3/wiki/SVG-Axes">d3.js axes</a>
-<a href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickFormat">d3.js axes - tick format</a>
-<a href="https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format">d3.js axes - format</a>
-<a href="https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-format">d3.js Date Time Formatting</a>
-
 ## Axis Orient
+[d3.js Axes Orient](https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-orient)
 
-<a href="https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-orient">d3.js axis orient</a>
-{% highlight html %}
-If orientation is specified, sets the orientation and returns the axis. If orientation is not specified, returns the current orientation with defaults to “bottom”. The following orientations are supported:
+> **top** - horizontal axis with ticks above the domain path
+> **bottom** - horizontal axis with ticks below the domain path
+> **left** - vertical axis with ticks to the left of the domain path
+> **right** - vertical axis with ticks to the right of the domain path
 
-top - horizontal axis with ticks above the domain path
-bottom - horizontal axis with ticks below the domain path
-left - vertical axis with ticks to the left of the domain path
-right - vertical axis with ticks to the right of the domain path
-If the specified orientation is not one of the supported values, the axis reverts to the default orientation. Changing the orientation affects the position of the ticks and their labels in relation to the axis path, but does not change the position of the axis itself; to change the position of the axis with respect to the plot, specify a transform attribute on the containing g element.
-{% endhighlight %}
 
-#### xAxisOrient - Top
+### *xAxisOrient - Top*
+
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
@@ -110,6 +110,8 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="top"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
@@ -125,43 +127,14 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="top"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
 </div>
 
-#### yAxisOrient - Top
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-    <nvd3-line-chart
-        data="exampleData"
-        id="yAxisOrientTopExample"
-        width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
-        yAxisOrient="top"
-        >
-        <svg></svg>
-    </nvd3-line-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-    <nvd3-line-chart
-        data="exampleData"
-        id="yAxisOrientTopExample"
-        width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
-        yAxisOrient="top"
-        >
-        <svg></svg>
-    </nvd3-line-chart>
-</div>
-
-#### xAxisOrient - Bottom
+### *xAxisOrient - Bottom*
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
@@ -172,6 +145,8 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="bottom"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
@@ -187,12 +162,49 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="bottom"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
 </div>
 
-#### yAxisOrient - Bottom
+### *yAxisOrient - Top*
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="yAxisOrientTopExample"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        yAxisOrient="top"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        >
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="yAxisOrientTopExample"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        yAxisOrient="top"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        >
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+
+### *yAxisOrient - Bottom*
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
@@ -203,6 +215,8 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         yAxisOrient="bottom"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
@@ -218,13 +232,15 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         yAxisOrient="bottom"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
 </div>
 
 
-#### xAxisOrient - Left
+### *xAxisOrient - Left*
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
@@ -235,6 +251,8 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="left"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
@@ -250,44 +268,14 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="left"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
 </div>
 
-#### yAxisOrient - Left
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-    <nvd3-line-chart
-        data="exampleData"
-        id="yAxisOrientLeftExample"
-        width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
-        yAxisOrient="left"
-        >
-        <svg></svg>
-    </nvd3-line-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-    <nvd3-line-chart
-        data="exampleData"
-        id="yAxisOrientLeftExample"
-        width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
-        yAxisOrient="left"
-        >
-        <svg></svg>
-    </nvd3-line-chart>
-</div>
-
-
-#### xAxisOrient - Right
+### *xAxisOrient - Right*
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
@@ -298,6 +286,8 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="right"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
@@ -313,12 +303,49 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="right"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
 </div>
 
-#### yAxisOrient - Right
+### *yAxisOrient - Left*
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="yAxisOrientLeftExample"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        yAxisOrient="left"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        >
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="yAxisOrientLeftExample"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        yAxisOrient="left"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        >
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+
+### *yAxisOrient - Right*
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
@@ -329,6 +356,8 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         yAxisOrient="right"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
@@ -344,6 +373,8 @@ If the specified orientation is not one of the supported values, the axis revert
         showXAxis="true"
         showYAxis="true"
         yAxisOrient="right"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
@@ -351,14 +382,9 @@ If the specified orientation is not one of the supported values, the axis revert
 
 
 ## Ticks
-https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-ticks
+[d3.js Ticks](https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-ticks)
 
-Suitable arguments depends on the associated scale: for a linear scale, you might specify a tick count such as axis.ticks(20); for a log scale, you might specify both a count and a tick format; for a time scale, a time interval such as axis.ticks(d3.time.minutes, 15) might be appropriate.
-
-Datatype:  
-
-#### xAxisTickFormat
-
+### *xAxisTickFormat*
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
@@ -369,6 +395,7 @@ Datatype:
         showXAxis="true"
         showYAxis="true"
         xAxisTickFormat="xAxisTickFormat_Time_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
         >
         <svg></svg>
     </nvd3-line-chart>
@@ -383,14 +410,15 @@ Datatype:
         height="350"
         showXAxis="true"
         showYAxis="true"
-        xAxisTickFormat="xAxisTickFormat_Time_Format()">
+        xAxisTickFormat="xAxisTickFormat_Time_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        >
         <svg></svg>
     </nvd3-line-chart>
 </div>
 
 ## Tick Values
-https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickValues
-The explicit tick values take precedent over the tick arguments set by axis.ticks
+[d3.js Tick Values](https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickValues)
 
 Datatype: (Array or Function) Array of values where the axis will be rendered.  d3 will use the supplied array of values to create the respective axes, rather than calculating the axes itself.
 
@@ -399,12 +427,15 @@ Array
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
-        id="tickValuesExample"
+        id="tickValuesArrayExample"
         width="550"
         height="350"
         showXAxis="true"
         showYAxis="true"
-		xAxisTickValues="[1025409600000, 1056945600000]">
+        xAxisTickValues="[1025409600000, 1056945600000]"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+		>
         <svg></svg>
     </nvd3-line-chart>
 </div>
@@ -413,12 +444,15 @@ Array
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
-        id="tickValues"
+        id="tickValuesArrayExample"
         width="550"
         height="350"
         showXAxis="true"
         showYAxis="true"
-		xAxisTickValues="[1025409600000, 1056945600000]">
+		xAxisTickValues="[1025409600000, 1056945600000]"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+		>
         <svg></svg>
     </nvd3-line-chart>
 </div>
@@ -429,12 +463,15 @@ Function
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
-        id="tickValuesExample"
+        id="tickValuesFunctionExample"
         width="550"
         height="350"
         showXAxis="true"
         showYAxis="true"
-		xAxisTickValues="xAxisTickValueFunction()">
+		xAxisTickValues="xAxisTickValueFunction()"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+		>
         <svg></svg>
     </nvd3-line-chart>
 </div>
@@ -443,12 +480,15 @@ Function
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
-        id="tickValues"
+        id="tickValuesFunctionExample"
         width="550"
         height="350"
         showXAxis="true"
         showYAxis="true"
-		xAxisTickValues="xAxisTickValueFunction()">
+		xAxisTickValues="xAxisTickValueFunction()"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+		>
         <svg></svg>
     </nvd3-line-chart>
 </div>
@@ -457,20 +497,14 @@ Function
 ## Tick Subdivide
 
 ## Tick Size
-https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickSize
-
-If size is specified, sets the inner and outer tick sizes to the specified value and returns the axis. If size is not specified, returns the current inner tick size, which defaults to 6.
+[d3.js Tick Subdivide](https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickSize)
 
 
 ## Tick Padding
-https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickPadding
+[d3.js Tick Padding](https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickPadding)
 
 ## Tick Format
-https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickFormat
-
-If format is specified, sets the format to the specified function and returns the axis. If format is not specified, returns the current format function, which defaults to null. A null format indicates that the scale's default formatter should be used, which is generated by calling scale.tickFormat. In this case, the arguments specified by ticks are likewise passed to scale.tickFormat.
-
-Datatype: Function that accepts data for the axis, and returns the formatted value.
+[d3.js Tick Format](https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickFormat)
 
 {% highlight javascript %}
 $scope.xAxisTickFormat_Time_Format = function(){
@@ -498,7 +532,7 @@ $scope.xAxisTickFormat_Time_Format = function(){
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
-        id="tickForamtExample"
+        id="tickFormatExample"
         width="550"
         height="350"
         showXAxis="true"
@@ -518,13 +552,16 @@ Datatype: String
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
-        id="xAxisLabelExample"
+        id="axisLabelExample"
         width="550"
         height="350"
+        margin="{left:80,top:50,bottom:50,right:10}"
         showXAxis="true"
         showYAxis="true"
-		yAxisLabel="Y Axis Label"
-		xAxisLabel="X Axis Label">
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        yAxisLabel="Y Axis Label"
+        xAxisLabel="X Axis Label">
         <svg></svg>
     </nvd3-line-chart>
 </div>
@@ -533,22 +570,90 @@ Datatype: String
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
-        id="xAxisLabelExample"
+        id="axisLabelExample"
         width="550"
         height="350"
+        margin="{left:80,top:50,bottom:50,right:10}"
         showXAxis="true"
         showYAxis="true"
-		yAxisLabel="Y Axis Label"
-		xAxisLabel="X Axis Label">
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        yAxisLabel="Y Axis Label"
+        xAxisLabel="X Axis Label">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 
 ## Show Max Min
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="showMaxMinExample"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        yAxisShowMaxMin="true"
+        xAxisShowMaxMin="true">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+{% endhighlight %}
 
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="showMaxMinExample"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        yAxisShowMaxMin="true"
+        xAxisShowMaxMin="true">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
 
 ## Highlight Zero
 
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="highlightZeroExample"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        xAxisHighlightZero="true"
+        yAxisHighlightZero="true">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="highlightZeroExample"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()"
+        xAxisHighlightZero="true"
+        yAxisHighlightZero="true">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
 
 
 ## Rotate Labels
@@ -565,8 +670,10 @@ Datatype: Integer
         height="350"
         showXAxis="true"
         showYAxis="true"
-		xAxisRotateLabels="90"
-		yAxisRotateLabels="90">
+        xAxisOrient="bottom"
+		xAxisRotateLabels="180"
+		xAxisLabel="Test X Axis Label"
+		yAxisRotateLabels="180">
         <svg></svg>
     </nvd3-line-chart>
 </div>
@@ -580,8 +687,10 @@ Datatype: Integer
         height="350"
         showXAxis="true"
         showYAxis="true"
-		xAxisRotateLabels="90"
-		yAxisRotateLabels="90">
+        xAxisOrient="bottom"
+		xAxisRotateLabels="180"
+		xAxisLabel="Test X Axis Label"
+		yAxisRotateLabels="180">
         <svg></svg>
     </nvd3-line-chart>
 </div>
@@ -631,6 +740,28 @@ xaxistickpadding
 xaxistickformat
 xaxislabel
 xaxisscale
+
+ $scope.yAxisScaleFunction = function(){
+
+            var max = 0;
+            for(var d in $scope.data){
+
+                var mx = _.max($scope.data[d].values, function(dd){
+                    console.log('dd', dd.y)
+                    return dd.y;
+                });
+                console.log(mx, max, mx > max);
+                if(mx.y > max){
+                    max = mx.y;
+                }
+            }
+            console.log('max', max);
+            return d3.scale.log().domain([0, max]).range([200,0]);
+        }
+
+
+
+
 xaxisdomain
 xaxisrange
 xaxisrangeband

@@ -36,6 +36,14 @@ description: d3.js, nvd3.js Line Charts with Angular.js, Bullet Chart, Stephen F
                         '<p>' +  y + ' at ' + x + '</p>'
                 }
             }
+
+            $scope.rangesFunction = function(){
+                return function(d) {
+                console.log(d);
+                    return [50, 175, 350];
+                }
+            }
+
         }
 
 </script>
@@ -95,8 +103,9 @@ Other directive attributes should be the same as the public attributes associate
 	<nvd3-bullet-chart
     	data="exampleData"
         id="exampleId"
+        margin="{left:75,top:30,bottom:30,right:10}"
         width="550"
-        height="350">
+        height="160">
         	<svg></svg>
     </nvd3-bullet-chart>
 </div>
@@ -140,30 +149,28 @@ Datatype: String
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-line-chart
+	<nvd3-bullet-chart
     	data="noDataData"
         id="noDataExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
         width="550"
-        height="300"
-        showXAxis="true"
-        showYAxis="true"
+        height="160"
         noData="Data aint here">
         	<svg></svg>
-    </nvd3-line-chart>
+    </nvd3-bullet-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-line-chart
+	<nvd3-bullet-chart
     	data="noDataData"
         id="noDataExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
         width="550"
-        height="300"
-        showXAxis="true"
-        showYAxis="true"
+        height="160"
         noData="No Data For You!">
         	<svg></svg>
-    </nvd3-line-chart>
+    </nvd3-bullet-chart>
 </div>
 
 
@@ -176,32 +183,30 @@ Datatype: boolean - (true/false)
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-line-chart
+	<nvd3-bullet-chart
     	data="exampleData"
         id="toolTipExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
         width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
+        height="160"
         interactive="true"
         tooltips="true">
         	<svg></svg>
-    </nvd3-line-chart>
+    </nvd3-bullet-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-line-chart
+	<nvd3-bullet-chart
     	data="exampleData"
         id="toolTipExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
         width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
+        height="160"
         interactive="true"
         tooltips="true">
         	<svg></svg>
-    </nvd3-line-chart>
+    </nvd3-bullet-chart>
 </div>
 
 ## Tooltip Content
@@ -227,46 +232,163 @@ $scope.toolTipContentFunction = function(){
 
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
-	<nvd3-line-chart
+	<nvd3-bullet-chart
     	data="exampleData"
         id="toolTipContentExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
         width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
+        height="160"
         interactive="true"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
         	<svg></svg>
-    </nvd3-line-chart>
+    </nvd3-bullet-chart>
 </div>
 {% endhighlight %}
 
 <div ng-controller="ExampleCtrl">
-	<nvd3-line-chart
+	<nvd3-bullet-chart
     	data="exampleData"
         id="toolTipContentExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
         width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
+        height="160"
         interactive="true"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
         	<svg></svg>
-    </nvd3-line-chart>
+    </nvd3-bullet-chart>
 </div>
 
 
 ## Orient
-left, right, top, bottom
-
+Determines the direction that axis numbers will be displayed.  Left, top is small to large.  Right and bottom displays the axis from large to small.
 default is left
 
 Datatype: String
 
+### *Orient - Right*
 
-ranges: '&',
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-bullet-chart
+    	data="exampleData"
+        id="orientRightExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
+        width="550"
+        height="160"
+        orient="right">
+        	<svg></svg>
+    </nvd3-bullet-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-bullet-chart
+    	data="exampleData"
+        id="orientRightExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
+        width="550"
+        height="160"
+        orient="right">
+        	<svg></svg>
+    </nvd3-bullet-chart>
+</div>
+
+### *Orient - Top*
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-bullet-chart
+    	data="exampleData"
+        id="orientTopExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
+        width="550"
+        height="160"
+        orient="top">
+        	<svg></svg>
+    </nvd3-bullet-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-bullet-chart
+    	data="exampleData"
+        id="orientTopExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
+        width="550"
+        height="160"
+        orient="top">
+        	<svg></svg>
+    </nvd3-bullet-chart>
+</div>
+
+### *Orient - Bottom*
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-bullet-chart
+    	data="exampleData"
+        id="orientBottomExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
+        width="550"
+        height="160"
+        orient="bottom">
+        	<svg></svg>
+    </nvd3-bullet-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-bullet-chart
+    	data="exampleData"
+        id="orientBottomExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
+        width="550"
+        height="160"
+        orient="bottom">
+        	<svg></svg>
+    </nvd3-bullet-chart>
+</div>
+
+
+
+## Ranges
+Defines the ranges element on the chart
+
+{% highlight javascript %}
+$scope.rangesFunction = function(){
+	return function(d) {
+    	return [50, 175, 350];
+	}
+}
+{% endhighlight %}
+
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-bullet-chart
+    	data="exampleData"
+        id="rangesExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
+        width="550"
+        height="160"
+        ranges="rangesFunction()">
+        	<svg></svg>
+    </nvd3-bullet-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-bullet-chart
+    	data="exampleData"
+        id="rangesExample"
+        margin="{left:75,top:30,bottom:30,right:10}"
+        width="550"
+        height="160"
+        ranges="rangesFunction()">
+        	<svg></svg>
+    </nvd3-bullet-chart>
+</div>
+
 
 markers: '&',
 

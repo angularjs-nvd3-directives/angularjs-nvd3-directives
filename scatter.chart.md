@@ -31,6 +31,17 @@ description: d3.js, nvd3.js Scatter Charts with Angular.js
             }
         ];
 
+        $scope.xFunction = function(){
+            return function(d){
+                return d.x;
+            }
+        }
+
+        $scope.yFunction = function(){
+            return function(d){
+                return d.y;
+            }
+        }
 
         $scope.xAxisTickFormatFunction = function(){
             return function(d){
@@ -288,6 +299,90 @@ Datatype: String
         	<svg></svg>
     </nvd3-scatter-chart>
 </div>
+
+## X
+Function that allows nvd3.js and d3.js to access x values from the 'data'.
+
+Datatype: Function
+
+{% highlight javascript %}
+$scope.xFunction = function(){
+	return function(d){
+		return d.x;
+	};
+}
+{% endhighlight %}
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-sparkline-chart
+    	data="exampleData"
+        id="xExample"
+        width="550"
+        height="150"
+        margin="{left:30, top:20, bottom:20, right:50}"
+        x="xFunction()">
+        	<svg></svg>
+    </nvd3-sparkline-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-sparkline-chart
+    	data="exampleData"
+        id="xExample"
+        width="550"
+        height="150"
+        margin="{left:30, top:20, bottom:20, right:50}"
+        x="xFunction()">
+        	<svg></svg>
+    </nvd3-sparkline-chart>
+</div>
+
+## Y
+Function that allows nvd3 and d3 to access y values from the 'data'.
+
+Datatype: Function
+
+{% highlight javascript %}
+$scope.yFunction = function(){
+	return function(d){
+		return d.y;
+	};
+}
+{% endhighlight %}
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="yExample"
+        width="550"
+        height="150"
+        margin="{left:30, top:20, bottom:20, right:50}"
+        y="yFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+    	data="exampleData"
+        id="yExample"
+        width="550"
+        height="150"
+        margin="{left:30, top:20, bottom:20, right:50}"
+        y="yFunction()">
+        	<svg></svg>
+    </nvd3-scatter-chart>
+</div>
+
+
+## Size
+## Force X
+## Force Y
+
 
 ## Interactive
 Enables (true) or Disables (false) interactivity for a chart.  Interactivity includes tooltips, click events, etc.

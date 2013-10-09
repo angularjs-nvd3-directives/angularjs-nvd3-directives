@@ -45,18 +45,19 @@ Creating and Configuring a SparkLine Chart
 
 ## Overview
 
-> A sparkline is a small intense, simple, word-sized graphic with typographic resolution. Sparklines mean that graphics are no longer cartoonish special occasions with captions and boxes, but rather sparkline graphic can be everywhere a word or number can be: embedded in a sentence, table, headline, map, spreadsheet, graphic. From Edward Tufte's book Beautiful Evidence.
+> A sparkline is a small intense, simple, word-sized graphic with typographic resolution. Sparklines mean that graphics are no longer cartoonish special occasions with captions and boxes, but rather sparkline graphic can be everywhere a word or number can be: embedded in a sentence, table, headline, map, spreadsheet, graphic.
 >
 > -- Edward Tufte
 
-### More Information
+> From Edward Tufte's book Beautiful Evidence.
+
+### Additional Resources
 
 [wikipedia](http://en.wikipedia.org/wiki/Sparkline)
 
 [Edward Tufte](http://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0001OR&topic_id=1)
 
 [Stphen Few](http://www.perceptualedge.com/articles/visual_business_intelligence/best_practices_for_scaling_sparklines.pdf)
-
 
 
 ## How to create a basic chart
