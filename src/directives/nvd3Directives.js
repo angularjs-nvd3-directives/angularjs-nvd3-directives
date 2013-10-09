@@ -2024,10 +2024,10 @@ angular.module('nvd3ChartDirectives', [])
                 margin: '&',
                 tooltips: '@',
                 tooltipcontent: '&',
-                orient: '@',
-                ranges: '&',
-                markers: '&',
-                measures: '&',
+                orient: '@',  // left, right, top, bottom
+                ranges: '&', //ranges (bad, satisfactory, good)
+                markers: '&', // markers (previous, goal)
+                measures: '&', // measures (actual, forecast)
                 tickformat: '&',
                 nodata: '@',
 
@@ -2137,6 +2137,7 @@ angular.module('nvd3ChartDirectives', [])
                 showvalue: '@',
                 alignvalue: '@',
                 rightalignvalue: '@',
+                nodata: '@',
 
                 xaxistickformat: '&',
                 yaxistickformat: '&',
