@@ -13,14 +13,19 @@
 
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
       {% if page.description %}
-      <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:description" content="{{ page.description }}">
       {% else %}
-      <meta property="og:description" content="Angular.js Directives for d3.js and nvd3.js charts">
+    <meta property="og:description" content="Angular.js Directives for d3.js and nvd3.js charts">
       {% endif %}
+
     <meta property="og:title" content="Angularjs Nvd3 Directives" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://bit.ly/16PDa4W" />
+    <meta property="og:url" content="https://github.com/cmaurer/angularjs-nvd3-directives" />
+    <meta property="og:codeRepository" content="https://github.com/cmaurer/angularjs-nvd3-directives" />
+    <meta property="og:programmingLanguage" content="javascript" />
+    <meta property="og:keywords" content="angular.js angular d3 d3.js nvd3 nvd3.js directives chart charts" />
 
+    <meta content="website" property="og:type">
     <meta http-equiv="cache-control" content="max-age=0" />
     <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="expires" content="0" />
@@ -28,7 +33,7 @@
     <meta http-equiv="pragma" content="no-cache" />
     <meta content="{{ title }}" property="og:title">
 
-	<title>angularjs, nvd3js, directives {% if page.title %} ~ {{ page.title }}{% endif %}</title>
+    <title>Angular.js Directives for nvd3js and d3.js {% if page.title %} ~ {{ page.title }}{% endif %}</title>
 
     <link rel="stylesheet" href="{{ site.path }}stylesheets/styles.css">
     <link rel="stylesheet" href="{{ site.path }}stylesheets/pygment_trac.css">
