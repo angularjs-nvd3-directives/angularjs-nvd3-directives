@@ -1,7 +1,7 @@
 ---
 title: bulletchart
 layout: example
-description: d3.js, nvd3.js Line Charts with Angular.js, Bullet Chart, Stephen Few,
+description: d3.js, nvd3.js Line Charts with Angular.js, Bullet Chart, Stephen Few
 ---
 
 <script>
@@ -348,52 +348,3 @@ Datatype: String
         	<svg></svg>
     </nvd3-bullet-chart>
 </div>
-
-
-
-## Ranges
-Defines the ranges element on the chart
-
-Datatype: Function
-
-{% highlight javascript %}
-$scope.rangesFunction = function(){
-	return function(d) {
-    	return [50, 175, 350];
-	}
-}
-{% endhighlight %}
-
-
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-	<nvd3-bullet-chart
-    	data="exampleData"
-        id="rangesExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
-        width="550"
-        height="160"
-        ranges="rangesFunction()">
-        	<svg></svg>
-    </nvd3-bullet-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-bullet-chart
-    	data="exampleData"
-        id="rangesExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
-        width="550"
-        height="160"
-        ranges="rangesFunction()">
-        	<svg></svg>
-    </nvd3-bullet-chart>
-</div>
-
-
-markers: '&',
-
-measures: '&',
-
-tickformat: '&',
