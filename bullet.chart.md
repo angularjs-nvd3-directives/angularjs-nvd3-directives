@@ -55,7 +55,9 @@ Creating and Configuring a Bullet Chart
 
 Based on Stephen Few's <a href="http://www.perceptualedge.com/articles/misc/Bullet_Graph_Design_Spec.pdf">Bullet Graph Spec</a>
 
-"The bullet graph was developed to replace the meters and gauges that are often used on dashboards. Its linear and no-frills design provides a rich display of data in a small space, which is essential on a dashboard."
+> "The bullet graph was developed to replace the meters and gauges that are often used on dashboards. Its linear and no-frills design provides a rich display of data in a small space, which is essential on a dashboard."
+>
+> -- Stephen Few
 
 ## How to create a basic chart
 
