@@ -2405,6 +2405,7 @@ nv.models.bulletChart = function() {
 
   // ranges (bad, satisfactory, good)
   chart.ranges = function(x) {
+      console.log('bullet chart ranges', x);
     if (!arguments.length) return ranges;
     ranges = x;
     return chart;

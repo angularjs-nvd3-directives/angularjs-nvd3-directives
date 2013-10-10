@@ -2,11 +2,22 @@
   "name": "angularjs-nvd3-directives",
   "version": "0.0.0",
   "description": "Angular.js directives for nvd3.js.",
-  "author": "https://github.com/cmaurer/angularjs-nvd3-directives/graphs/contributors",
-  "license": "Apache",
+  "authors": [
+      "Christian Maurer"
+  ],
+  "license": "Apache License, v2.0",
   "homepage": "http://cmaurer.github.io/angularjs-nvd3-directives/",
   "main": "./dist/angularjs-nvd3-directives.js",
-  "ignore": [
+    "keywords": [
+        "d3",
+        "nvd3",
+        "angular",
+        "directives",
+        "visualization",
+        "svg",
+        "charts"
+    ],
+    "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
@@ -15,8 +26,8 @@
   ],
   "dependencies": {
     "angular": "~1.0.8",
-    "nvd3": "*",
-    "d3": "~3.3.6",
-    "moment": "~2.2.1"
+    "d3": "~3.3.5",
+    "nvd3": "~v1.1.13-beta",
+    "moment": "~2.3.0"
   }
 }

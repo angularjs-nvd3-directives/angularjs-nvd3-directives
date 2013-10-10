@@ -1,8 +1,9 @@
 {
   "name": "angularjs-nvd3-directives",
   "version": "0.0.0",
+  "homepage": "http://cmaurer.github.io/angularjs-nvd3-directives",
   "description": "Angular.js directives for nvd3",
-  "main": "index.js",
+  "main": "dist/angularjs-nvd3-directives.js",
   "directories": {
     "example": "examples",
     "test": "test"
@@ -18,12 +19,18 @@
     "angular.js",
     "nvd3.js",
     "d3.js",
-    "directives"
+    "directives",
+    "d3",
+    "nvd3",
+    "angular",
+    "visualization",
+    "svg",
+    "charts"
   ],
   "author": {
     "name": "Christian Maurer"
   },
-  "license": "Apache",
+  "license": "Apache License, v2.0",
   "readmeFilename": "README.md",
   "gitHead": "82273b2c5a38c9e5841e767da4f3252ba31927e8",
   "bugs": {
@@ -32,9 +39,9 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.2",
-    "grunt-contrib-jshint": "~0.6.2",
-    "grunt-contrib-watch": "~0.5.1",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-cli": "~0.1.9",
     "grunt-bower-task": "~0.3.2",
