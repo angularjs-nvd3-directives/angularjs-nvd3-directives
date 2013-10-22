@@ -4,6 +4,10 @@
 function setupDimensions(scope, attrs, element) {
     'use strict';
     var margin = (scope.$eval(attrs.margin) || {left: 50, top: 50, bottom: 50, right: 50});
+    if (typeof(margin) !== "object") {
+        // we were passed a vanilla int, convert to full margin object
+        margin = {left: margin, top: margin, bottom: margin, right: margin};
+    }    
     scope.width = (attrs.width  === "undefined" ? ((element[0].parentElement.offsetWidth) - (margin.left + margin.right)) : (+attrs.width - (margin.left + margin.right)));
     scope.height = (attrs.height === "undefined" ? ((element[0].parentElement.offsetHeight) - (margin.top + margin.bottom)) : (+attrs.height - (margin.top + margin.bottom)));
     return margin;
