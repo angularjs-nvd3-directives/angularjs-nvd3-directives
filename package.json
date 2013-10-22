@@ -1,6 +1,6 @@
 {
   "name": "angularjs-nvd3-directives",
-  "version": "0.0.0",
+  "version": "0.0.1-beta",
   "homepage": "http://cmaurer.github.io/angularjs-nvd3-directives",
   "description": "Angular.js directives for nvd3",
   "main": "dist/angularjs-nvd3-directives.js",
