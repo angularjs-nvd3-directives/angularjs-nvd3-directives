@@ -144,8 +144,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'), 10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'), 10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newHeight < 0){
                                         newHeight = 0;
@@ -322,8 +322,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newHeight < 0){
                                         newHeight = 0;
@@ -540,8 +540,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -700,8 +700,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -859,8 +859,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -1020,8 +1020,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -1179,8 +1179,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -1298,8 +1298,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -1506,8 +1506,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -1605,8 +1605,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -1777,8 +1777,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -1950,8 +1950,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -2054,8 +2054,8 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -2169,8 +2169,167 @@ angular.module('nvd3ChartDirectives', [])
                                 var chartResize = function() {
                                     var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
                                         currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (attrs.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (attrs.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+
+                                    if(newWidth === currentWidth && newHeight === currentHeight) {
+                                        return; //Nothing to do, the size is fixed or not changing.
+                                    }
+
+                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
+
+                                    chart.width(newWidth).height(newHeight); //Update the dims
+                                    d3.select(element[0]).append("svg")
+                                        .attr('id', attrs.id)
+                                        .attr('width', newWidth)
+                                        .attr('height', newHeight)
+                                        .datum(data)
+                                        .transition()
+                                        .duration(500)
+                                        .call(chart);
+                                };
+
+                                var timeoutPromise;
+                                var windowResize = function() {
+                                    $timeout.cancel(timeoutPromise);
+                                    timeoutPromise = $timeout(chartResize, 100);
+                                };
+
+                                $window.addEventListener('resize', windowResize);
+                                scope.chart = chart;
+                                return chart;
+                            }
+                        });
+                    }
+                }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+            }
+        };
+    }])
+    .directive('nvd3SparklineWithBandlinesChart', ['$window', '$timeout', function($window, $timeout){
+        'use strict';
+        /**
+         * http://www.perceptualedge.com/articles/visual_business_intelligence/introducing_bandlines.pdf
+         * You need five primary facts about a set of time-series values to construct a bandline:
+         * 1) the lowest value,
+         * 2) the 25th percentile (i.e., the point at and below which the lowest 25% of the values reside),
+         * 3) the median (a.k.a., the 50th percentile, the point at and below which 50% of the values reside),
+         * 4) the 75th percentile (i.e., the point at and below which 75% of the values reside), and
+         * 5) the highest value.
+         */
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=',
+                width: '@',
+                height: '@',
+                id: '@',
+                margin: '&',
+                x: '&',
+                y: '&',
+                color: '&',
+                xscale: '&',
+                yscale: '&',
+                showvalue: '@',
+                alignvalue: '@',
+                rightalignvalue: '@',
+                nodata: '@',
+
+                xaxistickformat: '&',
+                yaxistickformat: '&',
+
+                //angularjs specific
+                objectequality: '@',
+
+                //d3.js specific
+                transitionduration: '@'
+
+            },
+            controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
+                //expect scope to contain bandlineProperties
+                $scope.d3Call = function(data, chart){
+                    var selectedChart = d3.select('#' + $attrs.id + ' svg')
+                        .attr('height', $scope.height)
+                        .attr('width', $scope.width)
+                        .datum(data);
+
+                    //chart.yScale()($scope.bandlineProperties.median)
+                    var sLineSelection = d3.select('svg#' + $attrs.id + ' g.nvd3.nv-wrap.nv-sparkline');
+                    var bandlineData = [
+                        $scope.bandlineProperties.min,
+                        $scope.bandlineProperties.twentyFithPercentile,
+                        $scope.bandlineProperties.median,
+                        $scope.bandlineProperties.seventyFithPercentile,
+                        $scope.bandlineProperties.max
+                    ];
+                    var bandLines = sLineSelection.selectAll('.nv-bandline').data([bandlineData]);
+                        bandLines.enter().append('g')
+                            .attr('class', 'nv-bandline');
+
+                    selectedChart.transition().duration(($attrs.transitionduration === undefined ? 250 : (+$attrs.transitionduration)))
+                        .call(chart);
+                };
+            }],
+            link: function(scope, element, attrs){
+                scope.$watch('data', function(data){
+                    if(data){
+                        //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
+                        if(scope.chart){
+                            return scope.d3Call(data, scope.chart);
+                        }
+                        nv.addGraph({
+                            generate: function(){
+                                scope.bandlineProperties = {};
+                                var sortedValues, margin = setupDimensions(scope, attrs, element);
+                                var chart = nv.models.sparklinePlus()
+                                    .width(scope.width)
+                                    .height(scope.height)
+                                    .margin(margin)
+                                    .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
+                                    .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
+                                    .color(attrs.color === undefined ? nv.utils.getColor(['#000']) : scope.color())
+                                    .showValue(attrs.showvalue === undefined ? true : (attrs.showvalue === "true"))
+                                    .alignValue(attrs.alignvalue === undefined ? true : (attrs.alignvalue === "true"))
+                                    .rightAlignValue(attrs.rightalignvalue === undefined ? false : (attrs.rightalignvalue === "true"))
+                                    .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
+
+                               //calc bandline data
+                                scope.bandlineProperties.min = d3.min(data, function(d){ return d[1]; });
+                                scope.bandlineProperties.max = d3.max(data, function(d){ return d[1]; });
+                                sortedValues = data.map(function(d){
+                                    return d[1];
+                                }).sort(function(a, b){
+                                    if(a[0] < b[0]){
+                                        return -1;
+                                    } else if (a[0] === b[0]){
+                                        return 0;
+                                    } else {
+                                        return 1;
+                                    }
+                                });
+
+                                scope.bandlineProperties.twentyFithPercentile = d3.quantile(sortedValues, 0.25);
+                                scope.bandlineProperties.median = d3.median(sortedValues);
+                                scope.bandlineProperties.seventyFithPercentile = d3.quantile(sortedValues, 0.75);
+
+                                if(attrs.xScale){
+                                    chart.xScale(scope.xScale());
+                                }
+
+                                if(attrs.yScale){
+                                    chart.yScale(scope.yScale());
+                                }
+
+                                configureXaxis(chart, scope, attrs);
+                                configureYaxis(chart, scope, attrs);
+                                processEvents(chart, scope);
+
+                                scope.d3Call(data, chart);
+
+                                var chartResize = function() {
+                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
+                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
+                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
+                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
 
                                     if(newWidth === currentWidth && newHeight === currentHeight) {
                                         return; //Nothing to do, the size is fixed or not changing.
@@ -2207,8 +2366,8 @@ angular.module('nvd3ChartDirectives', [])
     }]);
 
 //still need to implement
-//sparkline with bands (Stephen Few)
-//sparkbars
+//sparkbars??
+//nv.models.multiBarTimeSeriesChart
 //nv.models.multiChart
 //nv.models.scatterPlusLineChart
 //nv.models.linePlusBarWithFocusChart
