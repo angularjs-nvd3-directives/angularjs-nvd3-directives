@@ -1,14 +1,43 @@
 {
   "name": "nvd3",
-  "homepage": "https://github.com/novus/nvd3",
-  "version": "1.1.10-beta",
-  "_release": "1.1.10-beta",
+  "version": "1.1.14-beta",
+  "homepage": "http://www.nvd3.org",
+  "authors": [
+    "Bob Monteverde",
+    "Tyler Wolf",
+    "Robin Hu",
+    "Frank Shao"
+  ],
+  "description": "Re-usable charts and chart components for d3.",
+  "main": "nv.d3.js",
+  "keywords": [
+    "d3",
+    "visualization",
+    "svg",
+    "charts"
+  ],
+  "license": "Apache License, v2.0",
+  "dependencies": {
+    "d3": "3.3.5"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "lib",
+    "examples",
+    "deprecated"
+  ],
+  "_release": "1.1.14-beta",
   "_resolution": {
     "type": "version",
-    "tag": "v1.1.10-beta",
-    "commit": "07e17bee3ea2eece3e7f0387afd12dc2fade77a6"
+    "tag": "v1.1.14-beta",
+    "commit": "764767a017a9441b5f06e748cdaed0f501e14d14"
   },
   "_source": "git://github.com/novus/nvd3.git",
-  "_target": "~v1.1.10-beta",
+  "_target": "~v1.1.14-beta",
   "_originalSource": "nvd3"
 }
