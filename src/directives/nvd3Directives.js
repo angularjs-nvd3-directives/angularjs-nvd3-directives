@@ -1,19 +1,55 @@
 /*
-    Common function that sets up width, height, margin
+ Common functions that sets up width, height, margin
+ should prevent NaN errors
  */
-function setupDimensions(scope, attrs, element) {
+function initializeMargin(scope, attrs){
     'use strict';
     var margin = (scope.$eval(attrs.margin) || {left: 50, top: 50, bottom: 50, right: 50});
     if (typeof(margin) !== "object") {
         // we were passed a vanilla int, convert to full margin object
         margin = {left: margin, top: margin, bottom: margin, right: margin};
-    }    
-    scope.width = (attrs.width  === "undefined" ? ((element[0].parentElement.offsetWidth) - (margin.left + margin.right)) : (+attrs.width - (margin.left + margin.right)));
-    scope.height = (attrs.height === "undefined" ? ((element[0].parentElement.offsetHeight) - (margin.top + margin.bottom)) : (+attrs.height - (margin.top + margin.bottom)));
-    return margin;
+    }
+    scope.margin = margin;
 }
+
+function initializeWidth(scope, attrs, element){
+    'use strict';
+    var marginAdjustment = 0;
+    if(attrs.width === "undefined"){
+        scope.width = element[0].parentElement.offsetWidth;
+    } else {
+        scope.width = (+attrs.width);
+    }
+    if(!scope.margin.left || !scope.margin.right){
+        initializeMargin(scope, attrs, element);
+    }
+    marginAdjustment = (scope.margin.left + scope.margin.right);
+    scope.width = (((scope.width - marginAdjustment) > 0) ? (scope.width - marginAdjustment) : 0);
+}
+
+function initializeHeight(scope, attrs, element){
+    'use strict';
+    var marginAdjustment = 0;
+    if(attrs.height === "undefined"){
+        scope.height = element[0].parentElement.offsetHeight;
+    } else {
+        scope.height = (+attrs.height);
+    }
+    if(!scope.margin.top || !scope.margin.bottom){
+        initializeMargin(scope, attrs, element);
+    }
+    marginAdjustment = (scope.margin.top + scope.margin.bottom);
+    scope.height = (((scope.height - marginAdjustment) > 0) ? (scope.height - marginAdjustment) : 0);
+}
+
+function setupDimensions(scope, attrs, element) {
+    'use strict';
+    initializeWidth(scope, attrs, element);
+    initializeHeight(scope, attrs, element);
+}
+
 angular.module('nvd3ChartDirectives', [])
-    .directive('nvd3LineChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3LineChart', [function(){
         'use strict';
         return {
             restrict: 'E',
@@ -108,11 +144,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.lineChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
@@ -140,44 +176,9 @@ angular.module('nvd3ChartDirectives', [])
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
-
                                 processEvents(chart, scope);
-
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'), 10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'), 10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newHeight < 0){
-                                        newHeight = 0;
-                                    }
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-                                    nv.log('newWidth',newWidth, 'newHeight', newHeight );
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -187,7 +188,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3CumulativeLineChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3CumulativeLineChart', [function(){
         'use strict';
         return {
             restrict: 'E',
@@ -284,11 +285,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.cumulativeLineChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
@@ -318,43 +319,9 @@ angular.module('nvd3ChartDirectives', [])
 
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
-
                                 processEvents(chart, scope);
-
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newHeight < 0){
-                                        newHeight = 0;
-                                    }
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-                                    nv.log('newWidth',newWidth, 'newHeight', newHeight );
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -364,7 +331,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3StackedAreaChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3StackedAreaChart', [function(){
         return {
             restrict: 'E',
             scope: {
@@ -447,7 +414,6 @@ angular.module('nvd3ChartDirectives', [])
                 //d3.js specific
                 transitionduration: '@'
 
-
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
@@ -468,11 +434,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.stackedAreaChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
@@ -538,39 +504,8 @@ angular.module('nvd3ChartDirectives', [])
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
                                 processEvents(chart, scope);
-
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -580,7 +515,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3MultiBarChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3MultiBarChart', [function(){
         return {
             restrict: 'E',
             scope: {
@@ -651,7 +586,6 @@ angular.module('nvd3ChartDirectives', [])
                 //d3.js specific
                 transitionduration: '@'
 
-
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
@@ -672,11 +606,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.multiBarChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
@@ -700,37 +634,7 @@ angular.module('nvd3ChartDirectives', [])
                                 }
 
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -740,7 +644,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3DiscreteBarChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3DiscreteBarChart', [function(){
         return {
             restrict: 'E',
             scope: {
@@ -827,11 +731,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.discreteBarChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
@@ -859,37 +763,7 @@ angular.module('nvd3ChartDirectives', [])
 
                                 processEvents(chart, scope);
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -899,7 +773,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3HistoricalBarChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3HistoricalBarChart', [function(){
         return {
             restrict: 'E',
             scope: {
@@ -990,11 +864,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.historicalBarChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
@@ -1017,40 +891,10 @@ angular.module('nvd3ChartDirectives', [])
                                 if(attrs.valueformat){
                                     chart.valueFormat(scope.valueformat());
                                 }
+
                                 processEvents(chart, scope);
-
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -1060,7 +904,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3MultiBarHorizontalChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3MultiBarHorizontalChart', [function(){
         return {
             restrict: 'E',
             scope: {
@@ -1151,11 +995,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.multiBarHorizontalChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey))
@@ -1179,37 +1023,7 @@ angular.module('nvd3ChartDirectives', [])
                                 }
 
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -1219,7 +1033,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3PieChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3PieChart', [function(){
         return {
             restrict: 'E',
             scope: {
@@ -1271,13 +1085,13 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.pieChart()
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === "true"))
@@ -1296,40 +1110,8 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }
                                 processEvents(chart, scope);
-
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration((attrs.transitionduration === undefined ? 500 : attrs.transitionduration))
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
-
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -1339,7 +1121,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3ScatterChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3ScatterChart', [function(){
         return {
             restrict: 'E',
             scope: {
@@ -1448,11 +1230,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.scatterChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                     .size(attrs.size === undefined ? function(d){ return d.size; }: scope.size())
@@ -1504,39 +1286,8 @@ angular.module('nvd3ChartDirectives', [])
                                 }
 
                                 processEvents(chart, scope);
-
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -1546,7 +1297,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3ScatterPlusLineChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3ScatterPlusLineChart', [function(){
         return {
             restrict: 'E',
             scope: {
@@ -1574,11 +1325,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.scatterPlusLineChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                     .size(attrs.size === undefined ? function(d){ return d.size; }: scope.size())
@@ -1602,40 +1353,10 @@ angular.module('nvd3ChartDirectives', [])
                                     chart.scatter.onlyCircles(false);
                                     chart.scatter.shape(attrs.shape === undefined ? function(d) { return d.shape || 'circle'; } : scope.shape());
                                 }
+
                                 processEvents(chart, scope);
-
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -1645,7 +1366,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3LinePlusBarChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3LinePlusBarChart', [function(){
         'use strict';
         return {
             restrict: 'E',
@@ -1756,11 +1477,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.linePlusBarChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
@@ -1777,37 +1498,7 @@ angular.module('nvd3ChartDirectives', [])
                                 configureY2axis(chart, scope, attrs);
                                 processEvents(chart, scope);
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -1817,7 +1508,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3LineWithFocusChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3LineWithFocusChart', [function(){
         'use strict';
         return {
             restrict: 'E',
@@ -1841,6 +1532,7 @@ angular.module('nvd3ChartDirectives', [])
                 y: '&',
                 clipvoronoi: '@',
                 interpolate: '@',
+                isArea: '@',
 //                'xScale', 'yScale', 'xDomain', 'yDomain', defined
 
                 //xaxis
@@ -1929,16 +1621,29 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
+
+                                //setup height 2
+                                //height 2 is 100
+
+                                //margin
+                                //nvd3 default is {top: 30, right: 30, bottom: 30, left: 60}
+
+                                //setup margin 2
+                                //nvd3 default is {top: 0, right: 30, bottom: 20, left: 60}
+
+
                                 var chart = nv.models.lineWithFocusChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+//                                    .height2()
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                     .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
-                                    .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
+                                    .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
+                                    .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); });
 
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
@@ -1948,39 +1653,8 @@ angular.module('nvd3ChartDirectives', [])
                                 configureY1axis(chart, scope, attrs);
                                 configureY2axis(chart, scope, attrs);
                                 processEvents(chart, scope);
-
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -1990,7 +1664,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3BulletChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3BulletChart', [function(){
         'use strict';
         return {
             restrict: 'E',
@@ -2035,11 +1709,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.bulletChart()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .orient(attrs.orient === undefined ? 'left' : attrs.orient)
 //                                    .ranges(attrs.ranges === undefined ? function(d){ return d.ranges; } : scope.ranges())
 //                                    .markers(attrs.markers === undefined ? function(d){ return d.markers; } : scope.markers())
@@ -2051,40 +1725,10 @@ angular.module('nvd3ChartDirectives', [])
                                 if(attrs.tooltipcontent){
                                     chart.tooltipContent(scope.tooltipcontent());
                                 }
+
                                 processEvents(chart, scope);
-
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -2094,7 +1738,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3SparklineChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3SparklineChart', [function(){
         'use strict';
         return {
             restrict: 'E',
@@ -2143,11 +1787,11 @@ angular.module('nvd3ChartDirectives', [])
                         }
                         nv.addGraph({
                             generate: function(){
-                                var margin = setupDimensions(scope, attrs, element);
+                                setupDimensions(scope, attrs, element);
                                 var chart = nv.models.sparklinePlus()
                                     .width(scope.width)
                                     .height(scope.height)
-                                    .margin(margin)
+                                    .margin(scope.margin)
                                     .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                     .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                     .color(attrs.color === undefined ? nv.utils.getColor(['#000']) : scope.color())
@@ -2167,39 +1811,8 @@ angular.module('nvd3ChartDirectives', [])
                                 configureXaxis(chart, scope, attrs);
                                 configureYaxis(chart, scope, attrs);
                                 processEvents(chart, scope);
-
                                 scope.d3Call(data, chart);
-
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
-
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
+                                nv.utils.windowResize(chart.update);
                                 scope.chart = chart;
                                 return chart;
                             }
@@ -2209,7 +1822,7 @@ angular.module('nvd3ChartDirectives', [])
             }
         };
     }])
-    .directive('nvd3SparklineWithBandlinesChart', ['$window', '$timeout', function($window, $timeout){
+    .directive('nvd3SparklineWithBandlinesChart', [function(){
         'use strict';
         /**
          * http://www.perceptualedge.com/articles/visual_business_intelligence/introducing_bandlines.pdf
@@ -2329,36 +1942,8 @@ angular.module('nvd3ChartDirectives', [])
 
                                 scope.d3Call(data, chart);
 
-                                var chartResize = function() {
-                                    var currentWidth = parseInt(d3.select('#' + attrs.id + ' svg').attr('width'),10),
-                                        currentHeight = parseInt(d3.select('#' + attrs.id + ' svg').attr('height'),10),
-                                        newWidth = (scope.width || element[0].parentElement.offsetWidth) - (margin.left + margin.right),
-                                        newHeight = (scope.height || element[0].parentElement.offsetHeight) - (margin.top + margin.bottom);
+                                nv.utils.windowResize(chart.update);
 
-                                    if(newWidth === currentWidth && newHeight === currentHeight) {
-                                        return; //Nothing to do, the size is fixed or not changing.
-                                    }
-
-                                    d3.select('#' + attrs.id + ' svg').node().remove(); // remove old graph first
-
-                                    chart.width(newWidth).height(newHeight); //Update the dims
-                                    d3.select(element[0]).append("svg")
-                                        .attr('id', attrs.id)
-                                        .attr('width', newWidth)
-                                        .attr('height', newHeight)
-                                        .datum(data)
-                                        .transition()
-                                        .duration(500)
-                                        .call(chart);
-                                };
-
-                                var timeoutPromise;
-                                var windowResize = function() {
-                                    $timeout.cancel(timeoutPromise);
-                                    timeoutPromise = $timeout(chartResize, 100);
-                                };
-
-                                $window.addEventListener('resize', windowResize);
                                 scope.chart = chart;
                                 return chart;
                             }
