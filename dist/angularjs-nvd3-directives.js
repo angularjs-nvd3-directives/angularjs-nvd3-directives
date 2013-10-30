@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-10-28
+/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-10-30
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2013 Christian Maurer; Licensed Apache License, v2.0 */
 angular.module('legendDirectives', [])
@@ -669,7 +669,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -810,7 +815,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -959,7 +969,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -1131,7 +1146,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -1195,6 +1215,8 @@ angular.module('nvd3ChartDirectives', [])
                 height: '@',
                 id: '@',
                 tooltips: '@',
+                showxaxis: '@',
+                showyaxis: '@',
                 tooltipcontent: '&',
                 staggerlabels: '@',
                 color: '&',
@@ -1256,7 +1278,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -1283,6 +1310,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                     .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                    .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
+                                    .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"))
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
@@ -1389,7 +1418,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -1520,7 +1554,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -1610,7 +1649,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -1755,7 +1799,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -1850,7 +1899,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -2002,7 +2056,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -2146,7 +2205,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -2234,7 +2298,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -2312,7 +2381,12 @@ angular.module('nvd3ChartDirectives', [])
             },
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 $scope.d3Call = function(data, chart){
-                    d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data)
@@ -2406,7 +2480,12 @@ angular.module('nvd3ChartDirectives', [])
             controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                 //expect scope to contain bandlineProperties
                 $scope.d3Call = function(data, chart){
-                    var selectedChart = d3.select('#' + $attrs.id + ' svg')
+                    if (!d3.select('#' + $attrs.id+' svg')){
+                        d3.select('#' + $attrs.id)
+                            .append('svg');
+                    }
+
+                    var selectedChart = d3.select('#' + $attrs.id+' svg')
                         .attr('height', $scope.height)
                         .attr('width', $scope.width)
                         .datum(data);
