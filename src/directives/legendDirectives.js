@@ -1,7 +1,7 @@
 angular.module('legendDirectives', [])
     .directive('simpleSvgLegend', function(){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 id: '@',
                 width: '@',
