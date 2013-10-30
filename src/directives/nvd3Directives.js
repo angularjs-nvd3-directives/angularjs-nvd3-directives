@@ -52,7 +52,7 @@ angular.module('nvd3ChartDirectives', [])
     .directive('nvd3LineChart', [function(){
         'use strict';
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -196,7 +196,7 @@ angular.module('nvd3ChartDirectives', [])
     .directive('nvd3CumulativeLineChart', [function(){
         'use strict';
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -343,7 +343,7 @@ angular.module('nvd3ChartDirectives', [])
     }])
     .directive('nvd3StackedAreaChart', [function(){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -532,7 +532,7 @@ angular.module('nvd3ChartDirectives', [])
     }])
     .directive('nvd3MultiBarChart', [function(){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -666,7 +666,7 @@ angular.module('nvd3ChartDirectives', [])
     }])
     .directive('nvd3DiscreteBarChart', [function(){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -800,7 +800,7 @@ angular.module('nvd3ChartDirectives', [])
     }])
     .directive('nvd3HistoricalBarChart', [function(){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -936,7 +936,7 @@ angular.module('nvd3ChartDirectives', [])
     }])
     .directive('nvd3MultiBarHorizontalChart', [function(){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -1070,7 +1070,7 @@ angular.module('nvd3ChartDirectives', [])
     }])
     .directive('nvd3PieChart', [function(){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -1163,7 +1163,7 @@ angular.module('nvd3ChartDirectives', [])
     }])
     .directive('nvd3ScatterChart', [function(){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -1344,7 +1344,7 @@ angular.module('nvd3ChartDirectives', [])
     }])
     .directive('nvd3ScatterPlusLineChart', [function(){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -1419,7 +1419,7 @@ angular.module('nvd3ChartDirectives', [])
     .directive('nvd3LinePlusBarChart', [function(){
         'use strict';
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -1566,7 +1566,7 @@ angular.module('nvd3ChartDirectives', [])
     .directive('nvd3LineWithFocusChart', [function(){
         'use strict';
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -1727,7 +1727,7 @@ angular.module('nvd3ChartDirectives', [])
     .directive('nvd3BulletChart', [function(){
         'use strict';
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -1806,7 +1806,7 @@ angular.module('nvd3ChartDirectives', [])
     .directive('nvd3SparklineChart', [function(){
         'use strict';
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
@@ -1904,7 +1904,7 @@ angular.module('nvd3ChartDirectives', [])
          * 5) the highest value.
          */
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 data: '=',
                 width: '@',
