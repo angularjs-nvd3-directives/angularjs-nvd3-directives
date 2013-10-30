@@ -673,6 +673,8 @@ angular.module('nvd3ChartDirectives', [])
                 height: '@',
                 id: '@',
                 tooltips: '@',
+                showxaxis: '@',
+                showyaxis: '@',
                 tooltipcontent: '&',
                 staggerlabels: '@',
                 color: '&',
@@ -766,6 +768,8 @@ angular.module('nvd3ChartDirectives', [])
                                     .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                     .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === "true"))
                                     .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                    .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
+                                    .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                     .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                     .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"))
                                     .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
