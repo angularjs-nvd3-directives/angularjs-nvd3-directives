@@ -1482,6 +1482,7 @@
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
+                                        .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                     if(attrs.tooltipcontent){

@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-10-30
+/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-11-02
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2013 Christian Maurer; Licensed Apache License, v2.0 */
 (function()
@@ -2030,6 +2030,7 @@ function initializeMargin(scope, attrs){
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
+                                        .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                     if(attrs.tooltipcontent){
