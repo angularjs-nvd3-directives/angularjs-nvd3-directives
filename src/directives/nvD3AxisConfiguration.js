@@ -49,8 +49,8 @@
         if(attrs.xaxishighlightzero){
             chart.xAxis.highlightZero((attrs.xaxishighlightzero === "true"));
         }
-        if(attrs.xaxisrotatelables){
-            chart.xAxis.rotateLabels((+attrs.xaxisrotatelables));
+        if(attrs.xaxisrotatelabels){
+            chart.xAxis.rotateLabels((+attrs.xaxisrotatelabels));
         }
     //    if(attrs.xaxisrotateylabel){
     //        chart.xAxis.rotateYLabel((attrs.xaxisrotateylabel === "true"));
@@ -111,8 +111,8 @@
         if(attrs.yaxishighlightzero){
             chart.yAxis.highlightZero((attrs.yaxishighlightzero === "true"));
         }
-        if(attrs.yaxisrotatelables){
-            chart.yAxis.rotateLables(attrs.yaxisrotatelables);
+        if(attrs.yaxisrotatelabels){
+            chart.yAxis.rotateLabels(attrs.yaxisrotatelabels);
         }
         if(attrs.yaxisrotateylabel){
             chart.yAxis.rotateYLabel((attrs.yaxisrotateylabel === "true"));
@@ -167,8 +167,8 @@
         if(attrs.y1axishighlightzero){
             chart.y1Axis.highlightZero((attrs.y1axishighlightzero === "true"));
         }
-        if(attrs.y1axisrotatelables){
-            chart.y1Axis.highlightZero(scope.y1axisrotatelables);
+        if(attrs.y1axisrotatelabels){
+            chart.y1Axis.rotateLabels(scope.y1axisrotatelabels);
         }
         if(attrs.y1axisrotateylabel){
             chart.y1Axis.rotateYLabel((attrs.y1axisrotateylabel === "true"));
@@ -223,8 +223,8 @@
         if(attrs.y2axishighlightzero){
             chart.y2Axis.highlightZero((attrs.y2axishighlightzero === "true"));
         }
-        if(attrs.y2axisrotatelables){
-            chart.y2Axis.highlightZero(scope.y2axisrotatelables);
+        if(attrs.y2axisrotatelabels){
+            chart.y2Axis.rotateLabels(scope.y2axisrotatelabels);
         }
         if(attrs.y2axisrotateylabel){
             chart.y2Axis.rotateYLabel((attrs.y2axisrotateylabel === "true"));
