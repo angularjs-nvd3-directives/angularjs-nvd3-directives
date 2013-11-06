@@ -140,7 +140,7 @@
                     xaxisrangebands: '&',
                     xaxisshowmaxmin: '@',
                     xaxishighlightzero: '@',
-                    xaxisrotatelables: '@',
+                    xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
@@ -160,7 +160,7 @@
                     yaxisrangebands: '&',
                     yaxisshowmaxmin: '@',
                     yaxishighlightzero: '@',
-                    yaxisrotatelables: '@',
+                    yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
@@ -276,7 +276,7 @@
                     xaxisrangebands: '&',
                     xaxisshowmaxmin: '@',
                     xaxishighlightzero: '@',
-                    xaxisrotatelables: '@',
+                    xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
@@ -296,7 +296,7 @@
                     yaxisrangebands: '&',
                     yaxisshowmaxmin: '@',
                     yaxishighlightzero: '@',
-                    yaxisrotatelables: '@',
+                    yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
@@ -420,7 +420,7 @@
                     xaxisrangebands: '&',
                     xaxisshowmaxmin: '@',
                     xaxishighlightzero: '@',
-                    xaxisrotatelables: '@',
+                    xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
@@ -440,7 +440,7 @@
                     yaxisrangebands: '&',
                     yaxisshowmaxmin: '@',
                     yaxishighlightzero: '@',
-                    yaxisrotatelables: '@',
+                    yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
@@ -587,7 +587,7 @@
                     xaxisrangebands: '&',
                     xaxisshowmaxmin: '@',
                     xaxishighlightzero: '@',
-                    xaxisrotatelables: '@',
+                    xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
@@ -607,7 +607,7 @@
                     yaxisrangebands: '&',
                     yaxisshowmaxmin: '@',
                     yaxishighlightzero: '@',
-                    yaxisrotatelables: '@',
+                    yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
@@ -709,7 +709,7 @@
                     xaxisrangebands: '&',
                     xaxisshowmaxmin: '@',
                     xaxishighlightzero: '@',
-                    xaxisrotatelables: '@',
+                    xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
@@ -729,7 +729,7 @@
                     yaxisrangebands: '&',
                     yaxisshowmaxmin: '@',
                     yaxishighlightzero: '@',
-                    yaxisrotatelables: '@',
+                    yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
@@ -839,7 +839,7 @@
                     xaxisrangebands: '&',
                     xaxisshowmaxmin: '@',
                     xaxishighlightzero: '@',
-                    xaxisrotatelables: '@',
+                    xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
@@ -859,7 +859,7 @@
                     yaxisrangebands: '&',
                     yaxisshowmaxmin: '@',
                     yaxishighlightzero: '@',
-                    yaxisrotatelables: '@',
+                    yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
@@ -965,7 +965,7 @@
                     xaxisrangebands: '&',
                     xaxisshowmaxmin: '@',
                     xaxishighlightzero: '@',
-                    xaxisrotatelables: '@',
+                    xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
@@ -985,7 +985,7 @@
                     yaxisrangebands: '&',
                     yaxisshowmaxmin: '@',
                     yaxishighlightzero: '@',
-                    yaxisrotatelables: '@',
+                    yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
@@ -1190,7 +1190,7 @@
                     xaxisrangebands: '&',
                     xaxisshowmaxmin: '@',
                     xaxishighlightzero: '@',
-                    xaxisrotatelables: '@',
+                    xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
@@ -1210,7 +1210,7 @@
                     yaxisrangebands: '&',
                     yaxisshowmaxmin: '@',
                     yaxishighlightzero: '@',
-                    yaxisrotatelables: '@',
+                    yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
@@ -1407,7 +1407,7 @@
                     xaxisrangebands: '&',
                     xaxisshowmaxmin: '@',
                     xaxishighlightzero: '@',
-                    xaxisrotatelables: '@',
+                    xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
@@ -1427,7 +1427,7 @@
                     yaxisrangebands: '&',
                     yaxisshowmaxmin: '@',
                     yaxishighlightzero: '@',
-                    yaxisrotatelables: '@',
+                    yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
@@ -1447,7 +1447,7 @@
                     y2axisrangebands: '&',
                     y2axisshowmaxmin: '@',
                     y2axishighlightzero: '@',
-                    y2axisrotatelables: '@',
+                    y2axisrotatelabels: '@',
                     y2axisrotateylabel: '@',
                     y2axisstaggerlabels: '@',
 
@@ -1547,7 +1547,7 @@
                     xaxisrangebands: '&',
                     xaxisshowmaxmin: '@',
                     xaxishighlightzero: '@',
-                    xaxisrotatelables: '@',
+                    xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
@@ -1587,7 +1587,7 @@
                     yaxisrangebands: '&',
                     yaxisshowmaxmin: '@',
                     yaxishighlightzero: '@',
-                    yaxisrotatelables: '@',
+                    yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
@@ -1607,7 +1607,7 @@
                     y2axisrangebands: '&',
                     y2axisshowmaxmin: '@',
                     y2axishighlightzero: '@',
-                    y2axisrotatelables: '@',
+                    y2axisrotatelabels: '@',
                     y2axisrotateylabel: '@',
                     y2axisstaggerlabels: '@',
 
