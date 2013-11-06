@@ -26,6 +26,14 @@
                 }
             ];
 
+            $scope.xAxisTickFormatFunction = function(){
+                return function(d){
+//                    return d3.time.format('%X')(new Date(d));  //uncomment for time format
+                    return d3.time.format('%x')(new Date(d));  //uncomment for date format
+                }
+            }
+
+
         }
     </script>
 
@@ -35,7 +43,9 @@
 <div ng-controller="ExampleCtrl">
     <nvd3-line-with-focus-chart
             data="exampleData"
-            id="exampleId">
+            id="exampleId"
+            xAxisTickFormat="xAxisTickFormatFunction()"
+            x2AxisTickFormat="xAxisTickFormatFunction()">
          <svg></svg>
     </nvd3-line-with-focus-chart>
 </div>

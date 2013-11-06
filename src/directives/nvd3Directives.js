@@ -1551,6 +1551,26 @@
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
+                    //x2axis
+                    x2axisorient: '&',
+                    x2axisticks: '&',
+                    x2axistickvalues: '&xaxistickvalues',
+                    x2axisticksubdivide: '&',
+                    x2axisticksize: '&',
+                    x2axistickpadding: '&',
+                    x2axistickformat: '&',
+                    x2axislabel: '@',
+                    x2axisscale: '&',
+                    x2axisdomain: '&',
+                    x2axisrange: '&',
+                    x2axisrangeband: '&',
+                    x2axisrangebands: '&',
+                    x2axisshowmaxmin: '@',
+                    x2axishighlightzero: '@',
+                    x2axisrotatelables: '@',
+                    x2axisrotateylabel: '@',
+                    x2axisstaggerlabels: '@',
+
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -1641,6 +1661,7 @@
                                     }
 
                                     configureXaxis(chart, scope, attrs);
+                                    configureX2axis(chart, scope, attrs);
                                     configureY1axis(chart, scope, attrs);
                                     configureY2axis(chart, scope, attrs);
                                     processEvents(chart, scope);

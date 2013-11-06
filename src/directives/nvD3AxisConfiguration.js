@@ -60,6 +60,68 @@
         }
     }
 
+    function configureX2axis(chart, scope, attrs){
+        "use strict";
+        if(attrs.x2axisorient){
+            chart.x2Axis.orient(attrs.x2axisorient);
+        }
+        if(attrs.x2axisticks){
+            chart.x2Axis.scale().ticks(attrs.x2axisticks);
+        }
+        if(attrs.x2axistickvalues){
+            if(Array.isArray(scope.$eval(attrs.x2axistickvalues))){
+                chart.x2Axis.tickValues(scope.$eval(attrs.x2axistickvalues));
+            } else if(typeof scope.xaxistickvalues() === 'function'){
+                chart.x2Axis.tickValues(scope.x2axistickvalues());
+            }
+        }
+        if(attrs.x2axisticksubdivide){
+            chart.x2Axis.tickSubdivide(scope.x2axisticksubdivide());
+        }
+        if(attrs.x2axisticksize){
+            chart.x2Axis.tickSize(scope.x2axisticksize());
+        }
+        if(attrs.x2axistickpadding){
+            chart.x2Axis.tickPadding(scope.x2axistickpadding());
+        }
+        if(attrs.x2axistickformat){
+            chart.x2Axis.tickFormat(scope.x2axistickformat());
+        }
+        if(attrs.x2axislabel){
+            chart.x2Axis.axisLabel(attrs.x2axislabel);
+        }
+        if(attrs.x2axisscale){
+            chart.x2Axis.scale(scope.x2axisscale());
+        }
+        if(attrs.x2axisdomain){
+            chart.x2Axis.domain(scope.x2axisdomain());
+        }
+        if(attrs.x2axisrange){
+            chart.x2Axis.range(scope.x2axisrange());
+        }
+        if(attrs.x2axisrangeband){
+            chart.x2Axis.rangeBand(scope.x2axisrangeband());
+        }
+        if(attrs.x2axisrangebands){
+            chart.x2Axis.rangeBands(scope.x2axisrangebands());
+        }
+        if(attrs.x2axisshowmaxmin){
+            chart.x2Axis.showMaxMin((attrs.x2axisshowmaxmin === "true"));
+        }
+        if(attrs.x2axishighlightzero){
+            chart.x2Axis.highlightZero((attrs.x2axishighlightzero === "true"));
+        }
+        if(attrs.x2axisrotatelables){
+            chart.x2Axis.rotateLabels((+attrs.x2axisrotatelables));
+        }
+        //    if(attrs.xaxisrotateylabel){
+        //        chart.xAxis.rotateYLabel((attrs.xaxisrotateylabel === "true"));
+        //    }
+        if(attrs.x2axisstaggerlabels){
+            chart.x2Axis.staggerLabels((attrs.x2axisstaggerlabels === "true"));
+        }
+    }
+
     function configureYaxis(chart, scope, attrs){
     "use strict";
         if(attrs.yaxisorient){

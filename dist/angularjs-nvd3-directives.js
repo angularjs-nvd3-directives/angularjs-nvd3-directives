@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-11-02
+/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-11-06
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2013 Christian Maurer; Licensed Apache License, v2.0 */
 (function()
@@ -375,6 +375,68 @@
     //    }
         if(attrs.xaxisstaggerlabels){
             chart.xAxis.staggerLabels((attrs.xaxisstaggerlabels === "true"));
+        }
+    }
+
+    function configureX2axis(chart, scope, attrs){
+        "use strict";
+        if(attrs.x2axisorient){
+            chart.x2Axis.orient(attrs.x2axisorient);
+        }
+        if(attrs.x2axisticks){
+            chart.x2Axis.scale().ticks(attrs.x2axisticks);
+        }
+        if(attrs.x2axistickvalues){
+            if(Array.isArray(scope.$eval(attrs.x2axistickvalues))){
+                chart.x2Axis.tickValues(scope.$eval(attrs.x2axistickvalues));
+            } else if(typeof scope.xaxistickvalues() === 'function'){
+                chart.x2Axis.tickValues(scope.x2axistickvalues());
+            }
+        }
+        if(attrs.x2axisticksubdivide){
+            chart.x2Axis.tickSubdivide(scope.x2axisticksubdivide());
+        }
+        if(attrs.x2axisticksize){
+            chart.x2Axis.tickSize(scope.x2axisticksize());
+        }
+        if(attrs.x2axistickpadding){
+            chart.x2Axis.tickPadding(scope.x2axistickpadding());
+        }
+        if(attrs.x2axistickformat){
+            chart.x2Axis.tickFormat(scope.x2axistickformat());
+        }
+        if(attrs.x2axislabel){
+            chart.x2Axis.axisLabel(attrs.x2axislabel);
+        }
+        if(attrs.x2axisscale){
+            chart.x2Axis.scale(scope.x2axisscale());
+        }
+        if(attrs.x2axisdomain){
+            chart.x2Axis.domain(scope.x2axisdomain());
+        }
+        if(attrs.x2axisrange){
+            chart.x2Axis.range(scope.x2axisrange());
+        }
+        if(attrs.x2axisrangeband){
+            chart.x2Axis.rangeBand(scope.x2axisrangeband());
+        }
+        if(attrs.x2axisrangebands){
+            chart.x2Axis.rangeBands(scope.x2axisrangebands());
+        }
+        if(attrs.x2axisshowmaxmin){
+            chart.x2Axis.showMaxMin((attrs.x2axisshowmaxmin === "true"));
+        }
+        if(attrs.x2axishighlightzero){
+            chart.x2Axis.highlightZero((attrs.x2axishighlightzero === "true"));
+        }
+        if(attrs.x2axisrotatelables){
+            chart.x2Axis.rotateLabels((+attrs.x2axisrotatelables));
+        }
+        //    if(attrs.xaxisrotateylabel){
+        //        chart.xAxis.rotateYLabel((attrs.xaxisrotateylabel === "true"));
+        //    }
+        if(attrs.x2axisstaggerlabels){
+            chart.x2Axis.staggerLabels((attrs.x2axisstaggerlabels === "true"));
         }
     }
 
@@ -2099,6 +2161,26 @@ function initializeMargin(scope, attrs){
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
 
+                    //x2axis
+                    x2axisorient: '&',
+                    x2axisticks: '&',
+                    x2axistickvalues: '&xaxistickvalues',
+                    x2axisticksubdivide: '&',
+                    x2axisticksize: '&',
+                    x2axistickpadding: '&',
+                    x2axistickformat: '&',
+                    x2axislabel: '@',
+                    x2axisscale: '&',
+                    x2axisdomain: '&',
+                    x2axisrange: '&',
+                    x2axisrangeband: '&',
+                    x2axisrangebands: '&',
+                    x2axisshowmaxmin: '@',
+                    x2axishighlightzero: '@',
+                    x2axisrotatelables: '@',
+                    x2axisrotateylabel: '@',
+                    x2axisstaggerlabels: '@',
+
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -2189,6 +2271,7 @@ function initializeMargin(scope, attrs){
                                     }
 
                                     configureXaxis(chart, scope, attrs);
+                                    configureX2axis(chart, scope, attrs);
                                     configureY1axis(chart, scope, attrs);
                                     configureY2axis(chart, scope, attrs);
                                     processEvents(chart, scope);
