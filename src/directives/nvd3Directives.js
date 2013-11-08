@@ -49,26 +49,21 @@
         initializeHeight(scope, attrs, element);
     }
 
-    function checkElementID(scope, attrs, element, chart, data)
-    {
-
+    function checkElementID(scope, attrs, element, chart, data) {
+        'use strict';
         var dataAttributeChartID; //randomly generated if id attribute doesn't exist
-
         if(!attrs.id){
-
             dataAttributeChartID = "chartid" + Math.floor(Math.random()*1000000001);
             angular.element(element).attr('data-chartid', dataAttributeChartID );    
-
             //if an id is not supplied, create a random id.
-            if(d3.select('[data-chartid=' + dataAttributeChartID + '] svg').empty()){
+            if(d3.select('[data-chartid=' + dataAttributeChartID + '] svg').empty()) {
                 d3.select('[data-chartid=' + dataAttributeChartID + ']').append('svg')
                 .attr('height', scope.height)
                 .attr('width', scope.width)
                 .datum(data)
                 .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
                 .call(chart);
-            }
-            else{
+            } else {
                 d3.select('[data-chartid=' + dataAttributeChartID + '] svg')
                 .attr('height', scope.height)
                 .attr('width', scope.width)
@@ -76,15 +71,11 @@
                 .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
                 .call(chart);  
             }
-
-        } 
-        else{
-
-            if(d3.select('#' + attrs.id + ' svg').empty()){
+        } else {
+            if(d3.select('#' + attrs.id + ' svg').empty()) {
                 d3.select('#' + attrs.id)
                     .append('svg');
-            } 
-                                         
+            }
             d3.select('#' + attrs.id + ' svg')
                 .attr('height', scope.height)
                 .attr('width', scope.width)
