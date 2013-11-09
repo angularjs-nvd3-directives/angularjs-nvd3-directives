@@ -1503,6 +1503,7 @@
                     data: '=',
                     width: '@',
                     height: '@',
+                    height2: '@',
                     id: '@',
                     showlegend: '@',
                     tooltips: '@',
@@ -1638,14 +1639,17 @@
                                     var chart = nv.models.lineWithFocusChart()
                                         .width(scope.width)
                                         .height(scope.height)
-    //                                    .height2()
+                                        .height2((attrs.height2 === undefined ? 100 : (+attrs.height2)))
                                         .margin(scope.margin)
+                                        .margin2(scope.margin2)
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                        .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); });
+                                        .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
+                                        .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); })
+                                        .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate);
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
