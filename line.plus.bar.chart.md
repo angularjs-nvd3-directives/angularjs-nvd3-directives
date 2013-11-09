@@ -51,6 +51,25 @@ layout: example
             }
         }
 
+        $scope.xFunction = function(){
+            return function(d){
+                return d[0];
+            };
+        }
+
+        $scope.yFunction = function(){
+            return function(d){
+                return d[1];
+            };
+        }
+        $scope.toolTipContentFunction = function(){
+            return function(key, x, y, e, graph) {
+                    return  'Super New Tooltip' +
+                    '<h1>' + key + '</h1>' +
+                    '<p>' +  y + ' at ' + x + '</p>'
+            }
+        }
+
     }
 </script>
 
@@ -197,7 +216,8 @@ $scope.colorFunction = function() {
         yAxisTickFormat="yAxisTickFormatFunction()"
         y2AxisTickFormat="y2AxisTickFormatFunction()"
         color="colorFunction()">
-        	<svg></svg></nvd3-line-plus-bar-chart>
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
 </div>
 
 
@@ -351,3 +371,527 @@ $scope.yFunction = function(){
     </nvd3-line-plus-bar-chart>
 </div>
             
+## Tooltips
+Enables (true) or Disables (false) rendering of the tooltips.
+
+The Interactive attribute must be included and set to true before tooltips will be rendered.
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="toolTipExample"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        tooltips="true">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="toolTipExample"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        tooltips="true">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+## Tooltip Content
+Controls how the tooltips are displayed.
+
+The Tooltips attribute must be included and set to true before tooltips will be rendered.
+
+Datatype: Function
+
+The function has the following signature function(key, x, y, e, graph), and should return a String.
+
+{% highlight javascript %}
+$scope.toolTipContentFunction = function(){
+	return function(key, x, y, e, graph) {
+    	return  'Super New Tooltip' +
+        	'<h1>' + key + '</h1>' +
+            '<p>' +  y + ' at ' + x + '</p>'
+	}
+}
+{% endhighlight %}
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="toolTipContentExample"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        tooltips="true"
+        tooltipcontent="toolTipContentFunction()">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="toolTipContentExample"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        tooltips="true"
+        tooltipcontent="toolTipContentFunction()">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+
+
+## Interpolate
+
+Refer to Interpolation on the <a href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_interpolate">d3.js</a> wiki.
+
+If interpolate is specified, sets the interpolation mode to the specified string. If interpolate is not specified, returns the current interpolation mode.
+
+### *Linear*
+Piecewise linear segments, as in a polyline.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleLinear"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="linear">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleLinear"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="linear">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Linear-Closed*
+Close the linear segments to form a polygon.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleLinearClosed"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="linear-closed">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleLinearClosed"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="linear-closed">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Step*
+Alternate between horizontal and vertical segments, as in a step function.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleStep"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="step">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleStep"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="step">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Step-Before*
+Alternate between vertical and horizontal segments, as in a step function.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleStepBefore"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="step-before">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleStepBefore"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="step-before">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Step-After*
+Alternate between horizontal and vertical segments, as in a step function.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleStepAfter"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="step-after">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleStepAfter"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="step-after">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Basis*
+A B-spline, with control point duplication on the ends.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleBasis"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="basis">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleBasis"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="basis">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Basis-Open*
+An open B-spline; may not intersect the start or end.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleBasisOpen"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="basis-open">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleBasisOpen"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="basis-open">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Basis-Closed*
+A closed B-spline, as in a loop.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleBasisClosed"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="basis-closed">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleBasisClosed"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="basis-closed">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Bundle*
+Equivalent to basis, except the tension parameter is used to straighten the spline.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleBundle"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="bundle">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleBundle"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="bundle">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Cardinal*
+A Cardinal spline, with control point duplication on the ends.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleCardinal"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="cardinal">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleCardinal"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        interpolate="cardinal">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Cardinal-Open*
+An open Cardinal spline; may not intersect the start or end, but will intersect other control points.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleCardinalOpen"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        interpolate="cardinal-open">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleCardinalOpen"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="cardinal-open">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Cardinal-Closed*
+A closed Cardinal spline, as in a loop.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleCardinalClosed"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="cardinal-closed">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleCardinalClosed"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="cardinal-closed">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+### *Monotone*
+Cubic interpolation that preserves monotonicity in y.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleMonotone"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="monotone">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+    	data="exampleData"
+        id="interpolateExampleMonotone"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()"
+        interpolate="monotone">
+        	<svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
+

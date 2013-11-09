@@ -1,0 +1,1009 @@
+---
+title: linewithfocuschart
+layout: example
+---
+<script>
+var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
+
+    function ExampleCtrl($scope){
+        $scope.exampleData = [
+            {
+                "key" : "Quantity" ,
+                "bar": true,
+                "values" : [ [ 1136005200000 , 1271000.0] , [ 1138683600000 , 1271000.0] , [ 1141102800000 , 1271000.0] , [ 1143781200000 , 0] , [ 1146369600000 , 0] , [ 1149048000000 , 0] , [ 1151640000000 , 0] , [ 1154318400000 , 0] , [ 1156996800000 , 0] , [ 1159588800000 , 3899486.0] , [ 1162270800000 , 3899486.0] , [ 1164862800000 , 3899486.0] , [ 1167541200000 , 3564700.0] , [ 1170219600000 , 3564700.0] , [ 1172638800000 , 3564700.0] , [ 1175313600000 , 2648493.0] , [ 1177905600000 , 2648493.0] , [ 1180584000000 , 2648493.0] , [ 1183176000000 , 2522993.0] , [ 1185854400000 , 2522993.0] , [ 1188532800000 , 2522993.0] , [ 1191124800000 , 2906501.0] , [ 1193803200000 , 2906501.0] , [ 1196398800000 , 2906501.0] , [ 1199077200000 , 2206761.0] , [ 1201755600000 , 2206761.0] , [ 1204261200000 , 2206761.0] , [ 1206936000000 , 2287726.0] , [ 1209528000000 , 2287726.0] , [ 1212206400000 , 2287726.0] , [ 1214798400000 , 2732646.0] , [ 1217476800000 , 2732646.0] , [ 1220155200000 , 2732646.0] , [ 1222747200000 , 2599196.0] , [ 1225425600000 , 2599196.0] , [ 1228021200000 , 2599196.0] , [ 1230699600000 , 1924387.0] , [ 1233378000000 , 1924387.0] , [ 1235797200000 , 1924387.0] , [ 1238472000000 , 1756311.0] , [ 1241064000000 , 1756311.0] , [ 1243742400000 , 1756311.0] , [ 1246334400000 , 1743470.0] , [ 1249012800000 , 1743470.0] , [ 1251691200000 , 1743470.0] , [ 1254283200000 , 1519010.0] , [ 1256961600000 , 1519010.0] , [ 1259557200000 , 1519010.0] , [ 1262235600000 , 1591444.0] , [ 1264914000000 , 1591444.0] , [ 1267333200000 , 1591444.0] , [ 1270008000000 , 1543784.0] , [ 1272600000000 , 1543784.0] , [ 1275278400000 , 1543784.0] , [ 1277870400000 , 1309915.0] , [ 1280548800000 , 1309915.0] , [ 1283227200000 , 1309915.0] , [ 1285819200000 , 1331875.0] , [ 1288497600000 , 1331875.0] , [ 1291093200000 , 1331875.0] , [ 1293771600000 , 1331875.0] , [ 1296450000000 , 1154695.0] , [ 1298869200000 , 1154695.0] , [ 1301544000000 , 1194025.0] , [ 1304136000000 , 1194025.0] , [ 1306814400000 , 1194025.0] , [ 1309406400000 , 1194025.0] , [ 1312084800000 , 1194025.0] , [ 1314763200000 , 1244525.0] , [ 1317355200000 , 475000.0] , [ 1320033600000 , 475000.0] , [ 1322629200000 , 475000.0] , [ 1325307600000 , 690033.0] , [ 1327986000000 , 690033.0] , [ 1330491600000 , 690033.0] , [ 1333166400000 , 514733.0] , [ 1335758400000 , 514733.0]]
+            },
+            {
+                "key" : "Price" ,
+                "values" : [ [ 1136005200000 , 71.89] , [ 1138683600000 , 75.51] , [ 1141102800000 , 68.49] , [ 1143781200000 , 62.72] , [ 1146369600000 , 70.39] , [ 1149048000000 , 59.77] , [ 1151640000000 , 57.27] , [ 1154318400000 , 67.96] , [ 1156996800000 , 67.85] , [ 1159588800000 , 76.98] , [ 1162270800000 , 81.08] , [ 1164862800000 , 91.66] , [ 1167541200000 , 84.84] , [ 1170219600000 , 85.73] , [ 1172638800000 , 84.61] , [ 1175313600000 , 92.91] , [ 1177905600000 , 99.8] , [ 1180584000000 , 121.191] , [ 1183176000000 , 122.04] , [ 1185854400000 , 131.76] , [ 1188532800000 , 138.48] , [ 1191124800000 , 153.47] , [ 1193803200000 , 189.95] , [ 1196398800000 , 182.22] , [ 1199077200000 , 198.08] , [ 1201755600000 , 135.36] , [ 1204261200000 , 125.02] , [ 1206936000000 , 143.5] , [ 1209528000000 , 173.95] , [ 1212206400000 , 188.75] , [ 1214798400000 , 167.44] , [ 1217476800000 , 158.95] , [ 1220155200000 , 169.53] , [ 1222747200000 , 113.66] , [ 1225425600000 , 107.59] , [ 1228021200000 , 92.67] , [ 1230699600000 , 85.35] , [ 1233378000000 , 90.13] , [ 1235797200000 , 89.31] , [ 1238472000000 , 105.12] , [ 1241064000000 , 125.83] , [ 1243742400000 , 135.81] , [ 1246334400000 , 142.43] , [ 1249012800000 , 163.39] , [ 1251691200000 , 168.21] , [ 1254283200000 , 185.35] , [ 1256961600000 , 188.5] , [ 1259557200000 , 199.91] , [ 1262235600000 , 210.732] , [ 1264914000000 , 192.063] , [ 1267333200000 , 204.62] , [ 1270008000000 , 235.0] , [ 1272600000000 , 261.09] , [ 1275278400000 , 256.88] , [ 1277870400000 , 251.53] , [ 1280548800000 , 257.25] , [ 1283227200000 , 243.1] , [ 1285819200000 , 283.75] , [ 1288497600000 , 300.98] , [ 1291093200000 , 311.15] , [ 1293771600000 , 322.56] , [ 1296450000000 , 339.32] , [ 1298869200000 , 353.21] , [ 1301544000000 , 348.5075] , [ 1304136000000 , 350.13] , [ 1306814400000 , 347.83] , [ 1309406400000 , 335.67] , [ 1312084800000 , 390.48] , [ 1314763200000 , 384.83] , [ 1317355200000 , 381.32] , [ 1320033600000 , 404.78] , [ 1322629200000 , 382.2] , [ 1325307600000 , 405.0] , [ 1327986000000 , 456.48] , [ 1330491600000 , 542.44] , [ 1333166400000 , 599.55] , [ 1335758400000 , 583.98] ]
+            }
+        ];
+
+        $scope.noDataData = [
+            {
+                "key": "Series 1",
+                "values": [ ]
+            }
+        ];
+
+        $scope.xAxisTickFormatFunction = function(){
+            return function(d){
+                return d3.time.format('%x')(new Date(d));  //uncomment for date format
+            }
+        }
+
+        var colorArray = ['#CC0000', '#FF6666', '#FFE6E6'];
+        $scope.colorFunction = function() {
+            return function(d, i) {
+                return colorArray[i];
+            };
+        }
+
+        $scope.xFunction = function(){
+            return function(d){
+                return d[0];
+            };
+        }
+
+        $scope.yFunction = function(){
+            return function(d){
+                return d[1];
+            };
+        }
+
+        $scope.toolTipContentFunction = function(){
+            return function(key, x, y, e, graph) {
+                return  'Super New Tooltip' +
+                    '<h1>' + key + '</h1>' +
+                    '<p>' +  y + ' at ' + x + '</p>'
+            }
+        }
+
+}
+    </script>
+Creating and Configuring a Line Plus Bar Chart
+=========================
+
+
+## How to create a basic chart
+
+
+Include angularjs-nvd3-directives.js in your HTML file.
+
+{% highlight html %}
+<script src="dist/angularjs-nvd3-directives.js"></script>
+{% endhighlight %}
+
+Include other dependencies for nvd3.js and d3.js.
+
+{% highlight html %}
+<script src="../build/components/d3/d3.js"></script>
+<script src="../build/components/nvd3/nv.d3.js"></script>
+<link rel="stylesheet" href="path/to/nv.d3.css"/>
+{% endhighlight %}
+
+
+In the Angular App, include nvd3ChartDirectives as a dependency.
+
+{% highlight javascript %}
+var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
+{% endhighlight %}
+
+Create an Angular.js Controller, and assign json data to a scope variable.
+
+{% highlight javascript linenos %}
+function ExampleCtrl($scope){
+
+    $scope.exampleData = [
+        {
+            "key" : "Quantity" ,
+            "bar": true,
+            "values" : [ [ 1136005200000 , 1271000.0] , [ 1138683600000 , 1271000.0] , [ 1141102800000 , 1271000.0] , [ 1143781200000 , 0] , [ 1146369600000 , 0] , [ 1149048000000 , 0] , [ 1151640000000 , 0] , [ 1154318400000 , 0] , [ 1156996800000 , 0] , [ 1159588800000 , 3899486.0] , [ 1162270800000 , 3899486.0] , [ 1164862800000 , 3899486.0] , [ 1167541200000 , 3564700.0] , [ 1170219600000 , 3564700.0] , [ 1172638800000 , 3564700.0] , [ 1175313600000 , 2648493.0] , [ 1177905600000 , 2648493.0] , [ 1180584000000 , 2648493.0] , [ 1183176000000 , 2522993.0] , [ 1185854400000 , 2522993.0] , [ 1188532800000 , 2522993.0] , [ 1191124800000 , 2906501.0] , [ 1193803200000 , 2906501.0] , [ 1196398800000 , 2906501.0] , [ 1199077200000 , 2206761.0] , [ 1201755600000 , 2206761.0] , [ 1204261200000 , 2206761.0] , [ 1206936000000 , 2287726.0] , [ 1209528000000 , 2287726.0] , [ 1212206400000 , 2287726.0] , [ 1214798400000 , 2732646.0] , [ 1217476800000 , 2732646.0] , [ 1220155200000 , 2732646.0] , [ 1222747200000 , 2599196.0] , [ 1225425600000 , 2599196.0] , [ 1228021200000 , 2599196.0] , [ 1230699600000 , 1924387.0] , [ 1233378000000 , 1924387.0] , [ 1235797200000 , 1924387.0] , [ 1238472000000 , 1756311.0] , [ 1241064000000 , 1756311.0] , [ 1243742400000 , 1756311.0] , [ 1246334400000 , 1743470.0] , [ 1249012800000 , 1743470.0] , [ 1251691200000 , 1743470.0] , [ 1254283200000 , 1519010.0] , [ 1256961600000 , 1519010.0] , [ 1259557200000 , 1519010.0] , [ 1262235600000 , 1591444.0] , [ 1264914000000 , 1591444.0] , [ 1267333200000 , 1591444.0] , [ 1270008000000 , 1543784.0] , [ 1272600000000 , 1543784.0] , [ 1275278400000 , 1543784.0] , [ 1277870400000 , 1309915.0] , [ 1280548800000 , 1309915.0] , [ 1283227200000 , 1309915.0] , [ 1285819200000 , 1331875.0] , [ 1288497600000 , 1331875.0] , [ 1291093200000 , 1331875.0] , [ 1293771600000 , 1331875.0] , [ 1296450000000 , 1154695.0] , [ 1298869200000 , 1154695.0] , [ 1301544000000 , 1194025.0] , [ 1304136000000 , 1194025.0] , [ 1306814400000 , 1194025.0] , [ 1309406400000 , 1194025.0] , [ 1312084800000 , 1194025.0] , [ 1314763200000 , 1244525.0] , [ 1317355200000 , 475000.0] , [ 1320033600000 , 475000.0] , [ 1322629200000 , 475000.0] , [ 1325307600000 , 690033.0] , [ 1327986000000 , 690033.0] , [ 1330491600000 , 690033.0] , [ 1333166400000 , 514733.0] , [ 1335758400000 , 514733.0]]
+        },
+        {
+            "key" : "Price" ,
+            "values" : [ [ 1136005200000 , 71.89] , [ 1138683600000 , 75.51] , [ 1141102800000 , 68.49] , [ 1143781200000 , 62.72] , [ 1146369600000 , 70.39] , [ 1149048000000 , 59.77] , [ 1151640000000 , 57.27] , [ 1154318400000 , 67.96] , [ 1156996800000 , 67.85] , [ 1159588800000 , 76.98] , [ 1162270800000 , 81.08] , [ 1164862800000 , 91.66] , [ 1167541200000 , 84.84] , [ 1170219600000 , 85.73] , [ 1172638800000 , 84.61] , [ 1175313600000 , 92.91] , [ 1177905600000 , 99.8] , [ 1180584000000 , 121.191] , [ 1183176000000 , 122.04] , [ 1185854400000 , 131.76] , [ 1188532800000 , 138.48] , [ 1191124800000 , 153.47] , [ 1193803200000 , 189.95] , [ 1196398800000 , 182.22] , [ 1199077200000 , 198.08] , [ 1201755600000 , 135.36] , [ 1204261200000 , 125.02] , [ 1206936000000 , 143.5] , [ 1209528000000 , 173.95] , [ 1212206400000 , 188.75] , [ 1214798400000 , 167.44] , [ 1217476800000 , 158.95] , [ 1220155200000 , 169.53] , [ 1222747200000 , 113.66] , [ 1225425600000 , 107.59] , [ 1228021200000 , 92.67] , [ 1230699600000 , 85.35] , [ 1233378000000 , 90.13] , [ 1235797200000 , 89.31] , [ 1238472000000 , 105.12] , [ 1241064000000 , 125.83] , [ 1243742400000 , 135.81] , [ 1246334400000 , 142.43] , [ 1249012800000 , 163.39] , [ 1251691200000 , 168.21] , [ 1254283200000 , 185.35] , [ 1256961600000 , 188.5] , [ 1259557200000 , 199.91] , [ 1262235600000 , 210.732] , [ 1264914000000 , 192.063] , [ 1267333200000 , 204.62] , [ 1270008000000 , 235.0] , [ 1272600000000 , 261.09] , [ 1275278400000 , 256.88] , [ 1277870400000 , 251.53] , [ 1280548800000 , 257.25] , [ 1283227200000 , 243.1] , [ 1285819200000 , 283.75] , [ 1288497600000 , 300.98] , [ 1291093200000 , 311.15] , [ 1293771600000 , 322.56] , [ 1296450000000 , 339.32] , [ 1298869200000 , 353.21] , [ 1301544000000 , 348.5075] , [ 1304136000000 , 350.13] , [ 1306814400000 , 347.83] , [ 1309406400000 , 335.67] , [ 1312084800000 , 390.48] , [ 1314763200000 , 384.83] , [ 1317355200000 , 381.32] , [ 1320033600000 , 404.78] , [ 1322629200000 , 382.2] , [ 1325307600000 , 405.0] , [ 1327986000000 , 456.48] , [ 1330491600000 , 542.44] , [ 1333166400000 , 599.55] , [ 1335758400000 , 583.98] ]
+        }
+    ];
+
+    $scope.xAxisTickFormatFunction = function(){
+        return function(d){
+            return d3.time.format('%x')(new Date(d));  //uncomment for date format
+        }
+    }
+
+}
+
+{% endhighlight %}
+Include the chart directive in HTML.
+The data html attribute should point to the scope variable (exampleData).
+Other directive attributes should be the same as the public attributes associated with each chart.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-with-focus-chart
+            data="exampleData"
+            id="exampleId"
+            height="400"
+            height2="50"
+            xAxisTickFormat="xAxisTickFormatFunction()"
+            x2AxisTickFormat="xAxisTickFormatFunction()">
+         <svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-with-focus-chart
+            data="exampleData"
+            id="exampleId"
+            height="400"
+            height2="50"
+            xAxisTickFormat="xAxisTickFormatFunction()"
+            x2AxisTickFormat="xAxisTickFormatFunction()">
+         <svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+#Configuration Options
+
+
+<!--
+
+.showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
+.tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+.noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
+.isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); });
+
+-->
+
+
+
+## ID
+Identifier for the chart.  Utilized heavily by d3.js and nvd3.js when creating and updating charts.  If there is more than one chart on a page, every chart should have a unique id.
+Datatype: String
+
+## Width
+Controls the display width of the chart.
+Datatype: Number
+
+## Height
+Controls the display height of the top chart.
+Datatype: Number
+
+## Height2
+Controls the display height of the bottom chart.
+Datatype: Number
+
+## Margin
+Controls the external margin of the top chart.
+
+Datatype: Object, Number: ``{left:0,top:0,bottom:0,right:0}``
+
+## Margin2
+Controls the external margin of the bottom chart.
+
+Datatype: Object, Number: ``{left:0,top:0,bottom:0,right:0}``
+
+## Color
+Controls the colors of the chart elements.
+
+Datatype: Function
+
+The function is the same as the d3.js color functions.  Refer to <a href="https://github.com/mbostock/d3/wiki/Colors">d3.js Colors</a> for d3.js color-specific documentation.
+
+To use a configuration function, create a function on the $scope (i.e. $scope.colorFunction).  The function can be named anything, as long as it does not conflict with an existing function name.
+To 'connect' the $scope function with the chart.color() function, add a color="" attribute to the directive, with the value of the attribute being the name of the $scope function (i.e. scope="colorFunction()").
+
+{% highlight javascript %}
+var colorArray = ['#CC0000', '#FF6666', '#FFE6E6'];
+$scope.colorFunction = function() {
+    return function(d, i) {
+        return colorArray[i];
+    };
+}
+{% endhighlight %}
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="colorExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        color="colorFunction()">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="colorExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        color="colorFunction()">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+## Is Area
+Enables (true) or Disables (false) rendering of the area for a chart.
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-with-focus-chart
+        data="exampleData"
+        id="isAreaExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        isArea="true">
+        <svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-with-focus-chart
+        data="exampleData"
+        id="isAreaExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        isArea="true">
+        <svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+## Show Legend
+Enables (true) or Disables (false) rendering of the Chart Legend.
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+ 	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="showLegendExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        showLegend="true">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="showLegendExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        showLegend="true">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+## No Data
+Defines the message displayed when data is not available.
+
+Datatype: String
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="noDataData"
+        id="noDataExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        noData="No Data For You!">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="noDataData"
+        id="noDataExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        noData="No Data For You!">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+## X
+Function that allows nvd3.js and d3.js to access x values from the 'data'.
+
+Datatype: Function
+
+{% highlight javascript %}
+$scope.xFunction = function(){
+	return function(d){
+		return d[0];
+	};
+}
+{% endhighlight %}
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="xExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        x="xFunction()">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="xExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        x="xFunction()">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+## Y
+Function that allows nvd3 and d3 to access y values from the 'data'.
+
+Datatype: Function
+
+{% highlight javascript %}
+$scope.yFunction = function(){
+	return function(d){
+		return d[1];
+	};
+}
+{% endhighlight %}
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="yExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        y="yFunction()">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="yExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        y="yFunction()">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+## Force X
+List of numbers to Force into the X scale (ie. 0, or a max / min, etc.).  The numbers tell the d3.js the values to use in the scale, rather than d3.js determining the values.
+
+Datatype: Array of Numbers (i.e. [0, 50])
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="forcexExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        forcex="[0]">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="forcexExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        forcex="[0]">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+            
+## Force Y
+List of numbers to Force into the Y scale (ie. 0, or a max / min, etc.).  The numbers tell the d3.js the values to use in the scale, rather than d3.js determining the values.
+
+Datatype: Array of Numbers (i.e. [0, 50]
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="forceyExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        forcey="[500]">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="forceyExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        forcey="[500]">
+    		<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+## Interactive
+Enables (true) or Disables (false) interactivity for a chart.  Interactivity includes tooltips, click events, etc.
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interactiveExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interactive="true">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interactiveExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interactive="true">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+
+## Tooltips
+Enables (true) or Disables (false) rendering of the tooltips.
+
+The Interactive attribute must be included and set to true before tooltips will be rendered.
+
+Datatype: boolean - (true/false)
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="toolTipExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        tooltips="true">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="toolTipExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        tooltips="true">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+## Tooltip Content
+Controls how the tooltips are displayed.
+
+The Interactive attribute must be included and set to true before tooltips will be rendered.
+
+The Tooltips attribute must be included and set to true before tooltips will be rendered.
+
+Datatype: Function
+
+The function has the following signature function(key, x, y, e, graph), and should return a String.
+
+{% highlight javascript %}
+$scope.toolTipContentFunction = function(){
+	return function(key, x, y, e, graph) {
+    	return  'Super New Tooltip' +
+        	'<h1>' + key + '</h1>' +
+            '<p>' +  y + ' at ' + x + '</p>'
+	}
+}
+{% endhighlight %}
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="toolTipContentExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        tooltips="true"
+        tooltipcontent="toolTipContentFunction()">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="toolTipContentExample"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        tooltips="true"
+        tooltipcontent="toolTipContentFunction()">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+
+## Interpolate
+
+Refer to Interpolation on the <a href="https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_interpolate">d3.js</a> wiki.
+
+If interpolate is specified, sets the interpolation mode to the specified string. If interpolate is not specified, returns the current interpolation mode.
+
+### *Linear*
+Piecewise linear segments, as in a polyline.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleLinear"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="linear">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleLinear"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="linear">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Linear-Closed*
+Close the linear segments to form a polygon.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleLinearClosed"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="linear-closed">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleLinearClosed"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="linear-closed">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Step*
+Alternate between horizontal and vertical segments, as in a step function.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleStep"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="step">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleStep"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="step">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Step-Before*
+Alternate between vertical and horizontal segments, as in a step function.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleStepBefore"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="step-before">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleStepBefore"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="step-before">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Step-After*
+Alternate between horizontal and vertical segments, as in a step function.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleStepAfter"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="step-after">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleStepAfter"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="step-after">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Basis*
+A B-spline, with control point duplication on the ends.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleBasis"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="basis">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleBasis"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="basis">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Basis-Open*
+An open B-spline; may not intersect the start or end.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleBasisOpen"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="basis-open">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleBasisOpen"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="basis-open">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Basis-Closed*
+A closed B-spline, as in a loop.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleBasisClosed"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="basis-closed">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleBasisClosed"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="basis-closed">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Bundle*
+Equivalent to basis, except the tension parameter is used to straighten the spline.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleBundle"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="bundle">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleBundle"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="bundle">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Cardinal*
+A Cardinal spline, with control point duplication on the ends.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleCardinal"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="cardinal">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleCardinal"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="cardinal">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Cardinal-Open*
+An open Cardinal spline; may not intersect the start or end, but will intersect other control points.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleCardinalOpen"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="cardinal-open">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleCardinalOpen"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="cardinal-open">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Cardinal-Closed*
+A closed Cardinal spline, as in a loop.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleCardinalClosed"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="cardinal-closed">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleCardinalClosed"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="cardinal-closed">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+
+### *Monotone*
+Cubic interpolation that preserves monotonicity in y.
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleMonotone"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="monotone">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
+{% endhighlight %}
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-with-focus-chart
+    	data="exampleData"
+        id="interpolateExampleMonotone"
+        height="400"
+        height2="50"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()"
+        interpolate="monotone">
+        	<svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
