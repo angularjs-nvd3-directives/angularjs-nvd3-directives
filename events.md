@@ -92,16 +92,6 @@ $scope.$on('tooltipShow.directive', function(angularEvent, event){
     </div>
 </div>
 
-
-## Scopes expposed on Angular Events
-
-currentScope
-
-targetScope
-
-$digest after setting scope.  Scope is not "$digested" automatically in the $on method.
-
-
 ## Exposed Events by Model
 
 [Chart]()
