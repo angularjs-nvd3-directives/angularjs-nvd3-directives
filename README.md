@@ -11,4 +11,29 @@
 
 ![Line Charts](http://cmaurer.github.io/img/line.chart.png "Line Charts")
 
+```html
+<nvd3-line-chart
+    data="exampleData"
+    width="600"
+    height="350"
+    showXAxis="true"
+    showYAxis="true"
+    xAxisTickFormat="xAxisTickFormat_Date_Format()"
+    yAxisTickFormat="yAxisFormatFunction()">
+</nvd3-line-chart>
+```
+
+![Stacked Area Charts](http://cmaurer.github.io/img/stacked.area.png "Stacked Area Charts")
+
+```html
+<nvd3-stacked-area-chart
+    data="exampleData"
+    width="600"
+    height="350"
+    showXAxis="true"
+    showYAxis="true"
+    xAxisTickFormat="xAxisTickFormat()">
+</nvd3-stacked-area-chart>
+```
+
 [More Examples](http://cmaurer.github.io/angularjs-nvd3-directives)
