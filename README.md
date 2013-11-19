@@ -9,6 +9,6 @@
 [![devDependency Status](https://david-dm.org/alanshaw/david-www/dev-status.png)](https://david-dm.org/cmaurer/angularjs-nvd3-directives#info=devDependencies)
 [![Coverage Status](https://coveralls.io/repos/cmaurer/angularjs-nvd3-directives/badge.png)](https://coveralls.io/r/cmaurer/angularjs-nvd3-directives)
 
-![Line Charts](https://drive.google.com/file/d/0BytqtjAZtsO3R1o3eVdlaFIzdHM/edit?usp=sharing "Line Charts")
+![Line Charts](http://cmaurer.github.io/img/line.chart.png "Line Charts")
 
 [More Examples](http://cmaurer.github.io/angularjs-nvd3-directives)
