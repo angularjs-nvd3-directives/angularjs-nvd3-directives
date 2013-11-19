@@ -407,6 +407,7 @@
                     sizeDomain: '&',
 
                     //xaxis
+                    showxaxis: '&',
                     xaxisorient: '&',
                     xaxisticks: '&',
                     xaxistickvalues: '&xaxistickvalues',
@@ -427,6 +428,7 @@
                     xaxisstaggerlabels: '@',
 
                     //yaxis
+                    showyaxis: '&',
                     yaxisorient: '&',
                     yaxisticks: '&',
                     yaxistickvalues: '&yaxistickvalues',
@@ -480,6 +482,8 @@
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize)) // List of numbers to Force into the Size scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
+                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
+                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
@@ -574,6 +578,7 @@
                     stacked: '@',
 
                     //xaxis
+                    showxaxis: '&',
                     xaxisorient: '&',
                     xaxisticks: '&',
                     xaxistickvalues: '&xaxistickvalues',
@@ -594,6 +599,7 @@
                     xaxisstaggerlabels: '@',
 
                     //yaxis
+                    showyaxis: '&',
                     yaxisorient: '&',
                     yaxisticks: '&',
                     yaxistickvalues: '&yaxistickvalues',
@@ -644,6 +650,8 @@
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
+                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
+                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                         .reduceXTicks(attrs.reducexticks === undefined ? false: (attrs.reducexticks === "true"))
                                         .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"))
