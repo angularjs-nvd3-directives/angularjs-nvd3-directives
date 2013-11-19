@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-11-09
+/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-11-18
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2013 Christian Maurer; Licensed Apache License, v2.0 */
 (function()
@@ -161,6 +161,32 @@
                 }
             };
         });
+function initializeLegendMargin(scope, attrs){
+    'use strict';
+    var margin = (scope.$eval(attrs.legendmargin) || {left: 0, top: 5, bottom: 5, right: 0});
+    if (typeof(margin) !== "object") {
+        // we were passed a vanilla int, convert to full margin object
+        margin = {left: margin, top: margin, bottom: margin, right: margin};
+    }
+    scope.legendmargin = margin;
+}
+
+function configureLegend(chart, scope, attrs){
+    'use strict';
+    if(chart.legend && attrs.showlegend && (attrs.showlegend === "true")){
+        initializeLegendMargin(scope, attrs);
+        chart.legend.margin(scope.legendmargin);
+        chart.legend.width(attrs.legendwidth === undefined ? 400 : (+attrs.legendwidth));
+        chart.legend.height(attrs.legendheight === undefined ? 20 : (+attrs.legendheight));
+        chart.legend.key(attrs.legendkey === undefined ? function(d) { return d.key; } : scope.legendkey());
+        chart.legend.color(attrs.legendcolor === undefined ? nv.utils.defaultColor()  : scope.legendcolor());
+        chart.legend.align(attrs.legendalign === undefined ? true : (attrs.legendalign === "true"));
+        chart.legend.rightAlign(attrs.legendrightalign === undefined ? true : (attrs.legendrightalign === "true"));
+        chart.legend.updateState(attrs.legendupdatestate === undefined ? true : (attrs.legendupdatestate === "true"));
+        chart.legend.radioButtonMode(attrs.legendradiobuttonmode === undefined ? true : (attrs.legendradiobuttonmode === "true"));
+    }
+}
+
     function processEvents(chart, scope){
 
         if(chart.dispatch){
@@ -295,15 +321,20 @@
         }
 
         if(chart.legend){
+            //'legendClick', 'legendDblclick', 'legendMouseover'
             //stateChange
             chart.legend.dispatch.on('stateChange.legend.directive', function(event) {
                 scope.$emit('stateChange.legend.directive', event);
             });
-
             chart.legend.dispatch.on('legendClick.directive', function(d, i) {
                 scope.$emit('legendClick.directive', d, i);
             });
-
+            chart.legend.dispatch.on('legendDblclick.directive', function(d, i) {
+                scope.$emit('legendDblclick.directive', d, i);
+            });
+            chart.legend.dispatch.on('legendMouseover.directive', function(d, i) {
+                scope.$emit('legendMouseover.directive', d, i);
+            });
         }
 
         if(chart.controls){
@@ -765,6 +796,16 @@ function initializeMargin(scope, attrs){
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendMargin: '&',
+                    legendWidth: '@',
+                    legendHeight: '@',
+                    legendKey: '@',
+                    legendColor: '&',
+                    legendAlign: '@',
+                    legendRightAlign: '@',
+                    legendUpdateState: '@',
+                    legendRadioButtonMode: '@',
+
                     //angularjs specific
                     objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
 
@@ -818,6 +859,7 @@ function initializeMargin(scope, attrs){
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);

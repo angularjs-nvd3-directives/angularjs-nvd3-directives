@@ -155,6 +155,16 @@
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendMargin: '&',
+                    legendWidth: '@',
+                    legendHeight: '@',
+                    legendKey: '@',
+                    legendColor: '&',
+                    legendAlign: '@',
+                    legendRightAlign: '@',
+                    legendUpdateState: '@',
+                    legendRadioButtonMode: '@',
+
                     //angularjs specific
                     objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
 
@@ -208,6 +218,7 @@
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);

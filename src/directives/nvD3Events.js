@@ -132,15 +132,20 @@
         }
 
         if(chart.legend){
+            //'legendClick', 'legendDblclick', 'legendMouseover'
             //stateChange
             chart.legend.dispatch.on('stateChange.legend.directive', function(event) {
                 scope.$emit('stateChange.legend.directive', event);
             });
-
             chart.legend.dispatch.on('legendClick.directive', function(d, i) {
                 scope.$emit('legendClick.directive', d, i);
             });
-
+            chart.legend.dispatch.on('legendDblclick.directive', function(d, i) {
+                scope.$emit('legendDblclick.directive', d, i);
+            });
+            chart.legend.dispatch.on('legendMouseover.directive', function(d, i) {
+                scope.$emit('legendMouseover.directive', d, i);
+            });
         }
 
         if(chart.controls){
