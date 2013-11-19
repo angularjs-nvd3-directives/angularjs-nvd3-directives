@@ -155,15 +155,15 @@
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
-                    legendMargin: '&',
-                    legendWidth: '@',
-                    legendHeight: '@',
-                    legendKey: '@',
-                    legendColor: '&',
-                    legendAlign: '@',
-                    legendRightAlign: '@',
-                    legendUpdateState: '@',
-                    legendRadioButtonMode: '@',
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
 
                     //angularjs specific
                     objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
@@ -302,6 +302,16 @@
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
 
@@ -357,6 +367,7 @@
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
@@ -447,6 +458,16 @@
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
+
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
 
                     //angularjs specific
                     objectequality: '@',
@@ -540,6 +561,7 @@
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
@@ -619,6 +641,16 @@
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -663,6 +695,7 @@
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
 
                                     if(attrs.tooltipcontent){
@@ -743,6 +776,16 @@
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -782,6 +825,7 @@
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
@@ -873,6 +917,16 @@
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -909,6 +963,7 @@
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
 
                                     if (chart.useInteractiveGuideline) {
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
@@ -999,6 +1054,16 @@
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -1038,6 +1103,7 @@
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
@@ -1084,6 +1150,16 @@
                     tooltipcontent: '&',
                     valueFormat: '&',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -1129,6 +1205,8 @@
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
+
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
@@ -1224,6 +1302,16 @@
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -1281,6 +1369,7 @@
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
 
                                     if(attrs.xscale){
                                         chart.xDomain(scope.xdomain());
@@ -1461,6 +1550,16 @@
                     y2axisrotateylabel: '@',
                     y2axisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -1502,6 +1601,7 @@
                                     configureXaxis(chart, scope, attrs);
                                     configureY1axis(chart, scope, attrs);
                                     configureY2axis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
@@ -1622,6 +1722,16 @@
                     y2axisrotateylabel: '@',
                     y2axisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -1678,6 +1788,7 @@
                                     configureX2axis(chart, scope, attrs);
                                     configureY1axis(chart, scope, attrs);
                                     configureY2axis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);

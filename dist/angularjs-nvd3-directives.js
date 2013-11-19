@@ -796,15 +796,15 @@ function initializeMargin(scope, attrs){
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
-                    legendMargin: '&',
-                    legendWidth: '@',
-                    legendHeight: '@',
-                    legendKey: '@',
-                    legendColor: '&',
-                    legendAlign: '@',
-                    legendRightAlign: '@',
-                    legendUpdateState: '@',
-                    legendRadioButtonMode: '@',
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
 
                     //angularjs specific
                     objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
@@ -943,6 +943,16 @@ function initializeMargin(scope, attrs){
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
 
@@ -998,6 +1008,7 @@ function initializeMargin(scope, attrs){
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
@@ -1048,6 +1059,7 @@ function initializeMargin(scope, attrs){
                     sizeDomain: '&',
 
                     //xaxis
+                    showxaxis: '&',
                     xaxisorient: '&',
                     xaxisticks: '&',
                     xaxistickvalues: '&xaxistickvalues',
@@ -1068,6 +1080,7 @@ function initializeMargin(scope, attrs){
                     xaxisstaggerlabels: '@',
 
                     //yaxis
+                    showyaxis: '&',
                     yaxisorient: '&',
                     yaxisticks: '&',
                     yaxistickvalues: '&yaxistickvalues',
@@ -1086,6 +1099,16 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
+
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
 
                     //angularjs specific
                     objectequality: '@',
@@ -1121,6 +1144,8 @@ function initializeMargin(scope, attrs){
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize)) // List of numbers to Force into the Size scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
+                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
+                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
@@ -1177,6 +1202,7 @@ function initializeMargin(scope, attrs){
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
@@ -1215,6 +1241,7 @@ function initializeMargin(scope, attrs){
                     stacked: '@',
 
                     //xaxis
+                    showxaxis: '&',
                     xaxisorient: '&',
                     xaxisticks: '&',
                     xaxistickvalues: '&xaxistickvalues',
@@ -1235,6 +1262,7 @@ function initializeMargin(scope, attrs){
                     xaxisstaggerlabels: '@',
 
                     //yaxis
+                    showyaxis: '&',
                     yaxisorient: '&',
                     yaxisticks: '&',
                     yaxistickvalues: '&yaxistickvalues',
@@ -1253,6 +1281,16 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
+
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
 
                     //angularjs specific
                     objectequality: '@',
@@ -1285,6 +1323,8 @@ function initializeMargin(scope, attrs){
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
+                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
+                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                         .reduceXTicks(attrs.reducexticks === undefined ? false: (attrs.reducexticks === "true"))
                                         .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"))
@@ -1296,6 +1336,7 @@ function initializeMargin(scope, attrs){
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
 
                                     if(attrs.tooltipcontent){
@@ -1376,6 +1417,16 @@ function initializeMargin(scope, attrs){
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -1415,6 +1466,7 @@ function initializeMargin(scope, attrs){
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
@@ -1506,6 +1558,16 @@ function initializeMargin(scope, attrs){
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -1542,6 +1604,7 @@ function initializeMargin(scope, attrs){
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
 
                                     if (chart.useInteractiveGuideline) {
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
@@ -1632,6 +1695,16 @@ function initializeMargin(scope, attrs){
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -1671,6 +1744,7 @@ function initializeMargin(scope, attrs){
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
@@ -1717,6 +1791,16 @@ function initializeMargin(scope, attrs){
                     tooltipcontent: '&',
                     valueFormat: '&',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -1762,6 +1846,8 @@ function initializeMargin(scope, attrs){
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
+
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
@@ -1857,6 +1943,16 @@ function initializeMargin(scope, attrs){
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -1914,6 +2010,7 @@ function initializeMargin(scope, attrs){
 
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
 
                                     if(attrs.xscale){
                                         chart.xDomain(scope.xdomain());
@@ -2094,6 +2191,16 @@ function initializeMargin(scope, attrs){
                     y2axisrotateylabel: '@',
                     y2axisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -2135,6 +2242,7 @@ function initializeMargin(scope, attrs){
                                     configureXaxis(chart, scope, attrs);
                                     configureY1axis(chart, scope, attrs);
                                     configureY2axis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
@@ -2255,6 +2363,16 @@ function initializeMargin(scope, attrs){
                     y2axisrotateylabel: '@',
                     y2axisstaggerlabels: '@',
 
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
                     //angularjs specific
                     objectequality: '@',
 
@@ -2311,6 +2429,7 @@ function initializeMargin(scope, attrs){
                                     configureX2axis(chart, scope, attrs);
                                     configureY1axis(chart, scope, attrs);
                                     configureY2axis(chart, scope, attrs);
+                                    configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);

@@ -2,7 +2,8 @@ angularjs-nvd3-directives
 =========================
 
 [![Build Status](https://travis-ci.org/cmaurer/angularjs-nvd3-directives.png?branch=master)](https://travis-ci.org/cmaurer/angularjs-nvd3-directives)
-[![Dev Dependencies Status](https://david-dm.org/cmaurer/angularjs-nvd3-directives.png)](https://david-dm.org/cmaurer/angularjs-nvd3-directives.png)
+[![Dependencies Status](https://david-dm.org/cmaurer/angularjs-nvd3-directives.png)](https://david-dm.org/cmaurer/angularjs-nvd3-directives#info=dependencies)
+[![devDependency Status](https://david-dm.org/alanshaw/david-www/dev-status.png)](https://david-dm.org/cmaurer/angularjs-nvd3-directives#info=devDependencies)
 [![Coverage Status](https://coveralls.io/repos/cmaurer/angularjs-nvd3-directives/badge.png)](https://coveralls.io/r/cmaurer/angularjs-nvd3-directives)
 
 [AngularJS](http://angularjs.org/) directive directives for [nvd3.js](http://www.nvd3.org).
