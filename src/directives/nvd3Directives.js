@@ -1478,6 +1478,9 @@
                     tooltips: '@',
                     showxaxis: '@',
                     showyaxis: '@',
+                    forceX: '@',
+                    forceY: '@',
+                    forceY2: '@',
                     rightalignyaxis: '@',
                     defaultstate: '@',
                     nodata: '@',
@@ -1593,6 +1596,16 @@
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
+
+                                    if(attrs.forcex){
+                                        chart.lines.forceX(scope.$eval(attrs.forcex));
+                                        chart.bars.forceX(scope.$eval(attrs.forcex));
+                                    }
+
+                                    if(attrs.forcey){
+                                        chart.lines.forceY(scope.$eval(attrs.forcey));
+                                        chart.bars.forceY(scope.$eval(attrs.forcey));
+                                    }
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());

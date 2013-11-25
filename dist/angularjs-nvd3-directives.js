@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-11-18
+/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-11-24
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2013 Christian Maurer; Licensed Apache License, v2.0 */
 (function()
@@ -2119,6 +2119,9 @@ function initializeMargin(scope, attrs){
                     tooltips: '@',
                     showxaxis: '@',
                     showyaxis: '@',
+                    forceX: '@',
+                    forceY: '@',
+                    forceY2: '@',
                     rightalignyaxis: '@',
                     defaultstate: '@',
                     nodata: '@',
@@ -2234,6 +2237,16 @@ function initializeMargin(scope, attrs){
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
+
+                                    if(attrs.forcex){
+                                        chart.lines.forceX(scope.$eval(attrs.forcex));
+                                        chart.bars.forceX(scope.$eval(attrs.forcex));
+                                    }
+
+                                    if(attrs.forcey){
+                                        chart.lines.forceY(scope.$eval(attrs.forcey));
+                                        chart.bars.forceY(scope.$eval(attrs.forcey));
+                                    }
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
