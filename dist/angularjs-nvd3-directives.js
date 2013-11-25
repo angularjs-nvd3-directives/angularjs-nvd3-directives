@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-11-24
+/*! angularjs-nvd3-directives - v0.0.2-beta - 2013-11-25
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2013 Christian Maurer; Licensed Apache License, v2.0 */
 (function()
@@ -183,7 +183,7 @@ function configureLegend(chart, scope, attrs){
         chart.legend.align(attrs.legendalign === undefined ? true : (attrs.legendalign === "true"));
         chart.legend.rightAlign(attrs.legendrightalign === undefined ? true : (attrs.legendrightalign === "true"));
         chart.legend.updateState(attrs.legendupdatestate === undefined ? true : (attrs.legendupdatestate === "true"));
-        chart.legend.radioButtonMode(attrs.legendradiobuttonmode === undefined ? true : (attrs.legendradiobuttonmode === "true"));
+        chart.legend.radioButtonMode(attrs.legendradiobuttonmode === undefined ? false : (attrs.legendradiobuttonmode === "true"));
     }
 }
 
