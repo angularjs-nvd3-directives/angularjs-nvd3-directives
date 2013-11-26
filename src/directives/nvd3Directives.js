@@ -16,7 +16,7 @@
     function initializeWidth(scope, attrs, element){
         'use strict';
         var marginAdjustment = 0;
-        if(attrs.width === "undefined"){
+        if(attrs.width === undefined){
             scope.width = element[0].parentElement.offsetWidth;
         } else {
             scope.width = (+attrs.width);
@@ -31,7 +31,7 @@
     function initializeHeight(scope, attrs, element){
         'use strict';
         var marginAdjustment = 0;
-        if(attrs.height === "undefined"){
+        if(attrs.height === undefined){
             scope.height = element[0].parentElement.offsetHeight;
         } else {
             scope.height = (+attrs.height);
@@ -1776,7 +1776,16 @@
 
                                     //setup margin 2
                                     //nvd3 default is {top: 0, right: 30, bottom: 20, left: 60}
-
+                                    if(attrs.margin2){
+                                        var margin2 = (scope.$eval(attrs.margin2));
+                                        if (typeof(margin2) !== "object") {
+                                            // we were passed a vanilla int, convert to full margin object
+                                            margin2 = {left: margin2, top: margin2, bottom: margin2, right: margin2};
+                                        }
+                                        scope.margin2 = margin2;
+                                    } else {
+                                        scope.margin2 = {top: 0, right: 30, bottom: 20, left: 60};
+                                    }
 
                                     var chart = nv.models.lineWithFocusChart()
                                         .width(scope.width)

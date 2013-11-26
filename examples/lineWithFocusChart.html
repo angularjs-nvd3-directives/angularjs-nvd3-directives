@@ -26,13 +26,6 @@
                 }
             ];
 
-            $scope.xAxisTickFormatFunction = function(){
-                return function(d){
-//                    return d3.time.format('%X')(new Date(d));  //uncomment for time format
-                    return d3.time.format('%x')(new Date(d));  //uncomment for date format
-                }
-            }
-
 
         }
     </script>
@@ -44,12 +37,7 @@
     <nvd3-line-with-focus-chart
             data="exampleData"
             id="exampleId"
-            margin="{left:75,top:50,bottom:50,right:50}"
-            height="550"
-            height2="50"
-            xAxisTickFormat="xAxisTickFormatFunction()"
-            x2AxisTickFormat="xAxisTickFormatFunction()">
-         <svg></svg>
+            height="400">
     </nvd3-line-with-focus-chart>
 </div>
 
