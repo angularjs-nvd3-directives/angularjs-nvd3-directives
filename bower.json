@@ -1,6 +1,6 @@
 {
   "name": "angularjs-nvd3-directives",
-  "version": "0.0.2-beta",
+  "version": "0.0.4-beta",
   "description": "Angular.js directives for nvd3.js.",
   "authors": [
       "Christian Maurer"
