@@ -65,6 +65,11 @@ module.exports = function (grunt) {
                 }
             }
         },
+        changelog: {
+            options: {
+                version: 'v0.0.1-beta'
+            }
+        },
         watch: {
             gruntfile: {
                 files: '<%= jshint.gruntfile.src %>',
@@ -85,6 +90,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-karma-coveralls');
+    grunt.loadNpmTasks('grunt-conventional-changelog');
 
     grunt.registerTask('bower', ['bower:install']);
 
