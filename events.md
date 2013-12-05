@@ -1,7 +1,7 @@
 ---
 title: events
 layout: example
-description: d3.js, nvd3.js, Angular.js, event, events, tooltip, mouseover, mouseout, mousemove,
+description: d3.js, nvd3.js, Angular.js, event, events, tooltip, mouseover, mouseout, mousemove
 ---
 
 <script>
@@ -21,6 +21,12 @@ description: d3.js, nvd3.js, Angular.js, event, events, tooltip, mouseover, mous
             }
         ];
 
+        $scope.xAxisTickFormatFunction = function(){
+            return function(d){
+                return d3.time.format('%Y')(new Date(d));
+            }
+        }
+
         $scope.event = {point:[]};
 
         $scope.$on('tooltipShow.directive', function(angularEvent, event){
@@ -33,7 +39,6 @@ description: d3.js, nvd3.js, Angular.js, event, events, tooltip, mouseover, mous
 
 Working with events
 =========================
-
 
 Events exposed by nvd3.js and d3.js are re-emitted from the directives as scope events ($scope.$emit).  Events are re-emitted with the same names as the underlying framework with the addition on '.directive'.  Using duplicate names overrides existing events.
 
@@ -64,6 +69,7 @@ $scope.$on('tooltipShow.directive', function(angularEvent, event){
     	data="exampleData"
         id="exampleId"
         interactive="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         showXAxis="true"
         showYAxis="true">
         	<svg></svg>
@@ -81,9 +87,11 @@ $scope.$on('tooltipShow.directive', function(angularEvent, event){
     	data="exampleData"
         id="exampleId"
         interactive="true"
+        width="550"
+        height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         showXAxis="true"
         showYAxis="true">
-        <svg></svg>
     </nvd3-line-chart>
     <div><b>Point Data</b>
         <div ng-repeat="point in event.point">

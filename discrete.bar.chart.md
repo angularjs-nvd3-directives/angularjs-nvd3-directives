@@ -1,7 +1,7 @@
 ---
-title: discretebarchart
+title: discrete bar chart
 layout: example
-description: d3.js, nvd3.js Discrete Bar Charts with Angular.js
+description: d3.js, nvd3.js Discrete Bar Charts with Angular.js Directives
 ---
 
 <script>
@@ -80,16 +80,22 @@ description: d3.js, nvd3.js Discrete Bar Charts with Angular.js
 				};
 			}
 
+            $scope.xAxisTickFormatFunction = function(){
+                return function(d){
+                    return d3.time.format('%b')(new Date(d));
+                }
+            }
+
 			$scope.yFunction = function(){
 				return function(d){
 					return d[1];
 				};
 			}
 
-			var colorArray = ['#FF0000', '#0000FF', '#FFFF00', '#00FFFF'];
+            var colorCategory = d3.scale.category20b()
             $scope.colorFunction = function() {
                 return function(d, i) {
-                    return colorArray[i];
+                    return colorCategory(i);
                 };
             }
 
@@ -113,6 +119,19 @@ description: d3.js, nvd3.js Discrete Bar Charts with Angular.js
             
 Creating and Configuring a Discrete Bar Chart
 =========================
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-discrete-bar-chart
+    	data="exampleData"
+        id="exampleId"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        width="550"
+        height="400">
+        	<svg></svg>
+    </nvd3-discrete-bar-chart>
+</div>
 
 ## How to create a basic chart
 
@@ -171,22 +190,27 @@ Other directive attributes should be the same as the public attributes associate
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="exampleId"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         width="550"
-        height="350">
+        height="400">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
 </div>
 {% endhighlight %}
 
-<div ng-controller="ExampleCtrl">
-	<nvd3-discrete-bar-chart
-    	data="exampleData"
-        id="exampleId"
-        width="550"
-        height="350">
-        	<svg></svg>
-    </nvd3-discrete-bar-chart>
-</div>
+
+The following formatting function has been added to better display the x-axis data.
+
+{% highlight javascript %}
+$scope.xAxisTickFormatFunction = function(){
+    return function(d){
+        return d3.time.format('%b')(new Date(d));
+    }
+}
+{% endhighlight %}
+
 
 # Configuration Options
 
@@ -218,11 +242,11 @@ To use a configuration function, create a function on the $scope (i.e. $scope.co
 To 'connect' the $scope function with the chart.color() function, add a color="" attribute to the directive, with the value of the attribute being the name of the $scope function (i.e. scope="colorFunction()").
 
 {% highlight javascript %}
-var colorArray = ['#FF0000', '#0000FF', '#FFFF00', '#00FFFF'];
+var colorCategory = d3.scale.category20b()
 $scope.colorFunction = function() {
-	return function(d, i) {
-    	return colorArray[i];
-	};
+    return function(d, i) {
+        return colorCategory(i);
+    };
 }
 {% endhighlight %}
 
@@ -233,6 +257,9 @@ $scope.colorFunction = function() {
         id="colorExample"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         color="colorFunction()">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -245,6 +272,9 @@ $scope.colorFunction = function() {
         id="colorExample"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         color="colorFunction()">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -275,7 +305,7 @@ Datatype: String
         id="noDataExample"
         width="550"
         height="300"
-        noData="No Data For You!">
+        noData="Data aint here">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
 </div>
@@ -291,8 +321,11 @@ Datatype: boolean - (true/false)
 	<nvd3-discrete-bar-chart
     	data="reduceXTicksData"
         id="showValueExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         showValues="true">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -303,8 +336,11 @@ Datatype: boolean - (true/false)
 	<nvd3-discrete-bar-chart
     	data="reduceXTicksData"
         id="showValueExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         showValues="true">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -321,8 +357,11 @@ Datatype: Function
 	<nvd3-discrete-bar-chart
     	data="reduceXTicksData"
         id="formatValueExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         showValues="true"
         valueFormat="valueFormatFunction()">
         	<svg></svg>
@@ -343,8 +382,11 @@ $scope.valueFormatFunction = function(){
 	<nvd3-discrete-bar-chart
     	data="reduceXTicksData"
         id="formatValueExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         showValues="true"
         valueFormat="valueFormatFunction()">
         	<svg></svg>
@@ -358,8 +400,11 @@ $scope.valueFormatFunction = function(){
 	<nvd3-discrete-bar-chart
     	data="reduceXTicksData"
         id="staggerLablesExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         staggerLabels="true">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -370,8 +415,11 @@ $scope.valueFormatFunction = function(){
 	<nvd3-discrete-bar-chart
     	data="reduceXTicksData"
         id="staggerLablesExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         staggerLabels="true">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -396,8 +444,11 @@ $scope.xFunction = function(){
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="xExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         x="xFunction()">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -408,8 +459,11 @@ $scope.xFunction = function(){
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="xExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         x="xFunction()">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -433,8 +487,11 @@ $scope.yFunction = function(){
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="yExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         y="yFunction()">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -445,9 +502,12 @@ $scope.yFunction = function(){
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="yExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
-        y="yFunction()">        
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        y="yFunction()">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
 </div> 
@@ -462,8 +522,11 @@ Datatype: Array of Numbers (i.e. [0, 50]
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="forceyExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         forcey="[500]">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -474,8 +537,11 @@ Datatype: Array of Numbers (i.e. [0, 50]
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="forceyExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         forcey="[500]">
     		<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -491,8 +557,11 @@ Datatype: boolean - (true/false)
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="toolTipExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         tooltips="true">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -503,8 +572,11 @@ Datatype: boolean - (true/false)
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="toolTipExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         tooltips="true">
         	<svg></svg>
     </nvd3-discrete-bar-chart>
@@ -535,8 +607,11 @@ $scope.toolTipContentFunction = function(){
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="toolTipContentExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
         	<svg></svg>
@@ -548,8 +623,11 @@ $scope.toolTipContentFunction = function(){
 	<nvd3-discrete-bar-chart
     	data="exampleData"
         id="toolTipContentExample"
+        showXAxis="true"
+        showYAxis="true"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
         	<svg></svg>

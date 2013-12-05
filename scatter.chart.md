@@ -1,7 +1,7 @@
 ---
-title: scatterchart
+title: scatter chart
 layout: example
-description: d3.js, nvd3.js Scatter Charts with Angular.js
+description: d3.js, nvd3.js Scatter Charts with Angular.js Directives
 ---
 
 <script>
@@ -43,9 +43,15 @@ description: d3.js, nvd3.js Scatter Charts with Angular.js
             }
         }
 
+        $scope.yAxisTickFormatFunction = function(){
+            return function(d){
+                return d3.round(d, 2)
+            }
+        }
+
         $scope.xAxisTickFormatFunction = function(){
             return function(d){
-                return d3.round(d, 4)
+                return d3.round(d, 2)
             }
         }
 
@@ -105,6 +111,17 @@ description: d3.js, nvd3.js Scatter Charts with Angular.js
 Creating and Configuring a Scatter Chart
 =========================
 
+<div ng-controller="ExampleCtrl">
+	<nvd3-scatter-chart
+            data="exampleData"
+            id="exampleId"
+            width="550"
+            height="400"
+            yAxisTickFormat="yAxisTickFormatFunction()"
+            xAxisTickFormat="xAxisTickFormatFunction()">
+        <svg></svg>
+    </nvd3-scatter-chart>
+</div>
 
 ## How to create a basic chart
 
@@ -161,23 +178,14 @@ Other directive attributes should be the same as the public attributes associate
             data="exampleData"
             id="exampleId"
             width="550"
-            height="300"
+            height="400"
+            yAxisTickFormat="yAxisTickFormatFunction()"
             xAxisTickFormat="xAxisTickFormatFunction()">
         	<svg></svg>
     </nvd3-scatter-chart>
 </div>
 {% endhighlight %}
 
-<div ng-controller="ExampleCtrl">
-	<nvd3-scatter-chart
-            data="exampleData"
-            id="exampleId"
-            width="550"
-            height="300"
-            xAxisTickFormat="xAxisTickFormatFunction()">
-        <svg></svg>
-    </nvd3-scatter-chart>
-</div>
 
 #Configuration Options
 

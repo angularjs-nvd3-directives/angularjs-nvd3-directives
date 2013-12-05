@@ -47,4 +47,8 @@
         <loc>http://cmaurer.github.io/angularjs-nvd3-directives/bullet.chart.html</loc>
         <changefreq>weekly</changefreq>
     </url>
+    <url>
+        <loc>http://cmaurer.github.io/angularjs-nvd3-directives/events.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
 </urlset>

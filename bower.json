@@ -13,6 +13,6 @@
       "d3": "~3.3.5",
       "nvd3": "~v1.1.14-beta",
       "moment": "~2.3.0",
-      "angularjs-nvd3-directives": "~v0.0.2-beta"
+      "angularjs-nvd3-directives": "~v0.0.4-beta"
   }
 }

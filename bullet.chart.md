@@ -1,7 +1,7 @@
 ---
-title: bulletchart
+title: bullet chart
 layout: example
-description: d3.js, nvd3.js Line Charts with Angular.js, Bullet Chart, Stephen Few
+description: d3.js, nvd3.js Line Charts with Angular.js Directives, Bullet Chart, Stephen Few
 ---
 
 <script>
@@ -50,6 +50,17 @@ description: d3.js, nvd3.js Line Charts with Angular.js, Bullet Chart, Stephen F
 
 Creating and Configuring a Bullet Chart
 =========================
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-bullet-chart
+    	data="exampleData"
+        id="exampleId"
+        margin="{left:75,top:30,bottom:30,right:10}"
+        width="550"
+        height="160">
+        <svg></svg>
+    </nvd3-bullet-chart>
+</div>
 
 ## Overview
 
@@ -113,17 +124,6 @@ Other directive attributes should be the same as the public attributes associate
 </div>
 {% endhighlight %}
 
-<div ng-controller="ExampleCtrl">
-	<nvd3-bullet-chart
-    	data="exampleData"
-        id="exampleId"
-        margin="{left:75,top:30,bottom:30,right:10}"
-        width="550"
-        height="160">
-        <svg></svg>
-    </nvd3-bullet-chart>
-</div>
-
 #Configuration Options
 
 ## ID
@@ -157,7 +157,7 @@ Datatype: String
         margin="{left:75,top:30,bottom:30,right:10}"
         width="550"
         height="160"
-        noData="Data aint here">
+        noData="No Data For You!">
         	<svg></svg>
     </nvd3-bullet-chart>
 </div>

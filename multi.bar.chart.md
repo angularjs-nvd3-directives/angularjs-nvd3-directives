@@ -1,7 +1,7 @@
 ---
 title: multibarchart
 layout: example
-description: d3.js, nvd3.js Multi Bar Charts with Angular.js
+description: d3.js, nvd3.js Multi Bar Charts with Angular.js Directives
 ---
 
 <script>
@@ -80,6 +80,12 @@ description: d3.js, nvd3.js Multi Bar Charts with Angular.js
 				};
 			}
 
+            $scope.xAxisTickFormatFunction = function(){
+                return function(d){
+                    return d3.time.format('%m')(new Date(d));
+                }
+            }
+
 			$scope.yFunction = function(){
 				return function(d){
 					return d[1];
@@ -106,6 +112,20 @@ description: d3.js, nvd3.js Multi Bar Charts with Angular.js
             
 Creating and Configuring a Multi Bar Chart
 =========================
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-multi-bar-chart
+    	data="exampleData"
+        id="exampleId"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        width="550"
+        height="350"
+        showXAxis="true"
+        showYAxis="true">
+        	<svg></svg>
+    </nvd3-multi-bar-chart>
+</div>
+
 
 ## How to create a basic chart
 
@@ -164,22 +184,15 @@ Other directive attributes should be the same as the public attributes associate
 	<nvd3-multi-bar-chart
     	data="exampleData"
         id="exampleId"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         width="550"
-        height="350">
+        height="350"
+        showXAxis="true"
+        showYAxis="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
 </div>
 {% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-multi-bar-chart
-    	data="exampleData"
-        id="exampleId"
-        width="550"
-        height="350">
-        	<svg></svg>
-    </nvd3-multi-bar-chart>
-</div>
 
 # Configuration Options
 
@@ -226,6 +239,9 @@ $scope.colorFunction = function() {
         id="colorExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         color="colorFunction()">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -238,6 +254,9 @@ $scope.colorFunction = function() {
         id="colorExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         color="colorFunction()">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -255,6 +274,9 @@ Datatype: boolean - (true/false)
         id="showLegendExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         showLegend="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -267,6 +289,9 @@ Datatype: boolean - (true/false)
         id="showLegendExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         showLegend="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -284,6 +309,9 @@ Datatype: boolean - (true/false)
         id="showControlsExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         showControls="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -296,6 +324,9 @@ Datatype: boolean - (true/false)
         id="showControlsExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         showControls="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -313,7 +344,9 @@ Datatype: String
         id="noDataExample"
         width="550"
         height="300"
-        noData="Data aint here">
+        showXAxis="true"
+        showYAxis="true"
+        noData="No Data For You!">
         	<svg></svg>
     </nvd3-multi-bar-chart>
 </div>
@@ -325,6 +358,8 @@ Datatype: String
         id="noDataExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
         noData="No Data For You!">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -344,6 +379,9 @@ Datatype: boolean - (true/false)
         id="reduceXTicksExampleFalse"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         reduceXTicks="false">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -356,6 +394,9 @@ Datatype: boolean - (true/false)
         id="reduceXTicksExampleFalse"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         reduceXTicks="false">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -368,6 +409,9 @@ Datatype: boolean - (true/false)
         id="reduceXTicksExampleTrue"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         reduceXTicks="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -380,6 +424,9 @@ Datatype: boolean - (true/false)
         id="reduceXTicksExampleTrue"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         reduceXTicks="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -398,6 +445,9 @@ Datatype: Integer
         id="rotateLablesExample90"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         rotateLabels="90">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -410,6 +460,9 @@ Datatype: Integer
         id="rotateLablesExample90"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         rotateLabels="90">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -422,6 +475,9 @@ Datatype: Integer
         id="rotateLablesExample180"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         rotateLabels="180">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -434,6 +490,9 @@ Datatype: Integer
         id="rotateLablesExample180"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         rotateLabels="180">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -448,6 +507,9 @@ Datatype: Integer
         id="staggerLablesExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         staggerLabels="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -460,6 +522,9 @@ Datatype: Integer
         id="staggerLablesExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         staggerLabels="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -476,6 +541,9 @@ Datatype: Integer
         id="delayExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         delay="2400">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -488,6 +556,9 @@ Datatype: Integer
         id="delayExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         delay="2400">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -503,6 +574,9 @@ Datatype: Integer
         id="stackedExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         stacked="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -515,6 +589,9 @@ Datatype: Integer
         id="stackedExample"
         width="550"
         height="300"
+        showXAxis="true"
+        showYAxis="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
         stacked="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -541,6 +618,9 @@ $scope.xFunction = function(){
         id="xExample"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         x="xFunction()">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -553,6 +633,9 @@ $scope.xFunction = function(){
         id="xExample"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         x="xFunction()">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -577,6 +660,9 @@ $scope.yFunction = function(){
         id="yExample"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         y="yFunction()">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -589,7 +675,10 @@ $scope.yFunction = function(){
         id="yExample"
         width="550"
         height="300"
-        y="yFunction()">        
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
+        y="yFunction()">
         	<svg></svg>
     </nvd3-multi-bar-chart>
 </div> 
@@ -606,6 +695,9 @@ Datatype: Array of Numbers (i.e. [0, 50]
         id="forceyExample"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         forcey="[500]">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -618,6 +710,9 @@ Datatype: Array of Numbers (i.e. [0, 50]
         id="forceyExample"
         width="550"
         height="300"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         forcey="[500]">
     		<svg></svg>
     </nvd3-multi-bar-chart>
@@ -635,6 +730,9 @@ Datatype: boolean - (true/false)
         id="interactiveExample"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         interactive="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -647,6 +745,9 @@ Datatype: boolean - (true/false)
         id="interactiveExample"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         interactive="true">
         	<svg></svg>
     </nvd3-multi-bar-chart>
@@ -666,6 +767,9 @@ Datatype: boolean - (true/false)
         id="toolTipExample"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         interactive="true"
         tooltips="true">
         	<svg></svg>
@@ -679,6 +783,9 @@ Datatype: boolean - (true/false)
         id="toolTipExample"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         interactive="true"
         tooltips="true">
         	<svg></svg>
@@ -714,6 +821,9 @@ $scope.toolTipContentFunction = function(){
         id="toolTipContentExample"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         interactive="true"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
@@ -728,6 +838,9 @@ $scope.toolTipContentFunction = function(){
         id="toolTipContentExample"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         interactive="true"
         tooltips="true"
         tooltipcontent="toolTipContentFunction()">
@@ -747,6 +860,9 @@ Datatype: boolean - (true/false)
         id="clipEdgeExample"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         interactive="true"
         clipEdge="true">
         	<svg></svg>
@@ -760,6 +876,9 @@ Datatype: boolean - (true/false)
         id="clipEdgeExample"
         width="550"
         height="350"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        showXAxis="true"
+        showYAxis="true"
         interactive="true"
         clipEdge="true">
     		<svg></svg>

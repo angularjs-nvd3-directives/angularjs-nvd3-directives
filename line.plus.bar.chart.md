@@ -1,6 +1,7 @@
 ---
-title: lineplusbarchart
+title: line plus bar chart
 layout: example
+description: d3.js, nvd3.js, line chart, bar chart, line plus bar chart, Angular.js Directives
 ---
 
 <script>
@@ -75,7 +76,6 @@ layout: example
 
 Creating and Configuring a Line Plus Bar Chart
 =========================
-
 
 ## How to create a basic chart
 

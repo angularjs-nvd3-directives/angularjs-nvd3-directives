@@ -1,7 +1,7 @@
 ---
-title: sparklinechart
+title: sparkline chart
 layout: example
-description: d3.js, nvd3.js SparkLine Charts with Angular.js, Sparkline, Edward Tufte, Stephen Few
+description: d3.js, nvd3.js SparkLine Charts with Angular.js Directives, Sparkline, Edward Tufte, Stephen Few
 ---
 
 <script>
@@ -42,6 +42,19 @@ description: d3.js, nvd3.js SparkLine Charts with Angular.js, Sparkline, Edward 
 
 Creating and Configuring a SparkLine Chart
 =========================
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-sparkline-chart
+    	data="exampleData"
+        id="exampleId"
+        width="550"
+        height="150"
+        margin="{left:30, top:20, bottom:20, right:50}"
+        x="xFunction()"
+        y="yFunction()">
+        <svg></svg>
+    </nvd3-sparkline-chart>
+</div>
 
 ## Overview
 
@@ -109,19 +122,6 @@ Other directive attributes should be the same as the public attributes associate
     </nvd3-sparkline-chart>
 </div>
 {% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-sparkline-chart
-    	data="exampleData"
-        id="exampleId"
-        width="550"
-        height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
-        x="xFunction()"
-        y="yFunction()">
-        <svg></svg>
-    </nvd3-sparkline-chart>
-</div>
 
 #Configuration Options
 

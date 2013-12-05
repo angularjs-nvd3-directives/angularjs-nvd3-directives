@@ -1,6 +1,7 @@
 ---
-title: linewithfocuschart
+title: line with focus chart
 layout: example
+description:
 ---
 <script>
 var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
@@ -60,9 +61,8 @@ var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
 
 }
     </script>
-Creating and Configuring a Line Plus Bar Chart
+Creating and Configuring a Line with Focus Chart
 =========================
-
 
 ## How to create a basic chart
 

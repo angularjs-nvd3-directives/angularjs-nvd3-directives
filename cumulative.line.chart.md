@@ -1,7 +1,7 @@
 ---
-title: cumulativelinechart
+title: cumulative line chart
 layout: example
-description: d3.js, nvd3.js Cumulative Line Charts with Angular.js
+description: d3.js, nvd3.js Cumulative Line Charts with Angular.js Directives
 ---
 
 <script>
@@ -52,6 +52,12 @@ description: d3.js, nvd3.js Cumulative Line Charts with Angular.js
                 }
             }
 
+            $scope.yAxisTickFormatFunction = function(){
+                return function(d){
+                    return d3.format('d')(d);
+                }
+            }
+
 			$scope.colorFunction = function() {
 				return function(d, i) {
 			    	return '#E01B5D'
@@ -78,6 +84,24 @@ description: d3.js, nvd3.js Cumulative Line Charts with Angular.js
 Creating and Configuring a Cumulative Line Chart
 =========================
 
+<div ng-controller="ExampleCtrl">
+	<nvd3-cumulative-line-chart
+		data="exampleData"
+	    id="exampleId"
+	    width="650"
+	    height="400"
+	    showXAxis="true"
+	    showYAxis="true"
+	    tooltips="true"
+	    interactive="true"
+	    x="xFunction()"
+	    y="yFunction()"
+	    yAxisTickFormat="yAxisTickFormatFunction()"
+	    xAxisTickFormat="xAxisTickFormatFunction()"
+	    margin="{left:60,top:50,bottom:50,right:60}">
+	    <svg></svg>
+	</nvd3-cumulative-line-chart>
+</div>
 
 ## How to create a basic chart
 
@@ -137,35 +161,21 @@ Other directive attributes should be the same as the public attributes associate
 	<nvd3-cumulative-line-chart
 		data="exampleData"
 	    id="exampleId"
-	    width="550"
-	    height="350"
+	    width="650"
+	    height="400"
 	    showXAxis="true"
 	    showYAxis="true"
 	    tooltips="true"
 	    interactive="true"
 	    x="xFunction()"
 	    y="yFunction()"
+	    yAxisTickFormat="yAxisTickFormatFunction()"
 	    xAxisTickFormat="xAxisTickFormatFunction()"
-	    margin="{left:50,top:50,bottom:50,right:50}">
-	        <svg></svg>
-	</nvd3-cumulative-line-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-cumulative-line-chart
-		data="exampleData"
-    	id="exampleId"
-    	width="550"
-    	height="350"
-    	showXAxis="true"
-    	showYAxis="true"
-	    xAxisTickFormat="xAxisTickFormatFunction()"
-    	x="xFunction()"
-    	y="yFunction()">
+	    margin="{left:60,top:50,bottom:50,right:60}">
 	    <svg></svg>
 	</nvd3-cumulative-line-chart>
 </div>
+{% endhighlight %}
 
 #Configuration Options
 

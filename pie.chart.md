@@ -1,7 +1,7 @@
 ---
-title: piechart
+title: pie chart
 layout: example
-description: d3.js, nvd3.js Pie Charts with Angular.js
+description: d3.js, nvd3.js Pie Charts with Angular.js Directives
 ---
 
 <script>
@@ -62,6 +62,17 @@ description: d3.js, nvd3.js Pie Charts with Angular.js
 Creating and Configuring a Pie Chart
 =========================
 
+<div ng-controller="ExampleCtrl">
+	<nvd3-pie-chart
+    	data="exampleData"
+        id="exampleId"
+        width="550"
+        height="350"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true">
+    </nvd3-pie-chart>
+</div>
 
 ## How to create a basic chart
 
@@ -114,23 +125,12 @@ Other directive attributes should be the same as the public attributes associate
         width="550"
         height="350"
         x="xFunction()"
-        y="yFunction()">
-        <svg height="250"></svg>
+        y="yFunction()"
+        showLabels="true">
+        <svg></svg>
     </nvd3-pie-chart>
 </div>
 {% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-pie-chart
-    	data="exampleData"
-        id="exampleId"
-        width="550"
-        height="350"
-        x="xFunction()"
-        y="yFunction()">
-        <svg height="250"></svg>
-    </nvd3-pie-chart>
-</div>
 
 #Configuration Options
 
