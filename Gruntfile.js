@@ -22,6 +22,10 @@ module.exports = function (grunt) {
                 dest: 'dist/<%= pkg.name %>.js'
             }
         },
+        uglify : {
+            compress: true,
+            report: 'min'
+        },
         clean: ["dist/"],
         jshint: {
             options: {
@@ -44,6 +48,15 @@ module.exports = function (grunt) {
                 src: 'Gruntfile.js'
             }
         },
+        cssmin: {
+            minify: {
+                expand: true,
+                cwd: 'stylesheets/',
+                src: ['*.css', '!*.min.css'],
+                dest: 'stylesheets/',
+                ext: '.min.css'
+            }
+        },
         watch: {
             gruntfile: {
                 files: '<%= jshint.gruntfile.src %>',
@@ -64,9 +77,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-curl');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Default task.
-    grunt.registerTask('default', ['clean', 'curl', 'concat', 'jshint']);
+    grunt.registerTask('default', ['clean', 'concat', 'cssmin']);
 
 };
