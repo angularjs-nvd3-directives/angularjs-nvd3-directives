@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+    <title>Angular.js nvd3.js Legend Directive</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <script src="js/angular.js"></script>
+    <script src="js/d3.js"></script>
+    <script src="js/nv.d3.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="../dist/angularjs-nvd3-directives.js"></script>
+    <script src="../src/directives/legendDirectives.js"></script>
+    <link rel="stylesheet" href="stylesheets/nv.d3.css"/>
+    <style>
+
+        .legend-color1 {
+            fill: gray;
+        }
+        .legend-color2 {
+            fill: blue;
+        }
+        .legend-color3 {
+            fill: red;
+        }
+    </style>
+    <script>
+        var app = angular.module("legendTestApp", ['legendDirectives']);
+
+        function LegendController($scope){
+
+            $scope.classes = "['legend-color1','legend-color2','legend-color3']";
+
+        }
+
+    </script>
+
+</head>
+<body  ng-app='legendTestApp'>
+<div ng-controller="LegendController">
+    <simple-svg-legend
+            width="500"
+            height="200"
+            classes="{{classes}}"
+            labels="['Administration ','Provinces','Infrastructure']"
+            shapes="['circle','circle','circle']"
+            columns="5"
+            x="10"
+            y="0">
+    </simple-svg-legend>
+</div>
+
+</body>
+</html>

@@ -4959,7 +4959,6 @@ nv.models.indentedTree = function() {
               catch(e) {
                 nodeTextLength = nv.utils.calcApproxTextWidth(legendText);
               }
-             
               seriesWidths.push(nodeTextLength + 28); // 28 is ~ the width of the circle plus some padding
             });
 
@@ -4996,6 +4995,8 @@ nv.models.indentedTree = function() {
 
         series
             .attr('transform', function(d, i) {
+                console.log('series transform', xPositions[i % seriesPerRow], (5 + Math.floor(i / seriesPerRow) * 20));
+
               return 'translate(' + xPositions[i % seriesPerRow] + ',' + (5 + Math.floor(i / seriesPerRow) * 20) + ')';
             });
 
