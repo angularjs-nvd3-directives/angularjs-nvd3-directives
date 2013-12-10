@@ -25,9 +25,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.0.8",
-    "d3": "~3.3.5",
-    "nvd3": "~v1.1.14-beta",
-    "moment": "~2.3.0"
+    "angular": "1.2.4",
+    "d3": "3.3.11",
+    "nvd3": "v1.1.14-beta",
+    "moment": "2.4.0"
   }
 }
