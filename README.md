@@ -6,7 +6,7 @@
 
 [![Build Status](https://travis-ci.org/cmaurer/angularjs-nvd3-directives.png?branch=master)](https://travis-ci.org/cmaurer/angularjs-nvd3-directives)
 [![Dependencies Status](https://david-dm.org/cmaurer/angularjs-nvd3-directives.png)](https://david-dm.org/cmaurer/angularjs-nvd3-directives#info=dependencies)
-[![devDependency Status](https://david-dm.org/alanshaw/david-www/dev-status.png)](https://david-dm.org/cmaurer/angularjs-nvd3-directives#info=devDependencies)
+[![devDependency Status](https://david-dm.org/cmaurer/angularjs-nvd3-directives/dev-status.png)](https://david-dm.org/cmaurer/angularjs-nvd3-directives#info=devDependencies)
 [![Coverage Status](https://coveralls.io/repos/cmaurer/angularjs-nvd3-directives/badge.png)](https://coveralls.io/r/cmaurer/angularjs-nvd3-directives)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/cmaurer/angularjs-nvd3-directives/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
