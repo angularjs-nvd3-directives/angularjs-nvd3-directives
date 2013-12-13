@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/cmaurer/angularjs-nvd3-directives.png?label=ready)](https://waffle.io/cmaurer/angularjs-nvd3-directives)  
 <link href="http://nvd3.org/src/nv.d3.css" rel="stylesheet">
 
 ##[Angular.js](http://angularjs.org/) Directives for [nvd3.js](http://www.nvd3.org), [d3.js](http://www.d3js.org) charts
