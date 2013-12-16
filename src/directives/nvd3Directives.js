@@ -13,42 +13,6 @@
         scope.margin = margin;
     }
 
-    function initializeWidth(scope, attrs, element){
-        'use strict';
-        var marginAdjustment = 0;
-        if(attrs.width === undefined){
-            scope.width = element[0].parentElement.offsetWidth;
-        } else {
-            scope.width = (+attrs.width);
-        }
-        if(!scope.margin.left || !scope.margin.right){
-            initializeMargin(scope, attrs, element);
-        }
-        marginAdjustment = (scope.margin.left + scope.margin.right);
-        scope.width = (((scope.width - marginAdjustment) > 0) ? (scope.width - marginAdjustment) : 0);
-    }
-
-    function initializeHeight(scope, attrs, element){
-        'use strict';
-        var marginAdjustment = 0;
-        if(attrs.height === undefined){
-            scope.height = element[0].parentElement.offsetHeight;
-        } else {
-            scope.height = (+attrs.height);
-        }
-        if(!scope.margin.top || !scope.margin.bottom){
-            initializeMargin(scope, attrs, element);
-        }
-        marginAdjustment = (scope.margin.top + scope.margin.bottom);
-        scope.height = (((scope.height - marginAdjustment) > 0) ? (scope.height - marginAdjustment) : 0);
-    }
-
-    function setupDimensions(scope, attrs, element) {
-        'use strict';
-        initializeWidth(scope, attrs, element);
-        initializeHeight(scope, attrs, element);
-    }
-
     function checkElementID(scope, attrs, element, chart, data) {
         'use strict';
         var dataAttributeChartID; //randomly generated if id attribute doesn't exist
@@ -186,7 +150,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.lineChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -333,7 +297,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.cumulativeLineChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -490,7 +454,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.stackedAreaChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -672,7 +636,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.multiBarChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -807,7 +771,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.discreteBarChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -948,7 +912,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.historicalBarChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -1085,7 +1049,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.multiBarHorizontalChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -1181,7 +1145,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.pieChart()
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
@@ -1333,7 +1297,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.scatterChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -1424,7 +1388,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.scatterPlusLineChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -1584,7 +1548,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.linePlusBarChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -1766,7 +1730,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
 
                                     //setup height 2
                                     //height 2 is 100
@@ -1863,7 +1827,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.bulletChart()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -1936,7 +1900,7 @@
                             }
                             nv.addGraph({
                                 generate: function(){
-                                    setupDimensions(scope, attrs, element);
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.sparklinePlus()
                                         .width(scope.width)
                                         .height(scope.height)
@@ -2088,11 +2052,12 @@
                             nv.addGraph({
                                 generate: function(){
                                     scope.bandlineProperties = {};
-                                    var sortedValues, margin = setupDimensions(scope, attrs, element);
+                                    var sortedValues;
+                                    initializeMargin(scope, attrs);
                                     var chart = nv.models.sparklinePlus()
                                         .width(scope.width)
                                         .height(scope.height)
-                                        .margin(margin)
+                                        .margin(scope.margin)
                                         .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                         .color(attrs.color === undefined ? nv.utils.getColor(['#000']) : scope.color())
