@@ -79,6 +79,8 @@
                     clipvoronoi: '@',
                     interpolate: '@',
 
+                    callback: '&',
+
                     //xaxis
                     xaxisorient: '&',
                     xaxisticks: '@',
@@ -188,7 +190,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -225,6 +228,8 @@
                     usevoronoi: '@',
                     average: '&',
                     rescaley: '@',
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -337,7 +342,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -380,6 +386,8 @@
                     xRange: '&',
                     yRange: '&',
                     sizeDomain: '&',
+
+                    callback: '&',
 
                     //xaxis
                     showxaxis: '&',
@@ -531,7 +539,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -562,6 +571,8 @@
                     forcey: '@',
                     delay: '@',
                     stacked: '@',
+
+                    callback: '&',
 
                     //xaxis
                     showxaxis: '&',
@@ -670,7 +681,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -699,6 +711,8 @@
                     forcey: '@',
                     showvalues: '@',
                     valueformat: '&',
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -809,7 +823,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -840,6 +855,8 @@
                     interpolate: '@',
                     highlightPoint: '@',
                     clearHighlights: '@',
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -946,7 +963,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -977,6 +995,8 @@
                     valueformat: '&',
                     //'xDomain', 'yDomain',
                     //state: '@', //stacked, grouped: same as stacked === true, or stacked === false
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -1081,7 +1101,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1113,6 +1134,8 @@
                     tooltips: '@',
                     tooltipcontent: '&',
                     valueFormat: '&',
+
+                    callback: '&',
 
                     legendmargin: '&',
                     legendwidth: '@',
@@ -1176,7 +1199,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1225,6 +1249,8 @@
                     sizerange: '&',
                     sizedomain: '&',
                     zscale: '&',
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -1358,7 +1384,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1373,6 +1400,8 @@
                     width: '@',
                     height: '@',
                     id: '@'
+
+                    callback: '&'
                 },
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
@@ -1422,7 +1451,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     });
@@ -1456,6 +1486,8 @@
                     clipvoronoi: '@',
                     interpolate: '@',
     //                'xScale', 'yScale', 'xDomain', 'yDomain', defined
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -1584,7 +1616,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1618,6 +1651,8 @@
                     interpolate: '@',
                     isArea: '@',
     //                'xScale', 'yScale', 'xDomain', 'yDomain', defined
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -1780,7 +1815,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1805,6 +1841,8 @@
                     measures: '&', // measures (actual, forecast)
                     tickformat: '&',
                     nodata: '@',
+
+                    callback: '&',
 
                     //angularjs specific
                     objectequality: '@',
@@ -1849,7 +1887,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1875,6 +1914,8 @@
                     alignvalue: '@',
                     rightalignvalue: '@',
                     nodata: '@',
+
+                    callback: '&',
 
                     xaxistickformat: '&',
                     yaxistickformat: '&',
@@ -1928,7 +1969,8 @@
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1963,6 +2005,8 @@
                     alignvalue: '@',
                     rightalignvalue: '@',
                     nodata: '@',
+
+                    callback: '&',
 
                     xaxistickformat: '&',
                     yaxistickformat: '&',
@@ -2103,7 +2147,8 @@
 
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
