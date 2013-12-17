@@ -740,7 +740,7 @@ function initializeMargin(scope, attrs){
         var dataAttributeChartID; //randomly generated if id attribute doesn't exist
         if(!attrs.id){
             dataAttributeChartID = "chartid" + Math.floor(Math.random()*1000000001);
-            angular.element(element).attr('data-chartid', dataAttributeChartID );    
+            angular.element(element).attr('data-chartid', dataAttributeChartID );
             //if an id is not supplied, create a random id.
             if(d3.select('[data-chartid=' + dataAttributeChartID + '] svg').empty()) {
                 d3.select('[data-chartid=' + dataAttributeChartID + ']').append('svg')
@@ -755,7 +755,7 @@ function initializeMargin(scope, attrs){
                 .attr('width', scope.width)
                 .datum(data)
                 .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
-                .call(chart);  
+                .call(chart);
             }
         } else {
             if(d3.select('#' + attrs.id + ' svg').empty()) {
@@ -769,7 +769,7 @@ function initializeMargin(scope, attrs){
                 .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
                 .call(chart);
             }
-    }    
+    }
 
     angular.module('nvd3ChartDirectives', [])
         .directive('nvd3LineChart', [function(){
@@ -800,6 +800,8 @@ function initializeMargin(scope, attrs){
                     clipedge: '@',
                     clipvoronoi: '@',
                     interpolate: '@',
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -910,7 +912,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -947,6 +950,8 @@ function initializeMargin(scope, attrs){
                     usevoronoi: '@',
                     average: '&',
                     rescaley: '@',
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -1059,7 +1064,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1102,6 +1108,8 @@ function initializeMargin(scope, attrs){
                     xRange: '&',
                     yRange: '&',
                     sizeDomain: '&',
+
+                    callback: '&',
 
                     //xaxis
                     showxaxis: '&',
@@ -1253,7 +1261,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1284,6 +1293,8 @@ function initializeMargin(scope, attrs){
                     forcey: '@',
                     delay: '@',
                     stacked: '@',
+
+                    callback: '&',
 
                     //xaxis
                     showxaxis: '&',
@@ -1392,7 +1403,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1421,6 +1433,8 @@ function initializeMargin(scope, attrs){
                     forcey: '@',
                     showvalues: '@',
                     valueformat: '&',
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -1531,7 +1545,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1562,6 +1577,8 @@ function initializeMargin(scope, attrs){
                     interpolate: '@',
                     highlightPoint: '@',
                     clearHighlights: '@',
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -1668,7 +1685,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1699,6 +1717,8 @@ function initializeMargin(scope, attrs){
                     valueformat: '&',
                     //'xDomain', 'yDomain',
                     //state: '@', //stacked, grouped: same as stacked === true, or stacked === false
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -1803,7 +1823,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1835,6 +1856,8 @@ function initializeMargin(scope, attrs){
                     tooltips: '@',
                     tooltipcontent: '&',
                     valueFormat: '&',
+
+                    callback: '&',
 
                     legendmargin: '&',
                     legendwidth: '@',
@@ -1898,7 +1921,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -1947,6 +1971,8 @@ function initializeMargin(scope, attrs){
                     sizerange: '&',
                     sizedomain: '&',
                     zscale: '&',
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -2080,7 +2106,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -2094,7 +2121,9 @@ function initializeMargin(scope, attrs){
                     data: '=',
                     width: '@',
                     height: '@',
-                    id: '@'
+                    id: '@',
+
+                    callback: '&'
                 },
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
@@ -2144,7 +2173,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     });
@@ -2178,6 +2208,8 @@ function initializeMargin(scope, attrs){
                     clipvoronoi: '@',
                     interpolate: '@',
     //                'xScale', 'yScale', 'xDomain', 'yDomain', defined
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -2306,7 +2338,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -2340,6 +2373,8 @@ function initializeMargin(scope, attrs){
                     interpolate: '@',
                     isArea: '@',
     //                'xScale', 'yScale', 'xDomain', 'yDomain', defined
+
+                    callback: '&',
 
                     //xaxis
                     xaxisorient: '&',
@@ -2502,7 +2537,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -2527,6 +2563,8 @@ function initializeMargin(scope, attrs){
                     measures: '&', // measures (actual, forecast)
                     tickformat: '&',
                     nodata: '@',
+
+                    callback: '&',
 
                     //angularjs specific
                     objectequality: '@',
@@ -2571,7 +2609,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -2597,6 +2636,8 @@ function initializeMargin(scope, attrs){
                     alignvalue: '@',
                     rightalignvalue: '@',
                     nodata: '@',
+
+                    callback: '&',
 
                     xaxistickformat: '&',
                     yaxistickformat: '&',
@@ -2650,7 +2691,8 @@ function initializeMargin(scope, attrs){
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
@@ -2686,6 +2728,8 @@ function initializeMargin(scope, attrs){
                     rightalignvalue: '@',
                     nodata: '@',
 
+                    callback: '&',
+
                     xaxistickformat: '&',
                     yaxistickformat: '&',
 
@@ -2710,7 +2754,7 @@ function initializeMargin(scope, attrs){
                         if(!$attrs.id){
 
                             dataAttributeChartID = "chartid" + Math.floor(Math.random()*1000000001);
-                            angular.element($element).attr('data-chartid', dataAttributeChartID );    
+                            angular.element($element).attr('data-chartid', dataAttributeChartID );
 
                             selectedChart = d3.select('[data-iem-chartid=' + dataAttributeChartID + '] svg')
                                 .attr('height', $scope.height)
@@ -2825,7 +2869,8 @@ function initializeMargin(scope, attrs){
 
                                     scope.chart = chart;
                                     return chart;
-                                }
+                                },
+                                callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
