@@ -176,10 +176,10 @@
                     color: '&',
                     align: '@',
                     rightalign: '@',
-                    udpateatate: '@',
+                    updatestate: '@',
                     radiobuttonmode: '@',
                     x: '&',
-                    y: '&',
+                    y: '&'
                 },
                 link: function(scope, element, attrs){
                     scope.$watch('data', function(data){
