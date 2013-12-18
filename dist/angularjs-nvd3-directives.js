@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.4-beta - 2013-12-16
+/*! angularjs-nvd3-directives - v0.0.4-beta - 2013-12-17
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2013 Christian Maurer; Licensed Apache License, v2.0 */
 (function()
@@ -740,7 +740,7 @@ function initializeMargin(scope, attrs){
         var dataAttributeChartID; //randomly generated if id attribute doesn't exist
         if(!attrs.id){
             dataAttributeChartID = "chartid" + Math.floor(Math.random()*1000000001);
-            angular.element(element).attr('data-chartid', dataAttributeChartID );
+            angular.element(element).attr('data-chartid', dataAttributeChartID );    
             //if an id is not supplied, create a random id.
             if(d3.select('[data-chartid=' + dataAttributeChartID + '] svg').empty()) {
                 d3.select('[data-chartid=' + dataAttributeChartID + ']').append('svg')
@@ -755,7 +755,7 @@ function initializeMargin(scope, attrs){
                 .attr('width', scope.width)
                 .datum(data)
                 .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
-                .call(chart);
+                .call(chart);  
             }
         } else {
             if(d3.select('#' + attrs.id + ' svg').empty()) {
@@ -769,7 +769,7 @@ function initializeMargin(scope, attrs){
                 .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
                 .call(chart);
             }
-    }
+    }    
 
     angular.module('nvd3ChartDirectives', [])
         .directive('nvd3LineChart', [function(){
@@ -2754,7 +2754,7 @@ function initializeMargin(scope, attrs){
                         if(!$attrs.id){
 
                             dataAttributeChartID = "chartid" + Math.floor(Math.random()*1000000001);
-                            angular.element($element).attr('data-chartid', dataAttributeChartID );
+                            angular.element($element).attr('data-chartid', dataAttributeChartID );    
 
                             selectedChart = d3.select('[data-iem-chartid=' + dataAttributeChartID + '] svg')
                                 .attr('height', $scope.height)

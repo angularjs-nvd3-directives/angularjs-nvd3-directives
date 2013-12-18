@@ -1399,7 +1399,7 @@
                     data: '=',
                     width: '@',
                     height: '@',
-                    id: '@'
+                    id: '@',
 
                     callback: '&'
                 },
