@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.4-beta - 2013-12-18
+/*! angularjs-nvd3-directives - v0.0.4-beta - 2013-12-19
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2013 Christian Maurer; Licensed Apache License, v2.0 */
 (function()
@@ -2369,6 +2369,8 @@ function initializeMargin(scope, attrs){
                     color: '&',
                     x: '&',
                     y: '&',
+                    forceX: '@',
+                    forceY: '@',
                     clipvoronoi: '@',
                     interpolate: '@',
                     isArea: '@',
@@ -2516,6 +2518,8 @@ function initializeMargin(scope, attrs){
                                         .margin2(scope.margin2)
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                        .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex))
+                                        .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)

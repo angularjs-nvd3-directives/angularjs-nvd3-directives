@@ -1647,6 +1647,8 @@
                     color: '&',
                     x: '&',
                     y: '&',
+                    forceX: '@',
+                    forceY: '@',
                     clipvoronoi: '@',
                     interpolate: '@',
                     isArea: '@',
@@ -1794,6 +1796,8 @@
                                         .margin2(scope.margin2)
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                        .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex))
+                                        .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
