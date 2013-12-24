@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.4-beta - 2013-12-19
+/*! angularjs-nvd3-directives - v0.0.5-beta - 2013-12-24
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2013 Christian Maurer; Licensed Apache License, v2.0 */
 (function()
@@ -2371,10 +2371,13 @@ function initializeMargin(scope, attrs){
                     y: '&',
                     forceX: '@',
                     forceY: '@',
+                    clipedge: '@',
                     clipvoronoi: '@',
                     interpolate: '@',
                     isArea: '@',
-    //                'xScale', 'yScale', 'xDomain', 'yDomain', defined
+                    size: '&',
+                    defined: '&',
+                    interactive: '@',
 
                     callback: '&',
 
@@ -2509,8 +2512,8 @@ function initializeMargin(scope, attrs){
                                     } else {
                                         scope.margin2 = {top: 0, right: 30, bottom: 20, left: 60};
                                     }
-
-                                    var chart = nv.models.lineWithFocusChart()
+//'xDomain', 'yDomain', 'xRange', 'yRange', ''clipEdge', 'clipVoronoi'
+                                   var chart = nv.models.lineWithFocusChart()
                                         .width(scope.width)
                                         .height(scope.height)
                                         .height2((attrs.height2 === undefined ? 100 : (+attrs.height2)))
@@ -2525,7 +2528,13 @@ function initializeMargin(scope, attrs){
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                         .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); })
+                                        .size(attrs.size === undefined ? function(d){ return d.size; }: scope.size())
+                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate);
+
+                                    if(attrs.defined){
+                                        chart.defined(scope.defined());
+                                    }
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());

@@ -1649,10 +1649,13 @@
                     y: '&',
                     forceX: '@',
                     forceY: '@',
+                    clipedge: '@',
                     clipvoronoi: '@',
                     interpolate: '@',
                     isArea: '@',
-    //                'xScale', 'yScale', 'xDomain', 'yDomain', defined
+                    size: '&',
+                    defined: '&',
+                    interactive: '@',
 
                     callback: '&',
 
@@ -1787,8 +1790,8 @@
                                     } else {
                                         scope.margin2 = {top: 0, right: 30, bottom: 20, left: 60};
                                     }
-
-                                    var chart = nv.models.lineWithFocusChart()
+//'xDomain', 'yDomain', 'xRange', 'yRange', ''clipEdge', 'clipVoronoi'
+                                   var chart = nv.models.lineWithFocusChart()
                                         .width(scope.width)
                                         .height(scope.height)
                                         .height2((attrs.height2 === undefined ? 100 : (+attrs.height2)))
@@ -1803,7 +1806,13 @@
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                         .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); })
+                                        .size(attrs.size === undefined ? function(d){ return d.size; }: scope.size())
+                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate);
+
+                                    if(attrs.defined){
+                                        chart.defined(scope.defined());
+                                    }
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
