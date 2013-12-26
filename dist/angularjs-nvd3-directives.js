@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.5-beta - 2013-12-24
+/*! angularjs-nvd3-directives - v0.0.5-beta - 2013-12-25
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2013 Christian Maurer; Licensed Apache License, v2.0 */
 (function()

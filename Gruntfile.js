@@ -67,7 +67,7 @@ module.exports = function (grunt) {
         },
         changelog: {
             options: {
-                version: 'v0.0.1-beta'
+                version: 'v0.0.5-beta'
             }
         },
         watch: {
