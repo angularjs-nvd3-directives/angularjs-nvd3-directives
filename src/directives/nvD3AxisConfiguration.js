@@ -209,6 +209,70 @@
     }
 
 
+    function configureY1axis(chart, scope, attrs){
+        "use strict";
+        if(attrs.y1axisticks){
+            chart.y1Axis.scale().ticks(attrs.y1axisticks);
+        }
+        if(attrs.y1axistickvalues){
+            chart.y1Axis.tickValues(attrs.y1axistickvalues);
+        }
+        if(attrs.y1axisticksubdivide){
+            chart.y1Axis.tickSubdivide(scope.y1axisticksubdivide());
+        }
+        if(attrs.y1axisticksize){
+            chart.y1Axis.tickSize(scope.y1axisticksize());
+        }
+        if(attrs.y1axistickpadding){
+            chart.y1Axis.tickPadding(scope.y1axistickpadding());
+        }
+        if(attrs.y1axistickformat){
+            chart.y1Axis.tickFormat(scope.y1axistickformat());
+        }
+        if(attrs.y1axislabel){
+            chart.y1Axis.axisLabel(attrs.y1axislabel);
+        }
+        if(attrs.y1axisscale){
+            chart.y1Axis.yScale(scope.y1axisscale());
+        }
+        if(attrs.y1axisdomain){
+            if(Array.isArray(scope.$eval(attrs.y1axisdomain))){
+                chart.y1Axis.domain(scope.$eval(attrs.y1axisdomain));
+            } else if(typeof scope.y1axisdomain() === 'function'){
+                chart.y1Axis.domain(scope.y1axisdomain());
+            }
+        }
+        if(attrs.y1axisrange){
+            if(Array.isArray(scope.$eval(attrs.y1axisrange))){
+                chart.y1Axis.range(scope.$eval(attrs.y1axisrange));
+            } else if(typeof scope.y1axisrange() === 'function'){
+                chart.y1Axis.range(scope.y1axisrange());
+            }
+        }
+        if(attrs.y1axisrangeband){
+            chart.y1Axis.rangeBand(scope.y1axisrangeband());
+        }
+        if(attrs.y1axisrangebands){
+            chart.y1Axis.rangeBands(scope.y1axisrangebands());
+        }
+        if(attrs.y1axisshowmaxmin){
+            chart.y1Axis.showMaxMin((attrs.y1axisshowmaxmin === "true"));
+        }
+        if(attrs.y1axishighlightzero){
+            chart.y1Axis.highlightZero((attrs.y1axishighlightzero === "true"));
+        }
+        if(attrs.y1axisrotatelabels){
+            chart.y1Axis.rotateLabels(scope.y1axisrotatelabels);
+        }
+        if(attrs.y1axisrotateylabel){
+            chart.y1Axis.rotateYLabel((attrs.y1axisrotateylabel === "true"));
+        }
+        if(attrs.y1axisstaggerlabels){
+            chart.y1Axis.staggerlabels((attrs.y1axisstaggerlabels === "true"));
+        }
+    }
+
+
     function configureY2axis(chart, scope, attrs){
         "use strict";
         if(attrs.y2axisticks){
