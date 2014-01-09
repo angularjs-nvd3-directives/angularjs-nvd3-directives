@@ -1608,7 +1608,7 @@
                                     }
 
                                     configureXaxis(chart, scope, attrs);
-                                    configureY1axis(chart, scope, attrs);
+                                    configureYaxis(chart, scope, attrs);
                                     configureY2axis(chart, scope, attrs);
                                     configureLegend(chart, scope, attrs);
                                     processEvents(chart, scope);
