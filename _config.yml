@@ -4,3 +4,4 @@ lsi: true
 source: .
 destination: _site
 baseurl: /angularjs-nvd3-directives
+markdown: kramdown

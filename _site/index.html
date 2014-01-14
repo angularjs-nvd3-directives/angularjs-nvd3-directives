@@ -280,81 +280,83 @@ function ExampleCtrl($scope){
 };
     
 </script>
-<h1 id='quickly_create_nvd3js_charts_with_angularjs'>Quickly create nvd3.js charts with Angular.js</h1>
 
-<p>Angular.js Directives &#8220;are a way to teach HTML new tricks&#8221;. Directives are Angular&#8217;s way of extending HTML to create new elements and functionality.</p>
+<h1 id="quickly-create-nvd3js-charts-with-angularjs">Quickly create nvd3.js charts with Angular.js</h1>
+<p>Angular.js Directives “are a way to teach HTML new tricks”.  Directives are Angular’s way of extending HTML to create new elements and functionality.</p>
 
 <p>Directives hide the complexity and code that is necessary to create d3.js, and nvd3.js charts, which makes adding charts to an Angular.js application quicker, and simpler than typical methods.</p>
 
 <p>The following charts can be created with just a few lines of JavaScript and HTML code.</p>
-<div ng-controller='ExampleCtrl'>
-    <a href='line.chart.html'>Line Charts</a>
-	<nvd3-line-chart data='lineChartData' height='350' id='lineChartExample' interactive='true' showXAxis='true' showYAxis='true' width='550' xAxisTickFormat='xAxisTickFormatFunction()' yAxisTickFormat='yAxisTickFormatFunction()'>
-        <svg />
+
+<div ng-controller="ExampleCtrl">
+    <a href="line.chart.html">Line Charts</a>
+	<nvd3-line-chart data="lineChartData" id="lineChartExample" width="550" height="350" showxaxis="true" showyaxis="true" interactive="true" xaxistickformat="xAxisTickFormatFunction()" yaxistickformat="yAxisTickFormatFunction()">
+        <svg></svg>
     </nvd3-line-chart>
 
-    <a href='cumulative.line.chart.html'>Cumulative Line Charts</a>
-	<nvd3-cumulative-line-chart data='cumulativeLineChartData' height='350' id='cumulativeLineChartExampleId' interactive='false' showXAxis='true' showYAxis='true' tooltips='false' width='550' x='xArrayFunction()' xAxisTickFormat='xAxisTickFormatYearFunction()' y='yArrayFunction()'>
-	    <svg />
+    <a href="cumulative.line.chart.html">Cumulative Line Charts</a>
+	<nvd3-cumulative-line-chart data="cumulativeLineChartData" id="cumulativeLineChartExampleId" width="550" height="350" showxaxis="true" showyaxis="true" tooltips="false" interactive="false" x="xArrayFunction()" y="yArrayFunction()" xaxistickformat="xAxisTickFormatYearFunction()">
+	    <svg></svg>
 	</nvd3-cumulative-line-chart>
 
-    <a href='line.with.focus.chart.html'>Line with Focus Charts</a>
-    <nvd3-line-with-focus-chart data='lineChartData' height='400' height2='50' id='lineWithFocusChartId' x2AxisTickFormat='xAxisTickFormatFunction()' xAxisTickFormat='xAxisTickFormatFunction()'>
-         <svg />
+    <a href="line.with.focus.chart.html">Line with Focus Charts</a>
+    <nvd3-line-with-focus-chart data="lineChartData" id="lineWithFocusChartId" height="400" height2="50" xaxistickformat="xAxisTickFormatFunction()" x2axistickformat="xAxisTickFormatFunction()">
+         <svg></svg>
     </nvd3-line-with-focus-chart>
 
-    <a href='stacked.area.chart.html'>Stacked Area Charts</a>
-	<nvd3-stacked-area-chart data='stackedAreaChartData' height='350' id='stackedAreaChartExample' interactive='true' showXAxis='true' showYAxis='true' width='550' xAxisTickFormat='xAxisTickFormatFunction()' yAxisTickFormat='yAxisTickFormatFunction()'>
-        <svg />
+    <a href="stacked.area.chart.html">Stacked Area Charts</a>
+	<nvd3-stacked-area-chart data="stackedAreaChartData" id="stackedAreaChartExample" width="550" height="350" showxaxis="true" showyaxis="true" interactive="true" xaxistickformat="xAxisTickFormatFunction()" yaxistickformat="yAxisTickFormatFunction()">
+        <svg></svg>
     </nvd3-stacked-area-chart>
 
-    <a href='discrete.bar.chart.html'>Discrete Bar Charts</a>
-	<nvd3-discrete-bar-chart data='discreteBarData' height='350' id='discreteBarChartExample' showXAxis='true' showYAxis='true' width='550' xAxisTickFormat='xAxisTickFormatMonthFunction()' yAxisTickFormat='yAxisTickFormatFunction()'>
-        	<svg />
+    <a href="discrete.bar.chart.html">Discrete Bar Charts</a>
+	<nvd3-discrete-bar-chart data="discreteBarData" id="discreteBarChartExample" xaxistickformat="xAxisTickFormatMonthFunction()" yaxistickformat="yAxisTickFormatFunction()" width="550" height="350" showxaxis="true" showyaxis="true">
+        	<svg></svg>
     </nvd3-discrete-bar-chart>
 
 
-    <a href='multi.bar.chart.html'>Multi Bar Charts</a>
-	<nvd3-multi-bar-chart data='multiBarChartData' height='300' id='multiBarChartExample' interactive='true' showXAxis='true' showYAxis='true' width='550' xAxisTickFormat='xAxisTickFormatFunction()' xAxisTickValues='[1025409600000, 1036040400000, 1043989200000, 1054353600000]' yAxisTickFormat='yAxisTickFormatFunction()'>
-        	<svg />
+    <a href="multi.bar.chart.html">Multi Bar Charts</a>
+	<nvd3-multi-bar-chart data="multiBarChartData" id="multiBarChartExample" width="550" height="300" showxaxis="true" showyaxis="true" interactive="true" yaxistickformat="yAxisTickFormatFunction()" xaxistickformat="xAxisTickFormatFunction()" xaxistickvalues="[1025409600000, 1036040400000, 1043989200000, 1054353600000]">
+        	<svg></svg>
     </nvd3-multi-bar-chart>
 
-    <a href='multi.bar.horizontal.chart.html'>Multi Bar Horizontal Charts</a>
-    <div ng-controller='ExampleCtrl'>
-        <nvd3-multi-bar-horizontal-chart data='multiBarChartData' height='350' id='multiBarHorizontalChartExample' width='550' yAxisTickFormat='yAxisTickFormatFunction()'>
-                <svg />
+    <a href="multi.bar.horizontal.chart.html">Multi Bar Horizontal Charts</a>
+    <div ng-controller="ExampleCtrl">
+        <nvd3-multi-bar-horizontal-chart data="multiBarChartData" id="multiBarHorizontalChartExample" yaxistickformat="yAxisTickFormatFunction()" width="550" height="350">
+                <svg></svg>
         </nvd3-multi-bar-horizontal-chart>
     </div>
 
-    <a href='pie.chart.html'>Pie Charts</a>
-	<nvd3-pie-chart data='pieChartData' height='350' id='pieChartExample' interactive='true' showLabels='true' width='550' x='xPieFunction()' y='yPieFunction()'>
-        <svg height='250' />
+    <a href="pie.chart.html">Pie Charts</a>
+	<nvd3-pie-chart data="pieChartData" id="pieChartExample" width="550" height="350" showlabels="true" interactive="true" x="xPieFunction()" y="yPieFunction()">
+        <svg height="250"></svg>
     </nvd3-pie-chart>
 
-    <a href='scatter.chart.html'>Scatter Charts</a>
-    <div ng-controller='ExampleCtrl'>
-        <nvd3-scatter-chart data='scatterChartExampleData' height='300' id='scatterChartExampleId' width='550' xAxisTickFormat='xAxisTickFormatScatterFunction()' yAxisTickFormat='yAxisTickFormatFunction()'>
-            <svg />
+    <a href="scatter.chart.html">Scatter Charts</a>
+    <div ng-controller="ExampleCtrl">
+        <nvd3-scatter-chart data="scatterChartExampleData" id="scatterChartExampleId" xaxistickformat="xAxisTickFormatScatterFunction()" yaxistickformat="yAxisTickFormatFunction()" width="550" height="300">
+            <svg></svg>
         </nvd3-scatter-chart>
     </div>
 
-    <a href='sparkline.chart.html'>Sparkline Charts</a>
-    <div ng-controller='ExampleCtrl'>
-        <nvd3-sparkline-chart data='sparklineChartData' height='150' id='sparklineChartExampleId' margin='{left:30, top:20, bottom:20, right:50}' width='550' x='sparklineXFunction()' y='sparklineYFunction()'>
-            <svg />
+    <a href="sparkline.chart.html">Sparkline Charts</a>
+    <div ng-controller="ExampleCtrl">
+        <nvd3-sparkline-chart data="sparklineChartData" id="sparklineChartExampleId" width="550" height="150" margin="{left:30, top:20, bottom:20, right:50}" x="sparklineXFunction()" y="sparklineYFunction()">
+            <svg></svg>
         </nvd3-sparkline-chart>
     </div>
 
-    <a href='bullet.chart.html'>Bullet Charts</a>
-    <div ng-controller='ExampleCtrl'>
-        <nvd3-bullet-chart data='bulletChartData' height='160' id='bulletChartId' margin='{left:75,top:30,bottom:30,right:10}' width='550'>
-            <svg />
+    <a href="bullet.chart.html">Bullet Charts</a>
+    <div ng-controller="ExampleCtrl">
+        <nvd3-bullet-chart data="bulletChartData" id="bulletChartId" margin="{left:75,top:30,bottom:30,right:10}" width="550" height="160">
+            <svg></svg>
         </nvd3-bullet-chart>
     </div>
 
 
 
-</div>      
+</div>
+      
 	  </section>
       <footer>
         <p>This project is maintained by <a itemprop="author" href="https://github.com/cmaurer">cmaurer</a></p>

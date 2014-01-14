@@ -1,7 +1,6 @@
 ---
 layout: index
 ---
-
 <script>
 var app = angular.module('nvd3TestApp', ['nvd3ChartDirectives']);
 
