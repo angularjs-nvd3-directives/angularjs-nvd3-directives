@@ -364,7 +364,7 @@ The following charts can be created with just a few lines of JavaScript and HTML
         <nvd3-bullet-chart
             data="bulletChartData"
             id="bulletChartId"
-            margin="{left:75,top:30,bottom:30,right:10}"
+            margin="{left:75,top:60,bottom:60,right:10}"
             width="550"
             height="160">
             <svg></svg>
