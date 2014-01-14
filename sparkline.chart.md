@@ -49,7 +49,7 @@ Creating and Configuring a SparkLine Chart
         id="exampleId"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()">
         <svg></svg>
@@ -115,7 +115,7 @@ Other directive attributes should be the same as the public attributes associate
         id="exampleId"
         width="550"
         height="150"
-        margin="{left:30, top:30, bottom:30, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()">
         	<svg></svg>
@@ -168,7 +168,7 @@ $scope.colorFunction = function() {
         id="colorExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()"
         color="colorFunction()">
@@ -183,7 +183,7 @@ $scope.colorFunction = function() {
         id="colorExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()"
         color="colorFunction()">
@@ -204,7 +204,7 @@ Datatype: String
         id="noDataExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()"
         noData="No Data for You!">
@@ -219,7 +219,7 @@ Datatype: String
         id="noDataExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()"
         noData="No Data for You!">
@@ -247,7 +247,7 @@ $scope.xFunction = function(){
         id="xExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()">
         	<svg></svg>
@@ -261,7 +261,7 @@ $scope.xFunction = function(){
         id="xExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()">
         	<svg></svg>
@@ -288,7 +288,7 @@ $scope.yFunction = function(){
         id="yExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()">
         	<svg></svg>
@@ -302,7 +302,7 @@ $scope.yFunction = function(){
         id="yExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()">
         	<svg></svg>
@@ -321,7 +321,7 @@ Datatype: Boolean
         id="showValueExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()"
         showValue="false">
@@ -336,7 +336,7 @@ Datatype: Boolean
         id="showValueExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()"
         showValue="false">
@@ -357,7 +357,7 @@ Datatype: Boolean
         id="alignValueExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()"
         alignValue="false">
@@ -372,7 +372,7 @@ Datatype: Boolean
         id="alignValueExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:100}"
         x="xFunction()"
         y="yFunction()"
         alignValue="false">
@@ -390,7 +390,7 @@ Enables or disables aligning the value on the right or left side of the Y axis. 
         id="rightAlignValueExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:150}"
         x="xFunction()"
         y="yFunction()"
         rightAlignValue="true">
@@ -405,7 +405,7 @@ Enables or disables aligning the value on the right or left side of the Y axis. 
         id="rightAlignValueExample"
         width="550"
         height="150"
-        margin="{left:30, top:20, bottom:20, right:50}"
+        margin="{left:40, top:40, bottom:40, right:150}"
         x="xFunction()"
         y="yFunction()"
         rightAlignValue="true">

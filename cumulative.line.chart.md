@@ -88,8 +88,8 @@ Creating and Configuring a Cumulative Line Chart
 	<nvd3-cumulative-line-chart
 		data="exampleData"
 	    id="exampleId"
-	    width="650"
-	    height="400"
+	    width="600"
+	    height="300"
 	    showXAxis="true"
 	    showYAxis="true"
 	    tooltips="true"
@@ -98,7 +98,7 @@ Creating and Configuring a Cumulative Line Chart
 	    y="yFunction()"
 	    yAxisTickFormat="yAxisTickFormatFunction()"
 	    xAxisTickFormat="xAxisTickFormatFunction()"
-	    margin="{left:60,top:50,bottom:50,right:60}">
+	    margin="{left:70,top:70,bottom:70,right:125}">
 	    <svg></svg>
 	</nvd3-cumulative-line-chart>
 </div>
@@ -171,7 +171,7 @@ Other directive attributes should be the same as the public attributes associate
 	    y="yFunction()"
 	    yAxisTickFormat="yAxisTickFormatFunction()"
 	    xAxisTickFormat="xAxisTickFormatFunction()"
-	    margin="{left:60,top:50,bottom:50,right:60}">
+        margin="{left:70,top:70,bottom:70,right:125}">
 	    <svg></svg>
 	</nvd3-cumulative-line-chart>
 </div>
@@ -213,7 +213,7 @@ Datatype: Boolean
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    margin="{left:50,top:50,bottom:50,right:50}">
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -230,7 +230,7 @@ Datatype: Boolean
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    margin="{left:50,top:50,bottom:50,right:50}">
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -251,7 +251,7 @@ Datatype: boolean - (true/false)
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    margin="{left:50,top:50,bottom:50,right:50}">
+    margin="{left:70,top:70,bottom:70,right:150}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -268,7 +268,7 @@ Datatype: boolean - (true/false)
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    margin="{left:50,top:50,bottom:50,right:50}">
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -302,7 +302,8 @@ $scope.colorFunction = function() {
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    color="colorFunction()">
+    color="colorFunction()"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -319,7 +320,8 @@ $scope.colorFunction = function() {
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    color="colorFunction()">
+    color="colorFunction()"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -341,7 +343,8 @@ Datatype: boolean - (true/false)
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-	isArea="true">
+	isArea="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -358,7 +361,8 @@ Datatype: boolean - (true/false)
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-	isArea="true">
+	isArea="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -380,7 +384,8 @@ Datatype: boolean - (true/false)
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-	showLegend="true">
+	showLegend="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -397,7 +402,8 @@ Datatype: boolean - (true/false)
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-	showLegend="true">
+	showLegend="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -463,7 +469,8 @@ $scope.xFunction = function(){
     showYAxis="true"
     x="xFunction()"
     y="yFunction()"
-    xAxisTickFormat="xAxisTickFormatFunction()">
+    xAxisTickFormat="xAxisTickFormatFunction()"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -479,7 +486,8 @@ $scope.xFunction = function(){
     showYAxis="true"
     x="xFunction()"
     y="yFunction()"
-    xAxisTickFormat="xAxisTickFormatFunction()">
+    xAxisTickFormat="xAxisTickFormatFunction()"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -508,7 +516,8 @@ $scope.yFunction = function(){
     showYAxis="true"
     x="xFunction()"
     y="yFunction()"
-    xAxisTickFormat="xAxisTickFormatFunction()">
+    xAxisTickFormat="xAxisTickFormatFunction()"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -524,7 +533,8 @@ $scope.yFunction = function(){
     showYAxis="true"
     x="xFunction()"
     y="yFunction()"
-    xAxisTickFormat="xAxisTickFormatFunction()">
+    xAxisTickFormat="xAxisTickFormatFunction()"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div> 
@@ -546,7 +556,8 @@ Datatype: Array of Numbers (i.e. [0, 50])
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    forceX="[0]">
+    forceX="[0]"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -563,7 +574,8 @@ Datatype: Array of Numbers (i.e. [0, 50])
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    forceX="[0]">
+    forceX="[0]"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>  
@@ -585,7 +597,8 @@ Datatype: Array of Numbers (i.e. [0, 50]
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    forceY="[0]">
+    forceY="[0]"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -603,7 +616,8 @@ Datatype: Array of Numbers (i.e. [0, 50]
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    forceY="[0]">
+    forceY="[0]"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>  
@@ -625,7 +639,8 @@ Datatype: boolean - (true/false)
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    interactive="true">
+    interactive="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -642,7 +657,8 @@ Datatype: boolean - (true/false)
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    interactive="true">
+    interactive="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>  
@@ -667,7 +683,8 @@ Datatype: boolean - (true/false)
     y="yFunction()"
     interactive="true"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    tooltips="true">
+    tooltips="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -685,7 +702,8 @@ Datatype: boolean - (true/false)
     y="yFunction()"
     interactive="true"
     xAxisTickFormat="xAxisTickFormatFunction()"
-    tooltips="true">
+    tooltips="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>  
@@ -725,7 +743,8 @@ $scope.toolTipContentFunction = function(){
     xAxisTickFormat="xAxisTickFormatFunction()"
     interactive="true"
     tooltips="true"
-    tooltipContent="toolTipContentFunction()">
+    tooltipContent="toolTipContentFunction()"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -744,7 +763,8 @@ $scope.toolTipContentFunction = function(){
     xAxisTickFormat="xAxisTickFormatFunction()"
     interactive="true"
     tooltips="true"
-    tooltipContent="toolTipContentFunction()">
+    tooltipContent="toolTipContentFunction()"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>  
@@ -768,7 +788,8 @@ Datatype: boolean - (true/false)
     xAxisTickFormat="xAxisTickFormatFunction()"
     interactive="true"
     tooltips="true"
-    clipEdge="true">
+    clipEdge="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -787,7 +808,8 @@ Datatype: boolean - (true/false)
     xAxisTickFormat="xAxisTickFormatFunction()"
     interactive="true"
     tooltips="true"
-    clipEdge="true">
+    clipEdge="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>  
@@ -811,7 +833,8 @@ Datatype: boolean - (true/false)
     xAxisTickFormat="xAxisTickFormatFunction()"
     interactive="true"
     tooltips="true"
-    clipVoronoi="true">
+    clipVoronoi="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -830,7 +853,8 @@ Datatype: boolean - (true/false)
     xAxisTickFormat="xAxisTickFormatFunction()"
     interactive="true"
     tooltips="true"
-    clipVoronoi="true">
+    clipVoronoi="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>  
@@ -857,7 +881,8 @@ $scope.averageFunction = function(){
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-	average="averageFunction()">
+	average="averageFunction()"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -874,7 +899,8 @@ $scope.averageFunction = function(){
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-	average="averageFunction()">
+	average="averageFunction()"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>  
@@ -893,7 +919,8 @@ $scope.averageFunction = function(){
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-	rescaleY="true">
+	rescaleY="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>
@@ -910,7 +937,8 @@ $scope.averageFunction = function(){
     x="xFunction()"
     y="yFunction()"
     xAxisTickFormat="xAxisTickFormatFunction()"
-	rescaleY="true">
+	rescaleY="true"
+    margin="{left:70,top:70,bottom:70,right:125}">
         <svg></svg>
 </nvd3-cumulative-line-chart>
 </div>

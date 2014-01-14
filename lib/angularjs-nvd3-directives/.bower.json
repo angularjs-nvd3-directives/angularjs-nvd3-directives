@@ -1,6 +1,6 @@
 {
   "name": "angularjs-nvd3-directives",
-  "version": "0.0.4-beta",
+  "version": "0.0.5-beta",
   "description": "Angular.js directives for nvd3.js.",
   "authors": [
     "Christian Maurer"
@@ -25,18 +25,18 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.0.8",
-    "d3": "~3.3.5",
-    "nvd3": "~v1.1.14-beta",
-    "moment": "~2.3.0"
+    "angular": "1.2.4",
+    "d3": "3.3.11",
+    "nvd3": "v1.1.14-beta",
+    "moment": "2.4.0"
   },
-  "_release": "0.0.4-beta",
+  "_release": "0.0.5-beta",
   "_resolution": {
     "type": "version",
-    "tag": "v0.0.4-beta",
-    "commit": "59b5fc209cd74a42f098bbb6d8f2eea26b7f8d78"
+    "tag": "v0.0.5-beta",
+    "commit": "892e2cff06927913fa98ecb1462dbdf94997450a"
   },
   "_source": "git://github.com/cmaurer/angularjs-nvd3-directives.git",
-  "_target": "~v0.0.4-beta",
+  "_target": "~v0.0.5-beta",
   "_originalSource": "angularjs-nvd3-directives"
 }

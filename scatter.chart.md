@@ -117,6 +117,9 @@ Creating and Configuring a Scatter Chart
             id="exampleId"
             width="550"
             height="400"
+            margin="{left:50,top:70,bottom:70,right:70}"
+            showDistX="true"
+            showDistY="true"
             yAxisTickFormat="yAxisTickFormatFunction()"
             xAxisTickFormat="xAxisTickFormatFunction()">
         <svg></svg>

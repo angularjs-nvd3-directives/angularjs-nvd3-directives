@@ -254,6 +254,16 @@ The following charts can be created with just a few lines of JavaScript and HTML
 	    <svg></svg>
 	</nvd3-cumulative-line-chart>
 
+    <a href="{{ site.path }}line.with.focus.chart.html">Line with Focus Charts</a>
+    <nvd3-line-with-focus-chart
+            data="lineChartData"
+            id="lineWithFocusChartId"
+            height="400"
+            height2="50"
+            xAxisTickFormat="xAxisTickFormatFunction()"
+            x2AxisTickFormat="xAxisTickFormatFunction()">
+         <svg></svg>
+    </nvd3-line-with-focus-chart>
 
     <a href="{{ site.path }}stacked.area.chart.html">Stacked Area Charts</a>
 	<nvd3-stacked-area-chart

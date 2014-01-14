@@ -1,6 +1,6 @@
 {
-  "name": "angularjs-nvd3-directives",
-  "version": "0.0.0",
+  "name": "angularjs-nvd3-directives-pages",
+  "version": "0.0.1",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -9,10 +9,10 @@
     "tests"
   ],
   "devDependencies": {
-      "angular": "~1.0.8",
-      "d3": "~3.3.5",
+      "angular": "~1.2.4",
+      "d3": "~3.3.13",
       "nvd3": "~v1.1.14-beta",
-      "moment": "~2.3.0",
-      "angularjs-nvd3-directives": "~v0.0.4-beta"
+      "moment": "~2.5.0",
+      "angularjs-nvd3-directives": "~v0.0.5-beta"
   }
 }

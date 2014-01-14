@@ -61,12 +61,11 @@
           <li><a href="https://github.com/cmaurer/angularjs-nvd3-directives/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/cmaurer/angularjs-nvd3-directives/tarball/master">Download <strong>TAR Ball</strong></a></li>
           <li><a href="https://github.com/cmaurer/angularjs-nvd3-directives">View On <strong>GitHub</strong></a></li>
+          <li><iframe src="//benschwarz.github.io/bower-badges/embed.html?pkgname=angularjs-nvd3-directives" width="160" height="32" allowtransparency="true" frameborder="0" scrolling="0"></iframe></li>
         </ul>
-        <img src="https://travis-ci.org/cmaurer/angularjs-nvd3-directives.png?branch=master"/>
-        <img src="https://david-dm.org/cmaurer/angularjs-nvd3-directives.png" />
-        <img src="https://david-dm.org/alanshaw/david-www/dev-status.png" />
+
       </header>
-        <section><div class="view"><a href="index.html">Home</a>	#	<a href="line.chart.html">Line Charts</a>	#	<a href="stacked.area.chart.html">Stacked Area Charts</a>	#	<a href="multi.bar.chart.html">Multi Bar Charts</a>	#	<a href="multi.bar.horizontal.chart.html">Multi Bar Horizontal Charts</a>	#	<a href="discrete.bar.chart.html">Discrete Bar Charts</a>	#	<a href="pie.chart.html">Pie Charts</a>	#	<a href="scatter.chart.html">Scatter Charts</a>	#	<a href="sparkline.chart.html">Sparkline Charts</a>	#	<a href="cumulative.line.chart.html">Cumulative Line Charts</a>	#	<a href="bullet.chart.html">Bullet Charts</a>	#	<a href="events.html">Events</a></div></section>
+        <section><div class="view"><a href="index.html">Home</a>	#	<a href="line.chart.html">Line Charts</a>	#	<a href="stacked.area.chart.html">Stacked Area Charts</a>	#	<a href="multi.bar.chart.html">Multi Bar Charts</a>	#	<a href="multi.bar.horizontal.chart.html">Multi Bar Horizontal Charts</a>	#	<a href="discrete.bar.chart.html">Discrete Bar Charts</a>	#	<a href="pie.chart.html">Pie Charts</a>	#	<a href="scatter.chart.html">Scatter Charts</a>	#	<a href="sparkline.chart.html">Sparkline Charts</a>	#	<a href="cumulative.line.chart.html">Cumulative Line Charts</a>  #	<a href="line.with.focus.chart.html">Line with Focus Chart</a> #	<a href="bullet.chart.html">Bullet Charts</a>	#	<a href="events.html">Events</a></div></section>
       <section>
 		<script>
 var app = angular.module('nvd3TestApp', ['nvd3ChartDirectives']);
@@ -299,6 +298,10 @@ function ExampleCtrl($scope){
 	    <svg />
 	</nvd3-cumulative-line-chart>
 
+    <a href='line.with.focus.chart.html'>Line with Focus Charts</a>
+    <nvd3-line-with-focus-chart data='lineChartData' height='400' height2='50' id='lineWithFocusChartId' x2AxisTickFormat='xAxisTickFormatFunction()' xAxisTickFormat='xAxisTickFormatFunction()'>
+         <svg />
+    </nvd3-line-with-focus-chart>
 
     <a href='stacked.area.chart.html'>Stacked Area Charts</a>
 	<nvd3-stacked-area-chart data='stackedAreaChartData' height='350' id='stackedAreaChartExample' interactive='true' showXAxis='true' showYAxis='true' width='550' xAxisTickFormat='xAxisTickFormatFunction()' yAxisTickFormat='yAxisTickFormatFunction()'>

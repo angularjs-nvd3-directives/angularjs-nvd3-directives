@@ -55,7 +55,7 @@ Creating and Configuring a Bullet Chart
 	<nvd3-bullet-chart
     	data="exampleData"
         id="exampleId"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160">
         <svg></svg>
@@ -116,7 +116,7 @@ Other directive attributes should be the same as the public attributes associate
 	<nvd3-bullet-chart
     	data="exampleData"
         id="exampleId"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160">
         	<svg></svg>
@@ -154,7 +154,7 @@ Datatype: String
 	<nvd3-bullet-chart
     	data="noDataData"
         id="noDataExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         noData="No Data For You!">
@@ -167,7 +167,7 @@ Datatype: String
 	<nvd3-bullet-chart
     	data="noDataData"
         id="noDataExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         noData="No Data For You!">
@@ -188,7 +188,7 @@ Datatype: boolean - (true/false)
 	<nvd3-bullet-chart
     	data="exampleData"
         id="toolTipExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         interactive="true"
@@ -202,7 +202,7 @@ Datatype: boolean - (true/false)
 	<nvd3-bullet-chart
     	data="exampleData"
         id="toolTipExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         interactive="true"
@@ -237,7 +237,7 @@ $scope.toolTipContentFunction = function(){
 	<nvd3-bullet-chart
     	data="exampleData"
         id="toolTipContentExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         interactive="true"
@@ -252,7 +252,7 @@ $scope.toolTipContentFunction = function(){
 	<nvd3-bullet-chart
     	data="exampleData"
         id="toolTipContentExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         interactive="true"
@@ -276,7 +276,7 @@ Datatype: String
 	<nvd3-bullet-chart
     	data="exampleData"
         id="orientRightExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         orient="right">
@@ -289,7 +289,7 @@ Datatype: String
 	<nvd3-bullet-chart
     	data="exampleData"
         id="orientRightExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         orient="right">
@@ -303,7 +303,7 @@ Datatype: String
 	<nvd3-bullet-chart
     	data="exampleData"
         id="orientTopExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         orient="top">
@@ -316,7 +316,7 @@ Datatype: String
 	<nvd3-bullet-chart
     	data="exampleData"
         id="orientTopExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         orient="top">
@@ -330,7 +330,7 @@ Datatype: String
 	<nvd3-bullet-chart
     	data="exampleData"
         id="orientBottomExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         orient="bottom">
@@ -343,7 +343,7 @@ Datatype: String
 	<nvd3-bullet-chart
     	data="exampleData"
         id="orientBottomExample"
-        margin="{left:75,top:30,bottom:30,right:10}"
+        margin="{left:75,top:60,bottom:60,right:10}"
         width="550"
         height="160"
         orient="bottom">

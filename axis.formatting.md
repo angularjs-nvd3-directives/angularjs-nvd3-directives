@@ -93,46 +93,48 @@ Configuring Chart Axes
 [d3.js Axes Orient](https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-orient)
 
 > **top** - horizontal axis with ticks above the domain path
+
 > **bottom** - horizontal axis with ticks below the domain path
+
 > **left** - vertical axis with ticks to the left of the domain path
+
 > **right** - vertical axis with ticks to the right of the domain path
 
 
-### *xAxisOrient - Top*
 
+### *xAxisOrient - Top*
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="xAxisOrientTopExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="top"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="xAxisOrientTopExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="top"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
+
+
 
 ### *xAxisOrient - Bottom*
 {% highlight html %}
@@ -141,103 +143,30 @@ Configuring Chart Axes
         data="exampleData"
         id="xAxisOrientBottomExample"
         width="550"
-        height="350"
-        showXAxis="true"
+        height="250"        showXAxis="true"
         showYAxis="true"
         xAxisOrient="bottom"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="xAxisOrientBottomExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="bottom"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 
-### *yAxisOrient - Top*
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-    <nvd3-line-chart
-        data="exampleData"
-        id="yAxisOrientTopExample"
-        width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
-        yAxisOrient="top"
-        xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
-        <svg></svg>
-    </nvd3-line-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-    <nvd3-line-chart
-        data="exampleData"
-        id="yAxisOrientTopExample"
-        width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
-        yAxisOrient="top"
-        xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
-        <svg></svg>
-    </nvd3-line-chart>
-</div>
-
-### *yAxisOrient - Bottom*
-{% highlight html %}
-<div ng-controller="ExampleCtrl">
-    <nvd3-line-chart
-        data="exampleData"
-        id="yAxisOrientBottomExample"
-        width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
-        yAxisOrient="bottom"
-        xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
-        <svg></svg>
-    </nvd3-line-chart>
-</div>
-{% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-    <nvd3-line-chart
-        data="exampleData"
-        id="yAxisOrientBottomExample"
-        width="550"
-        height="350"
-        showXAxis="true"
-        showYAxis="true"
-        yAxisOrient="bottom"
-        xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
-        <svg></svg>
-    </nvd3-line-chart>
-</div>
 
 
 ### *xAxisOrient - Left*
@@ -247,33 +176,32 @@ Configuring Chart Axes
         data="exampleData"
         id="xAxisOrientLeftExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="left"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="xAxisOrientLeftExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="left"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
+
+
 
 ### *xAxisOrient - Right*
 {% highlight html %}
@@ -282,33 +210,100 @@ Configuring Chart Axes
         data="exampleData"
         id="xAxisOrientRightExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="right"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="xAxisOrientRightExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="right"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
+
+
+
+### *yAxisOrient - Top*
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="yAxisOrientTopExample"
+        width="550"
+        height="250"
+        showXAxis="true"
+        showYAxis="true"
+        yAxisOrient="top"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+{% endhighlight %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="yAxisOrientTopExample"
+        width="550"
+        height="250"
+        showXAxis="true"
+        showYAxis="true"
+        yAxisOrient="top"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+
+
+
+### *yAxisOrient - Bottom*
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="yAxisOrientBottomExample"
+        width="550"
+        height="250"
+        showXAxis="true"
+        showYAxis="true"
+        yAxisOrient="bottom"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+{% endhighlight %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="yAxisOrientBottomExample"
+        width="550"
+        height="250"
+        showXAxis="true"
+        showYAxis="true"
+        yAxisOrient="bottom"
+        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+        yAxisTickFormat="yAxisFormatFunction()">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+
+
 
 ### *yAxisOrient - Left*
 {% highlight html %}
@@ -317,33 +312,32 @@ Configuring Chart Axes
         data="exampleData"
         id="yAxisOrientLeftExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         yAxisOrient="left"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="yAxisOrientLeftExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         yAxisOrient="left"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
+
+
 
 ### *yAxisOrient - Right*
 {% highlight html %}
@@ -352,30 +346,27 @@ Configuring Chart Axes
         data="exampleData"
         id="yAxisOrientRightExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         yAxisOrient="right"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="yAxisOrientRightExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         yAxisOrient="right"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
@@ -391,31 +382,30 @@ Configuring Chart Axes
         data="exampleData"
         id="xAxisTicksExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisTickFormat="xAxisTickFormat_Time_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="xAxisTicksExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisTickFormat="xAxisTickFormat_Time_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-        >
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
+
+
 
 ## Tick Values
 [d3.js Tick Values](https://github.com/mbostock/d3/wiki/SVG-Axes#wiki-tickValues)
@@ -429,66 +419,60 @@ Array
         data="exampleData"
         id="tickValuesArrayExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisTickValues="[1025409600000, 1056945600000]"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-		>
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="tickValuesArrayExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
 		xAxisTickValues="[1025409600000, 1056945600000]"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-		>
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 
 
-Function
+#### Function
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="tickValuesFunctionExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
-		xAxisTickValues="xAxisTickValueFunction()"
+        xAxisTickValues="xAxisTickValueFunction()"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-		>
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="tickValuesFunctionExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
-		xAxisTickValues="xAxisTickValueFunction()"
+        xAxisTickValues="xAxisTickValueFunction()"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-        yAxisTickFormat="yAxisFormatFunction()"
-		>
+        yAxisTickFormat="yAxisFormatFunction()">
         <svg></svg>
     </nvd3-line-chart>
 </div>
@@ -520,7 +504,7 @@ $scope.xAxisTickFormat_Time_Format = function(){
         data="exampleData"
         id="tickFormatExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
 		xAxisTickFormat="xAxisTickFormat_Time_Format()">
@@ -528,13 +512,12 @@ $scope.xAxisTickFormat_Time_Format = function(){
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="tickFormatExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
 		xAxisTickFormat="xAxisTickFormat_Time_Format()">
@@ -554,7 +537,7 @@ Datatype: String
         data="exampleData"
         id="axisLabelExample"
         width="550"
-        height="350"
+        height="250"
         margin="{left:80,top:50,bottom:50,right:10}"
         showXAxis="true"
         showYAxis="true"
@@ -566,13 +549,12 @@ Datatype: String
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="axisLabelExample"
         width="550"
-        height="350"
+        height="250"
         margin="{left:80,top:50,bottom:50,right:10}"
         showXAxis="true"
         showYAxis="true"
@@ -590,8 +572,9 @@ Datatype: String
     <nvd3-line-chart
         data="exampleData"
         id="showMaxMinExample"
-        width="550"
-        height="350"
+        margin="{left:40,top:20,bottom:20,right:40}"
+        width="500"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
@@ -602,13 +585,13 @@ Datatype: String
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="showMaxMinExample"
-        width="550"
-        height="350"
+        margin="{left:40,top:20,bottom:20,right:40}"
+        width="500"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
@@ -627,7 +610,7 @@ Datatype: String
         data="exampleData"
         id="highlightZeroExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
@@ -638,13 +621,12 @@ Datatype: String
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="highlightZeroExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
         xAxisTickFormat="xAxisTickFormat_Date_Format()"
@@ -665,39 +647,34 @@ Datatype: Integer
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
-        id="rotateLabelsExample"
+        id="rotateXAxisLabelsExample"
         width="550"
-        height="350"
+        height="300"
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="bottom"
-		xAxisRotateLabels="180"
-		xAxisLabel="Test X Axis Label"
-		yAxisRotateLabels="180">
+        xAxisRotateLabels="180"
+        yAxisRotateLabels="180"
+        xAxisLabel="Test X Axis Label">
         <svg></svg>
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
-        id="rotateLabelsExample"
+        id="rotateXAxisLabelsExample"
         width="550"
-        height="350"
+        height="300"
         showXAxis="true"
         showYAxis="true"
         xAxisOrient="bottom"
 		xAxisRotateLabels="180"
-		xAxisLabel="Test X Axis Label"
-		yAxisRotateLabels="180">
+        yAxisRotateLabels="180"
+		xAxisLabel="Test X Axis Label">
         <svg></svg>
     </nvd3-line-chart>
 </div>
-
-
-## Rotate Y Lables
-
 
 ## Stagger Labels
 
@@ -709,7 +686,7 @@ Datatype: boolean
         data="exampleData"
         id="staggerLabelsExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
 		xAxisStaggerLabels="true"
@@ -718,13 +695,12 @@ Datatype: boolean
     </nvd3-line-chart>
 </div>
 {% endhighlight %}
-
 <div ng-controller="ExampleCtrl">
     <nvd3-line-chart
         data="exampleData"
         id="staggerLabelsExample"
         width="550"
-        height="350"
+        height="250"
         showXAxis="true"
         showYAxis="true"
 		xAxisStaggerLabels="true"
@@ -734,61 +710,55 @@ Datatype: boolean
 </div>
 
 
+
+## xAxis Tick Subdivide
+
+Datatype: boolean
+
+{% highlight html %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="xAxisTickSubdivideExample"
+        width="550"
+        height="250"
+        showXAxis="true"
+        showYAxis="true">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+{% endhighlight %}
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-chart
+        data="exampleData"
+        id="xAxisTickSubdivideExample"
+        width="550"
+        height="250"
+        showXAxis="true"
+        showYAxis="true">
+        <svg></svg>
+    </nvd3-line-chart>
+</div>
+
 xaxisticksubdivide
 xaxisticksize
 xaxistickpadding
-xaxistickformat
-xaxislabel
+xaxisaxislabeldistance
+
 xaxisscale
-
- $scope.yAxisScaleFunction = function(){
-
-            var max = 0;
-            for(var d in $scope.data){
-
-                var mx = _.max($scope.data[d].values, function(dd){
-                    console.log('dd', dd.y)
-                    return dd.y;
-                });
-                console.log(mx, max, mx > max);
-                if(mx.y > max){
-                    max = mx.y;
-                }
-            }
-            console.log('max', max);
-            return d3.scale.log().domain([0, max]).range([200,0]);
-        }
-
-
-
-
 xaxisdomain
 xaxisrange
 xaxisrangeband
 xaxisrangebands
-xaxisshowmaxmin
-xaxishighlightzero
-xaxisrotatelables
-xaxisrotateylabel
-xaxisstaggerlabels
-
-
 
 yaxisticksubdivide
 yaxisticksize
 yaxistickpadding
-yaxistickformat
-yaxislabel
-yaxislabel
 yaxisscale
 yaxisdomain
 yaxisrange
 yaxisrangeband
 yaxisrangebands
-yaxisshowmaxmin
-yaxishighlightzero
-yaxisrotatelables
-yaxisrotateylabel
-yaxisstaggerlabels
+yaxisaxislabeldistance
 
 
