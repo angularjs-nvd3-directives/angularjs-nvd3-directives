@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.5-beta - 2014-01-09
+/*! angularjs-nvd3-directives - v0.0.5-beta - 2014-01-13
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
 (function()
@@ -496,6 +496,9 @@ function configureLegend(chart, scope, attrs){
         if(attrs.xaxisstaggerlabels){
             chart.xAxis.staggerLabels((attrs.xaxisstaggerlabels === "true"));
         }
+        if(attrs.xaxislabeldistance){
+            chart.xAxis.axisLabelDistance((+attrs.xaxislabeldistance));
+        }
     }
 
     function configureX2axis(chart, scope, attrs){
@@ -566,6 +569,9 @@ function configureLegend(chart, scope, attrs){
         if(attrs.x2axisstaggerlabels){
             chart.x2Axis.staggerLabels((attrs.x2axisstaggerlabels === "true"));
         }
+        if(attrs.x2axislabeldistance){
+            chart.x2Axis.axisLabelDistance((+attrs.x2axislabeldistance));
+        }
     }
 
     function configureYaxis(chart, scope, attrs){
@@ -628,13 +634,16 @@ function configureLegend(chart, scope, attrs){
             chart.yAxis.highlightZero((attrs.yaxishighlightzero === "true"));
         }
         if(attrs.yaxisrotatelabels){
-            chart.yAxis.rotateLabels(attrs.yaxisrotatelabels);
+            chart.yAxis.rotateLabels((+attrs.yaxisrotatelabels));
         }
         if(attrs.yaxisrotateylabel){
             chart.yAxis.rotateYLabel((attrs.yaxisrotateylabel === "true"));
         }
         if(attrs.yaxisstaggerlabels){
             chart.yAxis.staggerLabels((attrs.yaxisstaggerlabels === "true"));
+        }
+        if(attrs.yaxislabeldistance){
+            chart.yAxis.axisLabelDistance((+attrs.yaxislabeldistance));
         }
     }
 
@@ -645,7 +654,11 @@ function configureLegend(chart, scope, attrs){
             chart.y1Axis.scale().ticks(attrs.y1axisticks);
         }
         if(attrs.y1axistickvalues){
-            chart.y1Axis.tickValues(attrs.y1axistickvalues);
+            if(Array.isArray(scope.$eval(attrs.y1axistickvalues))){
+                chart.y1Axis.tickValues(scope.$eval(attrs.y1axistickvalues));
+            } else if(typeof scope.y1axistickvalues() === 'function'){
+                chart.y1Axis.tickValues(scope.y1axistickvalues());
+            }
         }
         if(attrs.y1axisticksubdivide){
             chart.y1Axis.tickSubdivide(scope.y1axisticksubdivide());
@@ -692,13 +705,16 @@ function configureLegend(chart, scope, attrs){
             chart.y1Axis.highlightZero((attrs.y1axishighlightzero === "true"));
         }
         if(attrs.y1axisrotatelabels){
-            chart.y1Axis.rotateLabels(scope.y1axisrotatelabels);
+            chart.y1Axis.rotateLabels((+scope.y1axisrotatelabels));
         }
         if(attrs.y1axisrotateylabel){
             chart.y1Axis.rotateYLabel((attrs.y1axisrotateylabel === "true"));
         }
         if(attrs.y1axisstaggerlabels){
             chart.y1Axis.staggerlabels((attrs.y1axisstaggerlabels === "true"));
+        }
+        if(attrs.y1axislabeldistance){
+            chart.y1Axis.axisLabelDistance((+attrs.y1axislabeldistance));
         }
     }
 
@@ -756,13 +772,16 @@ function configureLegend(chart, scope, attrs){
             chart.y2Axis.highlightZero((attrs.y2axishighlightzero === "true"));
         }
         if(attrs.y2axisrotatelabels){
-            chart.y2Axis.rotateLabels(scope.y2axisrotatelabels);
+            chart.y2Axis.rotateLabels((+scope.y2axisrotatelabels));
         }
         if(attrs.y2axisrotateylabel){
             chart.y2Axis.rotateYLabel((attrs.y2axisrotateylabel === "true"));
         }
         if(attrs.y2axisstaggerlabels){
             chart.y2Axis.staggerlabels((attrs.y2axisstaggerlabels === "true"));
+        }
+        if(attrs.y2axislabeldistance){
+            chart.y2Axis.axisLabelDistance((+attrs.y2axislabeldistance));
         }
     }
 function initializeMargin(scope, attrs){
@@ -862,6 +881,7 @@ function initializeMargin(scope, attrs){
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
+                    xaxislabeldistance: '@',
 
                     //yaxis
                     yaxisorient: '&',
@@ -882,6 +902,7 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
+                    yaxislabeldistance: '@',
 
                     legendmargin: '&',
                     legendwidth: '@',
@@ -1012,6 +1033,7 @@ function initializeMargin(scope, attrs){
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
+                    xaxislabeldistance: '@',
 
                     //yaxis
                     yaxisorient: '&',
@@ -1032,6 +1054,7 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
+                    yaxislabeldistance: '@',
 
                     legendmargin: '&',
                     legendwidth: '@',
@@ -1171,7 +1194,7 @@ function initializeMargin(scope, attrs){
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-
+                    xaxisaxislabeldistance: '@',
                     //yaxis
                     showyaxis: '&',
                     yaxisorient: '&',
@@ -1192,7 +1215,7 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
-
+                    yaxisaxislabeldistance: '@',
                     legendmargin: '&',
                     legendwidth: '@',
                     legendheight: '@',
@@ -1356,7 +1379,7 @@ function initializeMargin(scope, attrs){
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-
+                    xaxisaxislabeldistance: '@',
                     //yaxis
                     showyaxis: '&',
                     yaxisorient: '&',
@@ -1377,6 +1400,7 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
+                    yaxisaxislabeldistance: '@',
 
                     legendmargin: '&',
                     legendwidth: '@',
@@ -1495,7 +1519,7 @@ function initializeMargin(scope, attrs){
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-
+                    xaxisaxislabeldistance: '@',
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -1515,7 +1539,7 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
-
+                    yaxisaxislabeldistance: '@',
                     legendmargin: '&',
                     legendwidth: '@',
                     legendheight: '@',
@@ -1639,7 +1663,7 @@ function initializeMargin(scope, attrs){
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-
+                    xaxisaxislabeldistance: '@',
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -1659,7 +1683,7 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
-
+                    yaxisaxislabeldistance: '@',
                     legendmargin: '&',
                     legendwidth: '@',
                     legendheight: '@',
@@ -1779,7 +1803,7 @@ function initializeMargin(scope, attrs){
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-
+                    xaxisaxislabeldistance: '@',
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -1799,7 +1823,7 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
-
+                    yaxisaxislabeldistance: '@',
                     legendmargin: '&',
                     legendwidth: '@',
                     legendheight: '@',
@@ -2033,7 +2057,7 @@ function initializeMargin(scope, attrs){
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-
+                    xaxisaxislabeldistance: '@',
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -2053,7 +2077,7 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
-
+                    yaxisaxislabeldistance: '@',
                     legendmargin: '&',
                     legendwidth: '@',
                     legendheight: '@',
@@ -2270,36 +2294,37 @@ function initializeMargin(scope, attrs){
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-
+                    xaxisaxislabeldistance: '@',
                     //yaxis
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
+                    y1axisorient: '&',
+                    y1axisticks: '&',
+                    y1axistickvalues: '&y1axistickvalues',
+                    y1axisticksubdivide: '&',
+                    y1axisticksize: '&',
+                    y1axistickpadding: '&',
+                    y1axistickformat: '&',
+                    y1axislabel: '@',
+                    y1axisscale: '&',
+                    y1axisdomain: '&',
+                    y1axisrange: '&',
+                    y1axisrangeband: '&',
+                    y1axisrangebands: '&',
+                    y1axisshowmaxmin: '@',
+                    y1axishighlightzero: '@',
+                    y1axisrotatelabels: '@',
+                    y1axisrotateylabel: '@',
+                    y1axisstaggerlabels: '@',
+                    y1axisaxislabeldistance: '@',
 
                     //yaxis
                     y2axisorient: '&',
                     y2axisticks: '&',
-                    y2axistickvalues: '&',
+                    y2axistickvalues: '&y2axistickvalues',
                     y2axisticksubdivide: '&',
                     y2axisticksize: '&',
                     y2axistickpadding: '&',
                     y2axistickformat: '&',
-                    y2axislabel: '&',
+                    y2axislabel: '@',
                     y2axisscale: '&',
                     y2axisdomain: '&',
                     y2axisrange: '&',
@@ -2310,6 +2335,7 @@ function initializeMargin(scope, attrs){
                     y2axisrotatelabels: '@',
                     y2axisrotateylabel: '@',
                     y2axisstaggerlabels: '@',
+                    y2axisaxislabeldistance: '@',
 
                     legendmargin: '&',
                     legendwidth: '@',
@@ -2440,6 +2466,7 @@ function initializeMargin(scope, attrs){
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
+                    xaxisaxislabeldistance: '@',
 
                     //x2axis
                     x2axisorient: '&',
@@ -2480,7 +2507,7 @@ function initializeMargin(scope, attrs){
                     yaxisrotatelabels: '@',
                     yaxisrotateylabel: '@',
                     yaxisstaggerlabels: '@',
-
+                    yaxisaxislabeldistance: '@',
                     //yaxis
                     y2axisorient: '&',
                     y2axisticks: '&',
@@ -2489,7 +2516,7 @@ function initializeMargin(scope, attrs){
                     y2axisticksize: '&',
                     y2axistickpadding: '&',
                     y2axistickformat: '&',
-                    y2axislabel: '&',
+                    y2axislabel: '@',
                     y2axisscale: '&',
                     y2axisdomain: '&',
                     y2axisrange: '&',

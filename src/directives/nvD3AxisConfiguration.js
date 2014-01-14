@@ -66,6 +66,9 @@
         if(attrs.xaxisstaggerlabels){
             chart.xAxis.staggerLabels((attrs.xaxisstaggerlabels === "true"));
         }
+        if(attrs.xaxislabeldistance){
+            chart.xAxis.axisLabelDistance((+attrs.xaxislabeldistance));
+        }
     }
 
     function configureX2axis(chart, scope, attrs){
@@ -136,6 +139,9 @@
         if(attrs.x2axisstaggerlabels){
             chart.x2Axis.staggerLabels((attrs.x2axisstaggerlabels === "true"));
         }
+        if(attrs.x2axislabeldistance){
+            chart.x2Axis.axisLabelDistance((+attrs.x2axislabeldistance));
+        }
     }
 
     function configureYaxis(chart, scope, attrs){
@@ -198,13 +204,16 @@
             chart.yAxis.highlightZero((attrs.yaxishighlightzero === "true"));
         }
         if(attrs.yaxisrotatelabels){
-            chart.yAxis.rotateLabels(attrs.yaxisrotatelabels);
+            chart.yAxis.rotateLabels((+attrs.yaxisrotatelabels));
         }
         if(attrs.yaxisrotateylabel){
             chart.yAxis.rotateYLabel((attrs.yaxisrotateylabel === "true"));
         }
         if(attrs.yaxisstaggerlabels){
             chart.yAxis.staggerLabels((attrs.yaxisstaggerlabels === "true"));
+        }
+        if(attrs.yaxislabeldistance){
+            chart.yAxis.axisLabelDistance((+attrs.yaxislabeldistance));
         }
     }
 
@@ -215,7 +224,11 @@
             chart.y1Axis.scale().ticks(attrs.y1axisticks);
         }
         if(attrs.y1axistickvalues){
-            chart.y1Axis.tickValues(attrs.y1axistickvalues);
+            if(Array.isArray(scope.$eval(attrs.y1axistickvalues))){
+                chart.y1Axis.tickValues(scope.$eval(attrs.y1axistickvalues));
+            } else if(typeof scope.y1axistickvalues() === 'function'){
+                chart.y1Axis.tickValues(scope.y1axistickvalues());
+            }
         }
         if(attrs.y1axisticksubdivide){
             chart.y1Axis.tickSubdivide(scope.y1axisticksubdivide());
@@ -262,13 +275,16 @@
             chart.y1Axis.highlightZero((attrs.y1axishighlightzero === "true"));
         }
         if(attrs.y1axisrotatelabels){
-            chart.y1Axis.rotateLabels(scope.y1axisrotatelabels);
+            chart.y1Axis.rotateLabels((+scope.y1axisrotatelabels));
         }
         if(attrs.y1axisrotateylabel){
             chart.y1Axis.rotateYLabel((attrs.y1axisrotateylabel === "true"));
         }
         if(attrs.y1axisstaggerlabels){
             chart.y1Axis.staggerlabels((attrs.y1axisstaggerlabels === "true"));
+        }
+        if(attrs.y1axislabeldistance){
+            chart.y1Axis.axisLabelDistance((+attrs.y1axislabeldistance));
         }
     }
 
@@ -326,12 +342,15 @@
             chart.y2Axis.highlightZero((attrs.y2axishighlightzero === "true"));
         }
         if(attrs.y2axisrotatelabels){
-            chart.y2Axis.rotateLabels(scope.y2axisrotatelabels);
+            chart.y2Axis.rotateLabels((+scope.y2axisrotatelabels));
         }
         if(attrs.y2axisrotateylabel){
             chart.y2Axis.rotateYLabel((attrs.y2axisrotateylabel === "true"));
         }
         if(attrs.y2axisstaggerlabels){
             chart.y2Axis.staggerlabels((attrs.y2axisstaggerlabels === "true"));
+        }
+        if(attrs.y2axislabeldistance){
+            chart.y2Axis.axisLabelDistance((+attrs.y2axislabeldistance));
         }
     }
