@@ -524,11 +524,19 @@
                                     }
 
                                     if(attrs.xdomain){
-                                        chart.xDomain(scope.xdomain());
+                                        if(Array.isArray(scope.$eval(attrs.xdomain))){
+                                            chart.xDomain(scope.$eval(attrs.xdomain));
+                                        } else if(typeof scope.xdomain() === 'function'){
+                                            chart.xDomain(scope.xdomain());
+                                        }
                                     }
 
                                     if(attrs.ydomain){
-                                        chart.yDomain(scope.ydomain());
+                                        if(Array.isArray(scope.$eval(attrs.ydomain))){
+                                            chart.yDomain(scope.$eval(attrs.ydomain));
+                                        } else if(typeof scope.ydomain() === 'function'){
+                                            chart.yDomain(scope.ydomain());
+                                        }
                                     }
 
                                     if(attrs.sizedomain){
