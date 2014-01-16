@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.5-beta - 2014-01-13
+/*! angularjs-nvd3-directives - v0.0.5-beta - 2014-01-16
 * http://cmaurer.github.io/angularjs-nvd3-directives
 * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
 (function()
@@ -1305,11 +1305,19 @@ function initializeMargin(scope, attrs){
                                     }
 
                                     if(attrs.xdomain){
-                                        chart.xDomain(scope.xdomain());
+                                        if(Array.isArray(scope.$eval(attrs.xdomain))){
+                                            chart.xDomain(scope.$eval(attrs.xdomain));
+                                        } else if(typeof scope.xdomain() === 'function'){
+                                            chart.xDomain(scope.xdomain());
+                                        }
                                     }
 
                                     if(attrs.ydomain){
-                                        chart.yDomain(scope.ydomain());
+                                        if(Array.isArray(scope.$eval(attrs.ydomain))){
+                                            chart.yDomain(scope.$eval(attrs.ydomain));
+                                        } else if(typeof scope.ydomain() === 'function'){
+                                            chart.yDomain(scope.ydomain());
+                                        }
                                     }
 
                                     if(attrs.sizedomain){
@@ -2146,6 +2154,22 @@ function initializeMargin(scope, attrs){
                                     configureXaxis(chart, scope, attrs);
                                     configureYaxis(chart, scope, attrs);
                                     configureLegend(chart, scope, attrs);
+
+                                    if(attrs.xdomain){
+                                        if(Array.isArray(scope.$eval(attrs.xdomain))){
+                                            chart.xDomain(scope.$eval(attrs.xdomain));
+                                        } else if(typeof scope.xdomain() === 'function'){
+                                            chart.xDomain(scope.xdomain());
+                                        }
+                                    }
+
+                                    if(attrs.ydomain){
+                                        if(Array.isArray(scope.$eval(attrs.ydomain))){
+                                            chart.yDomain(scope.$eval(attrs.ydomain));
+                                        } else if(typeof scope.ydomain() === 'function'){
+                                            chart.yDomain(scope.ydomain());
+                                        }
+                                    }
 
                                     if(attrs.xscale){
                                         chart.xDomain(scope.xdomain());
