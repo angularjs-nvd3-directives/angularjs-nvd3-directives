@@ -1,5 +1,5 @@
     function configureXaxis(chart, scope, attrs){
-    "use strict";
+        'use strict';
         if(attrs.xaxisorient){
             chart.xAxis.orient(attrs.xaxisorient);
         }
@@ -72,7 +72,7 @@
     }
 
     function configureX2axis(chart, scope, attrs){
-        "use strict";
+        'use strict';
         if(attrs.x2axisorient){
             chart.x2Axis.orient(attrs.x2axisorient);
         }
@@ -145,7 +145,7 @@
     }
 
     function configureYaxis(chart, scope, attrs){
-    "use strict";
+        'use strict';
         if(attrs.yaxisorient){
             chart.yAxis.orient(attrs.yaxisorient);
         }
@@ -217,9 +217,8 @@
         }
     }
 
-
     function configureY1axis(chart, scope, attrs){
-        "use strict";
+        'use strict';
         if(attrs.y1axisticks){
             chart.y1Axis.scale().ticks(attrs.y1axisticks);
         }
@@ -290,7 +289,7 @@
 
 
     function configureY2axis(chart, scope, attrs){
-        "use strict";
+        'use strict';
         if(attrs.y2axisticks){
             chart.y2Axis.scale().ticks(attrs.y2axisticks);
         }

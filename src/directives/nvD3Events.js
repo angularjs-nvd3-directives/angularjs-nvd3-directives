@@ -1,5 +1,5 @@
     function processEvents(chart, scope){
-
+        'use strict';
         if(chart.dispatch){
             if(chart.dispatch.tooltipShow){
                 chart.dispatch.on('tooltipShow.directive', function(event) {

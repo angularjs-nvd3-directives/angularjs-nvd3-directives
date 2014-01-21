@@ -15,6 +15,14 @@
 
     function checkElementID(scope, attrs, element, chart, data) {
         'use strict';
+        configureXaxis(chart, scope, attrs);
+        configureX2axis(chart, scope, attrs);
+        configureYaxis(chart, scope, attrs);
+        configureY1axis(chart, scope, attrs);
+        configureY2axis(chart, scope, attrs);
+        configureLegend(chart, scope, attrs);
+        processEvents(chart, scope);
+
         var dataAttributeChartID; //randomly generated if id attribute doesn't exist
         if(!attrs.id){
             dataAttributeChartID = "chartid" + Math.floor(Math.random()*1000000001);
@@ -184,10 +192,6 @@
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureYaxis(chart, scope, attrs);
-                                    configureLegend(chart, scope, attrs);
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -338,10 +342,6 @@
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureYaxis(chart, scope, attrs);
-                                    configureLegend(chart, scope, attrs);
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -355,6 +355,7 @@
             };
         }])
         .directive('nvd3StackedAreaChart', [function(){
+            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -543,10 +544,6 @@
                                         chart.sizeDomain(scope.sizedomain());
                                     }
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureYaxis(chart, scope, attrs);
-                                    configureLegend(chart, scope, attrs);
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -560,6 +557,7 @@
             };
         }])
         .directive('nvd3MultiBarChart', [function(){
+            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -681,11 +679,6 @@
                                         .delay(attrs.delay === undefined ? 1200 : attrs.delay)
                                         .stacked(attrs.stacked === undefined ? false : (attrs.stacked === "true"));
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureYaxis(chart, scope, attrs);
-                                    configureLegend(chart, scope, attrs);
-                                    processEvents(chart, scope);
-
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
@@ -703,6 +696,7 @@
             };
         }])
         .directive('nvd3DiscreteBarChart', [function(){
+            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -814,10 +808,6 @@
                                         .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"))
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureYaxis(chart, scope, attrs);
-                                    configureLegend(chart, scope, attrs);
-
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
@@ -826,12 +816,6 @@
                                         chart.valueFormat(scope.valueformat());
                                     }
 
-                                    //events
-                                    //https://github.com/mbostock/d3/wiki/Internals#wiki-dispatch
-                                    //dispatch: 'tooltipShow', 'tooltipHide', 'beforeUpdate',
-                                    //discretebar.dispatch: 'elementMouseout.tooltip', 'elementMouseover.tooltip'
-
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -845,6 +829,7 @@
             };
         }])
         .directive('nvd3HistoricalBarChart', [function(){
+            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -955,10 +940,6 @@
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureYaxis(chart, scope, attrs);
-                                    configureLegend(chart, scope, attrs);
-
                                     if (chart.useInteractiveGuideline) {
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
                                     }
@@ -971,7 +952,6 @@
                                         chart.valueFormat(scope.valueformat());
                                     }
 
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -985,6 +965,7 @@
             };
         }])
         .directive('nvd3MultiBarHorizontalChart', [function(){
+            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1098,10 +1079,6 @@
                                         .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === "true"))
                                         .stacked(attrs.stacked === undefined ? false : (attrs.stacked === "true"));
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureYaxis(chart, scope, attrs);
-                                    configureLegend(chart, scope, attrs);
-
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
@@ -1123,6 +1100,7 @@
             };
         }])
         .directive('nvd3PieChart', [function(){
+            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1206,8 +1184,6 @@
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
 
-                                    configureLegend(chart, scope, attrs);
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -1221,6 +1197,7 @@
             };
         }])
         .directive('nvd3ScatterChart', [function(){
+            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1370,10 +1347,6 @@
 
     //'pointActive', 'clipVoronoi', 'clipRadius', 'useVoronoi'
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureYaxis(chart, scope, attrs);
-                                    configureLegend(chart, scope, attrs);
-
                                     if(attrs.xdomain){
                                         if(Array.isArray(scope.$eval(attrs.xdomain))){
                                             chart.xDomain(scope.$eval(attrs.xdomain));
@@ -1408,7 +1381,6 @@
                                         chart.zScale(scope.zscale());
                                     }
 
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -1422,6 +1394,7 @@
             };
         }])
         .directive('nvd3ScatterPlusLineChart', [function(){
+            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1475,7 +1448,6 @@
                                         chart.scatter.shape(attrs.shape === undefined ? function(d) { return d.shape || 'circle'; } : scope.shape());
                                     }
 
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -1638,11 +1610,6 @@
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureY1axis(chart, scope, attrs);
-                                    configureY2axis(chart, scope, attrs);
-                                    configureLegend(chart, scope, attrs);
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -1850,12 +1817,6 @@
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureX2axis(chart, scope, attrs);
-                                    configureYaxis(chart, scope, attrs);
-                                    configureY2axis(chart, scope, attrs);
-                                    configureLegend(chart, scope, attrs);
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -1927,7 +1888,6 @@
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
 
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;
@@ -2007,9 +1967,6 @@
                                         chart.yScale(scope.yScale());
                                     }
 
-                                    configureXaxis(chart, scope, attrs);
-                                    configureYaxis(chart, scope, attrs);
-                                    processEvents(chart, scope);
                                     scope.d3Call(data, chart);
                                     nv.utils.windowResize(chart.update);
                                     scope.chart = chart;

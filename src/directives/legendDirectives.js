@@ -1,5 +1,6 @@
     angular.module('legendDirectives', [])
         .directive('simpleSvgLegend', function(){
+            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -18,7 +19,6 @@
                 },
                 compile: function(){
                     return function link(scope, element, attrs){
-                        "use strict";
                         var id,
                             width,
                             height,
@@ -187,7 +187,6 @@
                                     .transition()
                                     .duration(250)
                                     .call(scope.chart);
-
                             }
                             margin = (scope.$eval(attrs.margin) || {top: 5, right: 0, bottom: 5, left: 0});
                             width = (attrs.width  === undefined ? ((element[0].parentElement.offsetWidth) - (margin.left + margin.right)) : (+attrs.width - (margin.left + margin.right)));
