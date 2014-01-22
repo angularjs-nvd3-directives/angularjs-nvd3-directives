@@ -1,0 +1,25 @@
+{
+    "camelcase" : true,
+    "indent": 2,
+    "undef": true,
+    "quotmark": "single",
+    "trailing": true,
+    "curly": true,
+    "browser": true,
+    "esnext": true,
+    "bitwise": true,
+    "eqeqeq": true,
+    "immed": true,
+    "latedef": true,
+    "newcap": true,
+    "noarg": true,
+    "regexp": true,
+    "unused": "vars",
+    "strict": true,
+    "smarttabs": true,
+		"predef": [
+			"angular",
+			"d3",
+			"nv"
+		]
+}
