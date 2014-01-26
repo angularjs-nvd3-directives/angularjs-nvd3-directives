@@ -476,7 +476,7 @@
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .size(attrs.size === undefined ? function(d) { return d.size || 1; } : scope.size())
+                                        .size(attrs.size === undefined ? function(d) { return (d.size === undefined ? 1 : d.size); } : scope.size())
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize)) // List of numbers to Force into the Size scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
@@ -1320,7 +1320,7 @@
                                         .margin(scope.margin)
                                         .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
-                                        .size(attrs.size === undefined ? function(d){ return d.size; }: scope.size())
+                                        .size(attrs.size === undefined ? function(d){ return (d.size === undefined ? 1 : d.size); }: scope.size())
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex))
                                         .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize))
@@ -1426,7 +1426,7 @@
                                         .margin(scope.margin)
                                         .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
-                                        .size(attrs.size === undefined ? function(d){ return d.size; }: scope.size())
+                                        .size(attrs.size === undefined ? function(d){ return (d.size === undefined ? 1 : d.size); }: scope.size())
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
                                         .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
@@ -1805,7 +1805,7 @@
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                         .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); })
-                                        .size(attrs.size === undefined ? function(d){ return d.size; }: scope.size())
+                                        .size(attrs.size === undefined ? function(d){ return (d.size === undefined ? 1 : d.size); }: scope.size())
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate);
 
