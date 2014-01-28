@@ -4,9 +4,8 @@
      */
 
     function initializeMargin(scope, attrs){
-        'use strict';
         var margin = (scope.$eval(attrs.margin) || {left: 50, top: 50, bottom: 50, right: 50});
-        if (typeof(margin) !== "object") {
+        if (typeof(margin) !== 'object') {
             // we were passed a vanilla int, convert to full margin object
             margin = {left: margin, top: margin, bottom: margin, right: margin};
         }
@@ -14,7 +13,6 @@
     }
 
     function checkElementID(scope, attrs, element, chart, data) {
-        'use strict';
         configureXaxis(chart, scope, attrs);
         configureX2axis(chart, scope, attrs);
         configureYaxis(chart, scope, attrs);
@@ -25,7 +23,7 @@
 
         var dataAttributeChartID; //randomly generated if id attribute doesn't exist
         if(!attrs.id){
-            dataAttributeChartID = "chartid" + Math.floor(Math.random()*1000000001);
+            dataAttributeChartID = 'chartid' + Math.floor(Math.random()*1000000001);
             angular.element(element).attr('data-chartid', dataAttributeChartID );    
             //if an id is not supplied, create a random id.
             if(d3.select('[data-chartid=' + dataAttributeChartID + '] svg').empty()) {
@@ -59,7 +57,6 @@
 
     angular.module('nvd3ChartDirectives', [])
         .directive('nvd3LineChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -171,21 +168,21 @@
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
-                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
-                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
-                                        .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === "true"))
+                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
+                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
+                                        .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
-                                        .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
-                                        .clipVoronoi(attrs.clipvoronoi === undefined ? false : (attrs.clipvoronoi === "true"))
+                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
+                                        .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === 'true'))
+                                        .clipVoronoi(attrs.clipvoronoi === undefined ? false : (attrs.clipvoronoi === 'true'))
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); });
+                                        .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === 'true'); });
 
                                     if (chart.useInteractiveGuideline) {
-                                        chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                        chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
                                     }
 
                                     if(attrs.tooltipcontent){
@@ -200,12 +197,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3CumulativeLineChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -319,23 +315,23 @@
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
-                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
-                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
-                                        .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === "true"))
+                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
+                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
+                                        .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
-                                        .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
-                                        .clipVoronoi(attrs.clipvoronoi === undefined ? false : (attrs.clipvoronoi === "true"))
-                                        .useVoronoi(attrs.usevoronoi === undefined ? false : (attrs.usevoronoi === "true"))
+                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
+                                        .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === 'true'))
+                                        .clipVoronoi(attrs.clipvoronoi === undefined ? false : (attrs.clipvoronoi === 'true'))
+                                        .useVoronoi(attrs.usevoronoi === undefined ? false : (attrs.usevoronoi === 'true'))
                                         .average(attrs.average === undefined ? function(d) { return d.average; } : scope.average())
                                         .color(attrs.color === undefined ? d3.scale.category10().range() : scope.color())
-                                        .isArea(attrs.isarea === undefined ? false : (attrs.isarea === "true"));
-                                        //.rescaleY(attrs.rescaley === undefined ? false : (attrs.rescaley === "true"));
+                                        .isArea(attrs.isarea === undefined ? false : (attrs.isarea === 'true'));
+                                        //.rescaleY(attrs.rescaley === undefined ? false : (attrs.rescaley === 'true'));
 
                                     if (chart.useInteractiveGuideline) {
-                                        chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                        chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
                                     }
 
                                     if(attrs.tooltipcontent){
@@ -350,12 +346,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3StackedAreaChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -478,22 +473,22 @@
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                         .size(attrs.size === undefined ? function(d) { return (d.size === undefined ? 1 : d.size); } : scope.size())
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize)) // List of numbers to Force into the Size scale
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
-                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
-                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
-                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
+                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
+                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
+                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
-                                        .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
+                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
+                                        .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === 'true'))
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                     if (chart.useInteractiveGuideline) {
-                                        chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                        chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
                                     }
 
                                     if(attrs.usevoronoi){
-                                        chart.useVoronoi((attrs.usevoronoi === "true"));
+                                        chart.useVoronoi((attrs.usevoronoi === 'true'));
                                     }
 
                                     if(attrs.style){
@@ -552,12 +547,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3MultiBarChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -666,18 +660,18 @@
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
-                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
-                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
-                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
-                                        .reduceXTicks(attrs.reducexticks === undefined ? false: (attrs.reducexticks === "true"))
-                                        .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"))
+                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
+                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
+                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
+                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        .reduceXTicks(attrs.reducexticks === undefined ? false: (attrs.reducexticks === 'true'))
+                                        .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .rotateLabels(attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                         .delay(attrs.delay === undefined ? 1200 : attrs.delay)
-                                        .stacked(attrs.stacked === undefined ? false : (attrs.stacked === "true"));
+                                        .stacked(attrs.stacked === undefined ? false : (attrs.stacked === 'true'));
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
@@ -691,12 +685,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3DiscreteBarChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -800,12 +793,12 @@
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === "true"))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
-                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
-                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
+                                        .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === 'true'))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
+                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                        .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === "true"))
+                                        .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === 'true'))
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                     if(attrs.tooltipcontent){
@@ -824,12 +817,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3HistoricalBarChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -935,13 +927,13 @@
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
+                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                     if (chart.useInteractiveGuideline) {
-                                        chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
+                                        chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
                                     }
 
                                     if(attrs.tooltipcontent){
@@ -960,12 +952,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3MultiBarHorizontalChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1071,13 +1062,13 @@
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
-                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
-                                        .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === "true"))
-                                        .stacked(attrs.stacked === undefined ? false : (attrs.stacked === "true"));
+                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
+                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
+                                        .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === 'true'))
+                                        .stacked(attrs.stacked === undefined ? false : (attrs.stacked === 'true'));
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
@@ -1095,12 +1086,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3PieChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1166,18 +1156,18 @@
                                         .width(scope.width)
                                         .height(scope.height)
                                         .margin(scope.margin)
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                        .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === "true"))
+                                        .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === 'true'))
                                         .labelThreshold(attrs.labelThreshold === undefined ? 0.02 : attrs.labelthreshold)
                                         .labelType(attrs.labeltype === undefined ? 'key' : attrs.labeltype)
-                                        .pieLabelsOutside(attrs.pielabelsoutside === undefined ? true : (attrs.pielabelsoutside === "true"))
+                                        .pieLabelsOutside(attrs.pielabelsoutside === undefined ? true : (attrs.pielabelsoutside === 'true'))
                                         .valueFormat(attrs.valueformat === undefined ? d3.format(',.2f') : attrs.valueformat)
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
+                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
                                         .description(attrs.description === undefined ?  function(d) { return d.description; } : scope.description())
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .donutLabelsOutside(attrs.donutlabelsoutside === undefined ? false : (attrs.donutlabelsoutside === "true"))
-                                        .donut(attrs.donut === undefined ? false : (attrs.donut === "true"))
+                                        .donutLabelsOutside(attrs.donutlabelsoutside === undefined ? false : (attrs.donutlabelsoutside === 'true'))
+                                        .donut(attrs.donut === undefined ? false : (attrs.donut === 'true'))
                                         .donutRatio(attrs.donutratio === undefined ? 0.5 : (attrs.donutratio));
 
                                     if(attrs.tooltipcontent){
@@ -1192,12 +1182,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3ScatterChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1324,15 +1313,15 @@
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex))
                                         .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize))
-                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
                                         .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
                                         .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
-                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
-                                        .showDistX(attrs.showdistx === undefined ? false : (attrs.showdistx === "true"))
-                                        .showDistY(attrs.showdisty === undefined ? false : (attrs.showdisty === "true"))
+                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
+                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
+                                        .showDistX(attrs.showdistx === undefined ? false : (attrs.showdistx === 'true'))
+                                        .showDistY(attrs.showdisty === undefined ? false : (attrs.showdisty === 'true'))
                                         .xPadding(attrs.xpadding === undefined ? 0 : (+attrs.xpadding))
                                         .yPadding(attrs.ypadding === undefined ? 0 : (+attrs.ypadding))
                                         .fisheye(attrs.fisheye === undefined ? 0 : (+attrs.fisheye))
@@ -1389,12 +1378,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3ScatterPlusLineChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1427,15 +1415,15 @@
                                         .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                         .size(attrs.size === undefined ? function(d){ return (d.size === undefined ? 1 : d.size); }: scope.size())
-                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
                                         .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
                                         .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
-                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === "true"))
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
-                                        .showDistX(attrs.showdistx === undefined ? false : (attrs.showdistx === "true"))
-                                        .showDistY(attrs.showdisty === undefined ? false : (attrs.showdisty === "true"))
+                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
+                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
+                                        .showDistX(attrs.showdistx === undefined ? false : (attrs.showdistx === 'true'))
+                                        .showDistY(attrs.showdisty === undefined ? false : (attrs.showdisty === 'true'))
                                         .xPadding(attrs.xpadding === undefined ? 0 : (+attrs.xpadding))
                                         .yPadding(attrs.ypadding === undefined ? 0 : (+attrs.ypadding))
                                         .fisheye(attrs.fisheye === undefined ? 0 : (+attrs.fisheye))
@@ -1461,7 +1449,6 @@
             };
         }])
         .directive('nvd3LinePlusBarChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1590,8 +1577,8 @@
                                         .margin(scope.margin)
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
@@ -1618,12 +1605,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3LineWithFocusChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1781,7 +1767,7 @@
                                     //nvd3 default is {top: 0, right: 30, bottom: 20, left: 60}
                                     if(attrs.margin2){
                                         var margin2 = (scope.$eval(attrs.margin2));
-                                        if (typeof(margin2) !== "object") {
+                                        if (typeof(margin2) !== 'object') {
                                             // we were passed a vanilla int, convert to full margin object
                                             margin2 = {left: margin2, top: margin2, bottom: margin2, right: margin2};
                                         }
@@ -1800,13 +1786,13 @@
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex))
                                         .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === "true"))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === "true"); })
+                                        .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === 'true'); })
                                         .size(attrs.size === undefined ? function(d){ return (d.size === undefined ? 1 : d.size); }: scope.size())
-                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === "true"))
+                                        .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate);
 
                                     if(attrs.defined){
@@ -1825,12 +1811,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3BulletChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1881,7 +1866,7 @@
     //                                    .markers(attrs.markers === undefined ? function(d){ return d.markers; } : scope.markers())
     //                                    .measures(attrs.measures === undefined ? function(d){ return d.measures; } : scope.measures())
                                         .tickFormat(attrs.tickformat === undefined ? null : scope.tickformat())
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === "true"))
+                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
 
                                     if(attrs.tooltipcontent){
@@ -1896,12 +1881,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3SparklineChart', [function(){
-            'use strict';
             return {
                 restrict: 'EA',
                 scope: {
@@ -1954,9 +1938,9 @@
                                         .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                         .color(attrs.color === undefined ? nv.utils.getColor(['#000']) : scope.color())
-                                        .showValue(attrs.showvalue === undefined ? true : (attrs.showvalue === "true"))
-                                        .alignValue(attrs.alignvalue === undefined ? true : (attrs.alignvalue === "true"))
-                                        .rightAlignValue(attrs.rightalignvalue === undefined ? false : (attrs.rightalignvalue === "true"))
+                                        .showValue(attrs.showvalue === undefined ? true : (attrs.showvalue === 'true'))
+                                        .alignValue(attrs.alignvalue === undefined ? true : (attrs.alignvalue === 'true'))
+                                        .rightAlignValue(attrs.rightalignvalue === undefined ? false : (attrs.rightalignvalue === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
 
                                     if(attrs.xScale){
@@ -1975,12 +1959,11 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }])
         .directive('nvd3SparklineWithBandlinesChart', [function(){
-            'use strict';
             /**
              * http://www.perceptualedge.com/articles/visual_business_intelligence/introducing_bandlines.pdf
              * You need five primary facts about a set of time-series values to construct a bandline:
@@ -2033,7 +2016,7 @@
 
                         if(!$attrs.id){
 
-                            dataAttributeChartID = "chartid" + Math.floor(Math.random()*1000000001);
+                            dataAttributeChartID = 'chartid' + Math.floor(Math.random() * 1000000001);
                             angular.element($element).attr('data-chartid', dataAttributeChartID );    
 
                             selectedChart = d3.select('[data-iem-chartid=' + dataAttributeChartID + '] svg')
@@ -2107,9 +2090,9 @@
                                         .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                         .color(attrs.color === undefined ? nv.utils.getColor(['#000']) : scope.color())
-                                        .showValue(attrs.showvalue === undefined ? true : (attrs.showvalue === "true"))
-                                        .alignValue(attrs.alignvalue === undefined ? true : (attrs.alignvalue === "true"))
-                                        .rightAlignValue(attrs.rightalignvalue === undefined ? false : (attrs.rightalignvalue === "true"))
+                                        .showValue(attrs.showvalue === undefined ? true : (attrs.showvalue === 'true'))
+                                        .alignValue(attrs.alignvalue === undefined ? true : (attrs.alignvalue === 'true'))
+                                        .rightAlignValue(attrs.rightalignvalue === undefined ? false : (attrs.rightalignvalue === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
 
                                    //calc bandline data
@@ -2153,7 +2136,7 @@
                                 callback: attrs.callback === undefined ? null : scope.callback()
                             });
                         }
-                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+                    }, (attrs.objectequality === undefined ? false : (attrs.objectequality === 'true')));
                 }
             };
         }]);

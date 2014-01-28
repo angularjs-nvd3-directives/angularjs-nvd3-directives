@@ -32,16 +32,16 @@ function configureXaxis(chart, scope, attrs) {
 	}
 	if (attrs.xaxisdomain) {
 		if (Array.isArray(scope.$eval(attrs.xaxisdomain))) {
-			chart.xAxis.domain(scope.$eval(attrs.xaxisdomain));
+			chart.xDomain(scope.$eval(attrs.xaxisdomain));
 		} else if (typeof scope.xaxisdomain() === 'function') {
-			chart.xAxis.domain(scope.xaxisdomain());
+			chart.xDomain(scope.xaxisdomain());
 		}
 	}
 	if (attrs.xaxisrange) {
 		if (Array.isArray(scope.$eval(attrs.xaxisrange))) {
-			chart.xAxis.range(scope.$eval(attrs.xaxisrange));
+			chart.xRange(scope.$eval(attrs.xaxisrange));
 		} else if (typeof scope.xaxisrange() === 'function') {
-			chart.xAxis.range(scope.xaxisrange());
+			chart.xRange(scope.xaxisrange());
 		}
 	}
 	if (attrs.xaxisrangeband) {
@@ -176,16 +176,16 @@ function configureYaxis (chart, scope, attrs) {
 	}
 	if (attrs.yaxisdomain) {
 		if (Array.isArray(scope.$eval(attrs.yaxisdomain))) {
-			chart.yAxis.domain(scope.$eval(attrs.yaxisdomain));
+			chart.yDomain(scope.$eval(attrs.yaxisdomain));
 		} else if (typeof scope.yaxisdomain() === 'function') {
-			chart.yAxis.domain(scope.yaxisdomain());
+			chart.yDomain(scope.yaxisdomain());
 		}
 	}
 	if (attrs.yaxisrange) {
 		if (Array.isArray(scope.$eval(attrs.yaxisrange))) {
-			chart.yAxis.range(scope.$eval(attrs.yaxisrange));
+			chart.yRange(scope.$eval(attrs.yaxisrange));
 		} else if (typeof scope.yaxisrange() === 'function') {
-			chart.yAxis.range(scope.yaxisrange());
+			chart.yRange(scope.yaxisrange());
 		}
 	}
 	if (attrs.yaxisrangeband) {
