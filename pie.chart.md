@@ -205,9 +205,9 @@ Datatype: Function
             
 {% highlight javascript %}
 $scope.xFunction = function(){
-	return function(d){
-		return d[0];
-	};
+    return function(d) {
+        return d.key;
+    };
 }
 {% endhighlight %}
 
@@ -245,7 +245,7 @@ Datatype: Function
 {% highlight javascript %}
 $scope.yFunction = function(){
 	return function(d){
-		return d[1];
+		return d.y;
 	};
 }
 {% endhighlight %}

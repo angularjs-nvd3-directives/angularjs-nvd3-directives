@@ -51,6 +51,12 @@ var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
             };
         }
 
+        $scope.yAxisTickFormatFunction = function(){
+            return function(d){
+                return d3.format(',d')(d);
+            }
+        }
+
         $scope.toolTipContentFunction = function(){
             return function(key, x, y, e, graph) {
                 return  'Super New Tooltip' +
@@ -63,6 +69,20 @@ var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
     </script>
 Creating and Configuring a Line with Focus Chart
 =========================
+
+<div ng-controller="ExampleCtrl">
+    <nvd3-line-with-focus-chart
+        data="exampleData"
+        id="exampleId"
+        height="400"
+        height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        x2AxisTickFormat="xAxisTickFormatFunction()">
+         <svg></svg>
+    </nvd3-line-with-focus-chart>
+</div>
 
 ## How to create a basic chart
 
@@ -125,24 +145,14 @@ Other directive attributes should be the same as the public attributes associate
             id="exampleId"
             height="400"
             height2="50"
+            margin="{left:80,top:50,bottom:30,right:50}"
+            yAxisTickFormat="yAxisTickFormatFunction()"
             xAxisTickFormat="xAxisTickFormatFunction()"
             x2AxisTickFormat="xAxisTickFormatFunction()">
          <svg></svg>
     </nvd3-line-with-focus-chart>
 </div>
 {% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-    <nvd3-line-with-focus-chart
-            data="exampleData"
-            id="exampleId"
-            height="400"
-            height2="50"
-            xAxisTickFormat="xAxisTickFormatFunction()"
-            x2AxisTickFormat="xAxisTickFormatFunction()">
-         <svg></svg>
-    </nvd3-line-with-focus-chart>
-</div>
 
 #Configuration Options
 
@@ -210,6 +220,8 @@ $scope.colorFunction = function() {
         id="colorExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         color="colorFunction()">
@@ -224,6 +236,8 @@ $scope.colorFunction = function() {
         id="colorExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         color="colorFunction()">
@@ -243,6 +257,8 @@ Datatype: boolean - (true/false)
         id="isAreaExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         isArea="true">
@@ -257,6 +273,8 @@ Datatype: boolean - (true/false)
         id="isAreaExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         isArea="true">
@@ -276,6 +294,8 @@ Datatype: boolean - (true/false)
         id="showLegendExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         showLegend="true">
@@ -290,6 +310,8 @@ Datatype: boolean - (true/false)
         id="showLegendExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         showLegend="true">
@@ -309,6 +331,8 @@ Datatype: String
         id="noDataExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         noData="No Data For You!">
@@ -323,6 +347,8 @@ Datatype: String
         id="noDataExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         noData="No Data For You!">
@@ -350,6 +376,8 @@ $scope.xFunction = function(){
         id="xExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         x="xFunction()">
@@ -364,6 +392,8 @@ $scope.xFunction = function(){
         id="xExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         x="xFunction()">
@@ -391,6 +421,8 @@ $scope.yFunction = function(){
         id="yExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         y="yFunction()">
@@ -405,6 +437,8 @@ $scope.yFunction = function(){
         id="yExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         y="yFunction()">
@@ -424,6 +458,8 @@ Datatype: Array of Numbers (i.e. [0, 50])
         id="forcexExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         forcex="[0]">
@@ -438,6 +474,8 @@ Datatype: Array of Numbers (i.e. [0, 50])
         id="forcexExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         forcex="[0]">
@@ -457,6 +495,8 @@ Datatype: Array of Numbers (i.e. [0, 50]
         id="forceyExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         forcey="[500]">
@@ -471,6 +511,8 @@ Datatype: Array of Numbers (i.e. [0, 50]
         id="forceyExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         forcey="[500]">
@@ -490,6 +532,8 @@ Datatype: boolean - (true/false)
         id="interactiveExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interactive="true">
@@ -504,6 +548,8 @@ Datatype: boolean - (true/false)
         id="interactiveExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interactive="true">
@@ -526,6 +572,8 @@ Datatype: boolean - (true/false)
         id="toolTipExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         tooltips="true">
@@ -540,6 +588,8 @@ Datatype: boolean - (true/false)
         id="toolTipExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         tooltips="true">
@@ -575,6 +625,8 @@ $scope.toolTipContentFunction = function(){
         id="toolTipContentExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         tooltips="true"
@@ -590,6 +642,8 @@ $scope.toolTipContentFunction = function(){
         id="toolTipContentExample"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         tooltips="true"
@@ -615,6 +669,8 @@ Piecewise linear segments, as in a polyline.
         id="interpolateExampleLinear"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="linear">
@@ -629,6 +685,8 @@ Piecewise linear segments, as in a polyline.
         id="interpolateExampleLinear"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="linear">
@@ -646,6 +704,8 @@ Close the linear segments to form a polygon.
         id="interpolateExampleLinearClosed"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="linear-closed">
@@ -660,6 +720,8 @@ Close the linear segments to form a polygon.
         id="interpolateExampleLinearClosed"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="linear-closed">
@@ -677,6 +739,8 @@ Alternate between horizontal and vertical segments, as in a step function.
         id="interpolateExampleStep"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="step">
@@ -691,6 +755,8 @@ Alternate between horizontal and vertical segments, as in a step function.
         id="interpolateExampleStep"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="step">
@@ -708,6 +774,8 @@ Alternate between vertical and horizontal segments, as in a step function.
         id="interpolateExampleStepBefore"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="step-before">
@@ -722,6 +790,8 @@ Alternate between vertical and horizontal segments, as in a step function.
         id="interpolateExampleStepBefore"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="step-before">
@@ -739,6 +809,8 @@ Alternate between horizontal and vertical segments, as in a step function.
         id="interpolateExampleStepAfter"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="step-after">
@@ -753,6 +825,8 @@ Alternate between horizontal and vertical segments, as in a step function.
         id="interpolateExampleStepAfter"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="step-after">
@@ -770,6 +844,8 @@ A B-spline, with control point duplication on the ends.
         id="interpolateExampleBasis"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="basis">
@@ -784,6 +860,8 @@ A B-spline, with control point duplication on the ends.
         id="interpolateExampleBasis"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="basis">
@@ -801,6 +879,8 @@ An open B-spline; may not intersect the start or end.
         id="interpolateExampleBasisOpen"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="basis-open">
@@ -815,6 +895,8 @@ An open B-spline; may not intersect the start or end.
         id="interpolateExampleBasisOpen"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="basis-open">
@@ -832,6 +914,8 @@ A closed B-spline, as in a loop.
         id="interpolateExampleBasisClosed"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="basis-closed">
@@ -846,6 +930,8 @@ A closed B-spline, as in a loop.
         id="interpolateExampleBasisClosed"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="basis-closed">
@@ -863,6 +949,8 @@ Equivalent to basis, except the tension parameter is used to straighten the spli
         id="interpolateExampleBundle"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="bundle">
@@ -877,6 +965,8 @@ Equivalent to basis, except the tension parameter is used to straighten the spli
         id="interpolateExampleBundle"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="bundle">
@@ -894,6 +984,8 @@ A Cardinal spline, with control point duplication on the ends.
         id="interpolateExampleCardinal"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="cardinal">
@@ -908,6 +1000,8 @@ A Cardinal spline, with control point duplication on the ends.
         id="interpolateExampleCardinal"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="cardinal">
@@ -925,6 +1019,8 @@ An open Cardinal spline; may not intersect the start or end, but will intersect 
         id="interpolateExampleCardinalOpen"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="cardinal-open">
@@ -939,6 +1035,8 @@ An open Cardinal spline; may not intersect the start or end, but will intersect 
         id="interpolateExampleCardinalOpen"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="cardinal-open">
@@ -956,6 +1054,8 @@ A closed Cardinal spline, as in a loop.
         id="interpolateExampleCardinalClosed"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="cardinal-closed">
@@ -970,6 +1070,8 @@ A closed Cardinal spline, as in a loop.
         id="interpolateExampleCardinalClosed"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="cardinal-closed">
@@ -987,6 +1089,8 @@ Cubic interpolation that preserves monotonicity in y.
         id="interpolateExampleMonotone"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="monotone">
@@ -1001,6 +1105,8 @@ Cubic interpolation that preserves monotonicity in y.
         id="interpolateExampleMonotone"
         height="400"
         height2="50"
+        margin="{left:80,top:50,bottom:30,right:50}"
+        yAxisTickFormat="yAxisTickFormatFunction()"
         xAxisTickFormat="xAxisTickFormatFunction()"
         x2AxisTickFormat="xAxisTickFormatFunction()"
         interpolate="monotone">

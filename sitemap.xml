@@ -55,4 +55,8 @@
         <loc>http://cmaurer.github.io/angularjs-nvd3-directives/events.html</loc>
         <changefreq>weekly</changefreq>
     </url>
+    <url>
+        <loc>http://cmaurer.github.io/angularjs-nvd3-directives/line.with.focus.chart.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
 </urlset>
