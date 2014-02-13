@@ -29,7 +29,7 @@
 
             $scope.yAxisTickFormatFunction = function(){
                 return function(d){
-                    return d;
+                    return d3.format(',d')(d);
                 }
             };
 
