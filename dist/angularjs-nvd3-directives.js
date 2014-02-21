@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.5-beta - 2014-02-13
+/*! angularjs-nvd3-directives - v0.0.5-beta - 2014-02-21
  * http://cmaurer.github.io/angularjs-nvd3-directives
  * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -1260,7 +1260,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             legendmargin: '&',
             legendwidth: '@',
             legendheight: '@',
@@ -1459,7 +1459,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
 
             legendmargin: '&',
             legendwidth: '@',
@@ -1601,7 +1601,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             legendmargin: '&',
             legendwidth: '@',
             legendheight: '@',
@@ -1743,7 +1743,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             legendmargin: '&',
             legendwidth: '@',
             legendheight: '@',
@@ -1886,7 +1886,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             legendmargin: '&',
             legendwidth: '@',
             legendheight: '@',
@@ -2152,7 +2152,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             legendmargin: '&',
             legendwidth: '@',
             legendheight: '@',
@@ -2625,7 +2625,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             //yaxis
             y2axisorient: '&',
             y2axisticks: '&',
