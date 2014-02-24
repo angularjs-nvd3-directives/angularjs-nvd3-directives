@@ -107,6 +107,10 @@ function processEvents(chart, scope) {
 		chart.pie.dispatch.on('elementMouseout.tooltip.directive', function (event) {
 			scope.$emit('elementMouseover.tooltip.directive', event);
 		});
+		
+		chart.pie.dispatch.on('elementClick.directive', function(event) {
+                	scope.$emit('elementClick.directive', event);
+            	});
 	}
 
 	if (chart.scatter) {
