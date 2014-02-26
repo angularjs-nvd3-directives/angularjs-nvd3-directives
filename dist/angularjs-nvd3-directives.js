@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.5-beta - 2014-02-23
+/*! angularjs-nvd3-directives - v0.0.5-beta - 2014-02-26
  * http://cmaurer.github.io/angularjs-nvd3-directives
  * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -376,6 +376,10 @@
       chart.discretebar.dispatch.on( 'elementMouseout.tooltip.directive', function ( event ) {
         scope.$emit( 'elementMouseover.tooltip.directive', event );
       } );
+
+      chart.discretebar.dispatch.on( 'elementClick.directive', function ( event ) {
+        scope.$emit( 'elementClick.directive', event );
+      } );
     }
 
     if ( chart.multibar ) {
@@ -400,6 +404,10 @@
 
       chart.pie.dispatch.on( 'elementMouseout.tooltip.directive', function ( event ) {
         scope.$emit( 'elementMouseover.tooltip.directive', event );
+      } );
+
+      chart.pie.dispatch.on( 'elementClick.directive', function ( event ) {
+        scope.$emit( 'elementClick.directive', event );
       } );
     }
 
@@ -1260,7 +1268,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             legendmargin: '&',
             legendwidth: '@',
             legendheight: '@',
@@ -1459,7 +1467,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
 
             legendmargin: '&',
             legendwidth: '@',
@@ -1601,7 +1609,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             legendmargin: '&',
             legendwidth: '@',
             legendheight: '@',
@@ -1743,7 +1751,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             legendmargin: '&',
             legendwidth: '@',
             legendheight: '@',
@@ -1886,7 +1894,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             legendmargin: '&',
             legendwidth: '@',
             legendheight: '@',
@@ -1931,6 +1939,8 @@
                       .y( attrs.y === undefined ? function ( d ) {
                         return d[ 1 ];
                       } : scope.y() )
+                      .showXAxis( attrs.showxaxis === undefined ? false : ( attrs.showxaxis === 'true' ) )
+                      .showYAxis( attrs.showyaxis === undefined ? false : ( attrs.showyaxis === 'true' ) )
                       .forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) )
                       .tooltips( attrs.tooltips === undefined ? false : ( attrs.tooltips === 'true' ) )
                       .noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata )
@@ -2152,7 +2162,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             legendmargin: '&',
             legendwidth: '@',
             legendheight: '@',
@@ -2625,7 +2635,7 @@
             yaxisrotatelabels: '@',
             yaxisrotateylabel: '@',
             yaxisstaggerlabels: '@',
-            yaxisaxislabeldistance: '@',
+            yaxislabeldistance: '@',
             //yaxis
             y2axisorient: '&',
             y2axisticks: '&',
