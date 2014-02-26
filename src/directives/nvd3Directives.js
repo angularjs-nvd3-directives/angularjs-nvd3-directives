@@ -1061,6 +1061,8 @@
                                         .margin(scope.margin)
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === "true"))
+                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === "true"))
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
