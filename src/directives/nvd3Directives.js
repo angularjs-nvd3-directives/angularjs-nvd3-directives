@@ -1112,7 +1112,7 @@
                     color: '&',
                     donut: '@',
                     donutRatio: '@',
-                    labelThreshold: '@',
+                    labelthreshold: '@',
                     description: '&',
                     tooltips: '@',
                     tooltipcontent: '&',
@@ -1161,7 +1161,7 @@
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === 'true'))
-                                        .labelThreshold(attrs.labelThreshold === undefined ? 0.02 : attrs.labelthreshold)
+                                        .labelThreshold(attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold)
                                         .labelType(attrs.labeltype === undefined ? 'key' : attrs.labeltype)
                                         .pieLabelsOutside(attrs.pielabelsoutside === undefined ? true : (attrs.pielabelsoutside === 'true'))
                                         .valueFormat(attrs.valueformat === undefined ? d3.format(',.2f') : attrs.valueformat)
