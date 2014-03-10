@@ -42,6 +42,9 @@
                 .call(chart);  
             }
         } else {
+            if(angular.isArray(data) && data.length === 0){
+                d3.select('#' + attrs.id + ' svg').remove();
+            }
             if(d3.select('#' + attrs.id + ' svg').empty()) {
                 d3.select('#' + attrs.id)
                     .append('svg');
