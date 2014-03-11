@@ -11,17 +11,33 @@ module.exports = function (grunt) {
 			'* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
 			' Licensed <%= pkg.license %> */\n',
 		// Task configuration.
+		clean: ['dist/', 'generated/'],
+		ngmin: {
+			directives: {
+				expand: true,
+				cwd: 'src',
+				src: ['directives/nvd3Directives.js', 'directives/legendDirectives.js'],
+				dest: 'generated'
+			}
+		},
 		concat: {
 			options: {
 				banner: '<%= banner %>',
 				stripBanners: true
 			},
 			js: {
-				src: ['src/**/intro.js', 'src/**/legendDirectives.js', 'src/**/nvD3LegendConfiguration.js', 'src/**/nvD3Events.js', 'src/**/nvD3AxisConfiguration.js', 'src/**/nvd3Directives.js', 'src/**/outro.js'],
+				src: [
+					'src/**/intro.js',
+					'generated/directives/legendDirectives.js',
+					'src/**/nvD3LegendConfiguration.js',
+					'src/**/nvD3Events.js',
+					'src/**/nvD3AxisConfiguration.js',
+					'generated/directives/nvd3Directives.js',
+					'src/**/outro.js'
+				],
 				dest: 'dist/<%= pkg.name %>.js'
 			}
 		},
-		clean: ['dist/'],
 		jshint: {
 			options: {
 				jshintrc: true
@@ -41,6 +57,16 @@ module.exports = function (grunt) {
 					spaceInParen: true,
 					jslintHappy: true,
 					indentLevel: 0
+				}
+			}
+		},
+		uglify: {
+			options: {
+				mangle: false
+			},
+			min: {
+				files: {
+					'dist/angularjs-nvd3-directives.min.js': ['dist/angularjs-nvd3-directives.js']
 				}
 			}
 		},
@@ -84,10 +110,12 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-karma-coveralls');
 	grunt.loadNpmTasks('grunt-conventional-changelog');
 	grunt.loadNpmTasks('grunt-jsbeautifier');
+	grunt.loadNpmTasks('grunt-ngmin');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 	grunt.registerTask('bower', ['bower:install']);
 
 	// Default task.
-	grunt.registerTask('default', ['clean', 'concat', 'jsbeautifier', 'jshint']);
+	grunt.registerTask('default', ['clean', 'ngmin', 'concat', 'jsbeautifier', 'jshint', 'uglify']);
 
 };
