@@ -83,6 +83,7 @@
                     forcey: '@',
                     isArea: '@',
                     interactive: '@',
+	                  useinteractiveguideline: '@',
                     clipedge: '@',
                     clipvoronoi: '@',
                     interpolate: '@',

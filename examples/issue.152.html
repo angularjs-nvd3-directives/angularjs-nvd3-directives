@@ -1,0 +1,67 @@
+<!doctype html>
+<meta charset="utf-8">
+<html>
+
+<head>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/d3.js"></script>
+    <script type="text/javascript" src="js/nv.d3.js"></script>
+    <script type="text/javascript" src="../dist/angularjs-nvd3-directives.js"></script>
+    <link rel="stylesheet" href="stylesheets/nv.d3.css" />
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+
+    <script>
+        var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
+
+        function ExampleCtrl($scope){
+
+            $scope.chart = {showLabels: false};
+
+            $scope.exampleData = [{key: "One", y: 5 }, { key: "Two", y: 2 }, { key: "Three", y: 9 }, { key: "Four", y: 7 }, { key: "Five", y: 4 }, { key: "Six", y: 3 }, { key: "Seven", y: 9 } ];
+            $scope.xFunction = function(){
+                return function(d) {
+                    return d.key;
+                };
+            }
+            $scope.yFunction = function(){
+                return function(d) {
+                    return d.y;
+                };
+            }
+            $scope.toggleShowLabels = function () {
+                console.log('$scope.chart.showLabels', $scope.chart.showLabels, $scope.chart.showLabels.toString());
+                $scope.chart.showLabels = !$scope.chart.showLabels;
+            }
+        }
+
+    </script>
+
+</head>
+<body ng-app='nvd3TestApp'>
+
+<div ng-controller="ExampleCtrl">
+    <div class="container">
+        <div class="row">
+            <nvd3-pie-chart
+                data="exampleData"
+                width="200"
+                height="200"
+                margin="{left:10,top:10,bottom:10,right:10}"
+                id="exampleId"
+                x="xFunction()"
+                y="yFunction()"
+                showLabels="{{ chart.showLabels }}"
+                pieLabelsOutside="false"
+                showValues="true"
+                labelType="percent"
+                objectEquality="true">
+                <svg style="height:300;width:300"></svg>
+            </nvd3-pie-chart>
+            <pre>showLabels: {{ chart.showLabels }}</pre>
+            <button ng-click="toggleShowLabels()">Toggle Labels</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
