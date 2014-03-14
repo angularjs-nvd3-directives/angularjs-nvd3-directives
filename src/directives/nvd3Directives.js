@@ -83,13 +83,13 @@
                     forcey: '@',
                     isArea: '@',
                     interactive: '@',
-	                  useinteractiveguideline: '@',
                     clipedge: '@',
                     clipvoronoi: '@',
                     interpolate: '@',
 
                     callback: '&',
 
+                    useinteractiveguideline: '@',
                     //xaxis
                     xaxisorient: '&',
                     xaxisticks: '@',
@@ -236,7 +236,7 @@
                     rescaley: '@',
 
                     callback: '&',
-
+                    useinteractiveguideline: '&',
                     //xaxis
                     xaxisorient: '&',
                     xaxisticks: '&',
@@ -416,6 +416,7 @@
                     xaxisaxislabeldistance: '@',
                     //yaxis
                     showyaxis: '&',
+                    useinteractiveguideline: '&',
                     yaxisorient: '&',
                     yaxisticks: '&',
                     yaxistickvalues: '&yaxistickvalues',
@@ -852,6 +853,7 @@
 
                     callback: '&',
 
+                    useinteractiveguideline: '@',
                     //xaxis
                     xaxisorient: '&',
                     xaxisticks: '&',
