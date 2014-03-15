@@ -236,7 +236,7 @@
                     rescaley: '@',
 
                     callback: '&',
-                    useinteractiveguideline: '&',
+                    useinteractiveguideline: '@',
                     //xaxis
                     xaxisorient: '&',
                     xaxisticks: '&',
@@ -416,7 +416,7 @@
                     xaxisaxislabeldistance: '@',
                     //yaxis
                     showyaxis: '&',
-                    useinteractiveguideline: '&',
+                    useinteractiveguideline: '@',
                     yaxisorient: '&',
                     yaxisticks: '&',
                     yaxistickvalues: '&yaxistickvalues',
