@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.5-beta - 2014-03-12
+/*! angularjs-nvd3-directives - v0.0.5-beta - 2014-03-14
  * http://cmaurer.github.io/angularjs-nvd3-directives
  * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -820,11 +820,11 @@
           forcey: '@',
           isArea: '@',
           interactive: '@',
-          useinteractiveguideline: '@',
           clipedge: '@',
           clipvoronoi: '@',
           interpolate: '@',
           callback: '&',
+          useinteractiveguideline: '@',
           xaxisorient: '&',
           xaxisticks: '@',
           xaxistickvalues: '&xaxistickvalues',
@@ -953,6 +953,7 @@
           average: '&',
           rescaley: '@',
           callback: '&',
+          useinteractiveguideline: '@',
           xaxisorient: '&',
           xaxisticks: '&',
           xaxistickvalues: '&xaxistickvalues',
@@ -1107,6 +1108,7 @@
           xaxisstaggerlabels: '@',
           xaxisaxislabeldistance: '@',
           showyaxis: '&',
+          useinteractiveguideline: '@',
           yaxisorient: '&',
           yaxisticks: '&',
           yaxistickvalues: '&yaxistickvalues',
@@ -1479,6 +1481,7 @@
           highlightPoint: '@',
           clearHighlights: '@',
           callback: '&',
+          useinteractiveguideline: '@',
           xaxisorient: '&',
           xaxisticks: '&',
           xaxistickvalues: '&xaxistickvalues',
