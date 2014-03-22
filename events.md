@@ -102,6 +102,10 @@ $scope.$on('tooltipShow.directive', function(angularEvent, event){
 
 ## Exposed Events by Model
 
+[Core]()
+* [render_start](#render_start)
+* [render_end](#render_end)
+
 [Chart]()
 
 * [Tooltip Show](#Tooltip-Show)
@@ -153,6 +157,11 @@ $scope.$on('tooltipShow.directive', function(angularEvent, event){
 * [Legend Click](#Legend-Click)
 
 ---
+
+#### <a id="render_start"></a>Render Start
+
+#### <a id="render_end"></a>Render End
+
 
 #### <a id="Tooltip-Show"></a>Tooltip Show
 * **Exposed Event** - `tooltipShow.directive`

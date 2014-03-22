@@ -40,9 +40,9 @@ description: d3.js, nvd3.js, line chart, bar chart, line plus bar chart, Angular
             }
         }
 
-        $scope.yAxisTickFormatFunction = function(){
+        $scope.y1AxisTickFormatFunction = function(){
             return function(d){
-                return d3.format(',f');
+                return d3.format(',d')(d);
             }
         }
 
@@ -76,6 +76,21 @@ description: d3.js, nvd3.js, line chart, bar chart, line plus bar chart, Angular
 
 Creating and Configuring a Line Plus Bar Chart
 =========================
+
+<div ng-controller="ExampleCtrl">
+	<nvd3-line-plus-bar-chart
+        data="exampleData"
+        id="exampleId"
+        width="550"
+        height="300"
+        margin="{left:80,top:70,bottom:70,right:100}"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        y1AxisTickFormat="y1AxisTickFormatFunction()"
+        y2AxisTickFormat="y2AxisTickFormatFunction()">
+        <svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+
 
 ## How to create a basic chart
 
@@ -137,19 +152,6 @@ Other directive attributes should be the same as the public attributes associate
     </nvd3-line-plus-bar-chart>
 </div>
 {% endhighlight %}
-
-<div ng-controller="ExampleCtrl">
-	<nvd3-line-plus-bar-chart
-            data="exampleData"
-            id="exampleId"
-            width="550"
-            height="300"
-            xAxisTickFormat="xAxisTickFormatFunction()"
-            yAxisTickFormat="yAxisTickFormatFunction()"
-            y2AxisTickFormat="y2AxisTickFormatFunction()">
-        <svg></svg>
-    </nvd3-line-plus-bar-chart>
-</div>
 
 #Configuration Options
 

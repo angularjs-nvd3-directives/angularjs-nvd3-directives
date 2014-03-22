@@ -27,6 +27,12 @@
             ];
 
 
+            $scope.yAxisTickFormatFunction = function(){
+                return function(d){
+                    return d3.format(',d')(d);
+                }
+            };
+
         }
     </script>
 
@@ -36,8 +42,9 @@
 <div ng-controller="ExampleCtrl">
     <nvd3-line-with-focus-chart
             data="exampleData"
-            margin="{left:40,top:10,bottom:10,right:10}"
-            margin2="{left:40,top:10,bottom:10,right:10}"
+            margin="{left:80,top:10,bottom:10,right:50}"
+            margin2="{left:80,top:10,bottom:10,right:50}"
+            yAxisTickFormat="yAxisTickFormatFunction()"
             height="400"
             isArea="true"
             id="exampleId"

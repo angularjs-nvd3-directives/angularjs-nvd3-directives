@@ -9,10 +9,14 @@
     "tests"
   ],
   "devDependencies": {
-      "angular": "~1.2.4",
-      "d3": "~3.3.13",
-      "nvd3": "~v1.1.14-beta",
-      "moment": "~2.5.0",
-      "angularjs-nvd3-directives": "~v0.0.5-beta"
+    "angular": "~1.2.4",
+    "d3": "~3.3.13",
+    "nvd3": "~v1.1.14-beta",
+    "moment": "~2.5.0",
+    "angularjs-nvd3-directives": "https://github.com/cmaurer/angularjs-nvd3-directives.git#1bccbc4c02b17bd69ac00aa81b803d990c601be6"
+  },
+  "resolutions": {
+    "d3": "~3.3.13",
+    "nvd3": "~v1.1.15-beta"
   }
 }
