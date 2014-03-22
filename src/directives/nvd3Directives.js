@@ -183,7 +183,7 @@
                                         .clipVoronoi(attrs.clipvoronoi === undefined ? false : (attrs.clipvoronoi === 'true'))
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === 'true'); });
+                                        .isArea(attrs.isarea === undefined ? function(d) { return d.area; } : function(){ return (attrs.isarea === 'true'); });
 
                                     if (chart.useInteractiveGuideline) {
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
