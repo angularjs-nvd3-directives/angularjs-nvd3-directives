@@ -331,7 +331,7 @@
                                         .useVoronoi(attrs.usevoronoi === undefined ? false : (attrs.usevoronoi === 'true'))
                                         .average(attrs.average === undefined ? function(d) { return d.average; } : scope.average())
                                         .color(attrs.color === undefined ? d3.scale.category10().range() : scope.color())
-                                        .isArea(attrs.isarea === undefined ? false : (attrs.isarea === 'true'));
+                                        .isArea(attrs.isarea === undefined ? function(d) { return d.area; } : (attrs.isarea === 'true'));
                                         //.rescaleY(attrs.rescaley === undefined ? false : (attrs.rescaley === 'true'));
 
                                     if (chart.useInteractiveGuideline) {
@@ -1798,7 +1798,7 @@
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .isArea(attrs.isarea === undefined ? function(){return false;} : function(){ return (attrs.isarea === 'true'); })
+                                        .isArea(attrs.isarea === undefined ? function(d) { return d.area; } : function(){ return (attrs.isarea === 'true'); })
                                         .size(attrs.size === undefined ? function(d){ return (d.size === undefined ? 1 : d.size); }: scope.size())
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate);
