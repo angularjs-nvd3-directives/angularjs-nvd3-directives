@@ -24,7 +24,7 @@
         var dataAttributeChartID; //randomly generated if id attribute doesn't exist
         if(!attrs.id){
             dataAttributeChartID = 'chartid' + Math.floor(Math.random()*1000000001);
-            angular.element(element).attr('data-chartid', dataAttributeChartID );    
+            angular.element(element).attr('data-chartid', dataAttributeChartID );
             //if an id is not supplied, create a random id.
             if(d3.select('[data-chartid=' + dataAttributeChartID + '] svg').empty()) {
                 d3.select('[data-chartid=' + dataAttributeChartID + ']').append('svg')
@@ -39,7 +39,7 @@
                 .attr('width', scope.width)
                 .datum(data)
                 .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
-                .call(chart);  
+                .call(chart);
             }
         } else {
             if(angular.isArray(data) && data.length === 0){
@@ -56,7 +56,7 @@
                 .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
                 .call(chart);
             }
-    }    
+    }
 
     angular.module('nvd3ChartDirectives', [])
         .directive('nvd3LineChart', [function(){
@@ -1914,8 +1914,8 @@
 
                     callback: '&',
 
-                    xaxistickformat: '&',
-                    yaxistickformat: '&',
+                    xtickformat: '&',
+                    ytickformat: '&',
 
                     //angularjs specific
                     objectequality: '@',
@@ -1945,6 +1945,8 @@
                                         .margin(scope.margin)
                                         .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
+                                        .xTickFormat(attrs.xtickformat === undefined ? d3.format(',r') : scope.xtickformat())
+                                        .yTickFormat(attrs.ytickformat === undefined ? d3.format(',.2f') : scope.ytickformat())
                                         .color(attrs.color === undefined ? nv.utils.getColor(['#000']) : scope.color())
                                         .showValue(attrs.showvalue === undefined ? true : (attrs.showvalue === 'true'))
                                         .alignValue(attrs.alignvalue === undefined ? true : (attrs.alignvalue === 'true'))
@@ -2001,8 +2003,8 @@
 
                     callback: '&',
 
-                    xaxistickformat: '&',
-                    yaxistickformat: '&',
+                    xtickformat: '&',
+                    ytickformat: '&',
 
                     //angularjs specific
                     objectequality: '@',
@@ -2025,7 +2027,7 @@
                         if(!$attrs.id){
 
                             dataAttributeChartID = 'chartid' + Math.floor(Math.random() * 1000000001);
-                            angular.element($element).attr('data-chartid', dataAttributeChartID );    
+                            angular.element($element).attr('data-chartid', dataAttributeChartID );
 
                             selectedChart = d3.select('[data-iem-chartid=' + dataAttributeChartID + '] svg')
                                 .attr('height', $scope.height)
@@ -2097,6 +2099,8 @@
                                         .margin(scope.margin)
                                         .x(attrs.x === undefined ? function(d){ return d.x; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
+                                        .xTickFormat(attrs.xtickformat === undefined ? d3.format(',r') : scope.xtickformat())
+                                        .yTickFormat(attrs.ytickformat === undefined ? d3.format(',.2f') : scope.ytickformat())
                                         .color(attrs.color === undefined ? nv.utils.getColor(['#000']) : scope.color())
                                         .showValue(attrs.showvalue === undefined ? true : (attrs.showvalue === 'true'))
                                         .alignValue(attrs.alignvalue === undefined ? true : (attrs.alignvalue === 'true'))
