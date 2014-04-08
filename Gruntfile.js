@@ -95,8 +95,12 @@ module.exports = function (grunt) {
 		},
 		release:{
 			options: {
+				bump: false,
 				file: 'bower.json',
 				tag: true,
+				tagName: 'v<%= version %>',
+				npm: false,
+				npmtag: true,
 				github: {
 					repo: 'cmaurer/angularjs-nvd3-directives', //put your user/repo here
 					usernameVar: 'GITHUB_USERNAME', //ENVIRONMENT VARIABLE that contains Github username
