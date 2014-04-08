@@ -93,9 +93,22 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		changelog: {
+		release:{
 			options: {
-				version: 'v0.0.5-beta'
+				file: 'bower.json',
+				tag: true,
+				github: {
+					repo: 'cmaurer/angularjs-nvd3-directives', //put your user/repo here
+					usernameVar: 'GITHUB_USERNAME', //ENVIRONMENT VARIABLE that contains Github username
+					passwordVar: 'GITHUB_PASSWORD' //ENVIRONMENT VARIABLE that contains Github password
+				}
+			}
+		},
+		changelog: {
+			release: {
+				options: {
+					version: '0.0.6'
+				}
 			}
 		}
 	});
@@ -108,10 +121,11 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-bower-task');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-karma-coveralls');
-	grunt.loadNpmTasks('grunt-conventional-changelog');
 	grunt.loadNpmTasks('grunt-jsbeautifier');
 	grunt.loadNpmTasks('grunt-ngmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-release');
+	grunt.loadNpmTasks('grunt-templated-changelog');
 
 	grunt.registerTask('bower', ['bower:install']);
 
