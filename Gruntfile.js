@@ -98,6 +98,7 @@ module.exports = function (grunt) {
 				bump: false,
 				file: 'bower.json',
 				tag: true,
+				commit: false,
 				tagName: 'v<%= version %>',
 				npm: false,
 				npmtag: true,
