@@ -1398,8 +1398,96 @@
                     width: '@',
                     height: '@',
                     id: '@',
+                    showlegend: '@',
+                    tooltips: '@',
+                    showcontrols: '@',
+                    showDistX: '@',
+                    showDistY: '@',
+                    rightAlignYAxis: '@',
+                    fisheye: '@',
+                    tooltipContent: '&',
+                    tooltipXContent: '&',
+                    tooltipYContent: '&',
+                    color: '&',
+                    margin: '&',
+                    nodata: '@',
+                    transitionDuration: '@',
+                    shape: '&',
+                    onlyCircles: '@',
+                    interactive: '@',
+                    x: '&',
+                    y: '&',
+                    size: '&',
+                    forceX: '@',
+                    forceY: '@',
+                    forceSize: '@',
+                    xrange: '&',
+                    xdomain: '&',
+                    xscale: '&',
+                    yrange: '&',
+                    ydomain: '&',
+                    yscale: '&',
+                    sizerange: '&',
+                    sizedomain: '&',
+                    zscale: '&',
 
-                    callback: '&'
+                    callback: '&',
+
+                    //xaxis
+                    xaxisorient: '&',
+                    xaxisticks: '&',
+                    xaxistickvalues: '&xaxistickvalues',
+                    xaxisticksubdivide: '&',
+                    xaxisticksize: '&',
+                    xaxistickpadding: '&',
+                    xaxistickformat: '&',
+                    xaxislabel: '@',
+                    xaxisscale: '&',
+                    xaxisdomain: '&',
+                    xaxisrange: '&',
+                    xaxisrangeband: '&',
+                    xaxisrangebands: '&',
+                    xaxisshowmaxmin: '@',
+                    xaxishighlightzero: '@',
+                    xaxisrotatelabels: '@',
+                    xaxisrotateylabel: '@',
+                    xaxisstaggerlabels: '@',
+                    xaxisaxislabeldistance: '@',
+                    //yaxis
+                    yaxisorient: '&',
+                    yaxisticks: '&',
+                    yaxistickvalues: '&yaxistickvalues',
+                    yaxisticksubdivide: '&',
+                    yaxisticksize: '&',
+                    yaxistickpadding: '&',
+                    yaxistickformat: '&',
+                    yaxislabel: '@',
+                    yaxisscale: '&',
+                    yaxisdomain: '&',
+                    yaxisrange: '&',
+                    yaxisrangeband: '&',
+                    yaxisrangebands: '&',
+                    yaxisshowmaxmin: '@',
+                    yaxishighlightzero: '@',
+                    yaxisrotatelabels: '@',
+                    yaxisrotateylabel: '@',
+                    yaxisstaggerlabels: '@',
+                    yaxislabeldistance: '@',
+                    legendmargin: '&',
+                    legendwidth: '@',
+                    legendheight: '@',
+                    legendkey: '@',
+                    legendcolor: '&',
+                    legendalign: '@',
+                    legendrightalign: '@',
+                    legendupdatestate: '@',
+                    legendradiobuttonmode: '@',
+
+                    //angularjs specific
+                    objectequality: '@',
+
+                    //d3.js specific
+                    transitionduration: '@'
                 },
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
@@ -1432,8 +1520,6 @@
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
                                         .showDistX(attrs.showdistx === undefined ? false : (attrs.showdistx === 'true'))
                                         .showDistY(attrs.showdisty === undefined ? false : (attrs.showdisty === 'true'))
-                                        .xPadding(attrs.xpadding === undefined ? 0 : (+attrs.xpadding))
-                                        .yPadding(attrs.ypadding === undefined ? 0 : (+attrs.ypadding))
                                         .fisheye(attrs.fisheye === undefined ? 0 : (+attrs.fisheye))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
