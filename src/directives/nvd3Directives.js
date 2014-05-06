@@ -185,7 +185,7 @@
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                         .isArea(attrs.isarea === undefined ? function(d) { return d.area; } : function(){ return (attrs.isarea === 'true'); });
 
-                                    if (chart.useInteractiveGuideline) {
+                                    if (attrs.useinteractiveguideline) {
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
                                     }
 
@@ -334,7 +334,7 @@
                                         .isArea(attrs.isarea === undefined ? function(d) { return d.area; } : (attrs.isarea === 'true'));
                                         //.rescaleY(attrs.rescaley === undefined ? false : (attrs.rescaley === 'true'));
 
-                                    if (chart.useInteractiveGuideline) {
+                                    if (attrs.useinteractiveguideline) {
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
                                     }
 
@@ -488,7 +488,7 @@
                                         .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === 'true'))
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
-                                    if (chart.useInteractiveGuideline) {
+                                    if (attrs.useinteractiveguideline) {
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
                                     }
 
@@ -938,7 +938,7 @@
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
-                                    if (chart.useInteractiveGuideline) {
+                                    if (attrs.useinteractiveguideline) {
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
                                     }
 

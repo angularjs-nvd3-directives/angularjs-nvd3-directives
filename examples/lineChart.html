@@ -26,7 +26,6 @@
                 }];
             $scope.legendColorFunction = function(){
                 return function(d){
-                    console.log(d);
                     return '#E01B5D';
                 }
             };
@@ -41,8 +40,10 @@
         data="exampleData"
         showXAxis="true"
         showYAxis="true"
+        width="600"
+        height="400"
         tooltips="true"
-        useInteractiveGuideLine="true"
+        useInteractiveGuideline="true"
         showLegend="true"
         legendColor="legendColorFunction()">
     </nvd3-line-chart>
