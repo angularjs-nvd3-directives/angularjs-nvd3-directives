@@ -30,9 +30,9 @@
                     return d3.time.format('%x')(new Date(d));  //uncomment for date format
                 }
             }
-            $scope.yAxisTickFormat = function(){
+            $scope.y1AxisTickFormat = function(){
                 return function(d){
-                    return d3.format(',f');
+                    return d3.format(',f')(d);
                 }
             }
             $scope.y2AxisTickFormat = function(){
@@ -52,7 +52,7 @@
             data="exampleData"
             id="exampleId"
             xAxisTickFormat="xAxisTickFormat()"
-            yAxisTickFormat="yAxisTickFormat()"
+            y1AxisTickFormat="y1AxisTickFormat()"
             y2AxisTickFormat="y2AxisTickFormat()"
             ><svg></svg></nvd3-line-plus-bar-chart>
 </div>
