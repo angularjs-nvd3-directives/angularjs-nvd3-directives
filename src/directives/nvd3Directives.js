@@ -1647,7 +1647,11 @@
                     objectequality: '@',
 
                     //d3.js specific
-                    transitionduration: '@'
+                    transitionduration: '@',
+
+
+                    lineinteractive: '@',
+                    barinteractive: '@'
 
                 },
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
@@ -1689,6 +1693,14 @@
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
+                                    }
+
+                                    if ( attrs.lineinteractive && attrs.lineinteractive === 'false') {
+                                        chart.lines.interactive(false);
+                                    }
+
+                                    if ( attrs.barinteractive && attrs.barinteractive === 'false') {
+                                        chart.bars.interactive(false);
                                     }
 
                                     scope.d3Call(data, chart);
