@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.7 - 2014-05-06
+/*! angularjs-nvd3-directives - v0.0.7 - 2014-05-21
  * http://cmaurer.github.io/angularjs-nvd3-directives
  * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -2184,7 +2184,9 @@
           legendupdatestate: '@',
           legendradiobuttonmode: '@',
           objectequality: '@',
-          transitionduration: '@'
+          transitionduration: '@',
+          lineinteractive: '@',
+          barinteractive: '@'
         },
         controller: [
           '$scope',
@@ -2221,6 +2223,12 @@
                   }
                   if ( attrs.tooltipcontent ) {
                     chart.tooltipContent( scope.tooltipcontent() );
+                  }
+                  if ( attrs.lineinteractive && attrs.lineinteractive === 'false' ) {
+                    chart.lines.interactive( false );
+                  }
+                  if ( attrs.barinteractive && attrs.barinteractive === 'false' ) {
+                    chart.bars.interactive( false );
                   }
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
