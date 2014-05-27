@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.7 - 2014-05-21
+/*! angularjs-nvd3-directives - v0.0.7 - 2014-05-27
  * http://cmaurer.github.io/angularjs-nvd3-directives
  * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -766,6 +766,18 @@
     scope.margin = margin;
   }
 
+  function getD3Selector( attrs, element ) {
+    if ( !attrs.id ) {
+      //if an id is not supplied, create a random id.
+      if ( !attrs[ 'data-chartid' ] ) {
+        angular.element( element ).attrs( 'data-chartid', 'chartid' + Math.floor( Math.random() * 1000000001 ) );
+      }
+      return '[data-chartid=' + attrs[ 'data-chartid' ] + ']';
+    } else {
+      return '#' + attrs.id;
+    }
+  }
+
   function checkElementID( scope, attrs, element, chart, data ) {
     configureXaxis( chart, scope, attrs );
     configureX2axis( chart, scope, attrs );
@@ -774,26 +786,20 @@
     configureY2axis( chart, scope, attrs );
     configureLegend( chart, scope, attrs );
     processEvents( chart, scope );
-    var dataAttributeChartID;
-    //randomly generated if id attribute doesn't exist
-    if ( !attrs.id ) {
-      dataAttributeChartID = 'chartid' + Math.floor( Math.random() * 1000000001 );
-      angular.element( element ).attr( 'data-chartid', dataAttributeChartID );
-      //if an id is not supplied, create a random id.
-      if ( d3.select( '[data-chartid=' + dataAttributeChartID + '] svg' ).empty() ) {
-        d3.select( '[data-chartid=' + dataAttributeChartID + ']' ).append( 'svg' ).attr( 'height', scope.height ).attr( 'width', scope.width ).datum( data ).transition().duration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration ).call( chart );
-      } else {
-        d3.select( '[data-chartid=' + dataAttributeChartID + '] svg' ).attr( 'height', scope.height ).attr( 'width', scope.width ).datum( data ).transition().duration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration ).call( chart );
-      }
-    } else {
-      if ( angular.isArray( data ) && data.length === 0 ) {
-        d3.select( '#' + attrs.id + ' svg' ).remove();
-      }
-      if ( d3.select( '#' + attrs.id + ' svg' ).empty() ) {
-        d3.select( '#' + attrs.id ).append( 'svg' );
-      }
-      d3.select( '#' + attrs.id + ' svg' ).attr( 'height', scope.height ).attr( 'width', scope.width ).datum( data ).transition().duration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration ).call( chart );
+    var d3Select = getD3Selector( attrs, element );
+    if ( angular.isArray( data ) && data.length === 0 ) {
+      d3.select( d3Select + ' svg' ).remove();
     }
+    if ( d3.select( d3Select + ' svg' ).empty() ) {
+      d3.select( d3Select ).append( 'svg' );
+    }
+    d3.select( d3Select + ' svg' ).attr( 'height', scope.height ).attr( 'width', scope.width ).datum( data ).transition().duration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration ).call( chart );
+  }
+
+  function updateDimensions( scope, attrs, element, chart ) {
+    var d3Select = getD3Selector( attrs, element );
+    d3.select( d3Select + ' svg' ).attr( 'height', scope.height ).attr( 'width', scope.width );
+    nv.utils.windowResize( chart );
   }
   angular.module( 'nvd3ChartDirectives', [] ).directive( 'nvd3LineChart', [
     function () {
@@ -886,6 +892,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1015,6 +1024,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1153,6 +1165,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1313,6 +1328,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1426,6 +1444,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1545,6 +1566,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1664,6 +1688,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1746,6 +1773,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1882,6 +1912,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -2053,6 +2086,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               if ( scope.chart ) {
@@ -2199,6 +2235,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -2372,6 +2411,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -2470,6 +2512,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -2531,6 +2576,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -2649,6 +2697,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
