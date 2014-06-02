@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.7 - 2014-05-27
+/*! angularjs-nvd3-directives - v0.0.7 - 2014-05-28
  * http://cmaurer.github.io/angularjs-nvd3-directives
  * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -797,9 +797,12 @@
   }
 
   function updateDimensions( scope, attrs, element, chart ) {
-    var d3Select = getD3Selector( attrs, element );
-    d3.select( d3Select + ' svg' ).attr( 'height', scope.height ).attr( 'width', scope.width );
-    nv.utils.windowResize( chart );
+    if ( chart ) {
+      chart.width( scope.width ).height( scope.height );
+      var d3Select = getD3Selector( attrs, element );
+      d3.select( d3Select + ' svg' ).attr( 'height', scope.height ).attr( 'width', scope.width );
+      nv.utils.windowResize( chart );
+    }
   }
   angular.module( 'nvd3ChartDirectives', [] ).directive( 'nvd3LineChart', [
     function () {
