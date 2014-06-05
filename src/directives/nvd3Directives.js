@@ -17,7 +17,7 @@
         if (!attrs.id) {
             //if an id is not supplied, create a random id.
             if (!attrs['data-chartid']) {
-                angular.element(element).attrs('data-chartid', 'chartid' + Math.floor(Math.random() * 1000000001));
+                angular.element(element).attr('data-chartid', 'chartid' + Math.floor(Math.random() * 1000000001));
             }
             return '[data-chartid=' + attrs['data-chartid'] + ']';
         } else {
