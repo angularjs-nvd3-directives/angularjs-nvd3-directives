@@ -80,7 +80,7 @@ function processEvents(chart, scope) {
 		});
 
 		chart.discretebar.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
+			scope.$emit('elementMouseout.tooltip.directive', event);
 		});
 
                 chart.discretebar.dispatch.on('elementClick.directive', function (event) {
@@ -94,7 +94,7 @@ function processEvents(chart, scope) {
 		});
 
 		chart.multibar.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
+			scope.$emit('elementMouseout.tooltip.directive', event);
 		});
 
 		chart.multibar.dispatch.on('elementClick.directive', function (event) {
@@ -109,7 +109,7 @@ function processEvents(chart, scope) {
 		});
 
 		chart.pie.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
+			scope.$emit('elementMouseout.tooltip.directive', event);
 		});
 		
 		chart.pie.dispatch.on('elementClick.directive', function(event) {
@@ -123,7 +123,7 @@ function processEvents(chart, scope) {
 		});
 
 		chart.scatter.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
+			scope.$emit('elementMouseout.tooltip.directive', event);
 		});
 	}
 
@@ -133,7 +133,7 @@ function processEvents(chart, scope) {
 		});
 
 		chart.bullet.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
+			scope.$emit('elementMouseout.tooltip.directive', event);
 		});
 	}
 
