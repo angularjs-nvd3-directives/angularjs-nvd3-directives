@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.7 - 2014-05-28
+/*! angularjs-nvd3-directives - v0.0.7 - 2014-06-10
  * http://cmaurer.github.io/angularjs-nvd3-directives
  * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -313,7 +313,7 @@
       } );
 
       chart.discretebar.dispatch.on( 'elementMouseout.tooltip.directive', function ( event ) {
-        scope.$emit( 'elementMouseover.tooltip.directive', event );
+        scope.$emit( 'elementMouseout.tooltip.directive', event );
       } );
 
       chart.discretebar.dispatch.on( 'elementClick.directive', function ( event ) {
@@ -327,7 +327,7 @@
       } );
 
       chart.multibar.dispatch.on( 'elementMouseout.tooltip.directive', function ( event ) {
-        scope.$emit( 'elementMouseover.tooltip.directive', event );
+        scope.$emit( 'elementMouseout.tooltip.directive', event );
       } );
 
       chart.multibar.dispatch.on( 'elementClick.directive', function ( event ) {
@@ -342,7 +342,7 @@
       } );
 
       chart.pie.dispatch.on( 'elementMouseout.tooltip.directive', function ( event ) {
-        scope.$emit( 'elementMouseover.tooltip.directive', event );
+        scope.$emit( 'elementMouseout.tooltip.directive', event );
       } );
 
       chart.pie.dispatch.on( 'elementClick.directive', function ( event ) {
@@ -356,7 +356,7 @@
       } );
 
       chart.scatter.dispatch.on( 'elementMouseout.tooltip.directive', function ( event ) {
-        scope.$emit( 'elementMouseover.tooltip.directive', event );
+        scope.$emit( 'elementMouseout.tooltip.directive', event );
       } );
     }
 
@@ -366,7 +366,7 @@
       } );
 
       chart.bullet.dispatch.on( 'elementMouseout.tooltip.directive', function ( event ) {
-        scope.$emit( 'elementMouseover.tooltip.directive', event );
+        scope.$emit( 'elementMouseout.tooltip.directive', event );
       } );
     }
 
@@ -770,7 +770,7 @@
     if ( !attrs.id ) {
       //if an id is not supplied, create a random id.
       if ( !attrs[ 'data-chartid' ] ) {
-        angular.element( element ).attrs( 'data-chartid', 'chartid' + Math.floor( Math.random() * 1000000001 ) );
+        angular.element( element ).attr( 'data-chartid', 'chartid' + Math.floor( Math.random() * 1000000001 ) );
       }
       return '[data-chartid=' + attrs[ 'data-chartid' ] + ']';
     } else {
@@ -2463,7 +2463,7 @@
                     return attrs.isarea === 'true';
                   } ).size( attrs.size === undefined ? function ( d ) {
                     return d.size === undefined ? 1 : d.size;
-                  } : scope.size() ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).interpolate( attrs.interpolate === undefined ? 'linear' : attrs.interpolate );
+                  } : scope.size() ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).clipVoronoi( attrs.clipvoronoi === undefined ? false : attrs.clipvoronoi === 'true' ).interpolate( attrs.interpolate === undefined ? 'linear' : attrs.interpolate );
                   if ( attrs.defined ) {
                     chart.defined( scope.defined() );
                   }
