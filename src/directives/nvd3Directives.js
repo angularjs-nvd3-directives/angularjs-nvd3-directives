@@ -1915,6 +1915,8 @@
                                         .isArea(attrs.isarea === undefined ? function(d) { return d.area; } : function(){ return (attrs.isarea === 'true'); })
                                         .size(attrs.size === undefined ? function(d){ return (d.size === undefined ? 1 : d.size); }: scope.size())
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
+                                        .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === 'true'))
+                                        .clipVoronoi(attrs.clipvoronoi === undefined ? false : (attrs.clipvoronoi === 'true'))
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate);
 
                                     if(attrs.defined){
