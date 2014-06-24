@@ -44,8 +44,7 @@
                 .append('svg');
         }
         d3.select(d3Select + ' svg')
-            .attr('height', scope.height)
-            .attr('width', scope.width)
+            .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height)
             .datum(data)
             .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
             .call(chart);
@@ -56,9 +55,9 @@
             chart.width(scope.width).height(scope.height);
             var d3Select = getD3Selector(attrs, element);
             d3.select(d3Select + ' svg')
-                .attr('height', scope.height)
-                .attr('width', scope.width);
+                .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height);
             nv.utils.windowResize(chart);
+            scope.chart.update();
         }
     }
 

@@ -32,5 +32,8 @@
   "devDependencies": {
     "moment": "~2.5.0",
     "angular-route": "~1.2.13"
+  },
+  "resolutions": {
+    "d3": "~3.4.1"
   }
 }
