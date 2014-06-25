@@ -770,9 +770,9 @@
     if ( !attrs.id ) {
       //if an id is not supplied, create a random id.
       if ( !attrs[ 'data-chartid' ] ) {
-        element.attr( 'data-chartid', 'chartid' + Math.floor( Math.random() * 1000000001 ) );
+        angular.element( element ).attr( 'data-chartid', 'chartid' + Math.floor( Math.random() * 1000000001 ) );
       }
-      return '[data-chartid=' + element.attr( 'data-chartid' ) + ']';
+      return '[data-chartid=' + attrs[ 'data-chartid' ] + ']';
     } else {
       return '#' + attrs.id;
     }
@@ -796,48 +796,14 @@
     d3.select( d3Select + ' svg' ).attr( 'viewBox', '0 0 ' + scope.width + ' ' + scope.height ).datum( data ).transition().duration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration ).call( chart );
   }
 
-  function getUpdateDimensionsFn( scope, attrs, element ) {
-    return function updateDimensions() {
-      if ( scope.chart ) {
-        scope.chart.width( scope.width ).height( scope.height );
-        var d3Select = getD3Selector( attrs, element );
-        d3.select( d3Select + ' svg' ).attr( 'height', scope.height ).attr( 'width', scope.width );
-        nv.utils.windowResize( scope.chart );
-        // This will cause another $digest.
-        scope.mustUpdate = true;
-      }
-    };
-  }
-  // used to handle changes in to forceX & forceY attrs
-  function getForceXYObserver( scope, chartFunctionName, defaultValue ) {
-    return function forceXYObserver( newVal ) {
-      if ( angular.isUndefined( scope.chart ) || angular.isUndefined( scope.chart[ chartFunctionName ] ) ) {
-        return;
-      }
-      if ( angular.isUndefined( newVal ) ) {
-        newVal = angular.copy( defaultValue );
-      }
-      if ( angular.isString( newVal ) ) {
-        newVal = scope.$eval( newVal );
-      }
-      if ( !angular.isArray( newVal ) ) {
-        return;
-      }
-      scope.chart[ chartFunctionName ]( newVal );
-      // This will cause another $digest.
-      scope.mustUpdate = true;
-    };
-  }
-  // A way to bundle updates if more than one change happend in one $digest.
-  function getMustUpdateHandler( scope ) {
-    return function mustUpdateHandler() {
-      if ( !scope.chart && !scope.mustUpdate ) {
-        return;
-      }
-      scope.mustUpdate = false;
-      // This causes the chart to render an update.
+  function updateDimensions( scope, attrs, element, chart ) {
+    if ( chart ) {
+      chart.width( scope.width ).height( scope.height );
+      var d3Select = getD3Selector( attrs, element );
+      d3.select( d3Select + ' svg' ).attr( 'viewBox', '0 0 ' + scope.width + ' ' + scope.height );
+      nv.utils.windowResize( chart );
       scope.chart.update();
-    };
+    }
   }
   angular.module( 'nvd3ChartDirectives', [] ).directive( 'nvd3LineChart', [
     function () {
@@ -930,15 +896,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          var defaults = {
-            'forceX': [],
-            'forceY': [ 0 ]
-          };
-          scope.mustUpdate = false;
-          attrs.$observe( 'forcex', getForceXYObserver( scope, 'forceX', defaults.forceX ) );
-          attrs.$observe( 'forcey', getForceXYObserver( scope, 'forceY', defaults.forceY ) );
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -952,7 +912,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceX( attrs.forcex === undefined ? defaults.forceX : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? defaults.forceY : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).rightAlignYAxis( attrs.rightalignyaxis === undefined ? false : attrs.rightalignyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).clipVoronoi( attrs.clipvoronoi === undefined ? false : attrs.clipvoronoi === 'true' ).interpolate( attrs.interpolate === undefined ? 'linear' : attrs.interpolate ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).isArea( attrs.isarea === undefined ? function ( d ) {
+                  } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).rightAlignYAxis( attrs.rightalignyaxis === undefined ? false : attrs.rightalignyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).clipVoronoi( attrs.clipvoronoi === undefined ? false : attrs.clipvoronoi === 'true' ).interpolate( attrs.interpolate === undefined ? 'linear' : attrs.interpolate ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).isArea( attrs.isarea === undefined ? function ( d ) {
                     return d.area;
                   } : function () {
                     return attrs.isarea === 'true';
@@ -1068,15 +1028,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          var defaults = {
-            'forceX': [],
-            'forceY': [ 0 ]
-          };
-          scope.mustUpdate = false;
-          attrs.$observe( 'forcex', getForceXYObserver( scope, 'forceX', defaults.forceX ) );
-          attrs.$observe( 'forcey', getForceXYObserver( scope, 'forceY', defaults.forceY ) );
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1090,7 +1044,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceX( attrs.forcex === undefined ? defaults.forceX : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? defaults.forceY : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).rightAlignYAxis( attrs.rightalignyaxis === undefined ? false : attrs.rightalignyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).clipVoronoi( attrs.clipvoronoi === undefined ? false : attrs.clipvoronoi === 'true' ).useVoronoi( attrs.usevoronoi === undefined ? false : attrs.usevoronoi === 'true' ).average( attrs.average === undefined ? function ( d ) {
+                  } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).rightAlignYAxis( attrs.rightalignyaxis === undefined ? false : attrs.rightalignyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).clipVoronoi( attrs.clipvoronoi === undefined ? false : attrs.clipvoronoi === 'true' ).useVoronoi( attrs.usevoronoi === undefined ? false : attrs.usevoronoi === 'true' ).average( attrs.average === undefined ? function ( d ) {
                     return d.average;
                   } : scope.average() ).color( attrs.color === undefined ? d3.scale.category10().range() : scope.color() ).isArea( attrs.isarea === undefined ? function ( d ) {
                     return d.area;
@@ -1215,15 +1169,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          var defaults = {
-            'forceX': [],
-            'forceY': [ 0 ]
-          };
-          scope.mustUpdate = false;
-          attrs.$observe( 'forcex', getForceXYObserver( scope, 'forceX', defaults.forceX ) );
-          attrs.$observe( 'forcey', getForceXYObserver( scope, 'forceY', defaults.forceY ) );
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1237,7 +1185,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceX( attrs.forcex === undefined ? defaults.forceX : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? defaults.forceY : scope.$eval( attrs.forcey ) ).size( attrs.size === undefined ? function ( d ) {
+                  } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).size( attrs.size === undefined ? function ( d ) {
                     return d.size === undefined ? 1 : d.size;
                   } : scope.size() ).forceSize( attrs.forcesize === undefined ? [] : scope.$eval( attrs.forcesize ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
                   if ( attrs.useinteractiveguideline ) {
@@ -1384,13 +1332,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          var defaults = {
-            'forceY': [ 0 ]
-          };
-          scope.mustUpdate = false;
-          attrs.$observe( 'forcey', getForceXYObserver( scope, 'forceY', defaults.forceY ) );
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1404,7 +1348,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceY( attrs.forcey === undefined ? defaults.forceY : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).reduceXTicks( attrs.reducexticks === undefined ? false : attrs.reducexticks === 'true' ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).rotateLabels( attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).delay( attrs.delay === undefined ? 1200 : attrs.delay ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
+                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).reduceXTicks( attrs.reducexticks === undefined ? false : attrs.reducexticks === 'true' ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).rotateLabels( attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).delay( attrs.delay === undefined ? 1200 : attrs.delay ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
                   if ( attrs.tooltipcontent ) {
                     chart.tooltipContent( scope.tooltipcontent() );
                   }
@@ -1504,13 +1448,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          var defaults = {
-            'forceY': [ 0 ]
-          };
-          scope.mustUpdate = false;
-          attrs.$observe( 'forcey', getForceXYObserver( scope, 'forceY', defaults.forceY ) );
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1524,7 +1464,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceY( attrs.forcey === undefined ? defaults.forceY : scope.$eval( attrs.forcey ) ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
+                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
                   if ( attrs.tooltipcontent ) {
                     chart.tooltipContent( scope.tooltipcontent() );
                   }
@@ -1630,13 +1570,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          var defaults = {
-            'forceY': [ 0 ]
-          };
-          scope.mustUpdate = false;
-          attrs.$observe( 'forcey', getForceXYObserver( scope, 'forceY', defaults.forceY ) );
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1650,7 +1586,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceY( attrs.forcey === undefined ? defaults.forceY : scope.$eval( attrs.forcey ) ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
+                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
                   if ( attrs.useinteractiveguideline ) {
                     chart.useInteractiveGuideline( attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true' );
                   }
@@ -1756,13 +1692,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          var defaults = {
-            'forceY': [ 0 ]
-          };
-          scope.mustUpdate = false;
-          attrs.$observe( 'forcey', getForceXYObserver( scope, 'forceY', defaults.forceY ) );
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1776,7 +1708,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).forceY( attrs.forcey === undefined ? defaults.forceY : scope.$eval( attrs.forcey ) ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
+                  } : scope.y() ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
                   if ( attrs.tooltipcontent ) {
                     chart.tooltipContent( scope.tooltipcontent() );
                   }
@@ -1845,10 +1777,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          // var defaults = {};
-          scope.mustUpdate = false;
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -1985,15 +1916,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          var defaults = {
-            'forceX': [],
-            'forceY': []
-          };
-          scope.mustUpdate = false;
-          attrs.$observe( 'forcex', getForceXYObserver( scope, 'forceX', defaults.forceX ) );
-          attrs.$observe( 'forcey', getForceXYObserver( scope, 'forceY', defaults.forceY ) );
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -2009,7 +1934,7 @@
                     return d.y;
                   } : scope.y() ).size( attrs.size === undefined ? function ( d ) {
                     return d.size === undefined ? 1 : d.size;
-                  } : scope.size() ).forceX( attrs.forcex === undefined ? defaults.forceX : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? defaults.forceY : scope.$eval( attrs.forcey ) ).forceSize( attrs.forcesize === undefined ? [] : scope.$eval( attrs.forcesize ) ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).tooltipContent( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).tooltipXContent( attrs.tooltipxcontent === undefined ? function ( key, x ) {
+                  } : scope.size() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [] : scope.$eval( attrs.forcey ) ).forceSize( attrs.forcesize === undefined ? [] : scope.$eval( attrs.forcesize ) ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).tooltipContent( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).tooltipXContent( attrs.tooltipxcontent === undefined ? function ( key, x ) {
                     return '<strong>' + x + '</strong>';
                   } : scope.tooltipXContent() ).tooltipYContent( attrs.tooltipycontent === undefined ? function ( key, x, y ) {
                     return '<strong>' + y + '</strong>';
@@ -2165,16 +2090,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          // var defaults = {
-          // 'forceX': [],
-          // 'forceY': [0]
-          // };
-          scope.mustUpdate = false;
-          // NVD3 Seem to have left out the forceX & forceY methods for scatterPlusLineChart
-          // attrs.$observe('forcex', getForceXYObserver(scope, 'forceX', defaults.forceX));
-          // attrs.$observe('forcey', getForceXYObserver(scope, 'forceY', defaults.forceY));
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               if ( scope.chart ) {
@@ -2321,16 +2239,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          // var defaults = {
-          // 'forceX': [],
-          // 'forceY': [0]
-          // };
-          scope.mustUpdate = false;
-          // NVD3 Seem to have left out the forceX & forceY methods for scatterPlusLineChart
-          // attrs.$observe('forcex', getForceXYObserver(scope, 'forceX', defaults.forceX));
-          // attrs.$observe('forcey', getForceXYObserver(scope, 'forceY', defaults.forceY));
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -2504,15 +2415,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          var defaults = {
-            'forceX': [],
-            'forceY': []
-          };
-          scope.mustUpdate = false;
-          attrs.$observe( 'forcex', getForceXYObserver( scope, 'forceX', defaults.forceX ) );
-          attrs.$observe( 'forcey', getForceXYObserver( scope, 'forceY', defaults.forceY ) );
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -2548,12 +2453,12 @@
                       left: 60
                     };
                   }
-                  // 'xDomain', 'yDomain', 'xRange', 'yRange', ''clipEdge', 'clipVoronoi'
+                  //'xDomain', 'yDomain', 'xRange', 'yRange', ''clipEdge', 'clipVoronoi'
                   var chart = nv.models.lineWithFocusChart().width( scope.width ).height( scope.height ).height2( attrs.height2 === undefined ? 100 : +attrs.height2 ).margin( scope.margin ).margin2( scope.margin2 ).x( attrs.x === undefined ? function ( d ) {
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceX( attrs.forcex === undefined ? defaults.forceX : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? defaults.forceY : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).isArea( attrs.isarea === undefined ? function ( d ) {
+                  } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).isArea( attrs.isarea === undefined ? function ( d ) {
                     return d.area;
                   } : function () {
                     return attrs.isarea === 'true';
@@ -2611,10 +2516,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          // var defaults = {};
-          scope.mustUpdate = false;
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -2676,10 +2580,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          // var defaults = {};
-          scope.mustUpdate = false;
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
@@ -2798,10 +2701,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          // var defaults = {};
-          scope.mustUpdate = false;
-          scope.$watch( 'width + height', getUpdateDimensionsFn( scope, attrs, element ) );
-          scope.$watch( 'mustUpdate', getMustUpdateHandler( scope ) );
+          scope.$watch( 'width + height', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'data', function ( data ) {
             if ( data ) {
               //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
