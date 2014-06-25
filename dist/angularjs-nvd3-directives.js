@@ -793,7 +793,7 @@
     if ( d3.select( d3Select + ' svg' ).empty() ) {
       d3.select( d3Select ).append( 'svg' );
     }
-    d3.select( d3Select + ' svg' ).attr( 'height', scope.height ).attr( 'width', scope.width ).datum( data ).transition().duration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration ).call( chart );
+    d3.select( d3Select + ' svg' ).attr( 'viewBox', '0 0 ' + scope.width + ' ' + scope.height ).datum( data ).transition().duration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration ).call( chart );
   }
 
   function getUpdateDimensionsFn( scope, attrs, element ) {
