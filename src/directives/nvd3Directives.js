@@ -1253,7 +1253,7 @@
                 }
             };
         }])
-        .directive('nvd3ScatterChart', ['$filter', '$parse', function($filter, $parse){
+        .directive('nvd3ScatterChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
                 scope: {
