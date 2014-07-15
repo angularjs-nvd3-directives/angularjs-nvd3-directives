@@ -1,165 +1,52 @@
 function processEvents(chart, scope) {
-	if (chart.dispatch) {
-		if (chart.dispatch.tooltipShow) {
-			chart.dispatch.on('tooltipShow.directive', function (event) {
-				scope.$emit('tooltipShow.directive', event);
-			});
-		}
 
-		if (chart.dispatch.tooltipHide) {
-			chart.dispatch.on('tooltipHide.directive', function (event) {
-				scope.$emit('tooltipHide.directive', event);
-			});
-		}
+  function maybeAddListener(object, args) {
+    angular.forEach(args, function (name) {
+      if (object[name]) {
+        object.dispatch.on(name + '.directive', function () {
+          var args = Array.prototype.slice.call(arguments);
+          args.unshift(name + '.directive');
+          scope.$emit.call(scope, args);
+        });
+      }
+    });
+  }
 
-		if (chart.dispatch.beforeUpdate) {
-			chart.dispatch.on('beforeUpdate.directive', function (event) {
-				scope.$emit('beforeUpdate.directive', event);
-			});
-		}
+  if (chart.dispatch) {
+    maybeAddListener(chart, [ 'tooltipShow', 'tooltipHide', 'beforeUpdate', 'stateChange', 'changeState' ]);
+  }
 
-		if (chart.dispatch.stateChange) {
-			chart.dispatch.on('stateChange.directive', function (event) {
-				scope.$emit('stateChange.directive', event);
-			});
-		}
+  if (chart.lines) {
+    maybeAddListener(chart.lines, [ 'elementMouseover.tooltip', 'elementMouseout.tooltip', 'elementClick' ]);
+  }
 
-		if (chart.dispatch.changeState) {
-			chart.dispatch.on('changeState.directive', function (event) {
-				scope.$emit('changeState.directive', event);
-			});
-		}
-	}
+  if (chart.stacked && chart.stacked.dispatch) {
+    maybeAddListener(chart.stacked, [ 'areaClick.toggle', 'tooltipShow', 'tooltipHide' ]);
+  }
 
-	if (chart.lines) {
-		chart.lines.dispatch.on('elementMouseover.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
-		});
+  if (chart.interactiveLayer) {
+    if (chart.interactiveLayer.elementMouseout) {
+      maybeAddListener(chart.interactiveLayer, [ 'elementMouseout' ]);
+    }
 
-		chart.lines.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseout.tooltip.directive', event);
-		});
+    if (chart.interactiveLayer.elementMousemove) {
+      maybeAddListener(chart.interactiveLayer, [ 'elementMousemove' ]);
+    }
+  }
 
-		chart.lines.dispatch.on('elementClick.directive', function (event) {
-			scope.$emit('elementClick.directive', event);
-		});
-	}
+  // this adds elementClick for scatter and bullet - not sure if it is ok
+  angular.forEach(['discretebar', 'multibar', 'pie', 'scatter', 'bullet' ],
+      function (element) {
+        if (chart[element]) {
+          maybeAddListener(chart[element], [ 'elementMouseover.tooltip', 'elementMouseout.tooltip', 'elementClick' ]);
+        }
+      });
 
-	if (chart.stacked && chart.stacked.dispatch) {
-		chart.stacked.dispatch.on('areaClick.toggle.directive', function (event) {
-			scope.$emit('areaClick.toggle.directive', event);
-		});
+  if (chart.legend) {
+    maybeAddListener(chart.legend, [ 'stateChange.legend', 'legendClick', 'legendDblclick', 'legendMouseover' ]);
+  }
 
-		chart.stacked.dispatch.on('tooltipShow.directive', function (event) {
-			scope.$emit('tooltipShow.directive', event);
-		});
-
-		chart.stacked.dispatch.on('tooltipHide.directive', function (event) {
-			scope.$emit('tooltipHide.directive', event);
-		});
-
-	}
-
-	if (chart.interactiveLayer) {
-		if (chart.interactiveLayer.elementMouseout) {
-			chart.interactiveLayer.dispatch.on('elementMouseout.directive', function (event) {
-				scope.$emit('elementMouseout.directive', event);
-			});
-		}
-
-		if (chart.interactiveLayer.elementMousemove) {
-			chart.interactiveLayer.dispatch.on('elementMousemove.directive', function (event) {
-				scope.$emit('elementMousemove.directive', event);
-			});
-		}
-	}
-
-	if (chart.discretebar) {
-		chart.discretebar.dispatch.on('elementMouseover.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
-		});
-
-		chart.discretebar.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseout.tooltip.directive', event);
-		});
-
-                chart.discretebar.dispatch.on('elementClick.directive', function (event) {
-                        scope.$emit('elementClick.directive', event);
-                });
-	}
-
-	if (chart.multibar) {
-		chart.multibar.dispatch.on('elementMouseover.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
-		});
-
-		chart.multibar.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseout.tooltip.directive', event);
-		});
-
-		chart.multibar.dispatch.on('elementClick.directive', function (event) {
-			scope.$emit('elementClick.directive', event);
-		});
-
-	}
-
-	if (chart.pie) {
-		chart.pie.dispatch.on('elementMouseover.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
-		});
-
-		chart.pie.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseout.tooltip.directive', event);
-		});
-		
-		chart.pie.dispatch.on('elementClick.directive', function(event) {
-                	scope.$emit('elementClick.directive', event);
-            	});
-	}
-
-	if (chart.scatter) {
-		chart.scatter.dispatch.on('elementMouseover.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
-		});
-
-		chart.scatter.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseout.tooltip.directive', event);
-		});
-	}
-
-	if (chart.bullet) {
-		chart.bullet.dispatch.on('elementMouseover.tooltip.directive', function (event) {
-			scope.$emit('elementMouseover.tooltip.directive', event);
-		});
-
-		chart.bullet.dispatch.on('elementMouseout.tooltip.directive', function (event) {
-			scope.$emit('elementMouseout.tooltip.directive', event);
-		});
-	}
-
-	if (chart.legend) {
-		//'legendClick', 'legendDblclick', 'legendMouseover'
-		//stateChange
-		chart.legend.dispatch.on('stateChange.legend.directive', function (event) {
-			scope.$emit('stateChange.legend.directive', event);
-		});
-		chart.legend.dispatch.on('legendClick.directive', function (d, i) {
-			scope.$emit('legendClick.directive', d, i);
-		});
-		chart.legend.dispatch.on('legendDblclick.directive', function (d, i) {
-			scope.$emit('legendDblclick.directive', d, i);
-		});
-		chart.legend.dispatch.on('legendMouseover.directive', function (d, i) {
-			scope.$emit('legendMouseover.directive', d, i);
-		});
-	}
-
-	if (chart.controls) {
-		if (chart.controls.legendClick) {
-			chart.controls.dispatch.on('legendClick.directive', function (d, i) {
-				scope.$emit('legendClick.directive', d, i);
-			});
-		}
-	}
-
+  if (chart.controls && chart.controls.legendClick) {
+    maybeAddListener(chart.controls, [ 'legendClick' ]);
+  }
 }
