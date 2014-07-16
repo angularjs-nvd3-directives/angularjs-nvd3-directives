@@ -28,7 +28,7 @@ angular.module('nvd3ChartDirectives').constant('nvd3Helpers', {
       interactive: false,
       noData: 'No Data Available.',
       staggerLabels: false,
-      delay: 2000,
+      delay: 1200,
       color: nv.utils.defaultColor()
     };
   },

@@ -7,7 +7,7 @@ angular.module('nvd3ChartDirectives')
     .constant('nvd3Helpers', {
       defaults: function () {
         return {
-          margin: {left: 50, top: 50, bottom: 50, right: 50},
+          margin: { left: 50, top: 50, bottom: 50, right: 50 },
           x: function(d){ return d[0]; },
           y: function(d){ return d[1]; },
           forceY: [0],
@@ -20,7 +20,7 @@ angular.module('nvd3ChartDirectives')
           interactive: false,
           noData: 'No Data Available.',
           staggerLabels: false,
-          delay: 2000,
+          delay: 1200,
           color: nv.utils.defaultColor()
         };
       },
