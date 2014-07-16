@@ -3,6 +3,139 @@
      should prevent NaN errors
      */
 
+
+    function addXAxisFields(scope) {
+      return angular.extend(scope, {
+        //xaxis
+        xaxisorient: '&',
+        xaxisticks: '@',
+        xaxistickvalues: '&xaxistickvalues',
+        xaxisticksubdivide: '&',
+        xaxisticksize: '&',
+        xaxistickpadding: '&',
+        xaxistickformat: '&',
+        xaxislabel: '@',
+        xaxisscale: '&',
+        xaxisdomain: '&',
+        xaxisrange: '&',
+        xaxisrangeband: '&',
+        xaxisrangebands: '&',
+        xaxisshowmaxmin: '@',
+        xaxishighlightzero: '@',
+        xaxisrotatelabels: '@',
+        xaxisrotateylabel: '@',
+        xaxisstaggerlabels: '@',
+        xaxislabeldistance: '@'
+      });
+    }
+
+
+    function addYAxisFields(scope) {
+      return angular.extend(scope, {
+        //yaxis
+        yaxisorient: '&',
+        yaxisticks: '&',
+        yaxistickvalues: '&yaxistickvalues',
+        yaxisticksubdivide: '&',
+        yaxisticksize: '&',
+        yaxistickpadding: '&',
+        yaxistickformat: '&',
+        yaxislabel: '@',
+        yaxisscale: '&',
+        yaxisdomain: '&',
+        yaxisrange: '&',
+        yaxisrangeband: '&',
+        yaxisrangebands: '&',
+        yaxisshowmaxmin: '@',
+        yaxishighlightzero: '@',
+        yaxisrotatelabels: '@',
+        yaxisrotateylabel: '@',
+        yaxisstaggerlabels: '@',
+        yaxislabeldistance: '@'
+      });
+    }
+
+
+    function addBaseFields(scope) {
+      return angular.extend(scope, {
+        data: '=',
+        filtername: '=',
+        filtervalue: '=',
+        width: '@',
+        height: '@',
+        id: '@',
+        showlegend: '@',
+        tooltips: '@',
+        showxaxis: '@',
+        showyaxis: '@',
+        rightalignyaxis: '@',
+        defaultstate: '@',
+        nodata: '@',
+        margin: '&',
+        tooltipcontent: '&',
+        color: '&',
+        x: '&',
+        y: '&',
+        forcex: '@',
+        forcey: '@',
+        isArea: '@',
+        interactive: '@',
+        clipedge: '@',
+        clipvoronoi: '@',
+        interpolate: '@',
+
+        callback: '&',
+
+        useinteractiveguideline: '@',
+
+        showcontrols: '@',
+        showDistX: '@',
+        showDistY: '@',
+        rightAlignYAxis: '@',
+        fisheye: '@',
+        xPadding: '@',
+        yPadding: '@',
+        tooltipContent: '&',
+        tooltipXContent: '&',
+        tooltipYContent: '&',
+        transitionDuration: '@',
+        shape: '&',
+        onlyCircles: '@',
+        size: '&',
+        forceSize: '@',
+        xrange: '&',
+        xdomain: '&',
+        xscale: '&',
+        yrange: '&',
+        ydomain: '&',
+        yscale: '&',
+        sizerange: '&',
+        sizedomain: '&',
+        zscale: '&',
+
+        //angularjs specific
+        objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
+        //d3.js specific
+        transitionduration: '@'
+      });
+    }
+
+
+    function addLegendFields(scope) {
+      return angular.extend(scope, {
+        legendmargin: '&',
+        legendwidth: '@',
+        legendheight: '@',
+        legendkey: '@',
+        legendcolor: '&',
+        legendalign: '@',
+        legendrightalign: '@',
+        legendupdatestate: '@',
+        legendradiobuttonmode: '@'
+      });
+    }
+
+
     function initializeMargin(scope, attrs){
         var margin = (scope.$eval(attrs.margin) || {left: 50, top: 50, bottom: 50, right: 50});
         if (typeof(margin) !== 'object') {
@@ -34,16 +167,16 @@
         configureLegend(chart, scope, attrs);
         processEvents(chart, scope);
 
-        var d3Select = getD3Selector(attrs, element);
+        var svgElem = element.find('svg')[0];
 
         if (angular.isArray(data) && data.length === 0) {
-            d3.select(d3Select + ' svg').remove();
+            d3.select(svgElem).remove();
         }
-        if (d3.select(d3Select + ' svg').empty()) {
-            d3.select(d3Select)
+        if (d3.select(svgElem).empty()) {
+            d3.select(element)
                 .append('svg');
         }
-        d3.select(d3Select + ' svg')
+        d3.select(svgElem)
             .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height)
             .datum(data)
             .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
@@ -65,95 +198,7 @@
         .directive('nvd3LineChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    showlegend: '@',
-                    tooltips: '@',
-                    showxaxis: '@',
-                    showyaxis: '@',
-                    rightalignyaxis: '@',
-                    defaultstate: '@',
-                    nodata: '@',
-                    margin: '&',
-                    tooltipcontent: '&',
-                    color: '&',
-                    x: '&',
-                    y: '&',
-                    forcex: '@',
-                    forcey: '@',
-                    isArea: '@',
-                    interactive: '@',
-                    clipedge: '@',
-                    clipvoronoi: '@',
-                    interpolate: '@',
-
-                    callback: '&',
-
-                    useinteractiveguideline: '@',
-                    //xaxis
-                    xaxisorient: '&',
-                    xaxisticks: '@',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxislabeldistance: '@',
-
-                    //yaxis
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
-                    yaxislabeldistance: '@',
-
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
-
-                    //d3.js specific
-                    transitionduration: '@'
-
-                },
+                scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({})))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -218,96 +263,7 @@
         .directive('nvd3CumulativeLineChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    showlegend: '@',
-                    tooltips: '@',
-                    showxaxis: '@',
-                    showyaxis: '@',
-                    rightalignyaxis: '@',
-                    defaultstate: '@',
-                    nodata: '@',
-                    margin: '&',
-                    tooltipcontent: '&',
-                    color: '&',
-                    x: '&',
-                    y: '&',
-                    forcex: '@',
-                    forcey: '@',
-                    isArea: '@',
-                    interactive: '@',
-                    clipedge: '@',
-                    clipvoronoi: '@',
-                    usevoronoi: '@',
-                    average: '&',
-                    rescaley: '@',
-
-                    callback: '&',
-                    useinteractiveguideline: '@',
-                    //xaxis
-                    xaxisorient: '&',
-                    xaxisticks: '&',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxislabeldistance: '@',
-
-                    //yaxis
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
-                    yaxislabeldistance: '@',
-
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
-
-                    //d3.js specific
-                    transitionduration: '@'
-
-                },
+                scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({})))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -374,104 +330,7 @@
         .directive('nvd3StackedAreaChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    showlegend: '@',
-                    tooltips: '@',
-                    showcontrols: '@',
-                    nodata: '@',
-                    margin: '&',
-                    tooltipcontent: '&',
-                    color: '&',
-                    x: '&',
-                    y: '&',
-                    forcex: '@', //List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
-                    forcey: '@', // List of numbers to Force into the Y scale
-                    forcesize: '@', // List of numbers to Force into the Size scale
-
-                    interactive: '@',
-                    usevoronoi: '@',
-                    clipedge: '@',
-                    interpolate: '@',
-                    style: '@',     //stack, stream, stream-center, expand
-                    order: '@',     //default, inside-out
-                    offset: '@',    //zero, wiggle, silhouette, expand
-                    size: '&',      //accessor to get the point size
-                    xScale: '&',
-                    yScale: '&',
-                    xDomain: '&',
-                    yDomain: '&',
-                    xRange: '&',
-                    yRange: '&',
-                    sizeDomain: '&',
-
-                    callback: '&',
-
-                    //xaxis
-                    showxaxis: '&',
-                    xaxisorient: '&',
-                    xaxisticks: '&',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
-                    //yaxis
-                    showyaxis: '&',
-                    useinteractiveguideline: '@',
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
-                    yaxislabeldistance: '@',
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',
-
-                    //d3.js specific
-                    transitionduration: '@'
-
-                },
+              scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({})))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -583,92 +442,7 @@
         .directive('nvd3MultiBarChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    showlegend: '@',
-                    tooltips: '@',
-                    tooltipcontent: '&',
-                    color: '&',
-                    showcontrols: '@',
-                    nodata: '@',
-                    reducexticks: '@',
-                    staggerlabels: '@',
-                    rotatelabels: '@',
-                    margin: '&',
-                    x: '&',
-                    y: '&',
-                    //forcex is not exposed in the nvd3 multibar.js file.  it is not here on purpose.
-                    forcey: '@',
-                    delay: '@',
-                    stacked: '@',
-
-                    callback: '&',
-
-                    //xaxis
-                    showxaxis: '&',
-                    xaxisorient: '&',
-                    xaxisticks: '&',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
-                    //yaxis
-                    showyaxis: '&',
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
-                    yaxislabeldistance: '@',
-
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',
-
-                    //d3.js specific
-                    transitionduration: '@'
-
-                },
+              scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({})))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -728,87 +502,7 @@
         .directive('nvd3DiscreteBarChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    tooltips: '@',
-                    showxaxis: '@',
-                    showyaxis: '@',
-                    tooltipcontent: '&',
-                    staggerlabels: '@',
-                    color: '&',
-                    margin: '&',
-                    nodata: '@',
-                    x: '&',
-                    y: '&',
-                    //forcex is not exposed in the nvd3 multibar.js file.  it is not here on purpose.
-                    forcey: '@',
-                    showvalues: '@',
-                    valueformat: '&',
-
-                    callback: '&',
-
-                    //xaxis
-                    xaxisorient: '&',
-                    xaxisticks: '&',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
-                    //yaxis
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
-                    yaxislabeldistance: '@',
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',
-
-                    //d3.js specific
-                    transitionduration: '@'
-
-                },
+              scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({})))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -867,90 +561,7 @@
         .directive('nvd3HistoricalBarChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    tooltips: '@',
-                    tooltipcontent: '&',
-                    color: '&',
-                    margin: '&',
-                    nodata: '@',
-                    x: '&',
-                    y: '&',
-    //                forcex: '@',
-                    forcey: '@',
-                    isarea: '@',
-                    interactive: '@',
-                    clipedge: '@',
-                    clipvoronoi: '@',
-                    interpolate: '@',
-                    highlightPoint: '@',
-                    clearHighlights: '@',
-
-                    callback: '&',
-
-                    useinteractiveguideline: '@',
-                    //xaxis
-                    xaxisorient: '&',
-                    xaxisticks: '&',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
-                    //yaxis
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
-                    yaxislabeldistance: '@',
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',
-
-                    //d3.js specific
-                    transitionduration: '@'
-
-                },
+              scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({})))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -1010,89 +621,7 @@
         .directive('nvd3MultiBarHorizontalChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    showlegend: '@',
-                    tooltips: '@',
-                    tooltipcontent: '&',
-                    color: '&',
-                    showcontrols: '@',
-                    margin: '&',
-                    nodata: '@',
-                    x: '&',
-                    y: '&',
-                    //forcex: '@',  //forcex is rebound from multibarhorizontalchart, but is not on multibar
-                    forcey: '@',
-                    stacked: '@',
-                    showvalues: '@',
-                    valueformat: '&',
-                    //'xDomain', 'yDomain',
-                    //state: '@', //stacked, grouped: same as stacked === true, or stacked === false
-
-                    callback: '&',
-
-                    //xaxis
-                    xaxisorient: '&',
-                    xaxisticks: '&',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
-                    //yaxis
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
-                    yaxislabeldistance: '@',
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',
-
-                    //d3.js specific
-                    transitionduration: '@'
-
-                },
+              scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({})))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -1153,50 +682,12 @@
         .directive('nvd3PieChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    showlabels: '@',
-                    showlegend: '@',
-                    donutLabelsOutside: '@',
-                    pieLabelsOutside: '@',
-                    labelType: '@',
-                    nodata: '@',
-                    margin: '&',
-                    x: '&',
-                    y: '&',
-                    color: '&',
-                    donut: '@',
-                    donutRatio: '@',
-                    labelthreshold: '@',
-                    description: '&',
-                    tooltips: '@',
-                    tooltipcontent: '&',
-                    valueFormat: '&',
-
-                    callback: '&',
-
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',
-
-                    //d3.js specific
-                    transitionduration: '@'
-
-                },
+              scope: addLegendFields(addBaseFields({
+                //angularjs specific
+                objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
+                //d3.js specific
+                transitionduration: '@'
+              })),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -1256,107 +747,7 @@
         .directive('nvd3ScatterChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    showlegend: '@',
-                    tooltips: '@',
-                    showcontrols: '@',
-                    showDistX: '@',
-                    showDistY: '@',
-                    rightAlignYAxis: '@',
-                    fisheye: '@',
-                    xPadding: '@',
-                    yPadding: '@',
-                    tooltipContent: '&',
-                    tooltipXContent: '&',
-                    tooltipYContent: '&',
-                    color: '&',
-                    margin: '&',
-                    nodata: '@',
-                    transitionDuration: '@',
-                    shape: '&',
-                    onlyCircles: '@',
-                    interactive: '@',
-                    x: '&',
-                    y: '&',
-                    size: '&',
-                    forceX: '@',
-                    forceY: '@',
-                    forceSize: '@',
-                    xrange: '&',
-                    xdomain: '&',
-                    xscale: '&',
-                    yrange: '&',
-                    ydomain: '&',
-                    yscale: '&',
-                    sizerange: '&',
-                    sizedomain: '&',
-                    zscale: '&',
-
-                    callback: '&',
-
-                    //xaxis
-                    xaxisorient: '&',
-                    xaxisticks: '&',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
-                    //yaxis
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
-                    yaxislabeldistance: '@',
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',
-
-                    //d3.js specific
-                    transitionduration: '@'
-
-                },
+              scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({})))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -1459,104 +850,7 @@
         .directive('nvd3ScatterPlusLineChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    showlegend: '@',
-                    tooltips: '@',
-                    showcontrols: '@',
-                    showDistX: '@',
-                    showDistY: '@',
-                    rightAlignYAxis: '@',
-                    fisheye: '@',
-                    tooltipContent: '&',
-                    tooltipXContent: '&',
-                    tooltipYContent: '&',
-                    color: '&',
-                    margin: '&',
-                    nodata: '@',
-                    transitionDuration: '@',
-                    shape: '&',
-                    onlyCircles: '@',
-                    interactive: '@',
-                    x: '&',
-                    y: '&',
-                    size: '&',
-                    forceX: '@',
-                    forceY: '@',
-                    forceSize: '@',
-                    xrange: '&',
-                    xdomain: '&',
-                    xscale: '&',
-                    yrange: '&',
-                    ydomain: '&',
-                    yscale: '&',
-                    sizerange: '&',
-                    sizedomain: '&',
-                    zscale: '&',
-
-                    callback: '&',
-
-                    //xaxis
-                    xaxisorient: '&',
-                    xaxisticks: '&',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
-                    //yaxis
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
-                    yaxislabeldistance: '@',
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',
-
-                    //d3.js specific
-                    transitionduration: '@'
-                },
+              scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({})))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -1618,117 +912,49 @@
         .directive('nvd3LinePlusBarChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    id: '@',
-                    showlegend: '@',
-                    tooltips: '@',
-                    showxaxis: '@',
-                    showyaxis: '@',
-                    forceX: '@',
-                    forceY: '@',
-                    forceY2: '@',
-                    rightalignyaxis: '@',
-                    defaultstate: '@',
-                    nodata: '@',
-                    margin: '&',
-                    tooltipcontent: '&',
-                    color: '&',
-                    x: '&',
-                    y: '&',
-                    clipvoronoi: '@',
-                    interpolate: '@',
-    //                'xScale', 'yScale', 'xDomain', 'yDomain', defined
+              scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({
+                //yaxis
+                y1axisorient: '&',
+                y1axisticks: '&',
+                y1axistickvalues: '&y1axistickvalues',
+                y1axisticksubdivide: '&',
+                y1axisticksize: '&',
+                y1axistickpadding: '&',
+                y1axistickformat: '&',
+                y1axislabel: '@',
+                y1axisscale: '&',
+                y1axisdomain: '&',
+                y1axisrange: '&',
+                y1axisrangeband: '&',
+                y1axisrangebands: '&',
+                y1axisshowmaxmin: '@',
+                y1axishighlightzero: '@',
+                y1axisrotatelabels: '@',
+                y1axisrotateylabel: '@',
+                y1axisstaggerlabels: '@',
+                y1axisaxislabeldistance: '@',
 
-                    callback: '&',
-
-                    //xaxis
-                    xaxisorient: '&',
-                    xaxisticks: '&',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
-                    //yaxis
-                    y1axisorient: '&',
-                    y1axisticks: '&',
-                    y1axistickvalues: '&y1axistickvalues',
-                    y1axisticksubdivide: '&',
-                    y1axisticksize: '&',
-                    y1axistickpadding: '&',
-                    y1axistickformat: '&',
-                    y1axislabel: '@',
-                    y1axisscale: '&',
-                    y1axisdomain: '&',
-                    y1axisrange: '&',
-                    y1axisrangeband: '&',
-                    y1axisrangebands: '&',
-                    y1axisshowmaxmin: '@',
-                    y1axishighlightzero: '@',
-                    y1axisrotatelabels: '@',
-                    y1axisrotateylabel: '@',
-                    y1axisstaggerlabels: '@',
-                    y1axisaxislabeldistance: '@',
-
-                    //yaxis
-                    y2axisorient: '&',
-                    y2axisticks: '&',
-                    y2axistickvalues: '&y2axistickvalues',
-                    y2axisticksubdivide: '&',
-                    y2axisticksize: '&',
-                    y2axistickpadding: '&',
-                    y2axistickformat: '&',
-                    y2axislabel: '@',
-                    y2axisscale: '&',
-                    y2axisdomain: '&',
-                    y2axisrange: '&',
-                    y2axisrangeband: '&',
-                    y2axisrangebands: '&',
-                    y2axisshowmaxmin: '@',
-                    y2axishighlightzero: '@',
-                    y2axisrotatelabels: '@',
-                    y2axisrotateylabel: '@',
-                    y2axisstaggerlabels: '@',
-                    y2axisaxislabeldistance: '@',
-
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',
-
-                    //d3.js specific
-                    transitionduration: '@',
-
-
-                    lineinteractive: '@',
-                    barinteractive: '@'
-
-                },
+                //yaxis
+                y2axisorient: '&',
+                y2axisticks: '&',
+                y2axistickvalues: '&y2axistickvalues',
+                y2axisticksubdivide: '&',
+                y2axisticksize: '&',
+                y2axistickpadding: '&',
+                y2axistickformat: '&',
+                y2axislabel: '@',
+                y2axisscale: '&',
+                y2axisdomain: '&',
+                y2axisrange: '&',
+                y2axisrangeband: '&',
+                y2axisrangebands: '&',
+                y2axisshowmaxmin: '@',
+                y2axishighlightzero: '@',
+                y2axisrotatelabels: '@',
+                y2axisrotateylabel: '@',
+                y2axisstaggerlabels: '@',
+                y2axisaxislabeldistance: '@',
+              })))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                     $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
@@ -1798,137 +1024,47 @@
         .directive('nvd3LineWithFocusChart', ['$filter', function($filter){
             return {
                 restrict: 'EA',
-                scope: {
-                    data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
-                    width: '@',
-                    height: '@',
-                    height2: '@',
-                    id: '@',
-                    showlegend: '@',
-                    tooltips: '@',
-                    showxaxis: '@',
-                    showyaxis: '@',
-                    rightalignyaxis: '@',
-                    defaultstate: '@',
-                    nodata: '@',
-                    margin: '&',
-                    margin2: '&',
-                    tooltipcontent: '&',
-                    color: '&',
-                    x: '&',
-                    y: '&',
-                    forceX: '@',
-                    forceY: '@',
-                    clipedge: '@',
-                    clipvoronoi: '@',
-                    interpolate: '@',
-                    isArea: '@',
-                    size: '&',
-                    defined: '&',
-                    interactive: '@',
+              scope: addXAxisFields(addYAxisFields(addLegendFields(addBaseFields({
+                //x2axis
+                x2axisorient: '&',
+                x2axisticks: '&',
+                x2axistickvalues: '&xaxistickvalues',
+                x2axisticksubdivide: '&',
+                x2axisticksize: '&',
+                x2axistickpadding: '&',
+                x2axistickformat: '&',
+                x2axislabel: '@',
+                x2axisscale: '&',
+                x2axisdomain: '&',
+                x2axisrange: '&',
+                x2axisrangeband: '&',
+                x2axisrangebands: '&',
+                x2axisshowmaxmin: '@',
+                x2axishighlightzero: '@',
+                x2axisrotatelables: '@',
+                x2axisrotateylabel: '@',
+                x2axisstaggerlabels: '@',
 
-                    callback: '&',
-
-                    //xaxis
-                    xaxisorient: '&',
-                    xaxisticks: '&',
-                    xaxistickvalues: '&xaxistickvalues',
-                    xaxisticksubdivide: '&',
-                    xaxisticksize: '&',
-                    xaxistickpadding: '&',
-                    xaxistickformat: '&',
-                    xaxislabel: '@',
-                    xaxisscale: '&',
-                    xaxisdomain: '&',
-                    xaxisrange: '&',
-                    xaxisrangeband: '&',
-                    xaxisrangebands: '&',
-                    xaxisshowmaxmin: '@',
-                    xaxishighlightzero: '@',
-                    xaxisrotatelabels: '@',
-                    xaxisrotateylabel: '@',
-                    xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
-
-                    //x2axis
-                    x2axisorient: '&',
-                    x2axisticks: '&',
-                    x2axistickvalues: '&xaxistickvalues',
-                    x2axisticksubdivide: '&',
-                    x2axisticksize: '&',
-                    x2axistickpadding: '&',
-                    x2axistickformat: '&',
-                    x2axislabel: '@',
-                    x2axisscale: '&',
-                    x2axisdomain: '&',
-                    x2axisrange: '&',
-                    x2axisrangeband: '&',
-                    x2axisrangebands: '&',
-                    x2axisshowmaxmin: '@',
-                    x2axishighlightzero: '@',
-                    x2axisrotatelables: '@',
-                    x2axisrotateylabel: '@',
-                    x2axisstaggerlabels: '@',
-
-                    //yaxis
-                    yaxisorient: '&',
-                    yaxisticks: '&',
-                    yaxistickvalues: '&yaxistickvalues',
-                    yaxisticksubdivide: '&',
-                    yaxisticksize: '&',
-                    yaxistickpadding: '&',
-                    yaxistickformat: '&',
-                    yaxislabel: '@',
-                    yaxisscale: '&',
-                    yaxisdomain: '&',
-                    yaxisrange: '&',
-                    yaxisrangeband: '&',
-                    yaxisrangebands: '&',
-                    yaxisshowmaxmin: '@',
-                    yaxishighlightzero: '@',
-                    yaxisrotatelabels: '@',
-                    yaxisrotateylabel: '@',
-                    yaxisstaggerlabels: '@',
-                    yaxislabeldistance: '@',
-                    //yaxis
-                    y2axisorient: '&',
-                    y2axisticks: '&',
-                    y2axistickvalues: '&',
-                    y2axisticksubdivide: '&',
-                    y2axisticksize: '&',
-                    y2axistickpadding: '&',
-                    y2axistickformat: '&',
-                    y2axislabel: '@',
-                    y2axisscale: '&',
-                    y2axisdomain: '&',
-                    y2axisrange: '&',
-                    y2axisrangeband: '&',
-                    y2axisrangebands: '&',
-                    y2axisshowmaxmin: '@',
-                    y2axishighlightzero: '@',
-                    y2axisrotatelabels: '@',
-                    y2axisrotateylabel: '@',
-                    y2axisstaggerlabels: '@',
-
-                    legendmargin: '&',
-                    legendwidth: '@',
-                    legendheight: '@',
-                    legendkey: '@',
-                    legendcolor: '&',
-                    legendalign: '@',
-                    legendrightalign: '@',
-                    legendupdatestate: '@',
-                    legendradiobuttonmode: '@',
-
-                    //angularjs specific
-                    objectequality: '@',
-
-                    //d3.js specific
-                    transitionduration: '@'
-
-                },
+                //yaxis
+                y2axisorient: '&',
+                y2axisticks: '&',
+                y2axistickvalues: '&',
+                y2axisticksubdivide: '&',
+                y2axisticksize: '&',
+                y2axistickpadding: '&',
+                y2axistickformat: '&',
+                y2axislabel: '@',
+                y2axisscale: '&',
+                y2axisdomain: '&',
+                y2axisrange: '&',
+                y2axisrangeband: '&',
+                y2axisrangebands: '&',
+                y2axisshowmaxmin: '@',
+                y2axishighlightzero: '@',
+                y2axisrotatelabels: '@',
+                y2axisrotateylabel: '@',
+                y2axisstaggerlabels: '@'
+              })))),
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
                      $scope.d3Call = function(data, chart){
                         checkElementID($scope, $attrs, $element, chart, data);
