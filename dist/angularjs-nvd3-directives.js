@@ -151,6 +151,7 @@ angular.module('nvd3ChartDirectives').constant('nvd3Helpers', {
       clipEdge: false
     }
   },
+  chartSubTypeDefaults: {},
   getD3Selector: function (attrs, element) {
     if (!attrs.id) {
       //if an id is not supplied, create a random id.
@@ -162,7 +163,7 @@ angular.module('nvd3ChartDirectives').constant('nvd3Helpers', {
       return '#' + attrs.id;
     }
   },
-  rewriteOptions: function (chart, options) {
+  internalRewriteOptions: function (chart, options) {
     var special = {
         'yAxis': true,
         'y1Axis': true,
@@ -173,22 +174,32 @@ angular.module('nvd3ChartDirectives').constant('nvd3Helpers', {
         'legend': true
       };
     var invoke = { 'scale': true };
-    function internal(chart, options) {
-      angular.forEach(options, function (value, key) {
-        if (chart && angular.isFunction(chart[key]) && !special[key]) {
-          if (!angular.isUndefined(value)) {
-            chart = chart[key](value);
-          }
-        } else if (chart && special[key]) {
-          internal(invoke[key] ? chart[key]() : chart[key], value);
-        } else {
-          if (key !== 'chartType') {
-            console.log('Unknown configuration option: ' + key);
-          }
+    angular.forEach(options, function (value, key) {
+      if (chart && angular.isFunction(chart[key]) && !special[key]) {
+        if (!angular.isUndefined(value)) {
+          chart = chart[key](value);
         }
+      } else if (chart && special[key]) {
+        internal(invoke[key] ? chart[key]() : chart[key], value);
+      } else {
+        if (key !== 'chartType') {
+          console.log('Unknown configuration option: ' + key);
+        }
+      }
+    });
+  },
+  rewriteOptions: function (chart, options) {
+    var chartSubTypeDefaults = this.chartSubTypeDefaults;
+    var configSources = [];
+    configSources.push(this.defaults());
+    configSources.push(this.chartDefaults[options.chartType]);
+    if (options.chartSubType) {
+      angular.forEach(options.chartSubType, function (subType) {
+        configSources.push(chartSubTypeDefaults[subType]);
       });
     }
-    internal(chart, this.merge(this.defaults(), this.chartDefaults[options.chartType], options));
+    configSources.push(options);
+    this.internalRewriteOptions(chart, this.merge.call(this, configSources));
   },
   merge: function (dst) {
     var merge = this.merge;

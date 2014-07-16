@@ -38,7 +38,8 @@
     "$rootScope": false,
     "$scope": false,
     "$http": false,
-    "$compile": false
+    "$compile": false,
+    "nvd3Helpers": true
   }
 }
 
