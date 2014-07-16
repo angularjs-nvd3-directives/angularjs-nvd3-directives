@@ -20,6 +20,7 @@ angular.module('nvd3ChartDirectives')
           interactive: false,
           noData: 'No Data Available.',
           staggerLabels: false,
+          delay: 2000,
           color: nv.utils.defaultColor()
         };
       },
@@ -65,6 +66,7 @@ angular.module('nvd3ChartDirectives')
           interpolate: 'liear'
         },
         multiBarChart: {
+          groupSpacing: 0.1
         },
         multiBarHorizontalChart: {
           stacked: false
@@ -148,40 +150,37 @@ angular.module('nvd3ChartDirectives')
         var invoke = {
           'scale': true
         };
-        function internal (chart, options, defaults) {
+        function internal (chart, options) {
           angular.forEach(options, function (value, key) {
-            if (angular.isFunction(chart[key]) && !special[key]) {
+            if (chart && angular.isFunction(chart[key]) && !special[key]) {
               if (!angular.isUndefined(value)) {
-                chart[key](value);
+                chart = chart[key](value);
               }
-              delete defaults[key];
-            } else if (angular.isObject(chart[key])) {
-              internal(invoke[key] ? chart[key]() : chart[key], value, defaults[key]);
-              delete defaults[key];
-            }
-          });
-
-          angular.forEach(defaults, function (value, key) {
-            if (angular.isFunction(chart[key]) && !special[key]) {
-              if (!angular.isUndefined(value)) {
-                chart[key](value);
+            } else if (chart && special[key]) {
+              internal(invoke[key] ? chart[key]() : chart[key], value);
+            } else {
+              if (key !== 'chartType') {
+                console.log('Unknown configuration option: ' + key);
               }
-            } else if (angular.isObject(chart[key])) {
-              internal(invoke[key] ? chart[key]() : chart[key], value, defaults[key]);
             }
           });
         }
 
-        internal(chart, options, this.merge(this.defaults(), this.chartDefaults[options.chartType]));
+        internal(chart, this.merge(
+            this.defaults(),
+            this.chartDefaults[options.chartType],
+            options));
       },
 
 
       merge: function (dst) {
+        var merge = this.merge;
+
         angular.forEach(arguments, function(obj) {
           if (obj && obj !== dst) {
             angular.forEach(obj, function(value, key) {
               if (dst[key] && dst[key].constructor && dst[key].constructor === Object) {
-                this.merge(dst[key], value);
+                merge(dst[key], value);
               } else {
                 dst[key] = value;
               }
@@ -192,8 +191,45 @@ angular.module('nvd3ChartDirectives')
       },
 
 
+      processEvents: function (chart, scope) {
+        function maybeAddListener(object, args) {
+          if (!object) {
+            return;
+          }
+
+          angular.forEach(args, function (name) {
+            if (object[name]) {
+              object.dispatch.on(name + '.directive', function () {
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift(name + '.directive');
+                scope.$emit.call(scope, args);
+              });
+            }
+          });
+        }
+
+        maybeAddListener(chart.dispatch && chart, [ 'tooltipShow', 'tooltipHide', 'beforeUpdate', 'stateChange', 'changeState' ]);
+        maybeAddListener(chart.lines, [ 'elementMouseover.tooltip', 'elementMouseout.tooltip', 'elementClick' ]);
+        maybeAddListener(chart.stacked && chart.stacked.dispatch && chart.stacked, [ 'areaClick.toggle', 'tooltipShow', 'tooltipHide' ]);
+
+        if (chart.interactiveLayer) {
+          maybeAddListener(chart.interactiveLayer.elementMouseout && chart.interactiveLayer, [ 'elementMouseout' ]);
+          maybeAddListener(chart.interactiveLayer.elementMousemove && chart.interactiveLayer, [ 'elementMousemove' ]);
+        }
+
+        // this adds elementClick for scatter and bullet - not sure if it is ok
+        angular.forEach(['discretebar', 'multibar', 'pie', 'scatter', 'bullet' ],
+            function (element) {
+              maybeAddListener(chart[element], [ 'elementMouseover.tooltip', 'elementMouseout.tooltip', 'elementClick' ]);
+            });
+
+        maybeAddListener(chart.legend, [ 'stateChange.legend', 'legendClick', 'legendDblclick', 'legendMouseover' ]);
+        maybeAddListener(chart.controls && chart.controls.legendClick && chart.controls, [ 'legendClick' ]);
+      },
+
+
       checkElementID: function (scope, attrs, element, chart, data) {
-        processEvents(chart, scope);
+        this.processEvents(chart, scope);
 
         var svgElem = element.find('svg')[0];
 

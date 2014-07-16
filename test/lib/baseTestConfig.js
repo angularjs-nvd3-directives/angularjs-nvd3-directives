@@ -46,40 +46,21 @@ beforeEach(function () {
       valueFormat: function (d) {
         return $scope.statistics.options.format(d);
       },
-
-
-      xFunction: function (d) {
-          return d[0];
-      },
-
-      yFunction: function (d) {
-          return d[1];
-      },
-
+      x: function (d) { return d[0]; },
+      y: function (d) { return d[1]; },
       xAxis: {
-        tickFormat : function (d) {
-          return d3.time.format('%m/%y')(new Date(d));
-        }
+        tickFormat : function (d) { return d3.time.format('%m/%y')(new Date(d)); }
       },
-
       yAxis: {
-        tickFormat : function (d) {
-          return d3.format('d')(d);
-        }
+        tickFormat : function (d) { return d3.format('d')(d); }
       },
-
       colorArray: ['#FF0000', '#0000FF', '#FFFF00', '#00FFFF'],
-
-      colorFunction: function (d, i) {
-          return $scope.statistics.colorArray[i];
+      color: function (d, i) {
+          return $scope.statistics.options.colorArray[i];
       },
-
-      toolTipContentFunction: function (key, x, y, e, graph) {
-          return  'Super New Tooltip' +
-              '<h1>' + key + '</h1>' +
-              '<p>' + y + ' at ' + x + '</p>';
+      tooltipContent: function (key, x, y, e, graph) {
+          return  'Super New Tooltip' + '<h1>' + key + '</h1>' + '<p>' + y + ' at ' + x + '</p>';
       },
-
       format: d3.format(',.2f')
     }
   };
