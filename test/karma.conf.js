@@ -23,6 +23,7 @@ module.exports = function(config) {
 
       'build/components/angular-mocks/angular-mocks.js',
 
+      'src/nvd3-base.js',
       'src/constants/*.js',
       'src/directives/*.js',
 

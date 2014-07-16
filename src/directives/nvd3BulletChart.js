@@ -28,11 +28,6 @@ angular.module('nvd3ChartDirectives')
           transitionduration: '@'
 
         },
-        controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
-          $scope.d3Call = function(data, chart){
-            nvd3Helpers.checkElementID($scope, $attrs, $element, chart, data);
-          };
-        }],
         link: function(scope, element, attrs){
           scope.$watch('width + height', function() { nvd3Helpers.updateDimensions(scope,attrs,element,scope.chart); });
           scope.$watch('data', function(data){
@@ -47,7 +42,6 @@ angular.module('nvd3ChartDirectives')
               }
               nv.addGraph({
                 generate: function(){
-                  nvd3Helpers.initializeMargin(scope, attrs);
                   var chart = nv.models.bulletChart()
                       .width(scope.width)
                       .height(scope.height)

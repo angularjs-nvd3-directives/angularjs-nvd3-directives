@@ -125,7 +125,6 @@ angular.module('nvd3ChartDirectives')
                 generate: function(){
                   scope.bandlineProperties = {};
                   var sortedValues;
-                  nvd3Helpers.initializeMargin(scope, attrs);
                   var chart = nv.models.sparklinePlus()
                       .width(scope.width)
                       .height(scope.height)

@@ -1,11 +1,11 @@
 'use strict';
 
-describe('bulletChart', function () {
+describe('linePlusBarChart', function () {
   var template;
 
 
   beforeEach(function (done) {
-    $scope.statistics.options.chartType = 'bulletChart';
+    $scope.statistics.options.chartType = 'linePlusBarChart';
     template = $compile('<div width="1450" height="200" nvd3-chart="statistics.options" ng-model="statistics.data"><svg></svg></div>')($scope);
     $scope.$digest();
     setTimeout(function() { done(); }, 1);

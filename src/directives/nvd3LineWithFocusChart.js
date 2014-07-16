@@ -43,11 +43,6 @@ angular.module('nvd3ChartDirectives')
           y2axisrotateylabel: '@',
           y2axisstaggerlabels: '@'
         }),
-        controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
-          $scope.d3Call = function(data, chart){
-            nvd3Helpers.checkElementID($scope, $attrs, $element, chart, data);
-          };
-        }],
         link: function(scope, element, attrs){
           scope.$watch('width + height', function() { nvd3Helpers.updateDimensions(scope,attrs,element,scope.chart); });
           scope.$watch('data', function(data){
@@ -62,8 +57,6 @@ angular.module('nvd3ChartDirectives')
               }
               nv.addGraph({
                 generate: function(){
-                  nvd3Helpers.initializeMargin(scope, attrs);
-
                   //setup height 2
                   //height 2 is 100
 

@@ -32,52 +32,55 @@ beforeEach(function () {
       ] }
     ],
 
-    xFunction: function () {
-      return function (d) {
-        return d[0];
-      };
-    },
+    options: {
+      width: 1450,
+      height: 200,
+      showXAxis: true,
+      showYAxis: true,
+      showValues: true,
+      showLegend: true,
+      showControls: true,
+      interactive: true,
+      tooltips: true,
+      margin: {left:50,top:0,bottom:20,right:0},
+      valueFormat: function (d) {
+        return $scope.statistics.options.format(d);
+      },
 
-    yFunction: function () {
-      return function (d) {
-        return d[1];
-      };
-    },
 
-    xAxisTickFormatFunction: function () {
-      return function (d) {
-        return d3.time.format('%m/%y')(new Date(d));
-      };
-    },
+      xFunction: function (d) {
+          return d[0];
+      },
 
-    yAxisTickFormatFunction: function () {
-      return function (d) {
-        return d3.format('d')(d);
-      };
-    },
+      yFunction: function (d) {
+          return d[1];
+      },
 
-    colorArray: ['#FF0000', '#0000FF', '#FFFF00', '#00FFFF'],
+      xAxis: {
+        tickFormat : function (d) {
+          return d3.time.format('%m/%y')(new Date(d));
+        }
+      },
 
-    colorFunction: function () {
-      return function (d, i) {
-        return $scope.statistics.colorArray[i];
-      };
-    },
+      yAxis: {
+        tickFormat : function (d) {
+          return d3.format('d')(d);
+        }
+      },
 
-    toolTipContentFunction: function () {
-      return function (key, x, y, e, graph) {
-        return  'Super New Tooltip' +
-            '<h1>' + key + '</h1>' +
-            '<p>' + y + ' at ' + x + '</p>'
-      }
-    },
+      colorArray: ['#FF0000', '#0000FF', '#FFFF00', '#00FFFF'],
 
-    format: d3.format(',.2f'),
+      colorFunction: function (d, i) {
+          return $scope.statistics.colorArray[i];
+      },
 
-    valueFormatFunction: function () {
-      return function (d) {
-        return $scope.statistics.format(d);
-      }
+      toolTipContentFunction: function (key, x, y, e, graph) {
+          return  'Super New Tooltip' +
+              '<h1>' + key + '</h1>' +
+              '<p>' + y + ' at ' + x + '</p>';
+      },
+
+      format: d3.format(',.2f')
     }
   };
 });

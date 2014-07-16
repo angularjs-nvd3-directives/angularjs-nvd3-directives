@@ -1,29 +1,14 @@
 'use strict';
 
-describe('nvd3-discrete-bar-chart', function () {
+describe('discreteBarChart', function () {
   var template;
 
 
   beforeEach(function (done) {
-    template = $compile('<nvd3-discrete-bar-chart ' +
-        'data="statistics.data" ' +
-        'id="formatValueExample" ' +
-        'nvd3options="statistics.options" ' +
-        'width="1450" ' +
-        'height="200" ' +
-        'xAxisTickFormat="statistics.xAxisTickFormatFunction()" ' +
-        'yAxisTickFormat="statistics.yAxisTickFormatFunction()" ' +
-        'showxaxis="true" ' +
-        'showyaxis="true" ' +
-        'showValues="true" ' +
-        'showLegend="true" ' +
-        'showControls="true" ' +
-        'interactive="true" ' +
-        'tooltips="true" ' +
-        'margin="{left:50,top:0,bottom:20,right:0}" ' +
-        '>' +
-        '<svg></svg>' +
-        '</nvd3-discrete-bar-chart>')($scope);
+    // discreteBarChart
+    $scope.statistics.options.chartType = 'discreteBarChart';
+
+    template = $compile('<div width="1450" height="200" nvd3-chart="statistics.options" ng-model="statistics.data"><svg></svg></div>')($scope);
     $scope.$digest();
 
     setTimeout(function() {
@@ -34,6 +19,8 @@ describe('nvd3-discrete-bar-chart', function () {
   it('after compiling svg element exists', function () {
     var templateAsHtml = template.html();
     expect(templateAsHtml).toContain('<svg viewBox="0 0 1450 200"');
+    expect(templateAsHtml).toContain('nv-discreteBarWithAxes');
+    expect(templateAsHtml).toContain('class="discreteBar"');
   });
 
 

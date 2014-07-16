@@ -1,134 +1,32 @@
 
-angular.module('nvd3ChartDirectives', [])
+angular.module('nvd3ChartDirectives')
     /*
      Common functions that sets up width, height, margin
      should prevent NaN errors
      */
     .constant('nvd3Helpers', {
-      addCommonScopeFields: function (scope) {
-        return angular.extend(scope, {
-          //xaxis
-          xaxisorient: '&',
-          xaxisticks: '@',
-          xaxistickvalues: '&xaxistickvalues',
-          xaxisticksubdivide: '&',
-          xaxisticksize: '&',
-          xaxistickpadding: '&',
-          xaxistickformat: '&',
-          xaxislabel: '@',
-          xaxisscale: '&',
-          xaxisdomain: '&',
-          xaxisrange: '&',
-          xaxisrangeband: '&',
-          xaxisrangebands: '&',
-          xaxisshowmaxmin: '@',
-          xaxishighlightzero: '@',
-          xaxisrotatelabels: '@',
-          xaxisrotateylabel: '@',
-          xaxisstaggerlabels: '@',
-          xaxislabeldistance: '@',
+      defaults: function () {
+        return {
+          margin: {left: 50, top: 50, bottom: 50, right: 50},
+          x: function(d){ return d[0]; },
+          y: function(d){ return d[1]; },
+          forceY: [0],
+          showValues: false,
+          tooltips: false,
+          showXAxis: false,
+          showYAxis: false,
+          showLegend: false,
+          showControls: false,
+          noData: 'No Data Available.',
+          staggerLabels: false,
+          color: nv.utils.defaultColor(),
 
-          //yaxis
-          yaxisorient: '&',
-          yaxisticks: '&',
-          yaxistickvalues: '&yaxistickvalues',
-          yaxisticksubdivide: '&',
-          yaxisticksize: '&',
-          yaxistickpadding: '&',
-          yaxistickformat: '&',
-          yaxislabel: '@',
-          yaxisscale: '&',
-          yaxisdomain: '&',
-          yaxisrange: '&',
-          yaxisrangeband: '&',
-          yaxisrangebands: '&',
-          yaxisshowmaxmin: '@',
-          yaxishighlightzero: '@',
-          yaxisrotatelabels: '@',
-          yaxisrotateylabel: '@',
-          yaxisstaggerlabels: '@',
-          yaxislabeldistance: '@',
-
-          data: '=',
-          filtername: '=',
-          filtervalue: '=',
-          width: '@',
-          height: '@',
-          id: '@',
-          showlegend: '@',
-          tooltips: '@',
-          showxaxis: '@',
-          showyaxis: '@',
-          rightalignyaxis: '@',
-          defaultstate: '@',
-          nodata: '@',
-          margin: '&',
-          tooltipcontent: '&',
-          color: '&',
-          x: '&',
-          y: '&',
-          forcex: '@',
-          forcey: '@',
-          isArea: '@',
-          interactive: '@',
-          clipedge: '@',
-          clipvoronoi: '@',
-          interpolate: '@',
-
-          callback: '&',
-
-          useinteractiveguideline: '@',
-
-          showcontrols: '@',
-          showDistX: '@',
-          showDistY: '@',
-          rightAlignYAxis: '@',
-          fisheye: '@',
-          xPadding: '@',
-          yPadding: '@',
-          tooltipContent: '&',
-          tooltipXContent: '&',
-          tooltipYContent: '&',
-          transitionDuration: '@',
-          shape: '&',
-          onlyCircles: '@',
-          size: '&',
-          forceSize: '@',
-          xrange: '&',
-          xdomain: '&',
-          xscale: '&',
-          yrange: '&',
-          ydomain: '&',
-          yscale: '&',
-          sizerange: '&',
-          sizedomain: '&',
-          zscale: '&',
-
-          //angularjs specific
-          objectequality: '@',  //$watch(watchExpression, listener, objectEquality)
-          //d3.js specific
-          transitionduration: '@',
-
-          legendmargin: '&',
-          legendwidth: '@',
-          legendheight: '@',
-          legendkey: '@',
-          legendcolor: '&',
-          legendalign: '@',
-          legendrightalign: '@',
-          legendupdatestate: '@',
-          legendradiobuttonmode: '@'
-        });
-      },
-
-
-      initializeMargin: function (scope, attrs){
-        var margin = (scope.$eval(attrs.margin) || {left: 50, top: 50, bottom: 50, right: 50});
-        if (typeof(margin) !== 'object') {
-          // we were passed a vanilla int, convert to full margin object
-          margin = {left: margin, top: margin, bottom: margin, right: margin};
-        }
-        scope.margin = margin;
+          tooltips: false,
+          reduceXTicks: false,
+          rotateLabels: 0,
+          delay: 1200,
+          stacked: false
+        };
       },
 
 
@@ -145,13 +43,44 @@ angular.module('nvd3ChartDirectives', [])
       },
 
 
+      rewriteOptions: function (chart, options) {
+        var special = {
+          'yAxis': true,
+          'y1Axis': true,
+          'y2Axis': true,
+          'xAxis': true,
+          'x1Axis': true,
+          'x2Axis': true,
+          'legend': true
+        };
+        var invoke = {
+          'scale': true
+        };
+        function internal (chart, options, defaults) {
+          angular.forEach(options, function (value, key) {
+            if (angular.isFunction(chart[key]) && !special[key]) {
+              chart[key](value);
+              delete defaults[key];
+            } else if (angular.isObject(chart[key])) {
+              internal(invoke[key] ? chart[key]() : chart[key], value, defaults[key]);
+              delete defaults[key];
+            }
+          });
+
+          angular.forEach(defaults, function (value, key) {
+            if (angular.isFunction(chart[key]) && !special[key]) {
+              chart[key](value);
+            } else if (angular.isObject(chart[key])) {
+              internal(invoke[key] ? chart[key]() : chart[key], value, defaults[key]);
+            }
+          });
+        }
+
+        internal(chart, options, this.defaults());
+      },
+
+
       checkElementID: function (scope, attrs, element, chart, data) {
-        configureXaxis(chart, scope, attrs);
-        configureX2axis(chart, scope, attrs);
-        configureYaxis(chart, scope, attrs);
-        configureY1axis(chart, scope, attrs);
-        configureY2axis(chart, scope, attrs);
-        configureLegend(chart, scope, attrs);
         processEvents(chart, scope);
 
         var svgElem = element.find('svg')[0];
@@ -164,7 +93,7 @@ angular.module('nvd3ChartDirectives', [])
               .append('svg');
         }
         d3.select(svgElem)
-            .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height)
+            .attr('viewBox', '0 0 ' + scope.opts.width + ' ' + scope.opts.height)
             .datum(data)
             .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
             .call(chart);
@@ -173,10 +102,10 @@ angular.module('nvd3ChartDirectives', [])
 
       updateDimensions: function (scope, attrs, element, chart) {
         if (chart) {
-          chart.width(scope.width).height(scope.height);
+          chart.width(scope.opts.width).height(scope.opts.height);
           var d3Select = getD3Selector(attrs, element);
           d3.select(d3Select + ' svg')
-              .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height);
+              .attr('viewBox', '0 0 ' + scope.opts.width + ' ' + scope.opts.height);
           nv.utils.windowResize(chart);
           scope.chart.update();
         }
