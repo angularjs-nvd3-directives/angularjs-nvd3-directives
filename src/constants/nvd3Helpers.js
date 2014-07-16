@@ -10,7 +10,6 @@ angular.module('nvd3ChartDirectives')
           margin: {left: 50, top: 50, bottom: 50, right: 50},
           x: function(d){ return d[0]; },
           y: function(d){ return d[1]; },
-          forceX: [],
           forceY: [0],
           showValues: false,
           tooltips: false,
@@ -28,12 +27,12 @@ angular.module('nvd3ChartDirectives')
 
       chartDefaults: {
         bulletChart: {
+          forceX: [],
           orient: 'left',
           tickFormat: null
         },
         cumulativeLineChart: {
-//          forceX: [],
-//          forceY: [0],
+          forceX: [],
           rightAlignYAxis: false,
           clipEdge: false,
           clipVoronoi: false,
@@ -42,9 +41,9 @@ angular.module('nvd3ChartDirectives')
           isArea: function (d) { return d.area; }
         },
         discreteBarChart: {
-
         },
         lineChart: {
+          forceX: [],
           size: function (d) { return (d.size === undefined ? 1 : d.size); },
           rightAlignYAxis: false,
           clipEdge: false,
@@ -53,9 +52,11 @@ angular.module('nvd3ChartDirectives')
           isArea: function (d) { return d.area; }
         },
         linePlusBar: {
+          forceX: [],
           interpolate: 'linear'
         },
         lineWithFocusChart: {
+          forceX: [],
           height2: 200,
           size: function (d) { return (d.size === undefined ? 1 : d.size); },
           isArea: function (d) { return d.area; },
@@ -63,10 +64,13 @@ angular.module('nvd3ChartDirectives')
           clipVoronoi: false,
           interpolate: 'liear'
         },
+        multiBarChart: {
+        },
         multiBarHorizontalChart: {
           stacked: false
         },
         pieChart: {
+          forceX: [],
           labelThreshold: 0.02,
           labelType: 'key',
           pieLabelsOutside: true,
@@ -77,6 +81,7 @@ angular.module('nvd3ChartDirectives')
           donutRatio: 0.5
         },
         scatterChart: {
+          forceX: [],
           size: function (d) { return (d.size === undefined ? 1 : d.size); },
           forceSize: [],
           tooltipContent: null,
@@ -90,6 +95,7 @@ angular.module('nvd3ChartDirectives')
           transitionDuration: 250
         },
         scatterPlusLineChart: {
+          forceX: [],
           size: function (d) { return (d.size === undefined ? 1 : d.size); },
           tooltipContent: null,
           tooltipXContent: function(key, x) { return '<strong>' + x + '</strong>'; },
@@ -100,13 +106,15 @@ angular.module('nvd3ChartDirectives')
           transitionDuration: 250
         },
         sparklinePlus: {
-            xTickFormat: d3.format(',r'),
-            yTickFormat: d3.format(',.2f'),
-            showValue: true,
-            alignValue: true,
-            rightAlignValue: false
+          forceX: [],
+          xTickFormat: d3.format(',r'),
+          yTickFormat: d3.format(',.2f'),
+          showValue: true,
+          alignValue: true,
+          rightAlignValue: false
         },
         stackedAreaChart: {
+          forceX: [],
           size: function (d) { return (d.size === undefined ? 1 : d.size); },
           forceSize: [],
           clipEdge: false
@@ -143,7 +151,9 @@ angular.module('nvd3ChartDirectives')
         function internal (chart, options, defaults) {
           angular.forEach(options, function (value, key) {
             if (angular.isFunction(chart[key]) && !special[key]) {
-              chart[key](value);
+              if (!angular.isUndefined(value)) {
+                chart[key](value);
+              }
               delete defaults[key];
             } else if (angular.isObject(chart[key])) {
               internal(invoke[key] ? chart[key]() : chart[key], value, defaults[key]);
@@ -153,7 +163,9 @@ angular.module('nvd3ChartDirectives')
 
           angular.forEach(defaults, function (value, key) {
             if (angular.isFunction(chart[key]) && !special[key]) {
-              chart[key](value);
+              if (!angular.isUndefined(value)) {
+                chart[key](value);
+              }
             } else if (angular.isObject(chart[key])) {
               internal(invoke[key] ? chart[key]() : chart[key], value, defaults[key]);
             }
