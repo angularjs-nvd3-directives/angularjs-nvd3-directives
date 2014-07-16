@@ -1,6 +1,8 @@
 'use strict';
 
 describe('Directive: nvd3Chart -', function () {
+
+
   function testChartType(chartType) {
 
     describe (chartType + ' -', function () {
@@ -23,6 +25,7 @@ describe('Directive: nvd3Chart -', function () {
     });
   }
 
+
   testChartType('bulletChart');
   testChartType('cumulativeLineChart');
   testChartType('discreteBarChart',
@@ -40,4 +43,56 @@ describe('Directive: nvd3Chart -', function () {
   testChartType('scatterChart');
   testChartType('scatterPlusLineChart');
   testChartType('stackedAreaChart');
+
+
+  describe ('chart\'s subtype is taken into account', function () {
+    var template;
+    var spy;
+
+    beforeEach(function (done) {
+      // add subtype
+      nvd3Helpers.chartSubTypeDefaults.customGroupSpacing = {
+        groupSpacing: 17
+      };
+
+      spy = spyOn(nvd3Helpers, 'internalRewriteOptions');
+
+      $scope.statistics.options.chartType = 'multiBarChart';
+      // use subtype
+      $scope.statistics.options.chartSubType = ['customGroupSpacing'];
+      template = $compile('<div width="1450" height="200" nvd3-chart="statistics.options" ng-model="statistics.data"><svg></svg></div>')($scope);
+      $scope.$digest();
+      setTimeout(function() { done(); }, 1);
+    });
+
+    it('works', function () {
+      var argument = spy.calls.mostRecent().args[1];
+      expect(argument.length).toBe(4);
+      expect(argument[2].groupSpacing).toBe(17);
+    });
+  });
+
+
+  describe ('merge works correctly', function () {
+    var result;
+
+    beforeEach(function () {
+      result = nvd3Helpers.merge({
+        a: 1,
+        b: 2,
+        c: {}
+      }, {
+        c: {
+          d: 8
+        }
+      });
+    });
+
+    it('works', function () {
+      expect(result.a).toBe(1);
+      expect(result.b).toBe(2);
+      expect(result.c.d).toBe(8);
+    });
+  });
 });
+

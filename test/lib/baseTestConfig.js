@@ -1,15 +1,20 @@
+
+angular.module('test', ['nvd3ChartDirectives', 'legendDirectives']);
+
 // load the controller's module
-beforeEach(module('nvd3ChartDirectives'));
+beforeEach(module('test'));
 // environment
 var $scope,
     $compile,
-    $rootScope;
+    $rootScope,
+    nvd3Helpers;
 
 
 // Initialize the controller and a mock scope
-beforeEach(inject(function ($controller, _$rootScope_, _$compile_) {
+beforeEach(inject(function ($controller, _$rootScope_, _$compile_, _nvd3Helpers_) {
   $rootScope = _$rootScope_;
   $compile = _$compile_;
+  nvd3Helpers = _nvd3Helpers_;
   $scope = $rootScope.$new();
 }));
 
