@@ -34,7 +34,7 @@ describe('Directive: nvd3Chart -', function () {
   testChartType('multiBarChart',
       'nv-multiBarWithLegend',
       'class="nv-bar',
-      '<g class="nvd3 nv-wrap nv-multiBarWithLegend"')
+      '<g class="nvd3 nv-wrap nv-multiBarWithLegend"');
   testChartType('multiBarHorizontalChart');
   testChartType('pieChart');
   testChartType('scatterChart');

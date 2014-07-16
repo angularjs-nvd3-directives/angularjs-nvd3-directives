@@ -35,7 +35,7 @@ angular.module('nvd3ChartDirectives')
                 generate: function () {
                   var chart = nv.models[scope.opts.chartType]();
 
-                  nvd3Helpers.rewriteOptions(chart, $scope.opts);
+                  nvd3Helpers.rewriteOptions(chart, scope.opts);
 
                   scope.d3Call(data, chart);
                   nv.utils.windowResize(chart.update);
