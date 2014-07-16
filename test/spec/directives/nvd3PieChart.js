@@ -1,18 +1,16 @@
 'use strict';
 
-describe('nvd3-multi-bar-chart', function () {
+describe('nvd3-pie-chart', function () {
   var template;
 
 
   beforeEach(function (done) {
-    template = $compile('<nvd3-multi-bar-chart ' +
+    template = $compile('<nvd3-pie-chart ' +
         'data="statistics.data" ' +
         'id="formatValueExample" ' +
         'nvd3options="statistics.options" ' +
         'width="1450" ' +
         'height="200" ' +
-        'xAxisTickFormat="statistics.xAxisTickFormatFunction()" ' +
-        'yAxisTickFormat="statistics.yAxisTickFormatFunction()" ' +
         'showxaxis="true" ' +
         'showyaxis="true" ' +
         'showValues="true" ' +
@@ -24,7 +22,7 @@ describe('nvd3-multi-bar-chart', function () {
         'valueFormat="statistics.valueFormatFunction()"' +
         '>' +
         '<svg></svg>' +
-        '</nvd3-multi-bar-chart>')($scope);
+        '</nvd3-pie-chart>')($scope);
     $scope.$digest();
 
     setTimeout(function() {

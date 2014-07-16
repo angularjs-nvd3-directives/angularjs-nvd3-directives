@@ -1,18 +1,17 @@
 'use strict';
 
-describe('nvd3-multi-bar-chart', function () {
+describe('nvd3-bullet-chart', function () {
   var template;
 
 
   beforeEach(function (done) {
-    template = $compile('<nvd3-multi-bar-chart ' +
+    // fixme - set proper data for this kind of chart
+    template = $compile('<nvd3-bullet-chart ' +
         'data="statistics.data" ' +
         'id="formatValueExample" ' +
         'nvd3options="statistics.options" ' +
         'width="1450" ' +
         'height="200" ' +
-        'xAxisTickFormat="statistics.xAxisTickFormatFunction()" ' +
-        'yAxisTickFormat="statistics.yAxisTickFormatFunction()" ' +
         'showxaxis="true" ' +
         'showyaxis="true" ' +
         'showValues="true" ' +
@@ -24,7 +23,7 @@ describe('nvd3-multi-bar-chart', function () {
         'valueFormat="statistics.valueFormatFunction()"' +
         '>' +
         '<svg></svg>' +
-        '</nvd3-multi-bar-chart>')($scope);
+        '</nvd3-bullet-chart>')($scope);
     $scope.$digest();
 
     setTimeout(function() {
@@ -34,7 +33,7 @@ describe('nvd3-multi-bar-chart', function () {
 
   it('after compiling svg element exists', function () {
     var templateAsHtml = template.html();
-    expect(templateAsHtml).toContain('<svg viewBox="0 0 1450 200"');
+    expect(templateAsHtml).toContain('<svg');
   });
 
 

@@ -1,11 +1,11 @@
 'use strict';
 
-describe('nvd3-multi-bar-chart', function () {
+describe('nvd3-line-with-focus-chart', function () {
   var template;
 
 
   beforeEach(function (done) {
-    template = $compile('<nvd3-multi-bar-chart ' +
+    template = $compile('<nvd3-line-with-focus-chart ' +
         'data="statistics.data" ' +
         'id="formatValueExample" ' +
         'nvd3options="statistics.options" ' +
@@ -24,7 +24,7 @@ describe('nvd3-multi-bar-chart', function () {
         'valueFormat="statistics.valueFormatFunction()"' +
         '>' +
         '<svg></svg>' +
-        '</nvd3-multi-bar-chart>')($scope);
+        '</nvd3-line-with-focus-chart>')($scope);
     $scope.$digest();
 
     setTimeout(function() {
