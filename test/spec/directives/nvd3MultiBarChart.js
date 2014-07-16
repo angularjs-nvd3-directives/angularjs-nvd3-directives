@@ -85,7 +85,7 @@ describe('nvd3-multi-bar-chart', function () {
 
     setTimeout(function() {
       done();
-    }, 500);
+    }, 1);
   });
 
   it('after compiling svg element exists', function () {
