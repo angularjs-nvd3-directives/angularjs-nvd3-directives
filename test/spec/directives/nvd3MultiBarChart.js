@@ -1,9 +1,10 @@
 'use strict';
 
 describe('nvd3-multi-bar-chart', function () {
+  var template;
 
 
-  it('after compiling svg element exists', function () {
+  beforeEach(function (done) {
     $scope.statistics = {
       data: [
         { "key": "Serie 1", "values": [ [ 1025409600000 , 10], [ 1028088000000 , 120], [ 1030766400000 , 200] ] },
@@ -60,7 +61,7 @@ describe('nvd3-multi-bar-chart', function () {
     };
 
 
-    var template = $compile('<nvd3-multi-bar-chart ' +
+    template = $compile('<nvd3-multi-bar-chart ' +
         'data="statistics.data" ' +
         'id="formatValueExample" ' +
         'nvd3options="statistics.options" ' +
@@ -82,6 +83,12 @@ describe('nvd3-multi-bar-chart', function () {
         '</nvd3-multi-bar-chart>')($scope);
     $scope.$digest();
 
+    setTimeout(function() {
+      done();
+    }, 500);
+  });
+
+  it('after compiling svg element exists', function () {
     var templateAsHtml = template.html();
     expect(templateAsHtml).toContain('<svg viewBox="0 0 1450 200">');
   });
