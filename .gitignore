@@ -7,3 +7,4 @@ bower_components/
 build/
 build/components/
 generated/
+coverage/

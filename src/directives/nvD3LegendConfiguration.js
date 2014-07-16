@@ -23,3 +23,4 @@ function configureLegend(chart, scope, attrs) {
 		chart.legend.radioButtonMode(attrs.legendradiobuttonmode === undefined ? false : (attrs.legendradiobuttonmode === 'true'));
 	}
 }
+
