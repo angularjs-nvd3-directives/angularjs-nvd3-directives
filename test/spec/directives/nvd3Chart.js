@@ -10,7 +10,7 @@ describe('Directive: nvd3Chart -', function () {
 
       beforeEach(function (done) {
         $scope.statistics.options.chartType = chartType;
-        template = $compile('<div width="1450" height="200" nvd3-chart="statistics.options" ng-model="statistics.data"><svg></svg></div>')($scope);
+        template = $compile('<div nvd3-chart="statistics.options" ng-model="statistics.data" />')($scope);
         $scope.$digest();
         setTimeout(function() { done(); }, 1);
       });

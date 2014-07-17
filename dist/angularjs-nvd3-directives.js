@@ -174,6 +174,7 @@ angular.module('nvd3ChartDirectives').constant('nvd3Helpers', {
         'legend': true
       };
     var invoke = { 'scale': true };
+    var internal = this.internalRewriteOptions;
     angular.forEach(options, function (value, key) {
       if (chart && angular.isFunction(chart[key]) && !special[key]) {
         if (!angular.isUndefined(value)) {
@@ -199,7 +200,7 @@ angular.module('nvd3ChartDirectives').constant('nvd3Helpers', {
       });
     }
     configSources.push(options);
-    this.internalRewriteOptions(chart, this.merge.call(this, configSources));
+    this.internalRewriteOptions(chart, this.merge.apply(this, configSources));
   },
   merge: function (dst) {
     var merge = this.merge;
@@ -301,6 +302,7 @@ angular.module('nvd3ChartDirectives').directive('nvd3Chart', [
   function ($filter, nvd3Helpers) {
     return {
       restrict: 'EA',
+      template: '<svg></svg>',
       scope: {
         'opts': '=nvd3Chart',
         'data': '=ngModel'
