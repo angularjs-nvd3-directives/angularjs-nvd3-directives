@@ -155,6 +155,7 @@ angular.module('nvd3ChartDirectives')
         var invoke = {
           'scale': true
         };
+        var internal = this.internalRewriteOptions;
 
         angular.forEach(options, function (value, key) {
           if (chart && angular.isFunction(chart[key]) && !special[key]) {
@@ -184,7 +185,7 @@ angular.module('nvd3ChartDirectives')
         }
         configSources.push(options);
 
-        this.internalRewriteOptions(chart, this.merge.call(this, configSources));
+        this.internalRewriteOptions(chart, this.merge.apply(this, configSources));
       },
 
 

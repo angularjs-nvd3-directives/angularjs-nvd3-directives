@@ -45,30 +45,48 @@ describe('Directive: nvd3Chart -', function () {
   testChartType('stackedAreaChart');
 
 
+  function spyNvd3Helper(field, done) {
+    // add subtype
+    nvd3Helpers.chartSubTypeDefaults.customGroupSpacing = {
+      groupSpacing: 17
+    };
+
+    var spy = spyOn(nvd3Helpers, field);
+
+    $scope.statistics.options.chartType = 'multiBarChart';
+    // use subtype
+    $scope.statistics.options.chartSubType = ['customGroupSpacing'];
+    var template = $compile('<div width="1450" height="200" nvd3-chart="statistics.options" ng-model="statistics.data"><svg></svg></div>')($scope);
+    $scope.$digest();
+    setTimeout(function() { done(); }, 1);
+
+    return { spy: spy, template: template };
+  }
+
+
   describe ('chart\'s subtype is taken into account', function () {
-    var template;
-    var spy;
+    var context;
 
     beforeEach(function (done) {
-      // add subtype
-      nvd3Helpers.chartSubTypeDefaults.customGroupSpacing = {
-        groupSpacing: 17
-      };
-
-      spy = spyOn(nvd3Helpers, 'internalRewriteOptions');
-
-      $scope.statistics.options.chartType = 'multiBarChart';
-      // use subtype
-      $scope.statistics.options.chartSubType = ['customGroupSpacing'];
-      template = $compile('<div width="1450" height="200" nvd3-chart="statistics.options" ng-model="statistics.data"><svg></svg></div>')($scope);
-      $scope.$digest();
-      setTimeout(function() { done(); }, 1);
+      context = spyNvd3Helper('merge', done);
     });
 
     it('works', function () {
-      var argument = spy.calls.mostRecent().args[1];
-      expect(argument.length).toBe(4);
-      expect(argument[2].groupSpacing).toBe(17);
+      expect(context.spy.calls.mostRecent().args.length).toBe(4);
+      expect(context.spy.calls.mostRecent().args[2].groupSpacing).toBe(17);
+    });
+  });
+
+
+  describe ('chart\'s subtype is taken into account', function () {
+    var context;
+
+    beforeEach(function (done) {
+      context = spyNvd3Helper('internalRewriteOptions', done);
+    });
+
+    it('works', function () {
+      expect(context.spy.calls.first().args[1].groupSpacing).toBe(17);
     });
   });
 
