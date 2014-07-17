@@ -1,7 +1,10 @@
 
+*.iml
+
 .idea/
 node_modules/
 bower_components/
 build/
 build/components/
 generated/
+coverage/

@@ -1,5 +1,5 @@
 {
-    "camelcase" : true,
+    "camelcase" : false,
     "indent": 2,
     "undef": true,
     "quotmark": "single",
@@ -21,5 +21,8 @@
 			"angular",
 			"d3",
 			"nv"
-		]
+		],
+    "globals": {
+      "require": false
+    }
 }

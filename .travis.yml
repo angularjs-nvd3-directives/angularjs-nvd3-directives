@@ -5,6 +5,12 @@ node_js:
 
 script: "grunt"
 
+before_script:
+  - npm install -g grunt-cli karma
+  - npm install
+  - npm install -g bower
+  - bower install -f --clean
+
 notifications:
   webhooks:
     urls:
