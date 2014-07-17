@@ -45,6 +45,24 @@ describe('Directive: nvd3Chart -', function () {
   testChartType('stackedAreaChart');
 
 
+  describe ('updateDimensions', function () {
+    var template;
+
+    beforeEach(function (done) {
+      $scope.statistics.options.chartType = 'multiBarChart';
+      template = $compile('<div nvd3-chart="statistics.options" ng-model="statistics.data" />')($scope);
+      $scope.$digest();
+      setTimeout(function() { done(); }, 1);
+    });
+
+    it('works', function () {
+      var isolateScope = template.isolateScope();
+
+      nvd3Helpers.updateDimensions(isolateScope, {}, template, isolateScope.chart);
+    });
+  });
+
+
   function spyNvd3Helper(field, done) {
     // add subtype
     nvd3Helpers.chartSubTypeDefaults.customGroupSpacing = {
