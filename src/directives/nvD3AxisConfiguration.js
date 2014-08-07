@@ -33,7 +33,7 @@ function configureXaxis(chart, scope, attrs) {
 	if (attrs.xaxisdomain) {
 		if (Array.isArray(scope.$eval(attrs.xaxisdomain))) {
 			chart.xDomain(scope.$eval(attrs.xaxisdomain));
-		} else if (typeof scope.xaxisdomain() === 'function') {
+		} else if (Array.isArray(scope.xaxisdomain())) {
 			chart.xDomain(scope.xaxisdomain());
 		}
 	}
@@ -177,7 +177,7 @@ function configureYaxis (chart, scope, attrs) {
 	if (attrs.yaxisdomain) {
 		if (Array.isArray(scope.$eval(attrs.yaxisdomain))) {
 			chart.yDomain(scope.$eval(attrs.yaxisdomain));
-		} else if (typeof scope.yaxisdomain() === 'function') {
+		} else if (Array.isArray(scope.yaxisdomain())) {
 			chart.yDomain(scope.yaxisdomain());
 		}
 	}

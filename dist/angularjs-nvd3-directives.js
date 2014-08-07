@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.7 - 2014-06-26
+/*! angularjs-nvd3-directives - v0.0.7 - 2014-08-07
  * http://cmaurer.github.io/angularjs-nvd3-directives
  * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -432,7 +432,7 @@
     if ( attrs.xaxisdomain ) {
       if ( Array.isArray( scope.$eval( attrs.xaxisdomain ) ) ) {
         chart.xDomain( scope.$eval( attrs.xaxisdomain ) );
-      } else if ( typeof scope.xaxisdomain() === 'function' ) {
+      } else if ( Array.isArray( scope.xaxisdomain() ) ) {
         chart.xDomain( scope.xaxisdomain() );
       }
     }
@@ -576,7 +576,7 @@
     if ( attrs.yaxisdomain ) {
       if ( Array.isArray( scope.$eval( attrs.yaxisdomain ) ) ) {
         chart.yDomain( scope.$eval( attrs.yaxisdomain ) );
-      } else if ( typeof scope.yaxisdomain() === 'function' ) {
+      } else if ( Array.isArray( scope.yaxisdomain() ) ) {
         chart.yDomain( scope.yaxisdomain() );
       }
     }
