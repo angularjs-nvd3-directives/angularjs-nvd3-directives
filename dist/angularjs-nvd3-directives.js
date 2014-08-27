@@ -1,6 +1,6 @@
-/*! angularjs-nvd3-directives - v0.0.7 - 2014-06-26
+/*! angularjs-nvd3-directives - v0.0.7 - 2014-08-27
  * http://cmaurer.github.io/angularjs-nvd3-directives
- * Copyright (c) 2014 Christian Maurer; Licensed Apache License, v2.0 */
+ * Copyright (c) 2014 ; Licensed Apache License, v2.0 */
 ( function () {
   'use strict';
 
@@ -1793,6 +1793,7 @@
           color: '&',
           donut: '@',
           donutRatio: '@',
+          half: '@',
           labelthreshold: '@',
           description: '&',
           tooltips: '@',
@@ -1844,6 +1845,13 @@
                   } : scope.y() ).width( scope.width ).height( scope.height ).margin( scope.margin ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).showLabels( attrs.showlabels === undefined ? false : attrs.showlabels === 'true' ).labelThreshold( attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold ).labelType( attrs.labeltype === undefined ? 'key' : attrs.labeltype ).pieLabelsOutside( attrs.pielabelsoutside === undefined ? true : attrs.pielabelsoutside === 'true' ).valueFormat( attrs.valueformat === undefined ? d3.format( ',.2f' ) : attrs.valueformat ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).description( attrs.description === undefined ? function ( d ) {
                     return d.description;
                   } : scope.description() ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).donutLabelsOutside( attrs.donutlabelsoutside === undefined ? false : attrs.donutlabelsoutside === 'true' ).donut( attrs.donut === undefined ? false : attrs.donut === 'true' ).donutRatio( attrs.donutratio === undefined ? 0.5 : attrs.donutratio );
+                  if ( attrs.half ) {
+                    chart.pie.startAngle( function ( d ) {
+                      return d.startAngle / 2 - Math.PI / 2;
+                    } ).endAngle( function ( d ) {
+                      return d.endAngle / 2 - Math.PI / 2;
+                    } );
+                  }
                   if ( attrs.tooltipcontent ) {
                     chart.tooltipContent( scope.tooltipcontent() );
                   }

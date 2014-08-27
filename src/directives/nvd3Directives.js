@@ -1172,6 +1172,7 @@
                     color: '&',
                     donut: '@',
                     donutRatio: '@',
+                    half: '@',
                     labelthreshold: '@',
                     description: '&',
                     tooltips: '@',
@@ -1236,6 +1237,12 @@
                                         .donutLabelsOutside(attrs.donutlabelsoutside === undefined ? false : (attrs.donutlabelsoutside === 'true'))
                                         .donut(attrs.donut === undefined ? false : (attrs.donut === 'true'))
                                         .donutRatio(attrs.donutratio === undefined ? 0.5 : (attrs.donutratio));
+
+                                    if (attrs.half) {
+                                        chart.pie
+                                            .startAngle(function (d) { return d.startAngle / 2 - Math.PI / 2; })
+                                            .endAngle(function (d) { return d.endAngle / 2 - Math.PI / 2; });
+                                    }
 
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
