@@ -16,7 +16,7 @@ function configureLegend(chart, scope, attrs) {
 		chart.legend.key(attrs.legendkey === undefined ? function (d) {
 			return d.key;
 		} : scope.legendkey());
-		chart.legend.color(attrs.legendcolor === undefined ? nv.utils.defaultColor() : scope.legendcolor());
+	        chart.legend.color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
 		chart.legend.align(attrs.legendalign === undefined ? true : (attrs.legendalign === 'true'));
 		chart.legend.rightAlign(attrs.legendrightalign === undefined ? true : (attrs.legendrightalign === 'true'));
 		chart.legend.updateState(attrs.legendupdatestate === undefined ? true : (attrs.legendupdatestate === 'true'));
