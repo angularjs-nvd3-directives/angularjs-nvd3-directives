@@ -1,5 +1,14 @@
 language: node_js
 node_js:
-  - "0.10.x"
+  - "0.10"
+  - "0.11"
 
 script: "grunt"
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/4790a5cfa82031da0e22
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: false     # default: false

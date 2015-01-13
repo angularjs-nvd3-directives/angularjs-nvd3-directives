@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF8">
-    <title>Scatter Chart Example</title>
+    <title>Scatter Plus Line Chart Example</title>
     <script src="js/angular.js"></script>
     <script src="js/d3.js"></script>
     <script src="js/nv.d3.js"></script>
@@ -22,7 +22,9 @@
                 for (i = 0; i < groups; i++) {
                     data.push({
                         key: 'Group ' + i,
-                        values: []
+                        values: [],
+                        slope: Math.random() - .01,
+                        intercept: Math.random() - .5
                     });
 
                     for (j = 0; j < points; j++) {
@@ -37,7 +39,7 @@
                 return data;
             }
 
-            $scope.exampleData =  getData(4, 40);
+            $scope.exampleData =  getData(3, 20);
 
             $scope.tooltipXContentFunction = function(){
                 return function(key, x, y) {
@@ -71,7 +73,7 @@
 <body ng-app='nvd3TestApp'>
 
 <div ng-controller="ExampleCtrl">
-    <nvd3-scatter-chart
+    <nvd3-scatter-plus-line-chart
             data="exampleData"
             id="exampleId"
             width="600"

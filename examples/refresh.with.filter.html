@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+    <title>Angular.js nvd3.js Line Chart Directive</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <script src="js/angular.js"></script>
+    <script src="js/d3.js"></script>
+    <script src="js/nv.d3.js"></script>
+    <script src="../dist/angularjs-nvd3-directives.js"></script>
+    <link rel="stylesheet" href="stylesheets/nv.d3.css"/>
+    <script>
+        var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
+
+        app.controller('ExampleCtrl', function($scope, $log, $interval){
+            $scope.dataCounter = 0;
+
+            $scope.keys = [];
+            $scope.graphData = [];
+
+            $scope.calculateKeys = function () {
+                $scope.keys.push("foo");
+                $scope.keys.push("bar");
+
+                $scope.graphData.push({ "key": "foo", "values": [] });
+                $scope.graphData.push({ "key": "bar", "values": [] });
+            };
+
+            $scope.dataCounter = 0;
+
+            $scope.graphs = [
+                {
+                    "name": "Foos Only",
+                    "height": 300,
+                    "series": [ { label: 'Foo', key: 'foo', enabled: true } ]
+                },
+                {
+                    "name": "Bars Only",
+                    "height": 300,
+                    "series": [ { label: 'Bar', key: 'bar', enabled: true } ]
+                }
+            ];
+
+            $scope.fetchData = function(){
+                if ($scope.keys.length === 0) {
+                    $scope.calculateKeys();
+                }
+
+                $scope.dataCounter = $scope.dataCounter + 1;
+
+                $log.debug('setInterval counter is now at : ' + $scope.dataCounter);
+
+                $scope.graphData[0].values.push([$scope.dataCounter, Math.floor((Math.random() * 100) + 1)])
+                $scope.graphData[1].values.push([$scope.dataCounter, Math.floor((Math.random() * 100) + 1)]);
+
+                $log.debug('setInterval finished ', $scope.graphData);     
+            };
+
+            var stop;
+
+            $scope.clear = function(){
+                $scope.dataCounter = 0;
+                $scope.keys = [];
+                $scope.graphData = [];
+
+                $scope.calculateKeys();
+            };
+
+            $scope.start = function() {
+                // Don't start again
+                if ( angular.isDefined(stop) ) return;
+
+                stop = $interval(function() {
+                    $scope.fetchData();
+                }, 1000);
+            };
+
+            $scope.stop = function() {
+                if (angular.isDefined(stop)) {
+                    $interval.cancel(stop);
+                    stop = undefined;
+                }
+            };
+
+            $scope.$on('$destroy', function() {
+                // Make sure that the interval is destroyed too
+                $scope.stop();
+            });
+        });
+
+        app.filter('graphDataFilter', function () {
+            return function (data, series) {
+                var r = [];
+
+                for (var s = 0; s < series.length; s++) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].key == series[s].key) {
+                            r.push({ key: series[s].label, values: data[i].values, disabled: !series[s].enabled });
+                        }
+                    }
+                }
+
+                return r;
+            };
+        })
+
+        app.directive('extendedChart', function () {
+            return {
+                restrict: 'E',
+                link: function ($scope) {
+                    $scope.d3Call = function (data, chart) {
+                        var svg = d3.select('#' + $scope.id + ' svg').datum(data);
+
+                        var path = svg.selectAll('path');
+
+                        path.data(data)
+                            .transition()
+                            .ease("linear")
+                            .duration(300);
+
+                        return svg.transition()
+                            .duration(300)
+                            .call(chart);
+                    };
+                }
+            };
+        })
+
+
+    </script>
+
+</head>
+<body ng-app='nvd3TestApp'>
+
+<div ng-controller="ExampleCtrl">
+    <button ng-click="start()">Start Fetching</button>&nbsp;&nbsp;<button ng-click="stop()">Stop Fetching</button>&nbsp;&nbsp;<button ng-click="clear()">Clear Data</button>
+
+    <br/>
+
+<div ng-repeat="graph in graphs">
+    <nvd3-line-chart
+        data="graphData"
+        filtername="'graphDataFilter'"
+        filtervalue="graph.series"
+        id="graph_line_{{$index}}"
+        height="{{graph.height}}"
+        width="800"
+        showxaxis="true"
+        showyaxis="true"
+        forcey="[0]"
+        tooltips="true"
+        interactive="true"
+        margin="{left:50,top:50,bottom:50,right:50}"
+        showlegend="true"
+        legendupdatestate="false"
+        objectequality="true"
+        nodata="Fetching statistics...">
+        <extended-chart><svg></svg></extended-chart>
+    </nvd3-line-chart>
+</div>
+
+</div>
+</body>
+</html>

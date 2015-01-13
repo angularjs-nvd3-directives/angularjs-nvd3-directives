@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+    <title>Angular.js nvd3.js Line Chart Directive</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/d3.js"></script>
+    <script src="js/nv.d3.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="../dist/angularjs-nvd3-directives.js"></script>
+    <link rel="stylesheet" href="stylesheets/nv.d3.css"/>
+    <script>
+        var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives', 'ngRoute'])
+        .config(['$routeProvider', function($routeProvider) {
+                $routeProvider.
+                    when('/pieChartOne', {
+                        templateUrl: 'issue.133.t1.html',
+                        controller: 'Chart1Controller'
+                    }).
+                    when('/pieChartTwo', {
+                        templateUrl: 'issue.133.t2.html',
+                        controller: 'Chart2Controller'
+                    }).
+                    otherwise({
+                        redirectTo: '/pieChartOne'
+                    });
+            }]);
+
+        function ExampleCtrl($scope){
+
+
+
+
+        }
+
+        function Chart1Controller($scope){
+            $scope.exampleData = [{key: "One", y: 5 }, { key: "Two", y: 2 }, { key: "Three", y: 9 }, { key: "Four", y: 7 }, { key: "Five", y: 4 }, { key: "Six", y: 3 }, { key: "Seven", y: 9 } ];
+            $scope.xFunction = function(){
+                return function(d) {
+                    return d.key;
+                };
+            }
+            $scope.yFunction = function(){
+                return function(d) {
+                    return d.y;
+                };
+            }
+        }
+
+        function Chart2Controller($scope){
+            $scope.exampleData = [{key: "One", y: 15 }, { key: "Two", y: 12 }, { key: "Three", y: 19 }, { key: "Four", y: 17 }, { key: "Five", y: 14 }, { key: "Six", y: 13 }, { key: "Seven", y: 19 } ];
+            $scope.xFunction = function(){
+                return function(d) {
+                    return d.key;
+                };
+            }
+            $scope.yFunction = function(){
+                return function(d) {
+                    return d.y;
+                };
+            }
+        }
+
+
+    </script>
+
+</head>
+<body ng-app='nvd3TestApp'>
+
+<div ng-controller="ExampleCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="nav">
+                    <li><a href="#pieChartOne"> Pie Chart One </a></li>
+                    <li><a href="#pieChartTwo"> Pie Chart Two </a></li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
