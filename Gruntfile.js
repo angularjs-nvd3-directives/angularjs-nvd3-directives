@@ -122,7 +122,7 @@ module.exports = function (grunt) {
 		changelog: {
 			release: {
 				options: {
-					version: 'v0.0.7'
+					version: '<%= pkg.version %>'
 				}
 			}
 		}
@@ -149,5 +149,5 @@ module.exports = function (grunt) {
 	grunt.registerTask('test', ['clean', 'karma']);
 
 	// Default task.
-	grunt.registerTask('default', ['clean', 'ngmin', 'concat', 'jsbeautifier', 'jshint', 'uglify']);
+	grunt.registerTask('default', ['clean', 'karma', 'ngmin', 'concat', 'jsbeautifier', 'jshint', 'uglify']);
 };

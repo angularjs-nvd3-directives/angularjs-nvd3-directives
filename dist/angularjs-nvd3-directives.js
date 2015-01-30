@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.7 - 2015-01-30
+/*! angularjs-nvd3-directives - v0.0.8 - 2015-02-04
  * http://angularjs-nvd3-directives.github.io/angularjs-nvd3-directives
  * Copyright (c) 2015 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -767,10 +767,14 @@
   function getD3Selector( attrs, element ) {
     if ( !attrs.id ) {
       //if an id is not supplied, create a random id.
+      var dataAttributeChartID;
       if ( !attrs[ 'data-chartid' ] ) {
-        angular.element( element ).attr( 'data-chartid', 'chartid' + Math.floor( Math.random() * 1000000001 ) );
+        dataAttributeChartID = 'chartid' + Math.floor( Math.random() * 1000000001 );
+        angular.element( element ).attr( 'data-chartid', dataAttributeChartID );
+      } else {
+        dataAttributeChartID = attrs[ 'data-chartid' ];
       }
-      return '[data-chartid=' + attrs[ 'data-chartid' ] + ']';
+      return '[data-chartid=' + dataAttributeChartID + ']';
     } else {
       return '#' + attrs.id;
     }
