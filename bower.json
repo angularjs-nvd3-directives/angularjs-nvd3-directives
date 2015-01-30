@@ -6,7 +6,7 @@
     "Christian Maurer"
   ],
   "license": "Apache License, v2.0",
-  "homepage": "http://cmaurer.github.io/angularjs-nvd3-directives/",
+  "homepage": "http://angularjs-nvd3-directives.github.io/angularjs-nvd3-directives/",
   "main": "./dist/angularjs-nvd3-directives.js",
   "keywords": [
     "d3",

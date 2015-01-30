@@ -103,7 +103,7 @@ module.exports = function (grunt) {
 				npm: false,
 				npmtag: true,
 				github: {
-					repo: 'cmaurer/angularjs-nvd3-directives', //put your user/repo here
+					repo: 'angularjs-nvd3-directives/angularjs-nvd3-directives', //put your user/repo here
 					usernameVar: 'GITHUB_USERNAME', //ENVIRONMENT VARIABLE that contains Github username
 					passwordVar: 'GITHUB_PASSWORD' //ENVIRONMENT VARIABLE that contains Github password
 				}
