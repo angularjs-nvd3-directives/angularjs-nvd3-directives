@@ -2,15 +2,15 @@
 
 ##[Angular.js](http://angularjs.org/) Directives for [nvd3.js](http://www.nvd3.org), [d3.js](http://www.d3js.org) charts
 
-[![Build Status](https://travis-ci.org/cmaurer/angularjs-nvd3-directives.png?branch=master)](https://travis-ci.org/cmaurer/angularjs-nvd3-directives)
-[![Dependencies Status](https://david-dm.org/cmaurer/angularjs-nvd3-directives.png)](https://david-dm.org/cmaurer/angularjs-nvd3-directives#info=dependencies)
-[![devDependency Status](https://david-dm.org/cmaurer/angularjs-nvd3-directives/dev-status.png)](https://david-dm.org/cmaurer/angularjs-nvd3-directives#info=devDependencies)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/cmaurer/angularjs-nvd3-directives/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-[![Stories in Ready](https://badge.waffle.io/cmaurer/angularjs-nvd3-directives.png?label=ready)](https://waffle.io/cmaurer/angularjs-nvd3-directives)
-[![Gitter chat](https://badges.gitter.im/cmaurer/angularjs-nvd3-directives.png)](https://gitter.im/cmaurer/angularjs-nvd3-directives)
+[![Build Status](https://travis-ci.org/angularjs-nvd3-directives/angularjs-nvd3-directives.png?branch=master)](https://travis-ci.org/angularjs-nvd3-directives/angularjs-nvd3-directives)
+[![Dependencies Status](https://david-dm.org/angularjs-nvd3-directives/angularjs-nvd3-directives.png)](https://david-dm.org/angularjs-nvd3-directives/angularjs-nvd3-directives#info=dependencies)
+[![devDependency Status](https://david-dm.org/angularjs-nvd3-directives/angularjs-nvd3-directives/dev-status.png)](https://david-dm.org/angularjs-nvd3-directives/angularjs-nvd3-directives#info=devDependencies)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/angularjs-nvd3-directives/angularjs-nvd3-directives/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Stories in Ready](https://badge.waffle.io/angularjs-nvd3-directives/angularjs-nvd3-directives.png?label=ready)](https://waffle.io/angularjs-nvd3-directives/angularjs-nvd3-directives)
+[![Gitter chat](https://badges.gitter.im/angularjs-nvd3-directives/angularjs-nvd3-directives.png)](https://gitter.im/angularjs-nvd3-directives/angularjs-nvd3-directives)
 
 
-![Line Charts](http://cmaurer.github.io/img/line.chart.png "Line Charts")
+![Line Charts](http://angularjs-nvd3-directives.github.io/img/line.chart.png "Line Charts")
 
 ```html
 <nvd3-line-chart
@@ -24,7 +24,7 @@
 </nvd3-line-chart>
 ```
 
-![Stacked Area Charts](http://cmaurer.github.io/img/stacked.area.png "Stacked Area Charts")
+![Stacked Area Charts](http://angularjs-nvd3-directives.github.io/img/stacked.area.png "Stacked Area Charts")
 
 ```html
 <nvd3-stacked-area-chart
@@ -37,7 +37,7 @@
 </nvd3-stacked-area-chart>
 ```
 
-[More Examples](http://cmaurer.github.io/angularjs-nvd3-directives)
+[More Examples](http://angularjs-nvd3-directives.github.io/angularjs-nvd3-directives)
 
 
 ## Basic Quick Start 
@@ -58,7 +58,7 @@
 
     bower install nvd3 --save
 
-#### [Angularjs-nvd3-Directives.js](http://cmaurer.github.io/angularjs-nvd3-directives)
+#### [Angularjs-nvd3-Directives.js](http://angularjs-nvd3-directives.github.io/angularjs-nvd3-directives)
 
     bower install angularjs-nvd3-directives --save
     
