@@ -1272,7 +1272,7 @@
                     fisheye: '@',
                     xPadding: '@',
                     yPadding: '@',
-                    tooltipContent: '&',
+                    tooltipcontent: '&',
                     tooltipXContent: '&',
                     tooltipYContent: '&',
                     color: '&',
@@ -1389,7 +1389,7 @@
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize))
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
-                                        .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
+                                        .tooltipContent(attrs.tooltipcontent === undefined ? null : scope.tooltipcontent())
                                         .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
                                         .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
@@ -1473,7 +1473,7 @@
                     showDistY: '@',
                     rightAlignYAxis: '@',
                     fisheye: '@',
-                    tooltipContent: '&',
+                    tooltipcontent: '&',
                     tooltipXContent: '&',
                     tooltipYContent: '&',
                     color: '&',
@@ -1586,7 +1586,7 @@
                                         .size(attrs.size === undefined ? function(d){ return (d.size === undefined ? 1 : d.size); }: scope.size())
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
-                                        .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
+                                        .tooltipContent(attrs.tooltipcontent === undefined ? null : scope.tooltipcontent())
                                         .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
                                         .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
