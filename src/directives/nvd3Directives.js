@@ -16,10 +16,15 @@
     function getD3Selector(attrs, element) {
         if (!attrs.id) {
             //if an id is not supplied, create a random id.
+            var dataAttributeChartID;
             if (!attrs['data-chartid']) {
-                angular.element(element).attr('data-chartid', 'chartid' + Math.floor(Math.random() * 1000000001));
+                dataAttributeChartID = 'chartid' + Math.floor(Math.random() * 1000000001);
+                angular.element(element).attr('data-chartid', dataAttributeChartID);
             }
-            return '[data-chartid=' + attrs['data-chartid'] + ']';
+            else {
+                dataAttributeChartID = attrs['data-chartid'];
+            }
+            return '[data-chartid=' + dataAttributeChartID + ']';
         } else {
             return '#' + attrs.id;
         }

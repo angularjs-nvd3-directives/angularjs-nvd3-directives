@@ -17,7 +17,7 @@ describe('getD3Selector', function() {
 
   it('should have a valid random id for data-chartid', function() {
     var res_str = getD3Selector( attrs, element );
-    expect(res_str).toMatch(/\[data-chartid=\d+\]/);
+    expect(res_str).toMatch(/\[data-chartid=chartid\d+\]/);
   });
 
   it('should have "flubber" for data-chartid', function() {
