@@ -42,9 +42,9 @@
 
 ## Basic Quick Start 
 
-### 1. Install Dependencies with [bower](http://bower.io/)
+### 1. Install dependencies in your application with [bower](http://bower.io/)
 
-### Install [these](http://bower.io/#installing-bower) if you don't already have it.
+Install [these](http://bower.io/#installing-bower) if you don't already have it.
 
 #### [Angular.js](http://angularjs.org/)
     
@@ -64,7 +64,7 @@
     
 ### 2. Create basic [Angular.js](http://angularjs.org/) application
 
-Create a html page and start with the following code.  For [d3.js](http://www.d3js.org) it is important the the page include ```<meta charset="utf-8">```, otherwise you will get error messages about special characters.
+Create a html page and start with the following code.  For [d3.js](http://www.d3js.org) it is important that the page include ```<meta charset="utf-8">```, otherwise you will get error messages about special characters.
 
 ```html
 <!DOCTYPE html>
@@ -146,5 +146,17 @@ Close out the ```body``` and ```html``` elements.
 If everything is setup correctly, you should be able to open the page and see a basic line chart.
 
 
+## Developers
 
+For those of you wanting to debug, fix, enhance angularjs-nvd3-directives, follow the steps below after cloning this repository:
 
+    npm install
+    grunt bower-install
+
+You can now run the unit tests simply by typing:
+
+    grunt test
+
+If you wish to issue a pull request, please add a unit test for the change you are making, ensure that it is shown to fail without your fix and pass with your fix.
+
+>  NOTE: we are just starting to add the foundations for unit testing here, so please chip in to help enhance the stability of this framework and be patient with us as we work towards that goal.
