@@ -437,7 +437,7 @@
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
+                    xaxislabeldistance: '@',
                     //yaxis
                     showyaxis: '&',
                     useinteractiveguideline: '@',
@@ -634,7 +634,7 @@
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
+                    xaxislabeldistance: '@',
                     //yaxis
                     showyaxis: '&',
                     yaxisorient: '&',
@@ -776,7 +776,7 @@
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
+                    xaxislabeldistance: '@',
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -918,7 +918,7 @@
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
+                    xaxislabeldistance: '@',
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -1060,7 +1060,7 @@
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
+                    xaxislabeldistance: '@',
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -1324,7 +1324,7 @@
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
+                    xaxislabeldistance: '@',
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -1525,7 +1525,7 @@
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
+                    xaxislabeldistance: '@',
                     //yaxis
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -1670,7 +1670,7 @@
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
+                    xaxislabeldistance: '@',
                     //yaxis
                     y1axisorient: '&',
                     y1axisticks: '&',
@@ -1855,7 +1855,7 @@
                     xaxisrotatelabels: '@',
                     xaxisrotateylabel: '@',
                     xaxisstaggerlabels: '@',
-                    xaxisaxislabeldistance: '@',
+                    xaxislabeldistance: '@',
 
                     //x2axis
                     x2axisorient: '&',
