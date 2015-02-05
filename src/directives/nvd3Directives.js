@@ -1277,7 +1277,7 @@
                     fisheye: '@',
                     xPadding: '@',
                     yPadding: '@',
-                    tooltipContent: '&',
+                    tooltipcontent: '&',
                     tooltipXContent: '&',
                     tooltipYContent: '&',
                     color: '&',
@@ -1392,9 +1392,11 @@
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex))
                                         .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize))
+                                        .sizeDomain(attrs.sizedomain === undefined ? function ( d ) {return [0,1];} : scope.sizedomain())
+                                        .sizeRange(attrs.sizerange === undefined ? function ( d ) {return [4,16];} : scope.sizerange())
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
-                                        .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
+                                        .tooltipContent(attrs.tooltipcontent === undefined ? null : scope.tooltipcontent())
                                         .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
                                         .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
