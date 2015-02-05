@@ -68,9 +68,9 @@ Create a html page and start with the following code.  For [d3.js](http://www.d3
 
 ```html
 <!DOCTYPE html>
-<meta charset="utf-8">
 <html>
 <head>
+  <meta charset="utf-8">
 ```
 
 Include the downloaded dependencies in the ```<head>``` section of the html.
