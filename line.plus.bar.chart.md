@@ -270,7 +270,7 @@ Datatype: String
         id="noDataExample"
         width="550"
         height="300"
-        noData="Data aint here">
+        noData="No Data For You!">
         	<svg></svg>
     </nvd3-line-plus-bar-chart>
 </div>

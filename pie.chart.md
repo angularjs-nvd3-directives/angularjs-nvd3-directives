@@ -325,7 +325,7 @@ Datatype: String
         showYAxis="true"
         x="xFunction()"
         y="yFunction()"        
-        noData="Data aint here">
+        noData="No Data For You!">
         	<svg height="250"></svg>
     </nvd3-pie-chart>
 </div>
