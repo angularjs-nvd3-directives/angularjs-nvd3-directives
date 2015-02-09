@@ -30,6 +30,12 @@
         }
     }
 
+    function getViewBoxParams(svg, scope) {
+        var _w = (scope.width  || parseInt(svg.style('width'))  || 960);
+        var _h = (scope.height || parseInt(svg.style('height')) || 400);
+        return "0 0 " + _w + " " + _h;
+    }
+
     function checkElementID(scope, attrs, element, chart, data) {
         configureXaxis(chart, scope, attrs);
         configureX2axis(chart, scope, attrs);
@@ -48,8 +54,9 @@
             d3.select(d3Select)
                 .append('svg');
         }
-        d3.select(d3Select + ' svg')
-            .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height)
+
+        var _svg = d3.select( d3Select + ' svg' );
+        _svg.attr('viewBox', getViewBoxParams(_svg, scope))
             .datum(data)
             .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
             .call(chart);
@@ -59,8 +66,8 @@
         if (chart) {
             chart.width(scope.width).height(scope.height);
             var d3Select = getD3Selector(attrs, element);
-            d3.select(d3Select + ' svg')
-                .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height);
+            var _svg = d3.select(d3Select + ' svg');
+            _svg.attr('viewBox', getViewBoxParams(_svg, scope));
             nv.utils.windowResize(chart);
             scope.chart.update();
         }
