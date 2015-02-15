@@ -710,10 +710,11 @@
                                         .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .rotateLabels(attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels)
-                                        .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .delay(attrs.delay === undefined ? 1200 : attrs.delay)
+                                        .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color()
                                         .stacked(attrs.stacked === undefined ? false : (attrs.stacked === 'true'));
-
+                                    if(chart.delay){
+                                        chart.delay(attrs.delay === undefined ? 1200 : attrs.delay);
+                                    }
                                     if(attrs.tooltipcontent){
                                         chart.tooltipContent(scope.tooltipcontent());
                                     }
@@ -2295,7 +2296,7 @@
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
                         }
-                        
+
                         if(data){
                             //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                             if(scope.chart){
