@@ -710,8 +710,9 @@
                                         .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .rotateLabels(attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels)
-                                        .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color()
+                                        .color(attrs.color === undefined ? nv.utils.defaultColor() : scope.color())
                                         .stacked(attrs.stacked === undefined ? false : (attrs.stacked === 'true'));
+                                    // Delay is in the D3 transitions class, not in the selection class. We make an explicit check with this if statement
                                     if(chart.delay){
                                         chart.delay(attrs.delay === undefined ? 1200 : attrs.delay);
                                     }
