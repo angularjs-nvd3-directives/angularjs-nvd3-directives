@@ -151,7 +151,7 @@ If everything is setup correctly, you should be able to open the page and see a 
 For those of you wanting to debug, fix, enhance angularjs-nvd3-directives, follow the steps below after cloning this repository:
 
     npm install
-    grunt bower-install
+    grunt bower:install
 
 You can now run the unit tests simply by typing:
 
