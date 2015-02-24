@@ -78,7 +78,7 @@ Include the downloaded dependencies in the ```<head>``` section of the html.
 ```html
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/d3/d3.js"></script>
-<script src="bower_components/nvd3/nv.d3.js"></script>
+<script src="bower_components/nvd3/build/nv.d3.js"></script>
 <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
 <link rel="stylesheet" href="bower_components/nvd3/nv.d3.css"/>
 ```
