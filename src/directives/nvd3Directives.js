@@ -407,8 +407,8 @@
                     order: '@',     //default, inside-out
                     offset: '@',    //zero, wiggle, silhouette, expand
                     size: '&',      //accessor to get the point size
-                    xScale: '&',
-                    yScale: '&',
+                    xscale: '&',
+                    yscale: '&',
                     xDomain: '&',
                     yDomain: '&',
                     xRange: '&',
