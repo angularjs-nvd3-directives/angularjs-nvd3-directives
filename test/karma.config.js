@@ -21,7 +21,8 @@ module.exports = function(config) {
       '../build/components/angular-mocks/angular-mocks.js',
       //'../dist/angularjs-nvd3-directives.js',
       '../src/directives/*.js',
-      '**/*Spec.js'
+      '**/*Spec.js',
+      '**/*.spec.js'
     ],
 
     // list of files to exclude

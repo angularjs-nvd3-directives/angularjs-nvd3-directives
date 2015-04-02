@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.8 - 2015-02-04
+/*! angularjs-nvd3-directives - v0.0.8 - 2015-04-02
  * http://angularjs-nvd3-directives.github.io/angularjs-nvd3-directives
  * Copyright (c) 2015 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -833,6 +833,7 @@
           y: '&',
           forcex: '@',
           forcey: '@',
+          xscale: '&',
           isArea: '@',
           interactive: '@',
           clipedge: '@',
@@ -927,6 +928,9 @@
                   } );
                   if ( attrs.useinteractiveguideline ) {
                     chart.useInteractiveGuideline( attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true' );
+                  }
+                  if ( attrs.xscale ) {
+                    chart.xScale( scope.xscale() );
                   }
                   if ( attrs.tooltipcontent ) {
                     chart.tooltipContent( scope.tooltipcontent() );
@@ -1114,8 +1118,8 @@
           order: '@',
           offset: '@',
           size: '&',
-          xScale: '&',
-          yScale: '&',
+          xscale: '&',
+          yscale: '&',
           xDomain: '&',
           yDomain: '&',
           xRange: '&',

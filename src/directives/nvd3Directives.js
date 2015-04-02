@@ -91,6 +91,7 @@
                     y: '&',
                     forcex: '@',
                     forcey: '@',
+                    xscale: '&',
                     isArea: '@',
                     interactive: '@',
                     clipedge: '@',
@@ -202,6 +203,10 @@
 
                                     if (attrs.useinteractiveguideline) {
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
+                                    }
+
+                                    if(attrs.xscale){
+                                        chart.xScale(scope.xscale());
                                     }
 
                                     if(attrs.tooltipcontent){
@@ -407,8 +412,8 @@
                     order: '@',     //default, inside-out
                     offset: '@',    //zero, wiggle, silhouette, expand
                     size: '&',      //accessor to get the point size
-                    xScale: '&',
-                    yScale: '&',
+                    xscale: '&',
+                    yscale: '&',
                     xDomain: '&',
                     yDomain: '&',
                     xRange: '&',
