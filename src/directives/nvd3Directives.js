@@ -91,7 +91,7 @@
                     y: '&',
                     forcex: '@',
                     forcey: '@',
-                    xscale: '@',
+                    xscale: '&',
                     isArea: '@',
                     interactive: '@',
                     clipedge: '@',

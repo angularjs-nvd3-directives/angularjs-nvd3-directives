@@ -833,6 +833,7 @@
           y: '&',
           forcex: '@',
           forcey: '@',
+          xscale: '&',
           isArea: '@',
           interactive: '@',
           clipedge: '@',
@@ -927,6 +928,9 @@
                   } );
                   if ( attrs.useinteractiveguideline ) {
                     chart.useInteractiveGuideline( attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true' );
+                  }
+                  if ( attrs.xscale ) {
+                    chart.xScale( scope.xscale() );
                   }
                   if ( attrs.tooltipcontent ) {
                     chart.tooltipContent( scope.tooltipcontent() );
