@@ -23,13 +23,13 @@
     "test"
   ],
   "dependencies": {
-    "angular": "~1.2.13",
+    "angular": "1.2.13 - 1.3",
     "d3": "~3.3.13",
     "nvd3": "~v1.1.15-beta"
   },
   "devDependencies": {
     "moment": "~2.5.0",
-    "angular-route": "~1.2.13",
-    "angular-mocks": "~1.2.13"
+    "angular-route": "1.2.13 - 1.3",
+    "angular-mocks": "1.2.13 - 1.3"
   }
 }
