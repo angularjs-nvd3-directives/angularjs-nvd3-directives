@@ -48,9 +48,12 @@
             d3.select(d3Select)
                 .append('svg');
         }
-        d3.select(d3Select + ' svg')
-            .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height)
-            .datum(data)
+        var svg = d3.select(d3Select + ' svg');
+        
+        if( scope.width !== undefined && scope.height !== undefined ) {
+            svg.attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height);
+        }
+        svg.datum(data)
             .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
             .call(chart);
     }
@@ -59,8 +62,12 @@
         if (chart) {
             chart.width(scope.width).height(scope.height);
             var d3Select = getD3Selector(attrs, element);
-            d3.select(d3Select + ' svg')
-                .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height);
+            if(scope.width !== undefined && scope.height !== undefined) {
+                d3.select(d3Select + ' svg')
+                    .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height);
+            } else {
+                d3.select(d3Select + ' svg').attr('viewBox', null);
+            }
             nv.utils.windowResize(chart);
             scope.chart.update();
         }
@@ -1167,8 +1174,6 @@
                     id: '@',
                     showlabels: '@',
                     showlegend: '@',
-                    donutLabelsOutside: '@',
-                    pieLabelsOutside: '@',
                     labelType: '@',
                     nodata: '@',
                     margin: '&',
@@ -1178,7 +1183,6 @@
                     donut: '@',
                     donutRatio: '@',
                     labelthreshold: '@',
-                    description: '&',
                     tooltips: '@',
                     tooltipcontent: '&',
                     valueFormat: '&',
@@ -1233,12 +1237,9 @@
                                         .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === 'true'))
                                         .labelThreshold(attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold)
                                         .labelType(attrs.labeltype === undefined ? 'key' : attrs.labeltype)
-                                        .pieLabelsOutside(attrs.pielabelsoutside === undefined ? true : (attrs.pielabelsoutside === 'true'))
                                         .valueFormat(attrs.valueformat === undefined ? d3.format(',.2f') : attrs.valueformat)
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .description(attrs.description === undefined ?  function(d) { return d.description; } : scope.description())
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .donutLabelsOutside(attrs.donutlabelsoutside === undefined ? false : (attrs.donutlabelsoutside === 'true'))
                                         .donut(attrs.donut === undefined ? false : (attrs.donut === 'true'))
                                         .donutRatio(attrs.donutratio === undefined ? 0.5 : (attrs.donutratio));
 
