@@ -62,8 +62,12 @@
         if (chart) {
             chart.width(scope.width).height(scope.height);
             var d3Select = getD3Selector(attrs, element);
-            d3.select(d3Select + ' svg')
-                .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height);
+            if(scope.width !== undefined && scope.height !== undefined) {
+                d3.select(d3Select + ' svg')
+                    .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height);
+            } else {
+                d3.select(d3Select + ' svg').attr('viewBox', null);
+            }
             nv.utils.windowResize(chart);
             scope.chart.update();
         }
@@ -1224,11 +1228,10 @@
                                     initializeMargin(scope, attrs);
                                     var chart = nv.models.pieChart()
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
-                                        .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y());
-                                    if(scope.width !== undefined && scope.height !== undefined) {
-                                        chart.width(scope.width).height(scope.height);
-                                    }
-                                    chart.margin(scope.margin)
+                                        .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                        .width(scope.width)
+                                        .height(scope.height)
+                                        .margin(scope.margin)
                                         .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === 'true'))
