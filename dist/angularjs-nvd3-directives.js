@@ -1,4 +1,4 @@
-/*! angularjs-nvd3-directives - v0.0.8 - 2015-02-04
+/*! angularjs-nvd3-directives - v0.0.8 - 2015-09-12
  * http://angularjs-nvd3-directives.github.io/angularjs-nvd3-directives
  * Copyright (c) 2015 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
@@ -901,6 +901,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -1039,6 +1042,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -1186,6 +1192,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -1355,6 +1364,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -1477,6 +1489,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -1605,6 +1620,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -1733,6 +1751,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -1824,6 +1845,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -1969,6 +1993,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -2149,6 +2176,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -2304,6 +2334,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -2486,6 +2519,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -2593,6 +2629,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -2663,6 +2702,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
@@ -2790,6 +2832,9 @@
           }
         ],
         link: function ( scope, element, attrs ) {
+          scope.$on( 'redrawNVD3', function () {
+            updateDimensions( scope, attrs, element, scope.chart );
+          } );
           scope.$watch( 'width + height', function () {
             updateDimensions( scope, attrs, element, scope.chart );
           } );
