@@ -1233,7 +1233,7 @@
                                         .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === 'true'))
                                         .labelThreshold(attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold)
                                         .labelType(attrs.labeltype === undefined ? 'key' : attrs.labeltype)
-                                        .pieLabelsOutside(attrs.pielabelsoutside === undefined ? true : (attrs.pielabelsoutside === 'true'))
+                                        .pieLabelsOutside(attrs.pieLabelsOutside === undefined ? true : (attrs.pieLabelsOutside === 'true'))
                                         .valueFormat(attrs.valueformat === undefined ? d3.format(',.2f') : attrs.valueformat)
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
                                         .description(attrs.description === undefined ?  function(d) { return d.description; } : scope.description())
