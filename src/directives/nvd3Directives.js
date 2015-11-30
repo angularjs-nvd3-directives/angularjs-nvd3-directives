@@ -1160,13 +1160,13 @@
                 restrict: 'EA',
                 scope: {
                     data: '=',
-                    filtername: '=',
-                    filtervalue: '=',
+                    filterName: '=',
+                    filterValue: '=',
                     width: '@',
                     height: '@',
                     id: '@',
-                    showlabels: '@',
-                    showlegend: '@',
+                    showLabels: '@',
+                    showLegend: '@',
                     donutLabelsOutside: '@',
                     pieLabelsOutside: '@',
                     labelType: '@',
@@ -1177,10 +1177,10 @@
                     color: '&',
                     donut: '@',
                     donutRatio: '@',
-                    labelthreshold: '@',
+                    labelThreshold: '@',
                     description: '&',
                     tooltips: '@',
-                    tooltipcontent: '&',
+                    tooltipContent: '&',
                     valueFormat: '&',
 
                     callback: '&',
@@ -1210,8 +1210,8 @@
                 link: function(scope, element, attrs){
                     scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
-                        if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
-                            data =  $filter(scope.filtername)(data, scope.filtervalue);
+                        if (data && angular.isDefined(scope.filterName) && angular.isDefined(scope.filterValue)) {
+                            data =  $filter(scope.filterName)(data, scope.filterValue);
                         }
 
                         if(data){
@@ -1223,27 +1223,27 @@
                                 generate: function(){
                                     initializeMargin(scope, attrs);
                                     var chart = nv.models.pieChart()
-                                        .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
-                                        .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                        .x(scope.x === undefined ? function(d){ return d[0]; } : scope.x())
+                                        .y(scope.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .width(scope.width)
                                         .height(scope.height)
                                         .margin(scope.margin)
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
-                                        .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                        .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === 'true'))
-                                        .labelThreshold(attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold)
-                                        .labelType(attrs.labeltype === undefined ? 'key' : attrs.labeltype)
-                                        .pieLabelsOutside(attrs.pieLabelsOutside === undefined ? true : (attrs.pieLabelsOutside === 'true'))
-                                        .valueFormat(attrs.valueformat === undefined ? d3.format(',.2f') : attrs.valueformat)
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .description(attrs.description === undefined ?  function(d) { return d.description; } : scope.description())
-                                        .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .donutLabelsOutside(attrs.donutlabelsoutside === undefined ? false : (attrs.donutlabelsoutside === 'true'))
-                                        .donut(attrs.donut === undefined ? false : (attrs.donut === 'true'))
-                                        .donutRatio(attrs.donutratio === undefined ? 0.5 : (attrs.donutratio));
+                                        .tooltips(scope.tooltips === undefined ? false : (scope.tooltips  === 'true'))
+                                        .noData(scope.nodata === undefined ? 'No Data Available.' : scope.nodata)
+                                        .showLabels(scope.showLabels === undefined ? false : (scope.showLabels === 'true'))
+                                        .labelThreshold(scope.labelThreshold === undefined ? 0.02 : scope.labelThreshold)
+                                        .labelType(scope.labelType === undefined ? 'key' : scope.labelType)
+                                        .pieLabelsOutside(scope.pieLabelsOutside === undefined ? true : (scope.pieLabelsOutside === 'true'))
+                                        .valueFormat(scope.valueformat === undefined ? d3.format(',.2f') : scope.valueformat)
+                                        .showLegend(scope.showLegend === undefined ? false : (scope.showLegend === 'true'))
+                                        .description(scope.description === undefined ?  function(d) { return d.description; } : scope.description())
+                                        .color(scope.color === undefined ? nv.utils.defaultColor()  : scope.color())
+                                        .donutLabelsOutside(scope.donutLabelsOutside === undefined ? false : (scope.donutLabelsOutside === 'true'))
+                                        .donut(scope.donut === undefined ? false : (scope.donut === 'true'))
+                                        .donutRatio(scope.donutRatio === undefined ? 0.5 : (scope.donutRatio));
 
-                                    if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                    if(attrs.tooltipContent){
+                                        chart.tooltipContent(scope.tooltipContent());
                                     }
 
                                     scope.d3Call(data, chart);
@@ -2295,7 +2295,7 @@
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
                         }
-                        
+
                         if(data){
                             //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                             if(scope.chart){
