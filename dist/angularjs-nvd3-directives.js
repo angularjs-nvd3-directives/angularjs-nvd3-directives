@@ -795,7 +795,7 @@
     if ( d3.select( d3Select + ' svg' ).empty() ) {
       d3.select( d3Select ).append( 'svg' );
     }
-    d3.select( d3Select + ' svg' ).attr( 'viewBox', '0 0 ' + scope.width + ' ' + scope.height ).datum( data ).transition().duration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration ).call( chart );
+    d3.select( d3Select + ' svg' ).datum( data ).transition().duration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration ).call( chart );
   }
 
   function updateDimensions( scope, attrs, element, chart ) {
@@ -901,9 +901,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -1037,9 +1034,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -1182,9 +1176,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -1349,9 +1340,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -1469,9 +1457,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -1595,9 +1580,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -1721,9 +1703,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -1810,9 +1789,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -1953,9 +1929,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -2133,9 +2106,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -2288,9 +2258,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -2468,9 +2435,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
@@ -2573,9 +2537,6 @@
           }
         ],
         link: function ( scope, element, attrs ) {
-          scope.$watch( 'width + height', function () {
-            updateDimensions( scope, attrs, element, scope.chart );
-          } );
           scope.$watch( 'data', function ( data ) {
             if ( data && angular.isDefined( scope.filtername ) && angular.isDefined( scope.filtervalue ) ) {
               data = $filter( scope.filtername )( data, scope.filtervalue );
