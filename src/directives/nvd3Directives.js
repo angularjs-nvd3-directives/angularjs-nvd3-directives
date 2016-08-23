@@ -3,30 +3,25 @@
      should prevent NaN errors
      */
 
-    function initializeMargin(scope, attrs){
-        var margin = (scope.$eval(attrs.margin) || {left: 50, top: 50, bottom: 50, right: 50});
-        if (typeof(margin) !== 'object') {
-            // we were passed a vanilla int, convert to full margin object
-            margin = {left: margin, top: margin, bottom: margin, right: margin};
+    function initializeMargin(scope) {
+
+        // Defaults
+        var defaults = {
+          left: 50,
+          top: 50,
+          bottom: 50,
+          right: 50
+        };
+
+        try {
+          if (angular.isObject(scope.margin())) {
+            scope.margin = angular.copy(scope.margin());
+          } else {
+            scope.margin = defaults;
+          }
         }
-        scope.margin = margin;
-    }
-
-
-    function getD3Selector(attrs, element) {
-        if (!attrs.id) {
-            //if an id is not supplied, create a random id.
-            var dataAttributeChartID;
-            if (!attrs['data-chartid']) {
-                dataAttributeChartID = 'chartid' + Math.floor(Math.random() * 1000000001);
-                angular.element(element).attr('data-chartid', dataAttributeChartID);
-            }
-            else {
-                dataAttributeChartID = attrs['data-chartid'];
-            }
-            return '[data-chartid=' + dataAttributeChartID + ']';
-        } else {
-            return '#' + attrs.id;
+        catch (e) {
+          scope.margin = defaults;
         }
     }
 
@@ -38,30 +33,25 @@
         configureY2axis(chart, scope, attrs);
         configureLegend(chart, scope, attrs);
         processEvents(chart, scope);
-
-        var d3Select = getD3Selector(attrs, element);
-
-        if (angular.isArray(data) && data.length === 0) {
-            d3.select(d3Select + ' svg').remove();
-        }
-        if (d3.select(d3Select + ' svg').empty()) {
-            d3.select(d3Select)
-                .append('svg');
-        }
-        d3.select(d3Select + ' svg')
-            .datum(data)
-            .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
-            .call(chart);
-    }
-
-    function updateDimensions(scope, attrs, element, chart) {
-        if (chart) {
-            chart.width(scope.width).height(scope.height);
-            var d3Select = getD3Selector(attrs, element);
-            d3.select(d3Select + ' svg')
-                .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height);
-            nv.utils.windowResize(chart);
-            scope.chart.update();
+        var dataAttributeChartID;
+        //randomly generated if id attribute doesn't exist
+        if (!attrs.id) {
+          dataAttributeChartID = 'chartid' + Math.floor(Math.random() * 1000000001);
+          angular.element(element).attr('data-chartid', dataAttributeChartID);
+          //if an id is not supplied, create a random id.
+          if (d3.select('[data-chartid=' + dataAttributeChartID + '] svg').empty()) {
+            d3.select('[data-chartid=' + dataAttributeChartID + ']').append('svg').attr('height', scope.height).attr('width', scope.width).datum(data).transition().duration(attrs.transitionduration === undefined ? 250 : +attrs.transitionduration).call(chart);
+          } else {
+            d3.select('[data-chartid=' + dataAttributeChartID + '] svg').attr('height', scope.height).attr('width', scope.width).datum(data).transition().duration(attrs.transitionduration === undefined ? 250 : +attrs.transitionduration).call(chart);
+          }
+        } else {
+          if (angular.isArray(data) && data.length === 0) {
+            d3.select('#' + attrs.id + ' svg').remove();
+          }
+          if (d3.select('#' + attrs.id + ' svg').empty()) {
+            d3.select('#' + attrs.id).append('svg');
+          }
+          d3.select('#' + attrs.id + ' svg').attr('height', scope.height).attr('width', scope.width).datum(data).transition().duration(attrs.transitionduration === undefined ? 250 : +attrs.transitionduration).call(chart);
         }
     }
 
@@ -207,7 +197,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -362,7 +356,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -570,7 +568,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -717,7 +719,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -855,7 +861,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -997,7 +1007,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1139,7 +1153,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1443,7 +1461,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1601,7 +1623,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1780,7 +1806,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1994,7 +2024,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -2070,7 +2104,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -2120,7 +2158,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -2157,7 +2194,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -2279,7 +2320,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -2342,7 +2382,11 @@
 
                                     scope.d3Call(data, chart);
 
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
 
                                     scope.chart = chart;
                                     return chart;
