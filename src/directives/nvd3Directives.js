@@ -188,7 +188,7 @@
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
                                         .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === 'true'))
@@ -205,7 +205,7 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
@@ -342,7 +342,7 @@
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
                                         .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === 'true'))
@@ -361,7 +361,7 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
@@ -511,7 +511,7 @@
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === 'true'))
@@ -542,7 +542,7 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     if(attrs.xscale){
@@ -705,7 +705,7 @@
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .reduceXTicks(attrs.reducexticks === undefined ? false: (attrs.reducexticks === 'true'))
                                         .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
@@ -715,7 +715,7 @@
                                         .stacked(attrs.stacked === undefined ? false : (attrs.stacked === 'true'));
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
@@ -842,7 +842,7 @@
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                         .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
@@ -850,7 +850,7 @@
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     if(attrs.valueformat){
@@ -983,7 +983,7 @@
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
@@ -993,7 +993,7 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     if(attrs.valueformat){
@@ -1127,7 +1127,7 @@
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
@@ -1136,7 +1136,7 @@
                                         .stacked(attrs.stacked === undefined ? false : (attrs.stacked === 'true'));
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     if(attrs.valueformat){
@@ -1228,7 +1228,7 @@
                                         .width(scope.width)
                                         .height(scope.height)
                                         .margin(scope.margin)
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === 'true'))
                                         .labelThreshold(attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold)
@@ -1243,7 +1243,7 @@
                                         .donutRatio(attrs.donutratio === undefined ? 0.5 : (attrs.donutratio));
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
@@ -1393,7 +1393,7 @@
                                         .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize))
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
                                         .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
                                         .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
@@ -1590,7 +1590,7 @@
                                         .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                         .size(attrs.size === undefined ? function(d){ return (d.size === undefined ? 1 : d.size); }: scope.size())
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
                                         .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
                                         .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
@@ -1761,7 +1761,7 @@
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
@@ -1777,7 +1777,7 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     if ( attrs.lineinteractive && attrs.lineinteractive === 'false') {
@@ -1985,7 +1985,7 @@
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex))
                                         .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                         .isArea(attrs.isarea === undefined ? function(d) { return d.area; } : function(){ return (attrs.isarea === 'true'); })
@@ -2000,7 +2000,7 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
@@ -2073,11 +2073,11 @@
     //                                    .markers(attrs.markers === undefined ? function(d){ return d.markers; } : scope.markers())
     //                                    .measures(attrs.measures === undefined ? function(d){ return d.measures; } : scope.measures())
                                         .tickFormat(attrs.tickformat === undefined ? null : scope.tickformat())
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
@@ -2295,7 +2295,7 @@
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
                         }
-                        
+
                         if(data){
                             //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                             if(scope.chart){
