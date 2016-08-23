@@ -50,14 +50,9 @@ function processEvents(chart, scope) {
 			scope.$emit('areaClick.toggle.directive', event);
 		});
 
-		chart.stacked.dispatch.on('tooltipShow.directive', function (event) {
-			scope.$emit('tooltipShow.directive', event);
+		chart.stacked.dispatch.on('elementClick.directive', function (event) {
+			scope.$emit('elementClick.directive', event);
 		});
-
-		chart.stacked.dispatch.on('tooltipHide.directive', function (event) {
-			scope.$emit('tooltipHide.directive', event);
-		});
-
 	}
 
 	if (chart.interactiveLayer) {
@@ -111,7 +106,7 @@ function processEvents(chart, scope) {
 		chart.pie.dispatch.on('elementMouseout.tooltip.directive', function (event) {
 			scope.$emit('elementMouseout.tooltip.directive', event);
 		});
-		
+
 		chart.pie.dispatch.on('elementClick.directive', function(event) {
                 	scope.$emit('elementClick.directive', event);
             	});

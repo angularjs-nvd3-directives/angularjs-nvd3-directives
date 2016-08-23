@@ -413,7 +413,7 @@
                     callback: '&',
 
                     //xaxis
-                    showxaxis: '&',
+                    showxaxis: '@',
                     xaxisorient: '&',
                     xaxisticks: '&',
                     xaxistickvalues: '&xaxistickvalues',
@@ -434,7 +434,7 @@
                     xaxisstaggerlabels: '@',
                     xaxisaxislabeldistance: '@',
                     //yaxis
-                    showyaxis: '&',
+                    showyaxis: '@',
                     useinteractiveguideline: '@',
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -499,8 +499,6 @@
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .size(attrs.size === undefined ? function(d) { return (d.size === undefined ? 1 : d.size); } : scope.size())
-                                        .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize)) // List of numbers to Force into the Size scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
@@ -613,7 +611,7 @@
                     callback: '&',
 
                     //xaxis
-                    showxaxis: '&',
+                    showxaxis: '@',
                     xaxisorient: '&',
                     xaxisticks: '&',
                     xaxistickvalues: '&xaxistickvalues',
@@ -634,7 +632,7 @@
                     xaxisstaggerlabels: '@',
                     xaxisaxislabeldistance: '@',
                     //yaxis
-                    showyaxis: '&',
+                    showyaxis: '@',
                     yaxisorient: '&',
                     yaxisticks: '&',
                     yaxistickvalues: '&yaxistickvalues',
