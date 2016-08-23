@@ -285,14 +285,9 @@
         scope.$emit('areaClick.toggle.directive', event);
       });
 
-      chart.stacked.dispatch.on('tooltipShow.directive', function (event) {
-        scope.$emit('tooltipShow.directive', event);
+      chart.stacked.dispatch.on('elementClick.directive', function (event) {
+        scope.$emit('elementClick.directive', event);
       });
-
-      chart.stacked.dispatch.on('tooltipHide.directive', function (event) {
-        scope.$emit('tooltipHide.directive', event);
-      });
-
     }
 
     if (chart.interactiveLayer) {
@@ -1110,7 +1105,7 @@
           yRange: '&',
           sizeDomain: '&',
           callback: '&',
-          showxaxis: '&',
+          showxaxis: '@',
           xaxisorient: '&',
           xaxisticks: '&',
           xaxistickvalues: '&xaxistickvalues',
@@ -1130,7 +1125,7 @@
           xaxisrotateylabel: '@',
           xaxisstaggerlabels: '@',
           xaxisaxislabeldistance: '@',
-          showyaxis: '&',
+          showyaxis: '@',
           useinteractiveguideline: '@',
           yaxisorient: '&',
           yaxisticks: '&',
@@ -1190,9 +1185,7 @@
                     return d[0];
                   } : scope.x()).y(attrs.y === undefined ? function (d) {
                     return d[1];
-                  } : scope.y()).forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)).forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)).size(attrs.size === undefined ? function (d) {
-                    return d.size === undefined ? 1 : d.size;
-                  } : scope.size()).forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize)).showLegend(attrs.showlegend === undefined ? false : attrs.showlegend === 'true').showControls(attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true').showXAxis(attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true').showYAxis(attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true').noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata).interactive(attrs.interactive === undefined ? false : attrs.interactive === 'true').clipEdge(attrs.clipedge === undefined ? false : attrs.clipedge === 'true').color(attrs.color === undefined ? nv.utils.defaultColor() : scope.color());
+                  } : scope.y()).forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)).forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)).showLegend(attrs.showlegend === undefined ? false : attrs.showlegend === 'true').showControls(attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true').showXAxis(attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true').showYAxis(attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true').noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata).interactive(attrs.interactive === undefined ? false : attrs.interactive === 'true').clipEdge(attrs.clipedge === undefined ? false : attrs.clipedge === 'true').color(attrs.color === undefined ? nv.utils.defaultColor() : scope.color());
                   if (attrs.useinteractiveguideline) {
                     chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true');
                   }
@@ -1279,7 +1272,7 @@
           delay: '@',
           stacked: '@',
           callback: '&',
-          showxaxis: '&',
+          showxaxis: '@',
           xaxisorient: '&',
           xaxisticks: '&',
           xaxistickvalues: '&xaxistickvalues',
@@ -1299,7 +1292,7 @@
           xaxisrotateylabel: '@',
           xaxisstaggerlabels: '@',
           xaxisaxislabeldistance: '@',
-          showyaxis: '&',
+          showyaxis: '@',
           yaxisorient: '&',
           yaxisticks: '&',
           yaxistickvalues: '&yaxistickvalues',
