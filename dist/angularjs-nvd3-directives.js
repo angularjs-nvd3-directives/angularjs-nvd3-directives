@@ -1,6 +1,6 @@
-/*! angularjs-nvd3-directives - v0.0.8 - 2015-02-04
+/*! angularjs-nvd3-directives - v0.0.8 - 2016-08-22
  * http://angularjs-nvd3-directives.github.io/angularjs-nvd3-directives
- * Copyright (c) 2015 Christian Maurer; Licensed Apache License, v2.0 */
+ * Copyright (c) 2016 Christian Maurer; Licensed Apache License, v2.0 */
 ( function () {
   'use strict';
 
@@ -920,7 +920,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).rightAlignYAxis( attrs.rightalignyaxis === undefined ? false : attrs.rightalignyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).clipVoronoi( attrs.clipvoronoi === undefined ? false : attrs.clipvoronoi === 'true' ).interpolate( attrs.interpolate === undefined ? 'linear' : attrs.interpolate ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).isArea( attrs.isarea === undefined ? function ( d ) {
+                  } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).rightAlignYAxis( attrs.rightalignyaxis === undefined ? false : attrs.rightalignyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).clipVoronoi( attrs.clipvoronoi === undefined ? false : attrs.clipvoronoi === 'true' ).interpolate( attrs.interpolate === undefined ? 'linear' : attrs.interpolate ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).isArea( attrs.isarea === undefined ? function ( d ) {
                     return d.area;
                   } : function () {
                     return attrs.isarea === 'true';
@@ -928,9 +928,7 @@
                   if ( attrs.useinteractiveguideline ) {
                     chart.useInteractiveGuideline( attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true' );
                   }
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  if ( attrs.tooltipcontent ) {}
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
                   scope.chart = chart;
@@ -1058,7 +1056,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).rightAlignYAxis( attrs.rightalignyaxis === undefined ? false : attrs.rightalignyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).clipVoronoi( attrs.clipvoronoi === undefined ? false : attrs.clipvoronoi === 'true' ).useVoronoi( attrs.usevoronoi === undefined ? false : attrs.usevoronoi === 'true' ).average( attrs.average === undefined ? function ( d ) {
+                  } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).rightAlignYAxis( attrs.rightalignyaxis === undefined ? false : attrs.rightalignyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).clipVoronoi( attrs.clipvoronoi === undefined ? false : attrs.clipvoronoi === 'true' ).useVoronoi( attrs.usevoronoi === undefined ? false : attrs.usevoronoi === 'true' ).average( attrs.average === undefined ? function ( d ) {
                     return d.average;
                   } : scope.average() ).color( attrs.color === undefined ? d3.scale.category10().range() : scope.color() ).isArea( attrs.isarea === undefined ? function ( d ) {
                     return d.area;
@@ -1067,9 +1065,7 @@
                   if ( attrs.useinteractiveguideline ) {
                     chart.useInteractiveGuideline( attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true' );
                   }
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  if ( attrs.tooltipcontent ) {}
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
                   scope.chart = chart;
@@ -1207,7 +1203,7 @@
                     return d[ 1 ];
                   } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).size( attrs.size === undefined ? function ( d ) {
                     return d.size === undefined ? 1 : d.size;
-                  } : scope.size() ).forceSize( attrs.forcesize === undefined ? [] : scope.$eval( attrs.forcesize ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
+                  } : scope.size() ).forceSize( attrs.forcesize === undefined ? [] : scope.$eval( attrs.forcesize ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
                   if ( attrs.useinteractiveguideline ) {
                     chart.useInteractiveGuideline( attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true' );
                   }
@@ -1226,9 +1222,7 @@
                   if ( attrs.interpolate ) {
                     chart.interpolate( attrs.interpolate );
                   }
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  if ( attrs.tooltipcontent ) {}
                   if ( attrs.xscale ) {
                     chart.xScale( scope.xscale() );
                   }
@@ -1374,10 +1368,8 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).reduceXTicks( attrs.reducexticks === undefined ? false : attrs.reducexticks === 'true' ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).rotateLabels( attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).delay( attrs.delay === undefined ? 1200 : attrs.delay ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).reduceXTicks( attrs.reducexticks === undefined ? false : attrs.reducexticks === 'true' ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).rotateLabels( attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).delay( attrs.delay === undefined ? 1200 : attrs.delay ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
+                  if ( attrs.tooltipcontent ) {}
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
                   scope.chart = chart;
@@ -1496,10 +1488,8 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
+                  if ( attrs.tooltipcontent ) {}
                   if ( attrs.valueformat ) {
                     chart.valueFormat( scope.valueformat() );
                   }
@@ -1624,13 +1614,11 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
+                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
                   if ( attrs.useinteractiveguideline ) {
                     chart.useInteractiveGuideline( attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true' );
                   }
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  if ( attrs.tooltipcontent ) {}
                   if ( attrs.valueformat ) {
                     chart.valueFormat( scope.valueformat() );
                   }
@@ -1752,10 +1740,8 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  } : scope.y() ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
+                  if ( attrs.tooltipcontent ) {}
                   if ( attrs.valueformat ) {
                     chart.valueFormat( scope.valueformat() );
                   }
@@ -1843,12 +1829,10 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).width( scope.width ).height( scope.height ).margin( scope.margin ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).showLabels( attrs.showlabels === undefined ? false : attrs.showlabels === 'true' ).labelThreshold( attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold ).labelType( attrs.labeltype === undefined ? 'key' : attrs.labeltype ).pieLabelsOutside( attrs.pielabelsoutside === undefined ? true : attrs.pielabelsoutside === 'true' ).valueFormat( attrs.valueformat === undefined ? d3.format( ',.2f' ) : attrs.valueformat ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).description( attrs.description === undefined ? function ( d ) {
+                  } : scope.y() ).width( scope.width ).height( scope.height ).margin( scope.margin ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).showLabels( attrs.showlabels === undefined ? false : attrs.showlabels === 'true' ).labelThreshold( attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold ).labelType( attrs.labeltype === undefined ? 'key' : attrs.labeltype ).pieLabelsOutside( attrs.pielabelsoutside === undefined ? true : attrs.pielabelsoutside === 'true' ).valueFormat( attrs.valueformat === undefined ? d3.format( ',.2f' ) : attrs.valueformat ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).description( attrs.description === undefined ? function ( d ) {
                     return d.description;
                   } : scope.description() ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).donutLabelsOutside( attrs.donutlabelsoutside === undefined ? false : attrs.donutlabelsoutside === 'true' ).donut( attrs.donut === undefined ? false : attrs.donut === 'true' ).donutRatio( attrs.donutratio === undefined ? 0.5 : attrs.donutratio );
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  if ( attrs.tooltipcontent ) {}
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
                   scope.chart = chart;
@@ -1990,7 +1974,7 @@
                     return d.y;
                   } : scope.y() ).size( attrs.size === undefined ? function ( d ) {
                     return d.size === undefined ? 1 : d.size;
-                  } : scope.size() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [] : scope.$eval( attrs.forcey ) ).forceSize( attrs.forcesize === undefined ? [] : scope.$eval( attrs.forcesize ) ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).tooltipContent( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).tooltipXContent( attrs.tooltipxcontent === undefined ? function ( key, x ) {
+                  } : scope.size() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [] : scope.$eval( attrs.forcey ) ).forceSize( attrs.forcesize === undefined ? [] : scope.$eval( attrs.forcesize ) ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).tooltipContent( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).tooltipXContent( attrs.tooltipxcontent === undefined ? function ( key, x ) {
                     return '<strong>' + x + '</strong>';
                   } : scope.tooltipXContent() ).tooltipYContent( attrs.tooltipycontent === undefined ? function ( key, x, y ) {
                     return '<strong>' + y + '</strong>';
@@ -2169,7 +2153,7 @@
                     return d.y;
                   } : scope.y() ).size( attrs.size === undefined ? function ( d ) {
                     return d.size === undefined ? 1 : d.size;
-                  } : scope.size() ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).tooltipContent( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).tooltipXContent( attrs.tooltipxcontent === undefined ? function ( key, x ) {
+                  } : scope.size() ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).tooltipContent( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).tooltipXContent( attrs.tooltipxcontent === undefined ? function ( key, x ) {
                     return '<strong>' + x + '</strong>';
                   } : scope.tooltipXContent() ).tooltipYContent( attrs.tooltipycontent === undefined ? function ( key, x, y ) {
                     return '<strong>' + y + '</strong>';
@@ -2323,7 +2307,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interpolate( attrs.interpolate === undefined ? 'linear' : attrs.interpolate ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
+                  } : scope.y() ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interpolate( attrs.interpolate === undefined ? 'linear' : attrs.interpolate ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
                   if ( attrs.forcex ) {
                     chart.lines.forceX( scope.$eval( attrs.forcex ) );
                     chart.bars.forceX( scope.$eval( attrs.forcex ) );
@@ -2332,9 +2316,7 @@
                     chart.lines.forceY( scope.$eval( attrs.forcey ) );
                     chart.bars.forceY( scope.$eval( attrs.forcey ) );
                   }
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  if ( attrs.tooltipcontent ) {}
                   if ( attrs.lineinteractive && attrs.lineinteractive === 'false' ) {
                     chart.lines.interactive( false );
                   }
@@ -2532,7 +2514,7 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).isArea( attrs.isarea === undefined ? function ( d ) {
+                  } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).isArea( attrs.isarea === undefined ? function ( d ) {
                     return d.area;
                   } : function () {
                     return attrs.isarea === 'true';
@@ -2542,9 +2524,7 @@
                   if ( attrs.defined ) {
                     chart.defined( scope.defined() );
                   }
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  if ( attrs.tooltipcontent ) {}
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
                   scope.chart = chart;
@@ -2608,10 +2588,8 @@
               nv.addGraph( {
                 generate: function () {
                   initializeMargin( scope, attrs );
-                  var chart = nv.models.bulletChart().width( scope.width ).height( scope.height ).margin( scope.margin ).orient( attrs.orient === undefined ? 'left' : attrs.orient ).tickFormat( attrs.tickformat === undefined ? null : scope.tickformat() ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata );
-                  if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
-                  }
+                  var chart = nv.models.bulletChart().width( scope.width ).height( scope.height ).margin( scope.margin ).orient( attrs.orient === undefined ? 'left' : attrs.orient ).tickFormat( attrs.tickformat === undefined ? null : scope.tickformat() ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata );
+                  if ( attrs.tooltipcontent ) {}
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
                   scope.chart = chart;
