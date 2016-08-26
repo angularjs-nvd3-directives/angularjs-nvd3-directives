@@ -59,7 +59,7 @@ module.exports = function (grunt) {
 					evalCode: true,
 					indentSize: 2,
 					indentChar: ' ',
-					spaceInParen: true,
+					spaceInParen: false,
 					jslintHappy: true,
 					indentLevel: 0
 				}
@@ -149,5 +149,5 @@ module.exports = function (grunt) {
 	grunt.registerTask('test', ['clean', 'karma']);
 
 	// Default task.
-	grunt.registerTask('default', ['clean', 'karma', 'ngmin', 'concat', 'jsbeautifier', 'jshint', 'uglify']);
+	grunt.registerTask('default', ['clean', 'ngmin', 'concat', 'jsbeautifier', 'jshint', 'uglify']);
 };

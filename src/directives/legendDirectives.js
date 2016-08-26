@@ -1,4 +1,5 @@
 angular.module('legendDirectives', [])
+
 	.directive('simpleSvgLegend', function () {
 		return {
 			restrict: 'EA',
@@ -225,7 +226,13 @@ angular.module('legendDirectives', [])
 									.transition()
 									.duration(250)
 									.call(chart);
-								nv.utils.windowResize(chart.update);
+
+								nv.utils.windowResize(function(e) {
+                  if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                    chart.update();
+                  }
+                });
+
 								scope.chart = chart;
 								return chart;
 							}

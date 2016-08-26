@@ -3,30 +3,25 @@
      should prevent NaN errors
      */
 
-    function initializeMargin(scope, attrs){
-        var margin = (scope.$eval(attrs.margin) || {left: 50, top: 50, bottom: 50, right: 50});
-        if (typeof(margin) !== 'object') {
-            // we were passed a vanilla int, convert to full margin object
-            margin = {left: margin, top: margin, bottom: margin, right: margin};
+    function initializeMargin(scope) {
+
+        // Defaults
+        var defaults = {
+          left: 50,
+          top: 50,
+          bottom: 50,
+          right: 50
+        };
+
+        try {
+          if (angular.isObject(scope.margin())) {
+            scope.margin = angular.copy(scope.margin());
+          } else {
+            scope.margin = defaults;
+          }
         }
-        scope.margin = margin;
-    }
-
-
-    function getD3Selector(attrs, element) {
-        if (!attrs.id) {
-            //if an id is not supplied, create a random id.
-            var dataAttributeChartID;
-            if (!attrs['data-chartid']) {
-                dataAttributeChartID = 'chartid' + Math.floor(Math.random() * 1000000001);
-                angular.element(element).attr('data-chartid', dataAttributeChartID);
-            }
-            else {
-                dataAttributeChartID = attrs['data-chartid'];
-            }
-            return '[data-chartid=' + dataAttributeChartID + ']';
-        } else {
-            return '#' + attrs.id;
+        catch (e) {
+          scope.margin = defaults;
         }
     }
 
@@ -38,31 +33,25 @@
         configureY2axis(chart, scope, attrs);
         configureLegend(chart, scope, attrs);
         processEvents(chart, scope);
-
-        var d3Select = getD3Selector(attrs, element);
-
-        if (angular.isArray(data) && data.length === 0) {
-            d3.select(d3Select + ' svg').remove();
-        }
-        if (d3.select(d3Select + ' svg').empty()) {
-            d3.select(d3Select)
-                .append('svg');
-        }
-        d3.select(d3Select + ' svg')
-            .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height)
-            .datum(data)
-            .transition().duration((attrs.transitionduration === undefined ? 250 : (+attrs.transitionduration)))
-            .call(chart);
-    }
-
-    function updateDimensions(scope, attrs, element, chart) {
-        if (chart) {
-            chart.width(scope.width).height(scope.height);
-            var d3Select = getD3Selector(attrs, element);
-            d3.select(d3Select + ' svg')
-                .attr('viewBox', '0 0 ' + scope.width + ' ' + scope.height);
-            nv.utils.windowResize(chart);
-            scope.chart.update();
+        var dataAttributeChartID;
+        //randomly generated if id attribute doesn't exist
+        if (!attrs.id) {
+          dataAttributeChartID = 'chartid' + Math.floor(Math.random() * 1000000001);
+          angular.element(element).attr('data-chartid', dataAttributeChartID);
+          //if an id is not supplied, create a random id.
+          if (d3.select('[data-chartid=' + dataAttributeChartID + '] svg').empty()) {
+            d3.select('[data-chartid=' + dataAttributeChartID + ']').append('svg').attr('height', scope.height).attr('width', scope.width).datum(data).transition().duration(attrs.transitionduration === undefined ? 250 : +attrs.transitionduration).call(chart);
+          } else {
+            d3.select('[data-chartid=' + dataAttributeChartID + '] svg').attr('height', scope.height).attr('width', scope.width).datum(data).transition().duration(attrs.transitionduration === undefined ? 250 : +attrs.transitionduration).call(chart);
+          }
+        } else {
+          if (angular.isArray(data) && data.length === 0) {
+            d3.select('#' + attrs.id + ' svg').remove();
+          }
+          if (d3.select('#' + attrs.id + ' svg').empty()) {
+            d3.select('#' + attrs.id).append('svg');
+          }
+          d3.select('#' + attrs.id + ' svg').attr('height', scope.height).attr('width', scope.width).datum(data).transition().duration(attrs.transitionduration === undefined ? 250 : +attrs.transitionduration).call(chart);
         }
     }
 
@@ -165,7 +154,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -188,7 +176,7 @@
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
                                         .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === 'true'))
@@ -205,11 +193,15 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -319,7 +311,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -342,7 +333,7 @@
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
                                         .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === 'true'))
@@ -361,11 +352,15 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -418,7 +413,7 @@
                     callback: '&',
 
                     //xaxis
-                    showxaxis: '&',
+                    showxaxis: '@',
                     xaxisorient: '&',
                     xaxisticks: '&',
                     xaxistickvalues: '&xaxistickvalues',
@@ -439,7 +434,7 @@
                     xaxisstaggerlabels: '@',
                     xaxisaxislabeldistance: '@',
                     //yaxis
-                    showyaxis: '&',
+                    showyaxis: '@',
                     useinteractiveguideline: '@',
                     yaxisorient: '&',
                     yaxisticks: '&',
@@ -483,7 +478,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -505,13 +499,11 @@
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .size(attrs.size === undefined ? function(d) { return (d.size === undefined ? 1 : d.size); } : scope.size())
-                                        .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize)) // List of numbers to Force into the Size scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === 'true'))
@@ -542,7 +534,7 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     if(attrs.xscale){
@@ -574,7 +566,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -615,7 +611,7 @@
                     callback: '&',
 
                     //xaxis
-                    showxaxis: '&',
+                    showxaxis: '@',
                     xaxisorient: '&',
                     xaxisticks: '&',
                     xaxistickvalues: '&xaxistickvalues',
@@ -636,7 +632,7 @@
                     xaxisstaggerlabels: '@',
                     xaxisaxislabeldistance: '@',
                     //yaxis
-                    showyaxis: '&',
+                    showyaxis: '@',
                     yaxisorient: '&',
                     yaxisticks: '&',
                     yaxistickvalues: '&yaxistickvalues',
@@ -680,7 +676,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -698,28 +693,35 @@
                                         .width(scope.width)
                                         .height(scope.height)
                                         .margin(scope.margin)
-                                        .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
-                                        .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
-                                        .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
-                                        .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
-                                        .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
-                                        .reduceXTicks(attrs.reducexticks === undefined ? false: (attrs.reducexticks === 'true'))
-                                        .staggerLabels(attrs.staggerlabels === undefined ? false : (attrs.staggerlabels === 'true'))
+                                        .x(attrs.x === undefined ? function(d) {
+                                        return d[0];
+                                        } : scope.x())
+                                        .y(attrs.y === undefined ? function(d) {
+                                        return d[ 1 ];
+                                        } : scope.y())
+                                        .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey))
+                                        .showLegend(attrs.showlegend === undefined ? false : attrs.showlegend === 'true')
+                                        .showControls(attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true')
+                                        .showXAxis(attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true')
+                                        .showYAxis(attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true')
+                                        // .tooltips(attrs.tooltips === undefined ? false : attrs.tooltips === 'true')
+                                        .reduceXTicks(attrs.reducexticks === undefined ? false : attrs.reducexticks === 'true')
+                                        .staggerLabels(attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true')
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .rotateLabels(attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels)
-                                        .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .delay(attrs.delay === undefined ? 1200 : attrs.delay)
-                                        .stacked(attrs.stacked === undefined ? false : (attrs.stacked === 'true'));
+                                        .color(attrs.color === undefined ? nv.utils.defaultColor() : scope.color())
+                                        .stacked(attrs.stacked === undefined ? false : attrs.stacked === 'true');
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -820,7 +822,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -842,7 +843,7 @@
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                         .showValues(attrs.showvalues === undefined ? false : (attrs.showvalues === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
@@ -850,7 +851,7 @@
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     if(attrs.valueformat){
@@ -858,7 +859,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -962,7 +967,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -983,7 +987,7 @@
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
@@ -993,7 +997,7 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     if(attrs.valueformat){
@@ -1001,7 +1005,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1104,7 +1112,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -1127,7 +1134,7 @@
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
@@ -1136,7 +1143,7 @@
                                         .stacked(attrs.stacked === undefined ? false : (attrs.stacked === 'true'));
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     if(attrs.valueformat){
@@ -1144,7 +1151,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1199,7 +1210,8 @@
                     objectequality: '@',
 
                     //d3.js specific
-                    transitionduration: '@'
+                    transitionduration: '@',
+                    tooltippiecontentvalueformatter: '&'
 
                 },
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
@@ -1208,7 +1220,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -1216,38 +1227,41 @@
 
                         if(data){
                             //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
-                            if(scope.chart){
+                            if(scope.chart) {
+                                if (Array.isArray(data) && data.length > 0 && attrs.tooltipcontent && attrs.tooltippiecontentvalueformatter) {
+                                  scope.tooltippiecontentvalueformatter()(scope.chart.tooltip, data);
+                                }
                                 return scope.d3Call(data, scope.chart);
                             }
                             nv.addGraph({
                                 generate: function(){
                                     initializeMargin(scope, attrs);
                                     var chart = nv.models.pieChart()
-                                        .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
-                                        .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                        .x(attrs.x === undefined ? function(d) {
+                                            return d[0];
+                                            } : scope.x())
+                                        .y(attrs.y === undefined ? function(d) {
+                                            return d[ 1 ];
+                                            } : scope.y())
                                         .width(scope.width)
                                         .height(scope.height)
                                         .margin(scope.margin)
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : attrs.tooltips === 'true')
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
-                                        .showLabels(attrs.showlabels === undefined ? false : (attrs.showlabels === 'true'))
+                                        .showLabels(attrs.showlabels === undefined ? false : attrs.showlabels === 'true')
                                         .labelThreshold(attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold)
                                         .labelType(attrs.labeltype === undefined ? 'key' : attrs.labeltype)
-                                        .pieLabelsOutside(attrs.pielabelsoutside === undefined ? true : (attrs.pielabelsoutside === 'true'))
+                                        .labelsOutside(attrs.pielabelsoutside === undefined ? true : attrs.pielabelsoutside === 'true')
                                         .valueFormat(attrs.valueformat === undefined ? d3.format(',.2f') : attrs.valueformat)
-                                        .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .description(attrs.description === undefined ?  function(d) { return d.description; } : scope.description())
-                                        .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
-                                        .donutLabelsOutside(attrs.donutlabelsoutside === undefined ? false : (attrs.donutlabelsoutside === 'true'))
-                                        .donut(attrs.donut === undefined ? false : (attrs.donut === 'true'))
-                                        .donutRatio(attrs.donutratio === undefined ? 0.5 : (attrs.donutratio));
-
-                                    if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        .showLegend(attrs.showlegend === undefined ? false : attrs.showlegend === 'true')
+                                        .color(attrs.color === undefined ? nv.utils.defaultColor() : scope.color())
+                                        .donut(attrs.donut === undefined ? false : attrs.donut === 'true')
+                                        .donutRatio(attrs.donutratio === undefined ? 0.5 : attrs.donutratio);
+                                    if (attrs.tooltipcontent) {
+                                    // chart.tooltipContent(scope.tooltipcontent());
                                     }
-
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize( chart.update );
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1368,7 +1382,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -1393,7 +1406,7 @@
                                         .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize))
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
                                         .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
                                         .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
@@ -1450,7 +1463,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1568,7 +1585,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -1590,7 +1606,7 @@
                                         .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                         .size(attrs.size === undefined ? function(d){ return (d.size === undefined ? 1 : d.size); }: scope.size())
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
                                         .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
                                         .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
@@ -1609,7 +1625,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1740,7 +1760,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -1761,7 +1780,7 @@
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
@@ -1777,7 +1796,7 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     if ( attrs.lineinteractive && attrs.lineinteractive === 'false') {
@@ -1789,7 +1808,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -1940,7 +1963,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -1985,7 +2007,7 @@
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex))
                                         .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                         .isArea(attrs.isarea === undefined ? function(d) { return d.area; } : function(){ return (attrs.isarea === 'true'); })
@@ -2000,11 +2022,15 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -2050,7 +2076,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -2073,15 +2098,19 @@
     //                                    .markers(attrs.markers === undefined ? function(d){ return d.markers; } : scope.markers())
     //                                    .measures(attrs.measures === undefined ? function(d){ return d.measures; } : scope.measures())
                                         .tickFormat(attrs.tickformat === undefined ? null : scope.tickformat())
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
+                                        // .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        // chart.tooltipContent(scope.tooltipcontent());
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -2131,7 +2160,6 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
@@ -2168,7 +2196,11 @@
                                     }
 
                                     scope.d3Call(data, chart);
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
                                     scope.chart = chart;
                                     return chart;
                                 },
@@ -2290,12 +2322,11 @@
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('width + height', function() { updateDimensions(scope,attrs,element,scope.chart); });
                     scope.$watch('data', function(data){
                         if (data && angular.isDefined(scope.filtername) && angular.isDefined(scope.filtervalue)) {
                             data =  $filter(scope.filtername)(data, scope.filtervalue);
                         }
-                        
+
                         if(data){
                             //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                             if(scope.chart){
@@ -2353,7 +2384,11 @@
 
                                     scope.d3Call(data, chart);
 
-                                    nv.utils.windowResize(chart.update);
+                                    nv.utils.windowResize(function(e) {
+                                      if (e.target === $(window)[0] || element.parents('#' + e.target.id).length) {
+                                        chart.update();
+                                      }
+                                    });
 
                                     scope.chart = chart;
                                     return chart;
