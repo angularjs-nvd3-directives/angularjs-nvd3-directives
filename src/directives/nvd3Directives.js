@@ -1210,7 +1210,8 @@
                     objectequality: '@',
 
                     //d3.js specific
-                    transitionduration: '@'
+                    transitionduration: '@',
+                    tooltippiecontentvalueformatter: '&'
 
                 },
                 controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
@@ -1226,7 +1227,10 @@
 
                         if(data){
                             //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
-                            if(scope.chart){
+                            if(scope.chart) {
+                                if (Array.isArray(data) && data.length > 0 && attrs.tooltipcontent && attrs.tooltippiecontentvalueformatter) {
+                                  scope.tooltippiecontentvalueformatter()(scope.chart.tooltip, data);
+                                }
                                 return scope.d3Call(data, scope.chart);
                             }
                             nv.addGraph({
