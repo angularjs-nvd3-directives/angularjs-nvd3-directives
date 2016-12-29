@@ -1223,8 +1223,8 @@
                                 generate: function(){
                                     initializeMargin(scope, attrs);
                                     var chart = nv.models.pieChart()
-                                        .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
-                                        .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
+                                        .x(attrs.x === undefined ? function(d){ return d.key; } : scope.x())
+                                        .y(attrs.y === undefined ? function(d){ return d.y; } : scope.y())
                                         .width(scope.width)
                                         .height(scope.height)
                                         .margin(scope.margin)
