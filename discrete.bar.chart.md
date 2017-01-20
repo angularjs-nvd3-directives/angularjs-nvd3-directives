@@ -316,6 +316,24 @@ Displays the data values on the chart.
 
 Datatype: boolean - (true/false)
 
+{% highlight javascript linenos %}
+function ExampleCtrl($scope){
+    $scope.reduceXTicksData = [
+	{
+	    "key": "Series 1",
+	    "values": [ 
+		[ 1025409600000 , 0], 
+		[ 1028088000000 , -6.3382185140371], 
+		[ 1030766400000 , -5.9507873460847], 
+		[ 1033358400000 , -11.569146943813], 
+		[ 1036040400000 , -5.4767332317425], 
+		[ 1038632400000 , 0.50794682203014],
+		[ 1041310800000 , -5.5310285460542] ]
+	}
+    ];
+}
+{% endhighlight %}
+
 {% highlight html %}
 <div ng-controller="ExampleCtrl">
 	<nvd3-discrete-bar-chart
