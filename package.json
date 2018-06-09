@@ -1,7 +1,7 @@
 {
-  "name": "angularjs-nvd3-directives",
-  "version": "0.0.8",
-  "homepage": "http://angularjs-nvd3-directives.github.io/angularjs-nvd3-directives",
+  "name": "iotric-angularjs-nvd3-directives",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Iotric/angularjs-nvd3-directives",
   "description": "Angular.js directives for nvd3",
   "main": "dist/angularjs-nvd3-directives.js",
   "directories": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angularjs-nvd3-directives/angularjs-nvd3-directives.git"
+    "url": "https://github.com/Iotric/angularjs-nvd3-directives"
   },
   "keywords": [
     "angular.js",
@@ -28,7 +28,7 @@
     "charts"
   ],
   "author": {
-    "name": "Christian Maurer"
+    "name": "Ved Prakash"
   },
   "license": "Apache License, v2.0",
   "readmeFilename": "README.md",
