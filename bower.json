@@ -1,8 +1,8 @@
 {
-  "name": "angularjs-nvd3-directives",
+  "name": "iotric-angularjs-nvd3-directives",
   "description": "Angular.js directives for nvd3.js.",
   "authors": [
-    "Christian Maurer"
+    "Ved Prakash"
   ],
   "license": "Apache License, v2.0",
   "homepage": "http://angularjs-nvd3-directives.github.io/angularjs-nvd3-directives/",
@@ -25,7 +25,7 @@
   "dependencies": {
     "angular": "~1.2.13",
     "d3": "~3.3.13",
-    "nvd3": "~v1.1.15-beta"
+    "nvd3": "1.0.1"
   },
   "devDependencies": {
     "moment": "~2.5.0",
